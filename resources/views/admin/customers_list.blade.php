@@ -5,13 +5,13 @@
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title> ModularAdmin - Free Dashboard Theme | HTML Version </title>
+        <title> All Customers </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.html">
         <!-- Place favicon.ico in the root directory -->
-        <link rel="stylesheet" id="theme-style" href="{{asset('css/app.css')}}">
-        <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
+        <link rel="stylesheet" href="css/vendor.css">
+        <link rel="stylesheet" id="theme-style" href="css/app.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
         
     </head>
@@ -28,12 +28,18 @@
                         <div class="title-block">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h3 class="title"> Items
-                                        <a href="/add-product" class="btn btn-primary btn-sm rounded-s"> Add New </a>
-                                        <!--
-				 -->
-                                    </h3>
-                                    <p class="title-description"> List of sample items - e.g. books, movies, events, etc... </p>
+                                    <h3 class="title pb-2"> Customers </h3>
+                                    <div class="btn-group">
+                                    <select class="c-select form-control boxed">
+                                        <option selected>Sort By:</option>
+                                        <option value="1">A to Z</option>
+                                        <option value="2">Z to A</option>
+                                        <option value="3">Visits</option>
+                                        <option value="4">Views</option>
+                                        <option value="5">Clicks</option>
+                                        
+                                    </select>
+                                            </div>
                                 </div>
                             </div>
                         </div>
@@ -50,159 +56,70 @@
                             </form>
                         </div>
                     </div>
-                    @for ($i = 0; $i <= 10; $i++)
-                    <div class="card items">
-                        <ul class="item-list striped">
-                            <li class="item item-list-header">
-                                <div class="item-row">
-                                    <div class="item-col item-col-header fixed item-col-img md">
-                                        <div>
-                                            <span>Image</span>
-                                        </div>
-                                    </div>
-                                    <div class="item-col item-col-header item-col-title">
-                                        <div>
-                                            <span>Title</span>
-                                        </div>
-                                    </div>
-                                    <div class="item-col item-col-header item-col-date">
-                                        <div>
-                                            <span>Views</span>
-                                        </div>
-                                    </div>
-                                    <div class="item-col item-col-header item-col-date">
-                                        <div>
-                                            <span>Clicks</span>
-                                        </div>
-                                    </div>
-                                    <div class="item-col item-col-header item-col-date">
-                                        <div class="no-overflow">
-                                            <span>Stats</span>
-                                        </div>
-                                    </div>
-                                    <div class="item-col item-col-header item-col-date">
-                                        <div class="no-overflow">
-                                            <span>Ecommers</span>
-                                        </div>
-                                    </div>
-                                    <div class="item-col item-col-header item-col-date">
-                                        <div>
-                                            <span>Published</span>
-                                        </div>
-                                    </div>
-                                    <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="item-row">
-                                    <div class="item-col fixed item-col-img md">
-                                        <a href="item-editor.html">
-                                            <div class="item-img rounded" style="background-image: url(../../s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg)"></div>
-                                        </a>
-                                    </div>
-                                    <div class="item-col fixed pull-left item-col-title">
-                                        <div class="item-heading">Title</div>
-                                        <div>
-                                            <a href="item-editor.html" class="">
-                                                <h4 class="item-title"> Headset </h4>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="item-col item-col-date">
-                                        <div class="item-heading">Views</div>
-                                        <div> 46323 </div>
-                                    </div>
-                                    <div class="item-col item-col-date">
-                                        <div class="item-heading">Clicks</div>
-                                        <div> 2000 </div>
-                                    </div>
-                                    <div class="item-col item-col-date no-overflow">
-                                        <div class="item-heading">Stats</div>
-                                        <div> In Stock </div>
-                                    </div>
-                                    <div class="item-col item-col-date no-overflow">
-                                        <div class="item-heading">Ecommers</div>
-                                        <div class="no-overflow">
-                                            <a href="#">Amazon</a>
-                                        </div>
-                                    </div>
-                                    <div class="item-col item-col-date">
-                                        <div class="item-heading">Published</div>
-                                        <div class="no-overflow"> 21 SEP 10:45 </div>
-                                    </div>
-                                    <div class="item-col fixed item-col-actions-dropdown">
-                                        <div class="item-actions-dropdown">
-                                            <a class="item-actions-toggle-btn">
-                                                <span class="inactive">
-                                                    <i class="fa fa-cog"></i>
-                                                </span>
-                                                <span class="active">
-                                                    <i class="fa fa-chevron-circle-right"></i>
-                                                </span>
-                                            </a>
-                                            <div class="item-actions-block">
-                                                <ul class="item-actions-list">
-                                                    <li>
-                                                        <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal">
-                                                            <i class="fa fa-trash "></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="edit" href="/add-product">
-                                                            <i class="fa fa-pencil-alt"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                   
+                    <section class="example">
+                    <div class="table-responsive">
+                                                <table class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>id</th>
+                                                        <th>Username</th>
+                                                        <th>Email</th>
+                                                        <th>Visits</th>
+                                                        <th>Views</th>
+                                                        <th>Clicks</th>
+                                                        <th>Last Visit</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @for ($i = 1; $i <= 10; $i++)
+                                                    <tr>
+                                                        <th scope="row">{{$i}}</th>
+                                                        <td>Mark</td>
+                                                        <td>mark@gmail.com</td>
+                                                        <td>2000</td>
+                                                        <td>1000</td>
+                                                        <td>500</td>
+                                                        <td>29-07-2021</td>
+                                                        <th><a href="#"><i class="fa fa-eye "></i></a></th>
+                                                    </tr>
+                                                    @endfor
+                                                </tbody>
                                             </div>
-                                        </div>
+                                            </table>
+                                        </section>
+                                        <nav class="text-right pt-3">
+                                            <ul class="pagination">
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#"> Prev </a>
+                                                </li>
+                                                <li class="page-item active">
+                                                    <a class="page-link" href="#"> 1 </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#"> 2 </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#"> 3 </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#"> 4 </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#"> 5 </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#"> Next </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
                                     </div>
                                 </div>
-                            </li>
-                           
-                        </ul>
-                    </div>
-                    @endfor
-                    <nav class="text-right">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#"> Prev </a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#"> 1 </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#"> 2 </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#"> 3 </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#"> 4 </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#"> 5 </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#"> Next </a>
-                            </li>
-                        </ul>
-                    </nav>
+                            </div>
+                        </div>
+                    </section>
                 </article>
-                <footer class="footer">
-                    <div class="footer-block buttons">
-                        <iframe class="footer-github-btn" src="https://ghbtns.com/github-btn.html?user=modularcode&amp;repo=modular-admin-html&amp;type=star&amp;count=true" frameborder="0" scrolling="0" width="140px" height="20px"></iframe>
-                    </div>
-                    <div class="footer-block author">
-                        <ul>
-                            <li> created by
-                                <a href="https://github.com/modularcode">ModularCode</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/modularcode/modular-admin-html#get-in-touch">get in touch</a>
-                            </li>
-                        </ul>
-                    </div>
-                </footer>
+                
                 <div class="modal fade" id="modal-media">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">

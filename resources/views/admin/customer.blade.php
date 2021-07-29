@@ -24,31 +24,6 @@
                 <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
                 <div class="mobile-menu-handle"></div>
                 <article class="content items-list-page">
-                    <div class="title-search-block">
-                        <div class="title-block">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h3 class="title"> Admins
-                                        <a href="/admin" class="btn btn-primary btn-sm rounded-s"> Add New Admin</a>
-                                        <!--
-				 -->
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="items-search">
-                            <form class="form-inline">
-                                <div class="input-group">
-                                    <input type="text" class="form-control boxed rounded-s" placeholder="Search for...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-secondary rounded-s" type="button">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                    
                     <section class="example">
                                             <table class="table table-striped">
@@ -69,14 +44,28 @@
                                                     @endfor
                                                 </tbody>
                                             </table>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="box-placeholder">.col-md-2</div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="box-placeholder">.col-md-2</div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="box-placeholder">.col-md-2</div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="box-placeholder">.col-md-2</div>
+                                                </div>
+                                            </div>
+                    
                                         </section>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    
-                    
+
                 </article>
                 
                 <div class="modal fade" id="modal-media">
