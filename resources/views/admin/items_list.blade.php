@@ -50,7 +50,13 @@
                             </form>
                         </div>
                     </div>
-                    @for ($i = 0; $i <= 10; $i++)
+                    @if (Session::has('product_deleted'))
+                        <div class="alert alert-success" role = "alert">
+                            {{ Session::get('product_deleted') }}
+                        </div>
+                    @endif
+
+                    @foreach ($products as $product )
                     <div class="card items">
                         <ul class="item-list striped">
                             <li class="item item-list-header">
@@ -103,8 +109,8 @@
                                     <div class="item-col fixed pull-left item-col-title">
                                         <div class="item-heading">Title</div>
                                         <div>
-                                            <a href="item-editor.html" class="">
-                                                <h4 class="item-title"> Headset </h4>
+                                            <a href="/single-product/{{ $product->id }}" class="">
+                                                <h4 class="item-title">{{$product->title}}</h4>
                                             </a>
                                         </div>
                                     </div>
@@ -123,12 +129,12 @@
                                     <div class="item-col item-col-date no-overflow">
                                         <div class="item-heading">Ecommers</div>
                                         <div class="no-overflow">
-                                            <a href="#">Amazon</a>
+                                            <a href="{{$product->affiliate_link}}">Amazon</a>
                                         </div>
                                     </div>
                                     <div class="item-col item-col-date">
                                         <div class="item-heading">Published</div>
-                                        <div class="no-overflow"> 21 SEP 10:45 </div>
+                                        <div class="no-overflow"> {{ $product->updated_at }} </div>
                                     </div>
                                     <div class="item-col fixed item-col-actions-dropdown">
                                         <div class="item-actions-dropdown">
@@ -143,7 +149,7 @@
                                             <div class="item-actions-block">
                                                 <ul class="item-actions-list">
                                                     <li>
-                                                        <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal">
+                                                        <a class="remove" href="/delete-product/{{$product->id}}" data-toggle="modal" data-target="#confirm-modal">
                                                             <i class="fa fa-trash "></i>
                                                         </a>
                                                     </li>
@@ -152,6 +158,32 @@
                                                             <i class="fa fa-pencil-alt"></i>
                                                         </a>
                                                     </li>
+                                                     <!-- /.modal -->
+                <div class="modal fade" id="confirm-modal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    <i class="fa fa-warning"></i> Alert</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure want to do this?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <form action="/delete-product/{{$product->id}}">
+                                <button class="btn btn-primary" >Yes</button>
+                                </form>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
                                                 </ul>
                                             </div>
                                         </div>
@@ -161,7 +193,7 @@
                            
                         </ul>
                     </div>
-                    @endfor
+                    @endforeach
                     <nav class="text-right">
                         <ul class="pagination">
                             <li class="page-item">
@@ -250,30 +282,7 @@
                     </div>
                     <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal -->
-                <div class="modal fade" id="confirm-modal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">
-                                    <i class="fa fa-warning"></i> Alert</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Are you sure want to do this?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
+               
             </div>
         </div>
         <!-- Reference block for JS -->

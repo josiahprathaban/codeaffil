@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,13 +43,13 @@ Route::get('/admin', function () {
     return view('admin.dashbord');
 });
 
-Route::get('/add-product', function () {
-    return view('admin.add_item');
-});
 
-Route::get('/all-products', function () {
-    return view('admin.items_list');
-});
+Route::get('/add-product', [ProductController::class, 'addProduct'])->name('product.add');
+Route::post('/add-product', [ProductController::class, 'addProductSubmit'])->name('product.addsubmit');
+Route::get('/all-products', [ProductController::class, 'getProducts'])->name('product.get');
+Route::get('/single-product/{id}', [ProductController::class, 'getProductById'])->name('product.getbyid');
+Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct'])->name('product.delete');
+
 
 Route::get('/all-customers', function () {
     return view('admin.customers_list');
