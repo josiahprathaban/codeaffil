@@ -42,24 +42,28 @@ Route::get('/admin', function () {
     return view('admin.dashbord');
 });
 
-Route::get('/admin/add-product', function () {
+Route::get('/add-product', function () {
     return view('admin.add_item');
 });
 
-Route::get('/admin/all-products', function () {
+Route::get('/all-products', function () {
     return view('admin.items_list');
 });
 
-Route::get('/admin/all-customers', function () {
+Route::get('/all-customers', function () {
     return view('admin.customers_list');
 });
 
-Route::get('/admin/all-admin', function () {
+Route::get('/all-admin', function () {
     return view('admin.admins_list');
 });
 
-Route::get('/admin/add-admin', function () {
+Route::get('/add-admin', function () {
     return view('admin.add_admin');
+});
+
+Route::get('/customer', function () {
+    return view('admin.customer');
 });
 
 Route::get('/about', function () {

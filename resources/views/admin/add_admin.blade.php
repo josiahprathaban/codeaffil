@@ -23,15 +23,13 @@
                 <div class="card">
                     
                     <div class="auth-content">
-                        <p class="text-center">SIGNUP TO GET INSTANT ACCESS</p>
-                        <form id="signup-form" action="https://modularcode.io/index.html" method="GET" novalidate="">
+                        <p class="text-center">Add New Admin</p>
+                        <form id="signup-form" action="" method="GET" novalidate="">
                             <div class="form-group">
                                 <label for="firstname">Name</label>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control underlined" name="firstname" id="firstname" placeholder="Enter firstname" required=""> </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control underlined" name="lastname" id="lastname" placeholder="Enter lastname" required=""> </div>
+                                        <input type="text" class="form-control underlined" name="username" id="username" placeholder="Enter Username" required=""> </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -47,27 +45,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="agree">
-                                    <input class="checkbox" name="agree" id="agree" type="checkbox" required="">
-                                    <span>Agree the terms and
-                                        <a href="#">policy</a>
-                                    </span>
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-primary">Sign Up</button>
-                            </div>
-                            <div class="form-group">
-                                <p class="text-muted text-center">Already have an account?
-                                    <a href="login.html">Login!</a>
-                                </p>
+                                <button type="submit" class="btn btn-block btn-primary">Add</button>
                             </div>
                         </form>
                     </div>
-                </div>
-                <div class="text-center">
-                    <a href="index-2.html" class="btn btn-secondary btn-sm">
-                        <i class="fa fa-arrow-left"></i> Back to dashboard </a>
                 </div>
             </div>
         </div>
