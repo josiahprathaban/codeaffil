@@ -93,3 +93,14 @@ Route::get('/compare', function () {
 Route::get('users', [UserController::class, 'getUser']);
 
 Route::Post('_login', [UserController::class, 'login']);
+
+Route::Post('_register', [UserController::class, 'register']);
+
+Route::get('/logout', function(){
+    if(session()->has('user')){
+        session()->pull('user');
+        session()->pull('type');
+    }
+    
+    return redirect('/login');
+});
