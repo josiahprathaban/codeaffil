@@ -28,29 +28,35 @@
                             <span class="sparkline bar" data-type="bar"></span>
                         </h3>
                     </div>
-                    <form name="item">
+                    @if (Session::has('added'))
+                        <div class="alert alert-success" role = "alert">
+                            {{ Session::get('added') }}
+                        </div>
+                    @endif
+                    <form method = "POST" action="{{ route('product.addsubmit')}}" name="item">
+                        @csrf
                         <div class="card card-block">
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Title: </label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control boxed" placeholder=""> </div>
+                                    <input type="text" name="title" class="form-control boxed" placeholder=""> </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Short Description: </label>
                                 <div class="col-sm-10">
-                                <textarea class="form-control boxed" name="" id="" rows="3"></textarea>
+                                <textarea class="form-control boxed" name="short_description" id="" rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Description: </label>
                                 <div class="col-sm-10">
-                                <textarea class="form-control boxed" name="" id="" rows="8"></textarea>
+                                <textarea class="form-control boxed" name="description" id="" rows="8"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Category: </label>
                                 <div class="col-sm-10">
-                                    <select class="c-select form-control boxed">
+                                    <select name="" class="c-select form-control boxed">
                                         <option selected>Select Category</option>
                                         <option value="1">Pendrive</option>
                                         <option value="2">Headset</option>
@@ -126,17 +132,17 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Regular Price: </label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control boxed" placeholder=""> </div>
+                                    <input type="text" class="form-control boxed" name="regular_price" placeholder=""> </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Sale Price: </label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control boxed" placeholder=""> </div>
+                                    <input type="text" class="form-control boxed" name="sale_price" placeholder=""> </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Affiliate Link: </label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control boxed" placeholder=""> </div>
+                                    <input type="text" class="form-control boxed" name="affiliate_link" placeholder=""> </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Images: </label>
