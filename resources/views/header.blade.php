@@ -6,14 +6,16 @@
                             <!--Left Start-->
                             <div class="col-lg-4 col-md-4">
                                 <div class="left-text">
-                                    <p>Welcome you to CODEAFFIL!</p>
+                                    <p>Hello {{session('user')}}! Welcome you to CODEAFFIL!</p>
                                 </div>
                             </div>
                             <!--Left End-->
                             <!--Right Start-->
                             <div class="col-lg-8 col-md-8 text-right">
                                 <div class="header-right-nav">
+                                
                                     <ul class="res-xs-flex">
+                                    @if(!session('user'))
                                         <li class="after-n">
                                             <a href="/login">Login</a>
                                         </li>
@@ -21,6 +23,8 @@
                                             <a href="/login">Register Now</a>
                                         </li>
                                     </ul>
+                                    @endif
+                                    @if(session('user'))
                                     <div class="dropdown-navs">
                                         <ul>
                                             <!-- Settings Start -->
@@ -28,20 +32,13 @@
                                                 <a class="angle-icon" href="#">Settings</a>
                                                 <ul class="dropdown-nav">
                                                     <li><a href="/profile">My Profile</a></li>
-                                                    <li><a href="/">Logout</a></li>
+                                                    <li><a href="/logout">Logout</a></li>
                                                 </ul>
                                             </li>
                                             <!-- Settings End -->
-                                            <!-- Language Start -->
-                                            <li class="top-10px mr-15px">
-                                                <select>
-                                                    <option value="1">English</option>
-                                                    <option value="2">France</option>
-                                                </select>
-                                            </li>
-                                            <!-- Language End -->
                                         </ul>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                             <!--Right End-->
@@ -119,13 +116,20 @@
                                     <!--Seach Area End -->
                                     <!--Contact info Start -->
                                     <div class="contact-link">
-                                        <div class="phone">
-                                            <p>Call us:</p>
-                                            <a href="tel:(+800)345678">(+800)345678</a>
-                                        </div>
+                                    <ul>
+                                    <li class="dropdown xs-after-n">
+                                                <a class="angle-icon xprofile" href="#"><img src="assets/images/testimonial-image/1.png" alt=""> {{session('user')}}</a>
+                                                <ul class="dropdown-nav">
+                                                    <li><a href="/profile">My Profile</a></li>
+                                                    <li><a href="/logout">Logout</a></li>
+                                                </ul>
+                                            </li>
+                                    </ul>
                                     </div>
                                     <!--Contact info End -->
-                                    <button type="button" class="btn ms-3" style="background-color: #253237; color:#ffffff">Admin Panel</button>
+                                    @if(session('type') == "admin")
+                                    <a type="button" class="btn ms-3" style="background-color: #253237; color:#ffffff" href="/admin">Admin Panel</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
