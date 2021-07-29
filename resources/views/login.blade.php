@@ -86,9 +86,10 @@
                                     <div id="lg1" class="tab-pane active">
                                         <div class="login-form-container">
                                             <div class="login-register-form">
-                                                <form action="#" method="post">
-                                                    <input type="text" name="user-name" placeholder="Username" />
-                                                    <input type="password" name="user-password" placeholder="Password" />
+                                                <form action="_login" method="post">
+                                                    @csrf
+                                                    <input type="text" name="name" placeholder="Username/email" />
+                                                    <input type="password" name="password" placeholder="Password" />
                                                     <div class="button-box">
                                                         <div class="login-toggle-btn">
                                                             <input type="checkbox" />
