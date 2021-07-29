@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -83,3 +85,7 @@ Route::get('/single-product', function () {
 Route::get('/compare', function () {
     return view('compare');
 });
+
+Route::get('users', [UserController::class, 'getUser']);
+
+Route::Post('_login', [UserController::class, 'login']);
