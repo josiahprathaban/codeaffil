@@ -6,6 +6,8 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,12 +46,25 @@ Route::get('/admin', function () {
 });
 
 
+
 Route::get('/add-product', [ProductController::class, 'addProduct'])->name('product.add');
 Route::post('/add-product', [ProductController::class, 'addProductSubmit'])->name('product.addsubmit');
 Route::get('/all-products', [ProductController::class, 'getProducts'])->name('product.get');
 Route::get('/single-product/{id}', [ProductController::class, 'getProductById'])->name('product.getbyid');
 Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct'])->name('product.delete');
+Route::get('/edit-product/{id}', [ProductController::class, 'editProduct'])->name('product.edit');
+Route::post('/update-product', [ProductController::class, 'updateProduct'])->name('product.update');
 
+Route::post('/brands', [BrandController::class, 'addBrandSubmit'])->name('brand.addsubmit');
+Route::get('/brands', [BrandController::class, 'getBrands'])->name('brand.get');
+Route::get('/delete-brand/{id}', [BrandController::class, 'deleteBrand'])->name('brand.delete');
+// Route::get('/edit-brand/{id}', [BrandController::class, 'editBrand'])->name('brand.edit');
+Route::post('/update-brand', [BrandController::class, 'updateBrand'])->name('brand.update');
+
+Route::post('/categories', [CategoryController::class, 'addCategorySubmit'])->name('category.addsubmit');
+Route::get('/categories', [CategoryController::class, 'getCategories'])->name('category.get');
+Route::get('/delete-category/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
+Route::post('/update-category', [CategoryController::class, 'updateCategory'])->name('category.update');
 
 Route::get('/all-customers', function () {
     return view('admin.customers_list');
@@ -90,6 +105,7 @@ Route::get('/single-product', function () {
 Route::get('/compare', function () {
     return view('compare');
 });
+
 
 Route::get('users', [UserController::class, 'getUser']);
 
