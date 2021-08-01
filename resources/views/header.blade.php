@@ -1,10 +1,11 @@
 <header class="main-header">
                 <!-- Header Top Start -->
+
                 <div class="header-top-nav">
                     <div class="container-fluid">
-                        <div class="row">
+                        <div class="row pt-2">
                             <!--Left Start-->
-                            <div class="col-lg-4 col-md-4">
+                            <div class="col-lg-4 col-md-4 pt-2 pb-2">
                                 <div class="left-text">
                                     <p>Hello {{session('user')}}! Welcome you to CODEAFFIL!</p>
                                 </div>
@@ -12,10 +13,10 @@
                             <!--Left End-->
                             <!--Right Start-->
                             <div class="col-lg-8 col-md-8 text-right">
+                            
                                 <div class="header-right-nav">
-                                
-                                    <ul class="res-xs-flex">
                                     @if(!session('user'))
+                                    <ul class="res-xs-flex">
                                         <li class="after-n">
                                             <a href="/login">Login</a>
                                         </li>
@@ -23,6 +24,24 @@
                                             <a href="/login">Register Now</a>
                                         </li>
                                     </ul>
+                                    @else
+                                    <div class="dropdown-navs">
+                                        <ul>
+                                            <!-- Settings Start  -->
+                                            <li class="dropdown after-n">
+                                            <a class="angle-icon xprofile" href="#"><img src="{{session('profile')}}" alt="">
+                                                {{session('user')}}</a>
+                                                <ul class="dropdown-nav">
+                                                    @if(session('type') == "admin")
+                                                    <li><a href="/admin">Admin Panel</a></li>
+                                                    @else
+                                                    <li><a href="/profile">Profile</a></li>
+                                                    @endif
+                                                    <li><a href="/logout">Logout</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
                                     @endif
                                 </div>
                             </div>
@@ -32,18 +51,18 @@
                 </div>
                 <!-- Header Top End -->
                 <!-- Header Buttom Start -->
-                <div class="header-navigation sticky-nav">
+                <div class="header-navigation sticky-nav head-grid">
                     <div class="container-fluid">
                         <div class="row">
                             <!-- Logo Start -->
-                            <div class="col-md-2 col-sm-2">
+                            <div class="col-md-4 col-sm-4">
                                 <div class="logo">
                                     <a href="/"><img src="assets/images/logo/logo.jpg" alt="" /></a>
                                 </div>
                             </div>
                             <!-- Logo End -->
                             <!-- Navigation Start -->
-                            <div class="col-md-10 col-sm-10">
+                            <div class="col-md-8 col-sm-8">
                                 <!--Main Navigation Start -->
                                 <div class="main-navigation d-none d-lg-block">
                                     <ul>
@@ -67,93 +86,9 @@
                                             </ul>
                                         </li>
                                         <li><a href="/contact">Contact Us</a></li>
+                                        <li><a href="/about">About Us</a></li>
                                     </ul>
                                 </div>
-
-
-                                <div class="xright">
-                                @if(session('user'))
-                                    <div class="contact-link">
-                                    <ul>
-                                    <li class="dropdown xs-after-n">
-                                                <a class="angle-icon xprofile" href="#"><img src="{{session('profile')}}" alt="">
-                                                {{session('user')}}</a>
-                                                <ul class="dropdown-nav">
-                                                    <li><a href="/profile">My Profile</a></li>
-                                                    <li><a href="/logout">Logout</a></li>
-                                                </ul>
-                                            </li>
-                                    </ul>
-                                    </div>
-                                    @endif
-                                    @if(session('type') == "admin")
-                                    <a type="button" class="btn ms-3" style="background-color: #253237; color:#ffffff" href="/admin">Admin Panel</a>
-                                    @endif
-                                </div>
-                                
-
-
-                                <!-- <div class="dropdown_search">
-                                            <form action="#">
-                                                <input placeholder="Search entire store here ..." type="text" />
-                                                <div class="search-category">
-                                                    <select class="bootstrap-select" name="poscats">
-                                                        <option value="0">All categories</option>
-                                                        @for ($i = 0; $i < 3; $i++)
-                                                            <option value="104">
-                                                                Category
-                                                            </option>
-                                                            @for ($j = 0; $j < 5; $j++)
-                                                                <option value="106">
-                                                                    &nbsp &nbsp Subcategory
-                                                                </option>
-                                                            @endfor
-                                                        @endfor
-                                                    </select>
-                                                </div>
-                                                <button type="submit"><i class="ion-ios-search-strong"></i></button>
-                                            </form>
-                                        </div> -->
-
-                                        <div class="container">
-    <div class="row">    
-        <div class="col-xs-8 col-xs-offset-2">
-		    <div class="input-group">
-                <div class="input-group-btn search-panel">
-                    <button type="button" class="btn bt n-default dropdown-toggle" data-toggle="dropdown">
-                    	<span id="search_concept">Filter by</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#contains">Contains</a></li>
-                      <li><a href="#its_equal">It's equal</a></li>
-                      <li><a href="#greather_than">Greather than ></a></li>
-                      <li><a href="#less_than">Less than < </a></li>
-                      <li class="divider"></li>
-                      <li><a href="#all">Anything</a></li>
-                    </ul>
-                </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
-            </div>
-        </div>
-	</div>
-</div>
-
-<div class="input-group mb-3">
-  <span><select class="form-select" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select></span>
-  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-  <span class="input-group-text">.00</span>
-</div>
-                               
-                                    
                                 <!--Main Navigation End -->
                             </div>
                         </div>
@@ -184,7 +119,30 @@
                             </div>
                         </div>
                         <!-- mobile menu end-->
+                    </div>  
+                    <div class="x_search">
+                                    <select class="x_search_select">
+                                    <option selected>All categories</option>
+                                    @for ($i = 0; $i < 3; $i++)
+                                            <option value="Category">
+                                                Category
+                                            </option>
+                                            @for ($j = 0; $j < 5; $j++)
+                                            <option value="Subcategory">
+                                                &nbsp &nbsp Subcategory
+                                            </option>
+                                            @endfor
+                                        @endfor
+                                    </select>
+                                    <input type="text" class="x_search_text">
+                                    <!-- <input type="submit" class="x_search_button" value="Search"> -->
+                                    <button type="submit" class="x_search_button">
+                                    <i class="ion-ios-search-strong"></i>
+                                    </button>
                     </div>
                 </div>
                 <!--Header Bottom Account End -->
+
+                         
+                        
             </header>
