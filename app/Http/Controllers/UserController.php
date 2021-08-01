@@ -55,5 +55,21 @@ class UserController extends Controller
         $request->session()->put('type', DB::table('users')->where('username', $data['name'])->value('type'));
         return redirect('/');
     }
+
+    //Add admin
+    public function addAdmin(){
+        return view('admin.add_admin');
+    }
+
+   public function addAdminSubmit(Request $request){
+        DB::table('users')->insert([
+            'username' => $request->user_name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'type' => "admin"
+        ]);
+        return back()->with('admin_added','Admin has been added successfully!');
+    }
+
 }
 // Wrong password. Try again or click Forgot password to reset it.

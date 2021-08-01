@@ -24,12 +24,13 @@
                     
                     <div class="auth-content">
                         <p class="text-center">Add New Admin</p>
-                        <form id="signup-form" action="" method="GET" novalidate="">
+                        <form id="signup-form" action="{{route('admin.addsubmit')}}" method="POST" novalidate="">
+                            @csrf
                             <div class="form-group">
                                 <label for="firstname">Name</label>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control underlined" name="username" id="username" placeholder="Enter Username" required=""> </div>
+                                        <input type="text" class="form-control underlined" name="user_name" id="username" placeholder="Enter Username" required=""> </div>
                                 </div>
                             </div>
                             <div class="form-group">

@@ -59,7 +59,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="/subcategories">
                                         <i class="fa fa-users-cog"></i> SubCategories Manager
                                     </a>
                                 </li>
