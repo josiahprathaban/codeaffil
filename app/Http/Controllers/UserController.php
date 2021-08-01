@@ -69,6 +69,21 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    //Add admin
+    public function addAdmin(){
+        return view('admin.add_admin');
+    }
+
+   public function addAdminSubmit(Request $request){
+        DB::table('users')->insert([
+            'username' => $request->user_name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'type' => "admin"
+        ]);
+        return back()->with('admin_added','Admin has been added successfully!');
+    }
+
     function profile_upload(Request $request)
     {
         $imageName = session('user')."_profile";
