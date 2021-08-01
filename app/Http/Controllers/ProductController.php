@@ -44,4 +44,25 @@ class ProductController extends Controller
         $product = DB::table('products')->where('id',$id)->delete();
         return back()->with('product_deleted','Product has been deleted successfully!');
     }
+
+    //update product
+    public function editProduct($id){
+        $product = DB::table('products')->where('id',$id)->first();
+        return view('admin.edit_item',compact('product'));
+    }
+
+    public function updateProduct(Request $request){
+        DB::table('products')->where('id', $request->id)->update([
+            'title'=> $request->title,
+            'short_description'=>$request->short_description,
+            'description'=>$request->description,
+            'regular_price'=>$request->regular_price,
+            'sale_price'=>$request->sale_price,
+            'affiliate_link'=>$request->affiliate_link,
+            "created_at"=> Carbon::now(),
+            "updated_at"=> now()
+
+        ]);
+        return back()->with('product_updated','Product has been updated successfully!');
+    }
 }

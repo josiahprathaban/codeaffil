@@ -70,6 +70,7 @@
                                     </ul>
                                 </div>
 
+
                                 <div class="xright">
                                 @if(session('user'))
                                     <div class="contact-link">

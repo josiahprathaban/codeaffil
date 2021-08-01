@@ -5,7 +5,7 @@
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title> ModularAdmin - Free Dashboard Theme | HTML Version </title>
+        <title> Edit Product </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.html">
@@ -24,33 +24,34 @@
                 <div class="mobile-menu-handle"></div>
                 <article class="content item-editor-page">
                     <div class="title-block">
-                        <h3 class="title"> Add new item
+                        <h3 class="title"> Edit Product Details
                             <span class="sparkline bar" data-type="bar"></span>
                         </h3>
                     </div>
-                    @if (Session::has('added'))
+                    @if (Session::has('product_updated'))
                         <div class="alert alert-success" role = "alert">
-                            {{ Session::get('added') }}
+                            {{ Session::get('product_updated') }}
                         </div>
                     @endif
-                    <form method = "POST" action="{{ route('product.addsubmit')}}" name="item">
+                    <form method = "POST" action="{{ route('product.update')}}" name="item">
                         @csrf
+                        <input type="hidden" name="id" value = "{{$product->id}}">
                         <div class="card card-block">
-                            <div class="form-group row">
+                        <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Title: </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="title" class="form-control boxed" placeholder=""> </div>
+                                    <input type="text" name="title" class="form-control boxed" value="{{$product->title}}" placeholder="" > </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Short Description: </label>
                                 <div class="col-sm-10">
-                                <textarea class="form-control boxed" name="short_description" id="" rows="3"></textarea>
+                                <textarea class="form-control boxed" name="short_description"  id="" rows="3" >{{$product->short_description}}</textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Description: </label>
                                 <div class="col-sm-10">
-                                <textarea class="form-control boxed" name="description" id="" rows="8"></textarea>
+                                <textarea class="form-control boxed" name="description" id="" rows="8" >{{$product->description}}</textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -132,37 +133,89 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Regular Price: </label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control boxed" name="regular_price" placeholder=""> </div>
+                                    <input type="text" class="form-control boxed" value="{{$product->regular_price}}"  name="regular_price" placeholder="" > </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Sale Price: </label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control boxed" name="sale_price" placeholder=""> </div>
+                                    <input type="text" class="form-control boxed" name="sale_price" value="{{$product->sale_price}}" placeholder="" > </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Affiliate Link: </label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control boxed" name="affiliate_link" placeholder=""> </div>
+                                    <input type="text" class="form-control boxed" name="affiliate_link" value="{{$product->affiliate_link}}"  placeholder="" > </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Images: </label>
                                 <div class="col-sm-10">
-                                <div class="form-group">
-                                <label class="col-sm-2 form-control-label text-xs-right"> Image1 </label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                    <label class="col-sm-2 form-control-label text-xs-right"> Images2 </label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                    <label class="col-sm-2 form-control-label text-xs-right"> Images3 </label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                    <label class="col-sm-2 form-control-label text-xs-right"> Images4 </label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                
-                            </div>
+                                    <div class="images-container">
+                                        <div class="image-container">
+                                            <div class="controls">
+                                                <a href="#" class="control-btn move">
+                                                    <i class="fa fa-arrows"></i>
+                                                </a>
+                                                <!--
+								-->
+                                                <a href="#" class="control-btn star">
+                                                    <i class="fa"></i>
+                                                </a>
+                                                <!--
+								-->
+                                                <a href="#" class="control-btn remove" data-toggle="modal" data-target="#confirm-modal">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </div>
+                                            <div class="image" style="background-image:url('../../s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg')"></div>
+                                        </div>
+                                        <div class="image-container">
+                                            <div class="controls">
+                                                <a href="#" class="control-btn move">
+                                                    <i class="fa fa-arrows"></i>
+                                                </a>
+                                                <!--
+								-->
+                                                <a href="#" class="control-btn star">
+                                                    <i class="fa"></i>
+                                                </a>
+                                                <!--
+								-->
+                                                <a href="#" class="control-btn remove" data-toggle="modal" data-target="#confirm-modal">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </div>
+                                            <div class="image" style="background-image:url('../../s3.amazonaws.com/uifaces/faces/twitter/_everaldo/128.jpg')"></div>
+                                        </div>
+                                        <div class="image-container">
+                                            <div class="controls">
+                                                <a href="#" class="control-btn move">
+                                                    <i class="fa fa-arrows"></i>
+                                                </a>
+                                                <!--
+								-->
+                                                <a href="#" class="control-btn star">
+                                                    <i class="fa"></i>
+                                                </a>
+                                                <!--
+								-->
+                                                <a href="#" class="control-btn remove" data-toggle="modal" data-target="#confirm-modal">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </div>
+                                            <div class="image" style="background-image:url('../../s3.amazonaws.com/uifaces/faces/twitter/eduardo_olv/128.jpg')"></div>
+                                        </div>
+                                        <a href="#" class="add-image" data-toggle="modal" data-target="#modal-media">
+                                            <div class="image-container new">
+                                                <div class="image">
+                                                    <i class="fa fa-plus"></i>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-10 col-sm-offset-2">
-                                    <button type="submit" class="btn btn-primary"> Submit </button>
+                                    <button type="submit" class="btn btn-primary"> Update </button>
                                 </div>
                             </div>
                         </div>
@@ -206,16 +259,10 @@
                                 </button>
                             </div>
                             <div class="card card-block sameheight-item">
-                            @if (Session::has('added'))
-                                <div class="alert alert-success" role = "alert">
-                                    {{ Session::get('badded') }}
-                                </div>
-                             @endif
-                                    <form role="form" method="post" action="{{ route('brand.addsubmit')}}">
-                                    @csrf
+                                    <form role="form">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Brand</label>
-                                            <input type="text" name="brand_name" class="form-control" id="exampleInputEmail1" placeholder="Enter Brand Name"> </div>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Brand Name"> </div>
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary">Add</button>
                                         </div>

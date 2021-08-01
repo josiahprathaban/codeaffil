@@ -48,6 +48,26 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li>
+                                    <a href="brands">
+                                        <i class="fa fa-users-cog"></i> Brands Manager
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/categories">
+                                        <i class="fa fa-users-cog"></i> Categories Manager
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-users-cog"></i> SubCategories Manager
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-users-cog"></i> Ecommerce Manager
+                                    </a>
+                                </li>
                             </ul>
                         </nav>
                     </div>

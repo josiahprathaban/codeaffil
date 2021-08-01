@@ -149,41 +149,41 @@
                                             <div class="item-actions-block">
                                                 <ul class="item-actions-list">
                                                     <li>
-                                                        <a class="remove" href="/delete-product/{{$product->id}}" data-toggle="modal" data-target="#confirm-modal">
+                                                        <a class="remove" href="/delete-product/{{$product->id}}" data-toggle="modal" data-target="#confirm-modal-{{$product->id}}">
                                                             <i class="fa fa-trash "></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="edit" href="/add-product">
+                                                        <a class="edit" href="/edit-product/{{$product->id}}">
                                                             <i class="fa fa-pencil-alt"></i>
                                                         </a>
                                                     </li>
                                                      <!-- /.modal -->
-                <div class="modal fade" id="confirm-modal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">
-                                    <i class="fa fa-warning"></i> Alert</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Are you sure want to do this?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <form action="/delete-product/{{$product->id}}">
-                                <button class="btn btn-primary" >Yes</button>
-                                </form>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
+                                                        <div class="modal fade" id="confirm-modal-{{$product->id}}">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">
+                                                                            <i class="fa fa-warning"></i> Alert</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p>Are you sure want to do this?</p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <form action="/delete-product/{{$product->id}}">
+                                                                        <button class="btn btn-primary" >Yes</button>
+                                                                        </form>
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- /.modal-content -->
+                                                            </div>
+                                                            <!-- /.modal-dialog -->
+                                                        </div>
+                                                        <!-- /.modal -->
                                                 </ul>
                                             </div>
                                         </div>
