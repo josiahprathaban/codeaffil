@@ -8232,19 +8232,15 @@ background: linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(255,255,255,0) 1
     font-size: 15px;
     color: #212121;
     font-weight: 600;
-    margin-bottom: -30px;
 }
 .xprofile img{
     width: 40px;
     height: 40px;
     border-radius: 50%;
     overflow: hidden;
+    margin: 10px;
+    
 }
-
-.xright{
-    float: right;
-}
-
 
 .profile-pic {
     color: transparent;
@@ -8297,4 +8293,46 @@ background: linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(255,255,255,0) 1
   #save_profile{
       display: none;
   }
-  
+
+  .xgrid{
+    display: grid;
+    grid-template-columns: max-content auto;
+  }
+
+  @media (max-width: 1000px){
+    .xgrid{
+        display: grid;
+        grid-template-columns: 100%;
+      }
+  }
+
+  .x_search{
+    margin: 15px 20px 0px 20px;
+    display: grid;
+    grid-template-columns: 30% calc(70% - 80px) 80px;
+    border: solid #666 1px;
+    border-radius: 5px;
+  }
+
+  .x_search_select{
+      display: inline;
+      width: 100%;
+      outline: none;
+      border: none;
+      border-right: #666 solid 1px;
+      border-radius: 5px 0 0 5px;
+  }
+
+  .x_search_text{
+    outline: none;
+    border: none;
+    border-right: #666 1px solid;
+    border-radius: 0;
+  }
+
+  .x_search_button{
+    outline: none;
+    border: none;
+    border-radius: 0;
+    border-radius: 0 5px 5px 0;
+  }
