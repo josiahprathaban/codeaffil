@@ -1,10 +1,11 @@
 <header class="main-header">
                 <!-- Header Top Start -->
+
                 <div class="header-top-nav">
                     <div class="container-fluid">
-                        <div class="row">
+                        <div class="row pt-2">
                             <!--Left Start-->
-                            <div class="col-lg-4 col-md-4">
+                            <div class="col-lg-4 col-md-4 pt-2 pb-2">
                                 <div class="left-text">
                                     <p>Hello {{session('user')}}! Welcome you to CODEAFFIL!</p>
                                 </div>
@@ -50,18 +51,18 @@
                 </div>
                 <!-- Header Top End -->
                 <!-- Header Buttom Start -->
-                <div class="header-navigation sticky-nav">
+                <div class="header-navigation sticky-nav head-grid">
                     <div class="container-fluid">
                         <div class="row">
                             <!-- Logo Start -->
-                            <div class="col-md-3 col-sm-3">
+                            <div class="col-md-4 col-sm-4">
                                 <div class="logo">
                                     <a href="/"><img src="assets/images/logo/logo.jpg" alt="" /></a>
                                 </div>
                             </div>
                             <!-- Logo End -->
                             <!-- Navigation Start -->
-                            <div class="col-md-9 col-sm-9 xgrid">
+                            <div class="col-md-8 col-sm-8">
                                 <!--Main Navigation Start -->
                                 <div class="main-navigation d-none d-lg-block">
                                     <ul>
@@ -85,6 +86,7 @@
                                             </ul>
                                         </li>
                                         <li><a href="/contact">Contact Us</a></li>
+                                        <li><a href="/about">About Us</a></li>
                                     </ul>
                                 </div>
                                 <!--Main Navigation End -->
@@ -117,8 +119,7 @@
                             </div>
                         </div>
                         <!-- mobile menu end-->
-                    </div>
-                                
+                    </div>  
                     <div class="x_search">
                                     <select class="x_search_select">
                                     <option selected>All categories</option>
@@ -134,8 +135,11 @@
                                         @endfor
                                     </select>
                                     <input type="text" class="x_search_text">
-                                    <input type="submit" class="x_search_button" value="Search">
-                                </div>  
+                                    <!-- <input type="submit" class="x_search_button" value="Search"> -->
+                                    <button type="submit" class="x_search_button">
+                                    <i class="ion-ios-search-strong"></i>
+                                    </button>
+                    </div>
                 </div>
                 <!--Header Bottom Account End -->
 
