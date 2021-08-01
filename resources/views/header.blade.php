@@ -120,8 +120,8 @@
         <div class="col-xs-8 col-xs-offset-2">
 		    <div class="input-group">
                 <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                    <button type="button" class="btn bt n-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Filter by</span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                       <li><a href="#contains">Contains</a></li>
@@ -142,18 +142,17 @@
 	</div>
 </div>
 
-<script>
-    $(document).ready(function(e){
-    $('.search-panel .dropdown-menu').find('a').click(function(e) {
-		e.preventDefault();
-		var param = $(this).attr("href").replace("#","");
-		var concept = $(this).text();
-		$('.search-panel span#search_concept').text(concept);
-		$('.input-group #search_param').val(param);
-	});
-});
-</script>
-                                
+<div class="input-group mb-3">
+  <span><select class="form-select" aria-label="Default select example">
+  <option selected>Open this select menu</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select></span>
+  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+  <span class="input-group-text">.00</span>
+</div>
+                               
                                     
                                 <!--Main Navigation End -->
                             </div>
