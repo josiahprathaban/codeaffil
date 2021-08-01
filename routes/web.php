@@ -100,9 +100,10 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/profile', function () {
-    return view('profile');
-});
+// Route::get('/profile', function () {
+//     return view('profile');
+// });
+Route::get('/profile', [UserController::class, 'getUserProfile']);
 
 Route::get('/products', function () {
     return view('products');
@@ -127,7 +128,19 @@ Route::get('/logout', function(){
     if(session()->has('user')){
         session()->pull('user');
         session()->pull('type');
+        session()->pull('profile');
     }
     
     return redirect('/login');
 });
+
+
+
+
+
+Route::Post('_profile_upload', [UserController::class, 'profile_upload']);
+Route::Post('_info_update', [UserController::class, 'info_update']);
+Route::Post('_change_password', [UserController::class, 'change_password']);
+
+
+

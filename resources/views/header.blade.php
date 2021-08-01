@@ -24,21 +24,6 @@
                                         </li>
                                     </ul>
                                     @endif
-                                    @if(session('user'))
-                                    <div class="dropdown-navs">
-                                        <ul>
-                                            <!-- Settings Start -->
-                                            <li class="dropdown xs-after-n">
-                                                <a class="angle-icon" href="#">Settings</a>
-                                                <ul class="dropdown-nav">
-                                                    <li><a href="/profile">My Profile</a></li>
-                                                    <li><a href="/logout">Logout</a></li>
-                                                </ul>
-                                            </li>
-                                            <!-- Settings End -->
-                                        </ul>
-                                    </div>
-                                    @endif
                                 </div>
                             </div>
                             <!--Right End-->
@@ -84,13 +69,31 @@
                                         <li><a href="/contact">Contact Us</a></li>
                                     </ul>
                                 </div>
-                                <!--Main Navigation End -->
-                                <!--Header Bottom Account Start -->
-                                <div class="header_account_area ">
-                                    <!--Search Area Start -->
-                                    <div class="header_account_list search_list">
-                                        <a href="javascript:void(0)"><i class="ion-ios-search-strong"></i></a>
-                                        <div class="dropdown_search">
+
+
+                                <div class="xright">
+                                @if(session('user'))
+                                    <div class="contact-link">
+                                    <ul>
+                                    <li class="dropdown xs-after-n">
+                                                <a class="angle-icon xprofile" href="#"><img src="{{session('profile')}}" alt="">
+                                                {{session('user')}}</a>
+                                                <ul class="dropdown-nav">
+                                                    <li><a href="/profile">My Profile</a></li>
+                                                    <li><a href="/logout">Logout</a></li>
+                                                </ul>
+                                            </li>
+                                    </ul>
+                                    </div>
+                                    @endif
+                                    @if(session('type') == "admin")
+                                    <a type="button" class="btn ms-3" style="background-color: #253237; color:#ffffff" href="/admin">Admin Panel</a>
+                                    @endif
+                                </div>
+                                
+
+
+                                <!-- <div class="dropdown_search">
                                             <form action="#">
                                                 <input placeholder="Search entire store here ..." type="text" />
                                                 <div class="search-category">
@@ -106,31 +109,53 @@
                                                                 </option>
                                                             @endfor
                                                         @endfor
-                                                        
                                                     </select>
                                                 </div>
                                                 <button type="submit"><i class="ion-ios-search-strong"></i></button>
                                             </form>
-                                        </div>
-                                    </div>
-                                    <!--Seach Area End -->
-                                    <!--Contact info Start -->
-                                    <div class="contact-link">
-                                    <ul>
-                                    <li class="dropdown xs-after-n">
-                                                <a class="angle-icon xprofile" href="#"><img src="assets/images/testimonial-image/1.png" alt=""> {{session('user')}}</a>
-                                                <ul class="dropdown-nav">
-                                                    <li><a href="/profile">My Profile</a></li>
-                                                    <li><a href="/logout">Logout</a></li>
-                                                </ul>
-                                            </li>
-                                    </ul>
-                                    </div>
-                                    <!--Contact info End -->
-                                    @if(session('type') == "admin")
-                                    <a type="button" class="btn ms-3" style="background-color: #253237; color:#ffffff" href="/admin">Admin Panel</a>
-                                    @endif
-                                </div>
+                                        </div> -->
+
+                                        <div class="container">
+    <div class="row">    
+        <div class="col-xs-8 col-xs-offset-2">
+		    <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#contains">Contains</a></li>
+                      <li><a href="#its_equal">It's equal</a></li>
+                      <li><a href="#greather_than">Greather than ></a></li>
+                      <li><a href="#less_than">Less than < </a></li>
+                      <li class="divider"></li>
+                      <li><a href="#all">Anything</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+        </div>
+	</div>
+</div>
+
+<script>
+    $(document).ready(function(e){
+    $('.search-panel .dropdown-menu').find('a').click(function(e) {
+		e.preventDefault();
+		var param = $(this).attr("href").replace("#","");
+		var concept = $(this).text();
+		$('.search-panel span#search_concept').text(concept);
+		$('.input-group #search_param').val(param);
+	});
+});
+</script>
+                                
+                                    
+                                <!--Main Navigation End -->
                             </div>
                         </div>
                         <!-- mobile menu -->
