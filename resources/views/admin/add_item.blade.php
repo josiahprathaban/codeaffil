@@ -28,6 +28,13 @@
                             <span class="sparkline bar" data-type="bar"></span>
                         </h3>
                     </div>
+                    @foreach ($brands as $brand )
+                                                    <tr>
+                                                        <th scope="row">{{$brand->id}}</th>
+                                                        <td>{{$brand->name}}</td>
+                                                        <td>500</td>
+                                                        <td>1000</td>
+                    @endforeach
                     @if (Session::has('added'))
                         <div class="alert alert-success" role = "alert">
                             {{ Session::get('added') }}
@@ -58,10 +65,9 @@
                                 <div class="col-sm-10">
                                     <select name="" class="c-select form-control boxed">
                                         <option selected>Select Category</option>
-                                        <option value="1">Pendrive</option>
-                                        <option value="2">Headset</option>
-                                        <option value="3">T-Shirt</option>
-                                        <option value="4"><a href="index.html">New</a></option>
+                                        @foreach ($categories as $category )
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
                                         
                                     </select>
                                         <a href="#" class="add-image" data-toggle="modal" data-target="#modal-add-category">
@@ -96,11 +102,11 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Brand: </label>
                                 <div class="col-sm-10">
-                                    <select class="c-select form-control boxed">
+                                    <select name="brand_id" class="c-select form-control boxed">
                                         <option selected>Select Brand</option>
-                                        <option value="1">Kingston</option>
-                                        <option value="2">JBL</option>
-                                        <option value="3">Republic</option>
+                                        @foreach ($brands as $brand )
+                                        <option  value="{{$brand->id}}">{{$brand->name}}</option>
+                                        @endforeach
                                     </select>
                                     <a href="#" class="add-image" data-toggle="modal" data-target="#modal-add-brand">
                                             <div class="image-container new">

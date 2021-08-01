@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +49,8 @@ Route::get('/admin', function () {
 
 
 Route::get('/add-product', [ProductController::class, 'addProduct'])->name('product.add');
-Route::post('/add-product', [ProductController::class, 'addProductSubmit'])->name('product.addsubmit');
+Route::get('/add-product', [ProductController::class, 'getBrands']);
+Route::post('/add-product', [ProductController::class, 'addProductSubmit','getBrands'])->name('product.addsubmit');
 Route::get('/all-products', [ProductController::class, 'getProducts'])->name('product.get');
 Route::get('/single-product/{id}', [ProductController::class, 'getProductById'])->name('product.getbyid');
 Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct'])->name('product.delete');
@@ -66,6 +68,17 @@ Route::get('/categories', [CategoryController::class, 'getCategories'])->name('c
 Route::get('/delete-category/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
 Route::post('/update-category', [CategoryController::class, 'updateCategory'])->name('category.update');
 
+Route::post('/subcategories', [SubCategoryController::class, 'addSubCategorySubmit'])->name('subcategory.addsubmit');
+Route::get('/subcategories', [SubCategoryController::class, 'getSubCategories'])->name('subcategory.get');
+Route::get('/delete-subcategory/{id}', [SubCategoryController::class, 'deleteSubCategory'])->name('subcategory.delete');
+Route::post('/update-subcategory', [SubCategoryController::class, 'updateSubCategory'])->name('subcategory.update');
+
+
+Route::get('/add-admin', [UserController::class, 'addAdmin'])->name('admin.add');
+Route::post('/add-admin', [UserController::class, 'addAdminSubmit'])->name('admin.addsubmit');
+
+// Route::get('/add', [ProductController::class, 'insert'])->name('pro.add');
+
 Route::get('/all-customers', function () {
     return view('admin.customers_list');
 });
@@ -74,9 +87,6 @@ Route::get('/all-admin', function () {
     return view('admin.admins_list');
 });
 
-Route::get('/add-admin', function () {
-    return view('admin.add_admin');
-});
 
 Route::get('/customer', function () {
     return view('admin.customer');
