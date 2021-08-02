@@ -59,7 +59,7 @@
                             <div class="breadcrumb-content">
                                 <h1 class="breadcrumb-hrading">Login / Register Page</h1>
                                 <ul class="breadcrumb-links">
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="/">Home</a></li>
                                     <li>Login / Register</li>
                                 </ul>
                             </div>
@@ -86,9 +86,10 @@
                                     <div id="lg1" class="tab-pane active">
                                         <div class="login-form-container">
                                             <div class="login-register-form">
-                                                <form action="#" method="post">
-                                                    <input type="text" name="user-name" placeholder="Username" />
-                                                    <input type="password" name="user-password" placeholder="Password" />
+                                                <form action="_login" method="post">
+                                                    @csrf
+                                                    <input type="text" name="name" placeholder="Username/email" />
+                                                    <input type="password" name="password" placeholder="Password" />
                                                     <div class="button-box">
                                                         <div class="login-toggle-btn">
                                                             <input type="checkbox" />
@@ -104,10 +105,11 @@
                                     <div id="lg2" class="tab-pane">
                                         <div class="login-form-container">
                                             <div class="login-register-form">
-                                                <form action="#" method="post">
-                                                    <input type="text" name="user-name" placeholder="Username" />
-                                                    <input type="password" name="user-password" placeholder="Password" />
-                                                    <input name="user-email" placeholder="Email" type="email" />
+                                                <form action="_register" method="post">
+                                                    @csrf
+                                                    <input type="text" name="name" placeholder="Username" />
+                                                    <input type="password" name="password" placeholder="Password" />
+                                                    <input name="email" placeholder="Email" type="email" />
                                                     <div class="button-box">
                                                         <button type="submit"><span>Register</span></button>
                                                     </div>
