@@ -32,7 +32,7 @@
     .dropdown_search {
         width: 370px;
         background: #fff;
-        display: none;
+        display: block;
         border: 2px solid#4fb68d;
         border-radius: 30px;
         position: absolute;
@@ -1324,7 +1324,7 @@
     .dropdown_search {
         width: 370px;
         background: #fff;
-        display: none;
+        display: block;
         border: 2px solid#4fb68d;
         border-radius: 30px;
         position: absolute;
@@ -1868,7 +1868,7 @@
     .dropdown_search {
         width: 500px;
         background: #fff;
-        display: none;
+        display: block;
         border: 2px solid#4fb68d;
         border-radius: 30px;
         position: absolute;
@@ -2208,7 +2208,7 @@
     .dropdown_search {
         width: 500px;
         background: #fff;
-        display: none;
+        display: block;
         border: 2px solid#4fb68d;
         border-radius: 30px;
         position: absolute;
@@ -2255,7 +2255,7 @@
     .dropdown_search {
         width: 500px;
         background: #fff;
-        display: none;
+        display: block;
         border: 2px solid#4fb68d;
         border-radius: 30px;
         position: absolute;
@@ -2350,7 +2350,7 @@
     }
 
     .dropdown_search {
-        display: none;
+        display: block;
         position: absolute;
         right: 0;
         top: 60px;

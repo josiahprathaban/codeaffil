@@ -1,19 +1,13 @@
 <aside class="sidebar">
                     <div class="sidebar-container">
                         <div class="sidebar-header">
-                            <div class="brand">
-                                <div class="logo">
-                                    <span class="l l1"></span>
-                                    <span class="l l2"></span>
-                                    <span class="l l3"></span>
-                                    <span class="l l4"></span>
-                                    <span class="l l5"></span>
-                                </div> Modular Admin </div>
-                        </div>
-                        <nav class="menu">
+                        <div class="logo pt-2">
+                        <a href="/"><img src="assets/images/logo/footer-logo.png" alt="" /></a>
+                    </div>
+                        <nav class="menu pt-5">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
                                 <li class="active">
-                                    <a href="index-2.html">
+                                    <a href="admin">
                                         <i class="fa fa-home"></i> Dashboard </a>
                                 </li>
                                 <li>
@@ -23,10 +17,10 @@
                                     </a>
                                     <ul class="sidebar-nav">
                                         <li>
-                                            <a href="admin/all-products"> Items List </a>
+                                            <a href="all-products"> Items List </a>
                                         </li>
                                         <li>
-                                            <a href="admin/add-product"> Add Item </a>
+                                            <a href="add-product"> Add Item </a>
                                         </li>
                                     </ul>
                                 </li>
@@ -37,98 +31,45 @@
                                     </a>
                                     <ul class="sidebar-nav">
                                         <li>
-                                            <a href="admin/all-admin"> Admins Manager
+                                            <a href="all-admin"> Admins Manager
                                                 <i class="fa arrow"></i>
                                             </a>
                                             <ul class="sidebar-nav">
                                                 <li>
-                                                    <a href="admin/all-customers">  Admin List </a>
+                                                    <a href="all-admin">  Admin List </a>
                                                 </li>
                                                 <li>
-                                                    <a href="admin/add-admin"> Add Admin </a>
+                                                    <a href="add-admin"> Add Admin </a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="#">Customers List </a>
+                                            <a href="all-customers">Customers List </a>
                                         </li>
                                     </ul>
+                                </li>
+                                <li>
+                                    <a href="brands">
+                                        <i class="fa fa-cogs"></i> Brands Manager
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/categories">
+                                        <i class="fa fa-layer-group"></i> Categories Manager
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/subcategories">
+                                        <i class="fa fa-network-wired"></i> SubCategories Manager
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/ecommerces">
+                                        <i class="fas fa-store"></i> Ecommerce Manager
+                                    </a>
                                 </li>
                             </ul>
                         </nav>
                     </div>
-                    <footer class="sidebar-footer">
-                        <ul class="sidebar-menu metismenu" id="customize-menu">
-                            <li>
-                                <ul>
-                                    <li class="customize">
-                                        <div class="customize-item">
-                                            <div class="row customize-header">
-                                                <div class="col-4"> </div>
-                                                <div class="col-4">
-                                                    <label class="title">fixed</label>
-                                                </div>
-                                                <div class="col-4">
-                                                    <label class="title">static</label>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <label class="title">Sidebar:</label>
-                                                </div>
-                                                <div class="col-4">
-                                                    <label>
-                                                        <input class="radio" type="radio" name="sidebarPosition" value="sidebar-fixed">
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-4">
-                                                    <label>
-                                                        <input class="radio" type="radio" name="sidebarPosition" value="">
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <label class="title">Header:</label>
-                                                </div>
-                                                <div class="col-4">
-                                                    <label>
-                                                        <input class="radio" type="radio" name="headerPosition" value="header-fixed">
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-4">
-                                                    <label>
-                                                        <input class="radio" type="radio" name="headerPosition" value="">
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <label class="title">Footer:</label>
-                                                </div>
-                                                <div class="col-4">
-                                                    <label>
-                                                        <input class="radio" type="radio" name="footerPosition" value="footer-fixed">
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-4">
-                                                    <label>
-                                                        <input class="radio" type="radio" name="footerPosition" value="">
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                
-                            </li>
-                        </ul>
-                    </footer>
                 </aside>
                 
