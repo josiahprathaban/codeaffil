@@ -53,15 +53,15 @@
             @include('header')
             <!-- Header End -->
             <!-- Breadcrumb Area start -->
-            <section class="breadcrumb-area">
+            <section class="breadcrumb-area" style="background-image: url(assets/images/banner-image/shop.jpg);">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="breadcrumb-content">
-                                <h1 class="breadcrumb-hrading">Shop Page</h1>
+                                <h1 class="breadcrumb-hrading">Products Page</h1>
                                 <ul class="breadcrumb-links">
                                     <li><a href="/">Home</a></li>
-                                    <li>Shop List Left Sidebar</li>
+                                    <li>Products Page</li>
                                 </ul>
                             </div>
                         </div>

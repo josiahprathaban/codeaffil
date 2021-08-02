@@ -113,6 +113,9 @@
             <section class="categorie-area mt-5">
                 <div class="container">
                     <div class="row">
+                        @foreach($orders as $order)
+                        {{$order -> image}}
+                        @endforeach
                         <div class="col-md-12">
                             <!-- Section Title -->
                             <div class="section-title">
@@ -125,7 +128,7 @@
                     <!-- Category Slider Start -->
                     <div class="category-slider owl-carousel owl-nav-style">
                         <!-- Single item -->
-                        @for ($i = 0; $i < 5; $i++)
+                        @for($i = 0; $i < count($subcategories); $i+=2)
                         <div class="category-item">
                             <div class="category-list mb-30px">
                                 
@@ -133,7 +136,7 @@
                                     <a href="shop-4-column.html">
                                         <div class="xcontainer">
                                         <div class="xwhite"></div>
-                                            <img src="assets/images/product-image/electronic/thumb-1.jpg" alt="" class="ximage" />
+                                            <img src="{{asset('assets/images/subcategory')}}/{{$subcategories[$i]->image}}" alt="" class="ximage" />
                                             
                                         </div>
                                         
@@ -141,31 +144,33 @@
                                 </div>
                                 <div class="desc-listcategoreis xdes">
                                     <div class="name_categories">
-                                        <h4>Category {{$i * 2 + 1}}</h4>
+                                        <h4>{{$subcategories[$i]->name}}</h4>
                                     </div>
                                     <span class="number_product">17 Products</span>
                                     <a href="/products"> Shop Now <i class="ion-android-arrow-dropright-circle"></i></a>
                                 </div>
                             </div>
+                            @if($i+1 < count($subcategories))
                             <div class="category-list">
                                 <div class="category-thumb">
                                     <a href="shop-4-column.html">
                                     <div class="xcontainer">
                                         <div class="xwhite"></div>
-                                            <img src="assets/images/product-image/electronic/thumb-2.jpg" alt="" class="ximage" />
+                                            <img src="{{asset('assets/images/subcategory')}}/{{$subcategories[$i+1]->image}}" alt="" class="ximage" />
                                             
                                         </div>
                                     </a>
                                 </div>
                                 <div class="desc-listcategoreis xdes">
                                     <div class="name_categories">
-                                        <h4>Category {{$i * 2 + 2}}</h4>
+                                        <h4>{{$subcategories[$i+1]->name}}</h4>
                                     </div>
 
                                     <span class="number_product">17 Products</span>
                                     <a href="/products"> Shop Now <i class="ion-android-arrow-dropright-circle"></i></a>
                                 </div>
                             </div>
+                            @endif
                         </div>
                         @endfor
                     </div>
