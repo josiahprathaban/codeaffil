@@ -21,6 +21,7 @@ class UserController extends Controller
             {
                 $request->session()->put('user', DB::table('users')->where('username', $data['name'])->value('username'));
                 $request->session()->put('type', DB::table('users')->where('username', $data['name'])->value('type'));
+                $request->session()->put('email', DB::table('users')->where('username', $data['name'])->value('email'));
 
                 if( DB::table('customers')->where('username', session('user'))->value('image') != NULL)
                     $request->session()->put('profile', DB::table('customers')->where('username', session('user'))->value('image'));
@@ -38,6 +39,7 @@ class UserController extends Controller
                 if ($data['password'] == DB::table('users')->where('email', $data['name'])->value('password')){
                     $request->session()->put('user', DB::table('users')->where('email', $data['name'])->value('username'));
                     $request->session()->put('type', DB::table('users')->where('email', $data['name'])->value('type'));
+                    $request->session()->put('email', DB::table('users')->where('username', $data['name'])->value('email'));
                     return redirect('/');
                 }
                 else
