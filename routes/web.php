@@ -129,6 +129,7 @@ Route::get('/logout', function(){
         session()->pull('user');
         session()->pull('type');
         session()->pull('profile');
+        session()->pull('email');
     }
     
     return redirect('/login');
