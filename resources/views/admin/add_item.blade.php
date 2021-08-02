@@ -28,19 +28,12 @@
                             <span class="sparkline bar" data-type="bar"></span>
                         </h3>
                     </div>
-                    @foreach ($brands as $brand )
-                                                    <tr>
-                                                        <th scope="row">{{$brand->id}}</th>
-                                                        <td>{{$brand->name}}</td>
-                                                        <td>500</td>
-                                                        <td>1000</td>
-                    @endforeach
                     @if (Session::has('added'))
                         <div class="alert alert-success" role = "alert">
                             {{ Session::get('added') }}
                         </div>
                     @endif
-                    <form method = "POST" action="{{ route('product.addsubmit')}}" name="item">
+                    <form method = "POST" action="{{ route('product.addsubmit')}}" name="item" enctype="multipart/form-data" >
                         @csrf
                         <div class="card card-block">
                             <div class="form-group row">
@@ -60,34 +53,15 @@
                                 <textarea class="form-control boxed" name="description" id="" rows="8"></textarea>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 form-control-label text-xs-right"> Category: </label>
-                                <div class="col-sm-10">
-                                    <select name="" class="c-select form-control boxed">
-                                        <option selected>Select Category</option>
-                                        @foreach ($categories as $category )
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endforeach
-                                        
-                                    </select>
-                                        <a href="#" class="add-image" data-toggle="modal" data-target="#modal-add-category">
-                                            <div class="image-container new">
-                                                <div class="image">
-                                                    <i class="fa fa-plus"></i>
-                                                </div>
-                                            </div>
-                                        </a>
-                                </div>
-                            </div>
+                            
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Sub-Category: </label>
                                 <div class="col-sm-10">
-                                    <select class="c-select form-control boxed">
+                                    <select name="subcategory_id" class="c-select form-control boxed">
                                         <option selected>Select Sub-Category</option>
-                                        <option value="1">Pendrive</option>
-                                        <option value="2">Headset</option>
-                                        <option value="3">T-Shirt</option>
-                                        <option value="4"><a href="index.html">New</a></option>
+                                        @foreach ($subcategories as $subcategory )
+                                        <option  value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+                                        @endforeach
                                         
                                     </select>
                                         <a href="#" class="add-image" data-toggle="modal" data-target="#modal-add-category">
@@ -120,11 +94,11 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Ecommece: </label>
                                 <div class="col-sm-10">
-                                    <select class="c-select form-control boxed">
+                                    <select name="ecommerce_id" class="c-select form-control boxed">
                                         <option selected>Select Ecommerce</option>
-                                        <option value="1">Amazon</option>
-                                        <option value="2">Aliexpress</option>
-                                        <option value="3">Daraz</option>
+                                        @foreach ($ecommerces as $ecommerce )
+                                        <option  value="{{$ecommerce->id}}">{{$ecommerce->name}}</option>
+                                        @endforeach
                                     </select>
                                     <a href="#" class="add-image" data-toggle="modal" data-target="#modal-add-ecommece">
                                             <div class="image-container new">
@@ -155,13 +129,13 @@
                                 <div class="col-sm-10">
                                 <div class="form-group">
                                 <label class="col-sm-2 form-control-label text-xs-right"> Image1 </label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                    <label class="col-sm-2 form-control-label text-xs-right"> Images2 </label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <input name="image1" type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <label  class="col-sm-2 form-control-label text-xs-right"> Images2 </label>
+                                    <input name="image2"type="file" class="form-control-file" id="exampleFormControlFile1">
                                     <label class="col-sm-2 form-control-label text-xs-right"> Images3 </label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <input name="image3" type="file" class="form-control-file" id="exampleFormControlFile1">
                                     <label class="col-sm-2 form-control-label text-xs-right"> Images4 </label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <input name="image4" type="file" class="form-control-file" id="exampleFormControlFile1">
                                 
                             </div>
                                 </div>
