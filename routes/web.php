@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BrandController;
@@ -35,9 +36,11 @@ Route::get('/niro', function () {
 //     return Inertia::render('Dashboard');
 // })->name('dashboard');
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+
+Route::get('/', [IndexController::class, 'index']);
 
 Route::get('/login', function () {
     return view('login');
@@ -108,10 +111,8 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-// Route::get('/profile', function () {
-//     return view('profile');
-// });
 Route::get('/profile', [UserController::class, 'getUserProfile']);
+
 
 Route::get('/products', function () {
     return view('products');

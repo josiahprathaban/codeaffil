@@ -70,16 +70,18 @@
                                         <li class="menu-dropdown">
                                             <a href="#">Shop <i class="ion-ios-arrow-down"></i></a>
                                             <ul class="mega-menu-wrap">
-                                                @for ($i = 0; $i < 4; $i++)
+                                                @foreach ($categories as $category )
                                                     <li>
+                                                        <a href="#">{{$category->name}}</a>
                                                         <ul>
-                                                            <li class="mega-menu-title"><a href="#">Category</a></li>
-                                                            @for ($j = 0; $j < 6; $j++)
-                                                                <li><a href="shop-3-column.html">Subcategory</a></li>
-                                                            @endfor
+                                                            @foreach ($subcategories as $subcategory )
+                                                                @if($subcategory->category_id == $category->id)
+                                                                    <li><a href="shop-3-column.html">{{$subcategory->name}}</a></li>
+                                                                @endif
+                                                            @endforeach
                                                         </ul>
                                                     </li>
-                                                @endfor
+                                                @endforeach
                                                 <li class="banner-wrapper">
                                                     <a href="single-product.html"><img src="assets/images/banner-image/banner-menu.jpg" alt="" /></a>
                                                 </li>
@@ -101,16 +103,18 @@
                                         <li>
                                             <a href="#">Shop</a>
                                             <ul>
-                                                @for ($i = 0; $i < 4; $i++)
+                                                @foreach ($categories as $category )
                                                     <li>
-                                                        <a href="#">Category</a>
+                                                        <a href="#">{{$category->name}}</a>
                                                         <ul>
-                                                            @for ($j = 0; $j < 6; $j++)
-                                                                <li><a href="shop-3-column.html">Subcategory</a></li>
-                                                            @endfor
+                                                            @foreach ($subcategories as $subcategory )
+                                                                @if($subcategory->category_id == $category->id)
+                                                                    <li><a href="shop-3-column.html">{{$subcategory->name}}</a></li>
+                                                                @endif
+                                                            @endforeach
                                                         </ul>
                                                     </li>
-                                                @endfor
+                                                @endforeach
                                             </ul>
                                         </li>
                                         <li><a href="contact.html">Contact Us</a></li>
@@ -123,16 +127,18 @@
                     <div class="x_search">
                                     <select class="x_search_select">
                                     <option selected>All categories</option>
-                                    @for ($i = 0; $i < 3; $i++)
-                                            <option value="Category">
-                                                Category
+                                    @foreach ($categories as $category )
+                                            <option value="{{$category->id}}">
+                                                {{$category->name}}
                                             </option>
-                                            @for ($j = 0; $j < 5; $j++)
-                                            <option value="Subcategory">
-                                                &nbsp &nbsp Subcategory
+                                            @foreach ($subcategories as $subcategory )
+                                            @if($subcategory->category_id == $category->id)
+                                            <option value="{{$subcategory->id}}">
+                                                &nbsp &nbsp {{$subcategory->name}}
                                             </option>
-                                            @endfor
-                                        @endfor
+                                            @endif
+                                            @endforeach
+                                    @endforeach
                                     </select>
                                     <input type="text" class="x_search_text">
                                     <!-- <input type="submit" class="x_search_button" value="Search"> -->
@@ -141,8 +147,5 @@
                                     </button>
                     </div>
                 </div>
-                <!--Header Bottom Account End -->
-
-                         
-                        
+                <!--Header Bottom Account End -->                          
             </header>
