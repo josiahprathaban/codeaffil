@@ -50,22 +50,22 @@
                                 </li>
                                 <li>
                                     <a href="brands">
-                                        <i class="fa fa-users-cog"></i> Brands Manager
+                                        <i class="fa fa-cogs"></i> Brands Manager
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/categories">
-                                        <i class="fa fa-users-cog"></i> Categories Manager
+                                        <i class="fa fa-layer-group"></i> Categories Manager
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/subcategories">
-                                        <i class="fa fa-users-cog"></i> SubCategories Manager
+                                        <i class="fa fa-network-wired"></i> SubCategories Manager
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/ecommerces">
-                                        <i class="fa fa-users-cog"></i> Ecommerce Manager
+                                        <i class="fas fa-store"></i> Ecommerce Manager
                                     </a>
                                 </li>
                             </ul>

@@ -93,20 +93,20 @@ class ProductController extends Controller
         $affiliate_link = $request ->affiliate_link;
         
         $image1 = $request->file('image1');
-        $imageName1=$title.'1.'.$image1->extension();
-        $image1->move("assets/images/product/",$imageName1);
+        $imageName1='assets/images/product/'.$title.time().'/'.$title.'1.'.$image1->extension();
+        $image1->move("assets/images/product/$title".time(),$imageName1);
 
         $image2 = $request->file('image2');
-        $imageName2=$title.'2.'.$image2->extension();
-        $image2->move("assets/images/product",$imageName2);
+        $imageName2='assets/images/product/'.$title.time().'/'.$title.'2.'.$image2->extension();
+        $image2->move("assets/images/product/$title".time(),$imageName2);
 
         $image3 = $request->file('image3');
-        $imageName3=$title.'3.'.$image3->extension();
-        $image3->move("assets/images/product",$imageName3);
+        $imageName3='assets/images/product/'.$title.time().'/'.$title.'3.'.$image3->extension();
+        $image3->move("assets/images/product/$title".time(),$imageName3);
 
         $image4 = $request->file('image4');
-        $imageName4=$title.'4.'.$image4->extension();
-        $image4->move("assets/images/product",$imageName4);
+        $imageName4='assets/images/product/'.$title.time().'/'.$title.'4.'.$image4->extension();
+        $image4->move("assets/images/product/$title".time(),$imageName4);
 
         $product_images = new Product_images();
         

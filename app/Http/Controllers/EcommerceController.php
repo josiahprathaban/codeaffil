@@ -14,7 +14,7 @@ class EcommerceController extends Controller
         $id = $request->ecommerce_id;
         $name = $request->ecommerce_name;
         $image = $request->file('image');
-        $imageName=$name.'.'.$image->extension();
+        $imageName="assets/images/ecommerce/".$name.'.'.$image->extension();
         $image->move("assets/images/ecommerce",$imageName);
         // $image->move("assets/images/subcategory", "{$name}.{$imageName}");
 

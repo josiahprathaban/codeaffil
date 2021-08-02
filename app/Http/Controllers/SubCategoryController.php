@@ -25,14 +25,13 @@ class SubCategoryController extends Controller
         $id = $request->subcategory_id;
         $name = $request->subcategory_name;
         $image = $request->file('image');
-        $imageName=$id.'.'.$image->extension();
+        $imageName="assets/images/subcategory/".$name.'.'.$image->extension();
         $image->move("assets/images/subcategory",$imageName);
-        // $image->move("assets/images/subcategory", "{$name}.{$imageName}");
 
         $subcategory = new SubCategory();
         $subcategory -> category_id = $id;
         $subcategory -> name = $name;
-        $subcategory ->image = $imageName;
+        $subcategory -> image = $imageName;
         $subcategory ->save();
         return back()->with('sc_added','Subcategories has been added successfully!');
 
@@ -40,7 +39,7 @@ class SubCategoryController extends Controller
 
     public function updateSubCategory(Request $request)
     {
-        
+        $id = $request->subcategory_id;
         $name = $request->subcategory_name;
         $image = $request->file('image');
 
@@ -74,8 +73,13 @@ class SubCategoryController extends Controller
 
     //delete categories
     public function deleteSubCategory($id){
-        $subcategories = DB::table('subcategories')->where('id',$id)->delete();
-        return back()->with('sc_deleted','Subcategories has been deleted successfully!');
+       // $subcategories = DB::table('subcategories')->where('id',$id)->delete();
+
+        $subcategories =DB::table('subcategories')
+        ->Join('subcategories','subcategories.id', '=','product.subcategory_id')
+        ->where('subcategories.id', $id); 
+        DB::table('subcategories.id')->where('subcategories', $id)->delete();                           
+        $subcategories->delete();
     }
 
     // public function updateSubCategory(Request $request){
