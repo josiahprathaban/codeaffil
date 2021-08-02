@@ -11,9 +11,9 @@ class Product extends Model
 
     // protected $table = "products";
 
-    // public function brand(){
-    //     return $this->hasOne('App\Models\Brand');
-    // }
+    public function images(){
+        return $this->hasOne('App\Models\Product_images');
+    }
 }
 
 
