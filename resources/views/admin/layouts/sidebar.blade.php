@@ -64,7 +64,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="/ecommerces">
                                         <i class="fa fa-users-cog"></i> Ecommerce Manager
                                     </a>
                                 </li>

@@ -19,6 +19,7 @@ class CreateProductImagesTable extends Migration
             $table->string('image_2');
             $table->string('image_3');
             $table->string('image_4');
+            $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');
         });

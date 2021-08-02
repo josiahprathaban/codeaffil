@@ -5,7 +5,7 @@
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title> All SubCategories </title>
+        <title> All Ecommerces </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.html">
@@ -28,7 +28,7 @@
                         <div class="title-block">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h3 class="title"> SubCategories
+                                    <h3 class="title"> Ecommerces
                                         <a href="#" data-toggle="modal" data-target="#modal-add-ecommece" class="btn btn-primary btn-sm rounded-s"> Add New </a>
                                         <!--
 				 -->
@@ -64,17 +64,17 @@
                                 </div> -->
                                 @if (Session::has('sc_added'))
                                         <div class="alert alert-success" role = "alert">
-                                            {{ Session::get('sc_added') }}
+                                            {{ Session::get('ec_added') }}
                                         </div>
                                 @endif    
                                 @if (Session::has('c_deleted'))
                                         <div class="alert alert-success" role = "alert">
-                                            {{ Session::get('sc_deleted') }}
+                                            {{ Session::get('ec_deleted') }}
                                         </div>
                                 @endif 
                                 @if (Session::has('sc_updated'))
                                         <div class="alert alert-success" role = "alert">
-                                            {{ Session::get('sc_updated') }}
+                                            {{ Session::get('ec_updated') }}
                                         </div>
                                 @endif              
                     <div class="card items">
@@ -82,7 +82,7 @@
                                 <div class="card ">
                                     <div class="card-block">
                                         <div class="card-title-block">
-                                            <h3 class="title">All SubCategories </h3>
+                                            <h3 class="title">All Ecommerces </h3>
                                         </div>
                                         <section class="example">
                                             <table class="table table-striped ">
@@ -90,20 +90,18 @@
                                                     <tr>
                                                         <th>ID</th>
                                                         <th>Image</th>
-                                                        <th>SubCategory Name</th>
-                                                        <th>Category Name</th>
-                                                        <th>Total SubCategories</th>
+                                                        <th>Ecommerces Name</th>
+                                                        <th>Total Procucts</th>
                                                         <th>Total Clicks</th>
                                                         <th>Manage</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($subcategories as $subcategory )
+                                                @foreach ($ecommerces as $ecommerce )
                                                     <tr>
-                                                        <th scope="row">{{$subcategory->id}}</th>
-                                                        <td><img src="{{asset('assets/images/subcategory')}}/{{$subcategory->image}}" alt="" style = "max-width:60px;"></td>
-                                                        <td>{{$subcategory->name}}</td>
-                                                        <td>{{$subcategory->name}}</td>
+                                                        <th scope="row">{{$ecommerce->id}}</th>
+                                                        <td><img src="{{asset('assets/images/ecommerce')}}/{{$ecommerce->logo}}" alt="" style = "max-width:60px;"></td>
+                                                        <td>{{$ecommerce->name}}</td>
                                                         <td>500</td>
                                                         <td>1000</td>
                                                         <td><ul class="item-list striped">
@@ -120,17 +118,17 @@
                                                                         <div class="item-actions-block">
                                                                             <ul class="item-actions-list">
                                                                                 <li>
-                                                                                    <a class="remove" href="/delete-brand/" data-toggle="modal" data-target="#confirm-modal-{{$subcategory->id}}">
+                                                                                    <a class="remove" href="/delete-brand/" data-toggle="modal" data-target="#confirm-modal-{{$ecommerce->id}}">
                                                                                         <i class="fa fa-trash "></i>
                                                                                     </a>
                                                                                 </li>
                                                                                 <li>
-                                                                                    <a class = "edit" href="#" data-toggle="modal" data-target="#modal-add-update-{{$subcategory->id}}">
+                                                                                    <a class = "edit" href="#" data-toggle="modal" data-target="#modal-add-update-{{$ecommerce->id}}">
                                                                                         <i class="fa fa-pencil-alt"></i>
                                                                                     </a>
                                                                                 </li>
                                                                                 <!-- /.modal -->
-                                                                                    <div class="modal fade" id="confirm-modal-{{$subcategory->id}}">
+                                                                                    <div class="modal fade" id="confirm-modal-{{$ecommerce->id}}">
                                                                                         <div class="modal-dialog" role="document">
                                                                                             <div class="modal-content">
                                                                                                 <div class="modal-header">
@@ -144,7 +142,7 @@
                                                                                                     <p>Are you sure want to do this?</p>
                                                                                                 </div>
                                                                                                 <div class="modal-footer">
-                                                                                                    <a href="/delete-subcategory/{{$subcategory->id}}">
+                                                                                                    <a href="/delete-ecommerce/{{$ecommerce->id}}">
                                                                                                     <button class="btn btn-primary" >Yes</button>
 </a>
                                                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
@@ -156,7 +154,7 @@
                                                                                     </div>
                                                                                     <!-- /.modal -->
 
-                                                                                    <div class="modal fade" id="modal-add-update-{{$subcategory->id}}">
+                                                                                    <div class="modal fade" id="modal-add-update-{{$ecommerce->id}}">
                                                                                         <div class="modal-dialog modal-lg">
                                                                                             <div class="modal-content">
                                                                                                 <div class="modal-header">
@@ -167,30 +165,23 @@
                                                                                                     </button>
                                                                                                 </div>
                                                                                                 <div class="card card-block sameheight-item">
-                                                                                                        <form role="form" method="post" enctype="multipart/form-data"  action="{{ route('subcategory.update')}}">
+                                                                                                        <form role="form" method="post" enctype="multipart/form-data"  action="">
                                                                                                                     @csrf
                                                                                                                     <label > Category: </label>
                                                                                                             
-                                                                                                                <select name="subcategory_id" class="c-select form-control boxed">
-                                                                                                                    <option>Select Category</option>
-                                                                                                                    @foreach ($categories as $category )
-                                                                                                                    
-                                                                                                                    <option selected value="{{$category->id}}">{{$category->name}}</option>
-                                                                                                                        
-                                                                                                                    @endforeach
-                                                                                                                </select>
+                                                                                                                
                                                                                                             
-                                                                                                                <input type="hidden" name="subcategory_id" value = "{{$subcategory->id}}">
+                                                                                                                <input type="hidden" name="ecommerce_id" value = "{{$ecommerce->id}}">
                                                                                                             <div class="form-group">
-                                                                                                                <label for="exampleInputEmail1">Subcategory</label>
-                                                                                                                <input type="text" class="form-control"  value="{{$subcategory->name}}" id="exampleInputEmail1" name="subcategory_name" placeholder="Enter Category Name"> </div>
+                                                                                                                <label for="exampleInputEmail1">ecommerce</label>
+                                                                                                                <input type="text" class="form-control"  value="{{$ecommerce->name}}" id="exampleInputEmail1" name="ecommerce_name" placeholder="Enter Category Name"> </div>
                                                                                                                 <div class="form-group ">
                                                                                                             
                                                                                                         </div>
                                                                                                         <div class="form-group">
                                                                                                             <label> Image: </label>
                                                                                                                 <input name="image" type="file" class="form-control " onchange="previewFile(this)" >
-                                                                                                                <img id="previewImg" alt="Subcategory Image" style="max-width:130px; margin-top:20px;">
+                                                                                                                <img id="previewImg" alt="ecommerce Image" style="max-width:130px; margin-top:20px;">
                                                                                                         </div>
                                                                                                         <div class="form-group">
                                                                                                                 <button type="submit" class="btn btn-primary">Update</button>
@@ -255,36 +246,25 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Add New SubCategory</h4>
+                                <h4 class="modal-title">Add New Ecommerce</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     <span class="sr-only">Close</span>
                                 </button>
                             </div>
                             <div class="card card-block sameheight-item">
-                                    <form role="form" method="post" enctype="multipart/form-data" action="{{ route('subcategory.addsubmit')}}">
+                                    <form role="form" method="post" enctype="multipart/form-data" action="{{ route('ecommerce.addsubmit')}}">
                                         @csrf
-                                        <label > Category: </label>
-                                
-                                    <select name="subcategory_id" class="c-select form-control boxed">
-                                        <option selected>Select Category</option>
-                                        @foreach ($categories as $category )
-                                        
-                                        <option  value="{{$category->id}}">{{$category->name}}</option>
-                                            
-                                        @endforeach
-                                    </select>
-                                
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">SubCategory</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1" name="subcategory_name" placeholder="Enter SubCategory Name"> </div>
+                                            <label for="exampleInputEmail1">Ecommerce</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" name="ecommerce_name" placeholder="Enter ecommerce Name"> </div>
                                             <div class="form-group ">
                                 
                             </div>
                             <div class="form-group">
                                 <label> Image: </label>
                                     <input name="image" type="file" class="form-control " onchange="previewFile(this)" >
-                                    <img id="previewImg" alt="Subcategory Image" style="max-width:130px; margin-top:20px;">
+                                    <img id="previewImg" alt="ecommerce Image" style="max-width:130px; margin-top:20px;">
                             </div>
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary">Add</button>

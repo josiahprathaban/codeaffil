@@ -18,6 +18,7 @@ class CreateUserProductLogsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->integer('no_of_views');
             $table->integer('no_of_clicks');
+            $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('product_id')->references('id')->on('products');

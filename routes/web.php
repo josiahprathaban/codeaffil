@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\EcommerceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,11 +74,18 @@ Route::get('/subcategories', [SubCategoryController::class, 'getSubCategories'])
 Route::get('/delete-subcategory/{id}', [SubCategoryController::class, 'deleteSubCategory'])->name('subcategory.delete');
 Route::post('/update-subcategory', [SubCategoryController::class, 'updateSubCategory'])->name('subcategory.update');
 
+Route::post('/ecommerces', [EcommerceController::class, 'addSubEcommerceSubmit'])->name('ecommerce.addsubmit');
+Route::get('/ecommerces', [EcommerceController::class, 'getEcommerces'])->name('ecommerce.get');
 
 Route::get('/add-admin', [UserController::class, 'addAdmin'])->name('admin.add');
 Route::post('/add-admin', [UserController::class, 'addAdminSubmit'])->name('admin.addsubmit');
 
-// Route::get('/add', [ProductController::class, 'insert'])->name('pro.add');
+
+Route::get('/image-upload', [ProductController::class, 'createForm']);
+
+Route::post('/image-upload', [ProductController::class, 'fileUpload'])->name('imageUpload');
+
+Route::get('/add', [ProductController::class, 'insert'])->name('pro.add');
 
 Route::get('/all-customers', function () {
     return view('admin.customers_list');
