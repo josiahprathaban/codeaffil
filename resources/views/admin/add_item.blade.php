@@ -35,29 +35,19 @@
                     {{ Session::get('added') }}
                 </div>
                 @endif
-                <section class="section">
-                    <div class="row sameheight-container">
-                        <div class="col-md-12">
-
-                            <form class="form-inline">
-                                <div class="form-group col-6">
-                                    <label class="col-sm-2 form-control-label text-xs-right"> Title: </label>
-                                    <div class="col-6">
-                                        <input type="text" class="form-control boxed " placeholder="Enter Title">
-                                    </div>
-                                </div>
-                                <div class="form-group col-6">
-                                    <label class="col-sm-2 form-control-label text-xs-right"> Title: </label>
-                                    <div class="col-6">
-                                        <input type="text" class="form-control boxed " placeholder="Enter Title">
-                                    </div>
-                                </div>
-
-                            </form>
-
-                        </div>
-                    </div>
-                </section>
+                <form class="form-inline">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail3">Email address</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Enter email"> </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword3">Password</label>
+                                            <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password"> </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> Remember me </label>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Sign in</button>
+                                    </form>
                 <form method="POST" action="{{ route('product.addsubmit')}}" name="item" enctype="multipart/form-data">
                     @csrf
                     <!-- <div class="row form-group">
