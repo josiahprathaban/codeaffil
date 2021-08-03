@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BrandController;
@@ -22,29 +23,9 @@ use App\Http\Controllers\EcommerceController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-Route::get('/niro', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
-*/
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->name('dashboard');
-
-// Route::get('/', function () {
-//     return view('index');
-// });
 
 Route::get('/', [IndexController::class, 'index']);
-
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [LoginController::class, 'index']);
 
 Route::get('/admin', function () {
     return view('admin.dashbord');
@@ -103,9 +84,7 @@ Route::get('/customer', function () {
     return view('admin.customer');
 });
 
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/about', [AboutController::class, 'index']);
 
 Route::get('/contact', function () {
     return view('contact');

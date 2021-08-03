@@ -66,8 +66,10 @@ class UserController extends Controller
             'username' => $data['name']
         ]);
 
+        $request->session()->put('profile', "assets\images\user-profile\default.jpg");
         $request->session()->put('user', DB::table('users')->where('username', $data['name'])->value('username'));
         $request->session()->put('type', DB::table('users')->where('username', $data['name'])->value('type'));
+        $request->session()->put('email', DB::table('users')->where('username', $data['name'])->value('email'));
         return redirect('/');
     }
 
@@ -115,9 +117,11 @@ class UserController extends Controller
     }
 
     public function getUserProfile(){
+        $subcategories = DB::table('subcategories')->get();
+        $categories = DB::table('categories')->get();
         $user = DB::table('customers')->where('username', session('user'))->first();
         $email = DB::table('users')->where('username', session('user'))->value('email');
-        return view('profile',compact('user', 'email'));
+        return view('profile',compact('user', 'email', 'subcategories','categories'));
     }
 
     function change_password(Request $request)

@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->longText('description');
             $table->double('regular_price', 8, 2);
             $table->double('sale_price', 8, 2);
-            $table->string('affiliate_link');
+            $table->string('affiliate_link', 1000);
             $table->boolean('stock_status');
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('subcategory_id');
