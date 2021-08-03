@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> ModularAdmin - Free Dashboard Theme | HTML Version </title>
+    <title> Add product </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
@@ -35,8 +35,40 @@
                     {{ Session::get('added') }}
                 </div>
                 @endif
+                <section class="section">
+                    <div class="row sameheight-container">
+                        <div class="col-md-12">
+
+                            <form class="form-inline">
+                                <div class="form-group col-6">
+                                    <label class="col-sm-2 form-control-label text-xs-right"> Title: </label>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control boxed " placeholder="Enter Title">
+                                    </div>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label class="col-sm-2 form-control-label text-xs-right"> Title: </label>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control boxed " placeholder="Enter Title">
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </section>
                 <form method="POST" action="{{ route('product.addsubmit')}}" name="item" enctype="multipart/form-data">
                     @csrf
+                    <!-- <div class="row form-group">
+                                            <div class="col-6">
+                                            <label class="col-sm-2 form-control-label text-xs-right"> Title: </label>
+                                                <input type="text" class="form-control" placeholder=".col-6"> </div>
+                                            <div class="col-6">
+                                            <label class="col-sm-2 form-control-label text-xs-right"> Brand: </label>
+                                                <input type="text" class="form-control" placeholder=".col-6"> </div>
+                                        </div> -->
+
                     <div class="card card-block">
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label text-xs-right"> Title: </label>
@@ -67,13 +99,6 @@
                                     @endforeach
 
                                 </select>
-                                <a href="#" class="add-image" data-toggle="modal" data-target="#modal-add-category">
-                                    <div class="image-container new">
-                                        <div class="image">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                    </div>
-                                </a>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -85,13 +110,6 @@
                                     <option value="{{$brand->id}}">{{$brand->name}}</option>
                                     @endforeach
                                 </select>
-                                <a href="#" class="add-image" data-toggle="modal" data-target="#modal-add-brand">
-                                    <div class="image-container new">
-                                        <div class="image">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                    </div>
-                                </a>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -103,13 +121,6 @@
                                     <option value="{{$ecommerce->id}}">{{$ecommerce->name}}</option>
                                     @endforeach
                                 </select>
-                                <a href="#" class="add-image" data-toggle="modal" data-target="#modal-add-ecommece">
-                                    <div class="image-container new">
-                                        <div class="image">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                    </div>
-                                </a>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -121,7 +132,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label text-xs-right"> Sale Price: </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control boxed" name="sale_price" placeholder="">
+                                <input type="text" value="0" class="form-control boxed" name="sale_price" placeholder="">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -135,13 +146,13 @@
                             <div class="col-sm-10">
                                 <div class="form-group">
                                     <label class="col-sm-2 form-control-label text-xs-right"> Image1 </label>
-                                    <input name="image1" type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <input name="image1" type="file" class="form-control" id="exampleFormControlFile1">
                                     <label class="col-sm-2 form-control-label text-xs-right"> Images2 </label>
-                                    <input name="image2" type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <input name="image2" type="file" class="form-control" id="exampleFormControlFile1">
                                     <label class="col-sm-2 form-control-label text-xs-right"> Images3 </label>
-                                    <input name="image3" type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <input name="image3" type="file" class="form-control" id="exampleFormControlFile1">
                                     <label class="col-sm-2 form-control-label text-xs-right"> Images4 </label>
-                                    <input name="image4" type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <input name="image4" type="file" class="form-control" id="exampleFormControlFile1">
 
                                 </div>
                             </div>

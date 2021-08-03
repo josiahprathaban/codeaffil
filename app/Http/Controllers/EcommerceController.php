@@ -9,7 +9,7 @@ use App\Models\Ecommerce;
 class EcommerceController extends Controller
 {
     //
-    public function addSubEcommerceSubmit(Request $request)
+    public function addEcommerceSubmit(Request $request)
     {
         $id = $request->ecommerce_id;
         $name = $request->ecommerce_name;
@@ -27,31 +27,31 @@ class EcommerceController extends Controller
 
     }
 
-    // public function updateSubCategory(Request $request)
-    // {
+    public function updateEcommerce(Request $request)
+    {
         
-    //     $name = $request->subcategory_name;
-    //     $image = $request->file('image');
+        $name = $request->ecommerce_name;
+        $image = $request->file('image');
 
-    //     if($image==null){
-    //         $subcategory = subcategory::find($request->subcategory_id);
-    //         $subcategory ->name = $name;
-    //         $subcategory ->save();
-    //         return back()->with('sc_updated','Subcategories has been updated successfully!');
-    //     }
-    //     else{
-    //     $imageName=$name.'.'.$image->extension();
-    //     $image->move("assets/images/subcategory",$imageName);
+        if($image==null){
+            $ecommerce = Ecommerce::find($request->ecommerce_id);
+            $ecommerce ->name = $name;
+            $ecommerce ->save();
+            return back()->with('sc_updated','Subcategories has been updated successfully!');
+        }
+        else{
+        $imageName="assets/images/ecommerce/".$name.'.'.$image->extension();
+        $image->move("assets/images/ecommerce",$imageName);
         
 
-    //     $subcategory = subcategory::find($request->subcategory_id);
-    //     $subcategory ->name = $name;
-    //     $subcategory ->image = $imageName;
-    //     $subcategory ->save();
-    //     return back()->with('sc_updated','Subcategories has been updated successfully!');
+        $ecommerce = Ecommerce::find($request->ecommerce_id);
+        $ecommerce ->name = $name;
+        $ecommerce ->logo = $imageName;
+        $ecommerce ->save();
+        return back()->with('ec_updated','Ecommerce has been updated successfully!');
 
-    //     }
-    // }
+        }
+    }
 
     //Get All subcategories
     public function getEcommerces(){

@@ -58,43 +58,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 form-control-label text-xs-right"> Category: </label>
-                            <div class="col-sm-10">
-                                <select name="" class="c-select form-control boxed">
-                                    <option selected>Select Category</option>
-                                    <option value="1">Pendrive</option>
-                                    <option value="2">Headset</option>
-                                    <option value="3">T-Shirt</option>
-                                    <option value="4"><a href="index.html">New</a></option>
-
-                                </select>
-                                <a href="#" class="add-image" data-toggle="modal" data-target="#modal-add-category">
-                                    <div class="image-container new">
-                                        <div class="image">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-sm-2 form-control-label text-xs-right"> Sub-Category: </label>
                             <div class="col-sm-10">
                                 <select class="c-select form-control boxed">
-                                    <option selected>Select Sub-Category</option>
-                                    <option value="1">Pendrive</option>
-                                    <option value="2">Headset</option>
-                                    <option value="3">T-Shirt</option>
-                                    <option value="4"><a href="index.html">New</a></option>
+                                    <option >Select Subcategory</option>
+                                    @foreach ($subcategories as $subcategory )
+                                    <option selected value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+                                    @endforeach
 
                                 </select>
-                                <a href="#" class="add-image" data-toggle="modal" data-target="#modal-add-category">
-                                    <div class="image-container new">
-                                        <div class="image">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                    </div>
-                                </a>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -102,35 +74,21 @@
                             <div class="col-sm-10">
                                 <select class="c-select form-control boxed">
                                     <option selected>Select Brand</option>
-                                    <option value="1">Kingston</option>
-                                    <option value="2">JBL</option>
-                                    <option value="3">Republic</option>
+                                    @foreach ($brands as $brand )
+                                    <option selected value="{{$brand->id}}">{{$brand->name}}</option>
+                                    @endforeach
                                 </select>
-                                <a href="#" class="add-image" data-toggle="modal" data-target="#modal-add-brand">
-                                    <div class="image-container new">
-                                        <div class="image">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                    </div>
-                                </a>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 form-control-label text-xs-right"> Ecommece: </label>
+                            <label class="col-sm-2 form-control-label text-xs-right"> Ecommerce: </label>
                             <div class="col-sm-10">
                                 <select class="c-select form-control boxed">
                                     <option selected>Select Ecommerce</option>
-                                    <option value="1">Amazon</option>
-                                    <option value="2">Aliexpress</option>
-                                    <option value="3">Daraz</option>
+                                    @foreach ($ecommerces as $ecommerce )
+                                    <option selected value="{{$ecommerce->id}}">{{$ecommerce->name}}</option>
+                                    @endforeach
                                 </select>
-                                <a href="#" class="add-image" data-toggle="modal" data-target="#modal-add-ecommece">
-                                    <div class="image-container new">
-                                        <div class="image">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                    </div>
-                                </a>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -152,70 +110,16 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 form-control-label text-xs-right"> Images: </label>
-                            <div class="col-sm-10">
-                                <div class="images-container">
-                                    <div class="image-container">
-                                        <div class="controls">
-                                            <a href="#" class="control-btn move">
-                                                <i class="fa fa-arrows"></i>
-                                            </a>
-                                            <!--
-								-->
-                                            <a href="#" class="control-btn star">
-                                                <i class="fa"></i>
-                                            </a>
-                                            <!--
-								-->
-                                            <a href="#" class="control-btn remove" data-toggle="modal" data-target="#confirm-modal">
-                                                <i class="fa fa-trash-o"></i>
-                                            </a>
-                                        </div>
-                                        <div class="image" style="background-image:url('../../s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg')"></div>
-                                    </div>
-                                    <div class="image-container">
-                                        <div class="controls">
-                                            <a href="#" class="control-btn move">
-                                                <i class="fa fa-arrows"></i>
-                                            </a>
-                                            <!--
-								-->
-                                            <a href="#" class="control-btn star">
-                                                <i class="fa"></i>
-                                            </a>
-                                            <!--
-								-->
-                                            <a href="#" class="control-btn remove" data-toggle="modal" data-target="#confirm-modal">
-                                                <i class="fa fa-trash-o"></i>
-                                            </a>
-                                        </div>
-                                        <div class="image" style="background-image:url('../../s3.amazonaws.com/uifaces/faces/twitter/_everaldo/128.jpg')"></div>
-                                    </div>
-                                    <div class="image-container">
-                                        <div class="controls">
-                                            <a href="#" class="control-btn move">
-                                                <i class="fa fa-arrows"></i>
-                                            </a>
-                                            <!--
-								-->
-                                            <a href="#" class="control-btn star">
-                                                <i class="fa"></i>
-                                            </a>
-                                            <!--
-								-->
-                                            <a href="#" class="control-btn remove" data-toggle="modal" data-target="#confirm-modal">
-                                                <i class="fa fa-trash-o"></i>
-                                            </a>
-                                        </div>
-                                        <div class="image" style="background-image:url('../../s3.amazonaws.com/uifaces/faces/twitter/eduardo_olv/128.jpg')"></div>
-                                    </div>
-                                    <a href="#" class="add-image" data-toggle="modal" data-target="#modal-media">
-                                        <div class="image-container new">
-                                            <div class="image">
-                                                <i class="fa fa-plus"></i>
-                                            </div>
-                                        </div>
-                                    </a>
+                            <label class=" col-sm-2 form-control-label text-xs-right" for="exampleCheck1">Stock Status:</label>
+                            <div class="form-check col-sm-10">
+                                <div class="form-check col-sm-10">
+                                    @if ($product->stock_status==1)
+                                    <input type="checkbox" name="stock_status" checked="checked" class="form-check-input">
+                                    @else
+                                    <input type="checkbox" name="stock_status" class="checkbox"   >
+                                    @endif
+                                
+                                <label class=" ">In stock</label>
                                 </div>
                             </div>
                         </div>

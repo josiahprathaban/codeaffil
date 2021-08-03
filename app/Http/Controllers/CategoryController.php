@@ -12,7 +12,7 @@ class CategoryController extends Controller
         DB::table('categories')->insert([
             'name'=> $request->category_name
         ]);
-        return back()->with('c_added','Brand has been added successfully!');
+        return back()->with('c_added','Category has been added successfully!');
     }
 
     //Get All categories
@@ -24,13 +24,13 @@ class CategoryController extends Controller
     //delete categories
     public function deleteCategory($id){
         $brand = DB::table('categories')->where('id',$id)->delete();
-        return back()->with('c_deleted','brand has been deleted successfully!');
+        return back()->with('c_deleted','Category has been deleted successfully!');
     }
 
     public function updateCategory(Request $request){
         DB::table('categories')->where('id', $request->id)->update([
             'name'=> $request->brand_name
         ]);
-        return back()->with('c_updated','Brand has been updated successfully!');
+        return back()->with('c_updated','Category has been updated successfully!');
     }
 }
