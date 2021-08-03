@@ -125,7 +125,7 @@
                     <!-- Category Slider Start -->
                     <div class="category-slider owl-carousel owl-nav-style">
                         <!-- Single item -->
-                        @for ($i = 0; $i < 5; $i++)
+                        @for($i = 0; $i < count($popularCategories); $i+=2)
                         <div class="category-item">
                             <div class="category-list mb-30px">
                                 
@@ -133,7 +133,7 @@
                                     <a href="shop-4-column.html">
                                         <div class="xcontainer">
                                         <div class="xwhite"></div>
-                                            <img src="assets/images/product-image/electronic/thumb-1.jpg" alt="" class="ximage" />
+                                            <img src="{{asset('assets/images/subcategory')}}/{{$popularCategories[$i]->image}}" alt="" class="ximage" />
                                             
                                         </div>
                                         
@@ -141,31 +141,33 @@
                                 </div>
                                 <div class="desc-listcategoreis xdes">
                                     <div class="name_categories">
-                                        <h4>Category {{$i * 2 + 1}}</h4>
+                                        <h4>{{$popularCategories[$i]->name}}</h4>
                                     </div>
-                                    <span class="number_product">17 Products</span>
+                                    <span class="number_product">{{$popularCategories[$i]->counts}} Products</span>
                                     <a href="/products"> Shop Now <i class="ion-android-arrow-dropright-circle"></i></a>
                                 </div>
                             </div>
+                            @if($i+1 < count($popularCategories))
                             <div class="category-list">
                                 <div class="category-thumb">
                                     <a href="shop-4-column.html">
                                     <div class="xcontainer">
                                         <div class="xwhite"></div>
-                                            <img src="assets/images/product-image/electronic/thumb-2.jpg" alt="" class="ximage" />
+                                            <img src="{{asset('assets/images/subcategory')}}/{{$popularCategories[$i+1]->image}}" alt="" class="ximage" />
                                             
                                         </div>
                                     </a>
                                 </div>
                                 <div class="desc-listcategoreis xdes">
                                     <div class="name_categories">
-                                        <h4>Category {{$i * 2 + 2}}</h4>
+                                        <h4>{{$popularCategories[$i+1]->name}}</h4>
                                     </div>
 
-                                    <span class="number_product">17 Products</span>
+                                    <span class="number_product">{{$popularCategories[$i+1]->counts}} Products</span>
                                     <a href="/products"> Shop Now <i class="ion-android-arrow-dropright-circle"></i></a>
                                 </div>
                             </div>
+                            @endif
                         </div>
                         @endfor
                     </div>
@@ -189,13 +191,12 @@
                     <!-- Feature Slider Start -->
                     <div class="feature-slider owl-carousel owl-nav-style">
                         <!-- Single Item -->
-                        @for ($i = 0; $i < 5; $i++)
+                        @for($i = 0; $i < count($suggestedProducts); $i+=2)
                         <div class="feature-slider-item">
                             <article class="list-product">
                                 <div class="img-block">
                                     <a href="/single-product" class="thumbnail">
-                                        <img class="first-img" src="assets/images/product-image/electronic/1.jpg" alt="" />
-                                        <img class="second-img" src="assets/images/product-image/electronic/1.jpg" alt="" />
+                                        <img class="first-img" src="{{$suggestedProducts[$i]->image_1}}" alt="" />
                                     </a>
                                     <div class="quick-view">
                                         <a class="quick_view" href="/single-product">
@@ -204,27 +205,35 @@
                                     </div>
                                 </div>
                                 <div class="product-decs">
-                                    <span>Brand</span>
-                                    <h2><a href="/single-product" class="product-link">Product {{$i * 2 + 1}}</a></h2>
-                                    <div class="rating-product">
+                                    <span>{{$suggestedProducts[$i]->name}}</span>
+                                    <h2><a href="/single-product" class="product-link">{{$suggestedProducts[$i]->title}}</a></h2>
+                                    <!-- <div class="rating-product">
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
-                                    </div>
+                                    </div> -->
                                     <div class="pricing-meta">
-                                        <ul>
-                                            <li class="old-price not-cut">€29.90</li>
-                                        </ul>
+                                        @if($suggestedProducts[$i]->sale_price != 0)
+                                            <ul>
+                                                <li class="old-price">$ {{number_format($suggestedProducts[$i]->regular_price, 2)}}</li>
+                                                <li class="current-price">$ {{number_format($suggestedProducts[$i]->sale_price, 2)}}</li>
+                                                <li class="discount-price">{{number_format((($suggestedProducts[$i]->regular_price - $suggestedProducts[$i]->sale_price) / $suggestedProducts[$i]->regular_price)*100, 2)}} %</li>
+                                            </ul>
+                                        @else
+                                            <ul>
+                                                <li class="old-price not-cut">$ {{number_format($suggestedProducts[$i]->regular_price, 2)}}</li>
+                                            </ul>
+                                        @endif
                                     </div>
                                 </div>
                             </article>
+                            @if($i+1 < count($suggestedProducts))
                             <article class="list-product">
                                 <div class="img-block">
                                     <a href="/single-product" class="thumbnail">
-                                        <img class="first-img" src="assets/images/product-image/electronic/2.jpg" alt="" />
-                                        <img class="second-img" src="assets/images/product-image/electronic/2.jpg" alt="" />
+                                        <img class="first-img" src="{{$suggestedProducts[$i +1]->image_1}}" alt="" />
                                     </a>
                                     <div class="quick-view">
                                         <a class="quick_view" href="/single-product">
@@ -233,22 +242,31 @@
                                     </div>
                                 </div>
                                 <div class="product-decs">
-                                    <span>Brand</span>
-                                    <h2><a href="/single-product" class="product-link">Product {{$i * 2 + 2}}</a></h2>
-                                    <div class="rating-product">
+                                    <span>{{$suggestedProducts[$i+1]->name}}</span>
+                                    <h2><a href="/single-product" class="product-link">{{$suggestedProducts[$i +1]->title}}</a></h2>
+                                    <!-- <div class="rating-product">
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
-                                    </div>
+                                    </div> -->
                                     <div class="pricing-meta">
-                                        <ul>
-                                            <li class="old-price not-cut">€29.90</li>
-                                        </ul>
+                                        @if($suggestedProducts[$i+1]->sale_price != 0)
+                                            <ul>
+                                                <li class="old-price">$ {{number_format($suggestedProducts[$i+1]->regular_price, 2)}}</li>
+                                                <li class="current-price">$ {{number_format($suggestedProducts[$i+1]->sale_price, 2)}}</li>
+                                                <li class="discount-price">{{number_format((($suggestedProducts[$i+1]->regular_price - $suggestedProducts[$i+1]->sale_price) / $suggestedProducts[$i+1]->regular_price)*100, 2)}} %</li>
+                                            </ul>
+                                        @else
+                                            <ul>
+                                                <li class="old-price not-cut">$ {{number_format($suggestedProducts[$i+1]->regular_price, 2)}}</li>
+                                            </ul>
+                                        @endif
                                     </div>
                                 </div>
                             </article>
+                            @endif
                         </div>
                         @endfor
                     </div>
@@ -256,6 +274,95 @@
                 </div>
             </section>
             <!-- Suggestion Area End -->
+
+            <!-- Sales Area Start -->
+            <section class="feature-area mt-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Section Title -->
+                            <div class="section-title">
+                                <h2>Sales Products</h2>
+                                <p>Ongoing Sales!</p>
+                            </div>
+                            <!-- Section Title -->
+                        </div>
+                    </div>
+                    <!-- Feature Slider Start -->
+                    <div class="feature-slider owl-carousel owl-nav-style">
+                        <!-- Single Item -->
+                        @for($i = 0; $i < count($saleProducts); $i+=2)
+                        <div class="feature-slider-item">
+                            <article class="list-product">
+                                <div class="img-block">
+                                    <a href="/single-product" class="thumbnail">
+                                        <img class="first-img" src="{{$saleProducts[$i]->image_1}}" alt="" />
+                                    </a>
+                                    <div class="quick-view">
+                                        <a class="quick_view" href="/single-product">
+                                            <i class="ion-ios-search-strong"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-decs">
+                                    <span>{{$saleProducts[$i]->name}}</span>
+                                    <h2><a href="/single-product" class="product-link">{{$saleProducts[$i]->title}}</a></h2>
+                                    <!-- <div class="rating-product">
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                    </div> -->
+                                    <div class="pricing-meta">
+                                            <ul>
+                                                <li class="old-price">$ {{number_format($saleProducts[$i]->regular_price, 2)}}</li>
+                                                <li class="current-price">$ {{number_format($saleProducts[$i]->sale_price, 2)}}</li>
+                                                <li class="discount-price">{{number_format((($saleProducts[$i]->regular_price - $saleProducts[$i]->sale_price) / $saleProducts[$i]->regular_price)*100, 2)}} %</li>
+                                            </ul>
+                                    </div>
+                                </div>
+                            </article>
+                            @if($i+1 < count($saleProducts))
+                            <article class="list-product">
+                                <div class="img-block">
+                                    <a href="/single-product" class="thumbnail">
+                                        <img class="first-img" src="{{$saleProducts[$i +1]->image_1}}" alt="" />
+                                    </a>
+                                    <div class="quick-view">
+                                        <a class="quick_view" href="/single-product">
+                                            <i class="ion-ios-search-strong"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-decs">
+                                    <span>{{$saleProducts[$i+1]->name}}</span>
+                                    <h2><a href="/single-product" class="product-link">{{$saleProducts[$i +1]->title}}</a></h2>
+                                    <!-- <div class="rating-product">
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                    </div> -->
+                                    <div class="pricing-meta">
+                                            <ul>
+                                                <li class="old-price">$ {{number_format($saleProducts[$i+1]->regular_price, 2)}}</li>
+                                                <li class="current-price">$ {{number_format($saleProducts[$i+1]->sale_price, 2)}}</li>
+                                                <li class="discount-price">{{number_format((($saleProducts[$i+1]->regular_price - $saleProducts[$i+1]->sale_price) / $saleProducts[$i+1]->regular_price)*100, 2)}} %</li>
+                                            </ul>
+                                    </div>
+                                </div>
+                            </article>
+                            @endif
+                        </div>
+                        @endfor
+                    </div>
+                    <!-- Feature Slider End -->
+                </div>
+            </section>
+            <!-- Sales Area End -->
+
             <!-- Hot deal area Start -->
             <section class="hot-deal-area mb-30px">
                 <div class="container">
@@ -293,13 +400,13 @@
                                     <div class="product-decs">
                                         <a class="inner-link" href="shop-4-column.html"><span>Brand</span></a>
                                         <h2><a href="/single-product" class="product-link">Product {{$i + 1}}</a></h2>
-                                        <div class="rating-product">
+                                        <!-- <div class="rating-product">
                                             <i class="ion-android-star"></i>
                                             <i class="ion-android-star"></i>
                                             <i class="ion-android-star"></i>
                                             <i class="ion-android-star"></i>
                                             <i class="ion-android-star"></i>
-                                        </div>
+                                        </div> -->
                                         <div class="pricing-meta">
                                             <ul>
                                                 <li class="old-price">€18.90</li>
@@ -333,13 +440,12 @@
                             <!-- New Product Slider Start -->
                             <div class="new-product-slider owl-carousel owl-nav-style">
                                 <!-- Product Single Item -->
-                                @for ($i = 0; $i < 5; $i++)
+                                @for($i = 0; $i < count($newProducts); $i+=2)
                                 <div class="product-inner-item">
                                     <article class="list-product mb-30px">
                                         <div class="img-block">
                                             <a href="/single-product" class="thumbnail">
-                                                <img class="first-img" src="assets/images/product-image/electronic/2.jpg" alt="" />
-                                                <img class="second-img" src="assets/images/product-image/electronic/2.jpg" alt="" />
+                                                <img class="first-img" src="{{$newProducts[$i]->image_1}}" alt="" />
                                             </a>
                                         <div class="quick-view">
                                             <a class="quick_view" href="/single-product">
@@ -351,29 +457,35 @@
                                             <li class="new">New</li>
                                         </ul>
                                         <div class="product-decs">
-                                            <a class="inner-link" href="shop-4-column.html"><span>Brand</span></a>
-                                            <h2><a href="/single-product" class="product-link">Product {{$i * 2 + 1}}</a></h2>
-                                            <div class="rating-product">
+                                            <a class="inner-link" href="shop-4-column.html"><span>{{$newProducts[$i]->name}}</span></a>
+                                            <h2><a href="/single-product" class="product-link">{{$newProducts[$i]->title}}</a></h2>
+                                            <!-- <div class="rating-product">
                                                 <i class="ion-android-star"></i>
                                                 <i class="ion-android-star"></i>
                                                 <i class="ion-android-star"></i>
                                                 <i class="ion-android-star"></i>
                                                 <i class="ion-android-star"></i>
-                                            </div>
+                                            </div> -->
                                             <div class="pricing-meta">
+                                            @if($newProducts[$i]->sale_price != 0)
                                                 <ul>
-                                                    <li class="old-price">€23.90</li>
-                                                    <li class="current-price">€21.51</li>
-                                                    <li class="discount-price">-10%</li>
+                                                    <li class="old-price">$ {{number_format($newProducts[$i]->regular_price, 2)}}</li>
+                                                    <li class="current-price">$ {{number_format($newProducts[$i]->sale_price, 2)}}</li>
+                                                    <li class="discount-price">{{number_format((($newProducts[$i]->regular_price - $newProducts[$i]->sale_price) / $newProducts[$i]->regular_price)*100, 2)}} %</li>
                                                 </ul>
+                                            @else
+                                                <ul>
+                                                    <li class="old-price not-cut">$ {{number_format($newProducts[$i]->regular_price, 2)}}</li>
+                                                </ul>
+                                            @endif
                                             </div>
                                         </div>
                                     </article>
+                                    @if($i+1 < count($newProducts))
                                     <article class="list-product">
                                         <div class="img-block">
                                             <a href="/single-product" class="thumbnail">
-                                                <img class="first-img" src="assets/images/product-image/electronic/1.jpg" alt="" />
-                                                <img class="second-img" src="assets/images/product-image/electronic/1.jpg" alt="" />
+                                                <img class="first-img" src="{{$newProducts[$i + 1]->image_1}}" alt="" />
                                             </a>
                                         <div class="quick-view">
                                             <a class="quick_view" href="/single-product">
@@ -385,24 +497,31 @@
                                             <li class="new">New</li>
                                         </ul>
                                         <div class="product-decs">
-                                            <a class="inner-link" href="shop-4-column.html"><span>Brand</span></a>
-                                            <h2><a href="/single-product" class="product-link">Product {{$i * 2 + 2}}</a></h2>
-                                            <div class="rating-product">
+                                            <a class="inner-link" href="shop-4-column.html"><span>{{$newProducts[$i + 1]->name}}</span></a>
+                                            <h2><a href="/single-product" class="product-link">{{$newProducts[$i + 1]->title}}</a></h2>
+                                            <!-- <div class="rating-product">
                                                 <i class="ion-android-star"></i>
                                                 <i class="ion-android-star"></i>
                                                 <i class="ion-android-star"></i>
                                                 <i class="ion-android-star"></i>
                                                 <i class="ion-android-star"></i>
-                                            </div>
+                                            </div> -->
                                             <div class="pricing-meta">
+                                            @if($newProducts[$i+1]->sale_price != 0)
                                                 <ul>
-                                                    <li class="old-price">€35.90</li>
-                                                    <li class="current-price">€34.11</li>
-                                                    <li class="discount-price">-5%</li>
+                                                    <li class="old-price">$ {{number_format($newProducts[$i+1]->regular_price, 2)}}</li>
+                                                    <li class="current-price">$ {{number_format($newProducts[$i+1]->sale_price, 2)}}</li>
+                                                    <li class="discount-price">{{number_format((($newProducts[$i+1]->regular_price - $newProducts[$i+1]->sale_price) / $newProducts[$i+1]->regular_price)*100, 2)}} %</li>
                                                 </ul>
+                                            @else
+                                                <ul>
+                                                    <li class="old-price not-cut">$ {{number_format($newProducts[$i+1]->regular_price, 2)}}</li>
+                                                </ul>
+                                            @endif
                                             </div>
                                         </div>
                                     </article>
+                                    @endif
                                 </div>
                                 @endfor
                             </div>

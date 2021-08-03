@@ -52,7 +52,7 @@
             @include('header')
             <!-- Header End -->
             <!-- Breadcrumb Area start -->
-            <section class="breadcrumb-area">
+            <section class="breadcrumb-area" style="background-image: url(assets/images/banner-image/about.jpg);">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
