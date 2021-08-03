@@ -77,8 +77,9 @@ Route::get('/subcategories', [SubCategoryController::class, 'getSubCategories'])
 Route::get('/delete-subcategory/{id}', [SubCategoryController::class, 'deleteSubCategory'])->name('subcategory.delete');
 Route::post('/update-subcategory', [SubCategoryController::class, 'updateSubCategory'])->name('subcategory.update');
 
-Route::post('/ecommerces', [EcommerceController::class, 'addSubEcommerceSubmit'])->name('ecommerce.addsubmit');
+Route::post('/ecommerces', [EcommerceController::class, 'addEcommerceSubmit'])->name('ecommerce.addsubmit');
 Route::get('/ecommerces', [EcommerceController::class, 'getEcommerces'])->name('ecommerce.get');
+Route::post('/update-ecommerce', [EcommerceController::class, 'updateEcommerce'])->name('ecommerce.update');
 
 Route::get('/add-admin', [UserController::class, 'addAdmin'])->name('admin.add');
 Route::post('/add-admin', [UserController::class, 'addAdminSubmit'])->name('admin.addsubmit');
