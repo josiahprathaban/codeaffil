@@ -50,7 +50,7 @@ class SubCategoryController extends Controller
             return back()->with('sc_updated','Subcategories has been updated successfully!');
         }
         else{
-        $imageName=$name.'.'.$image->extension();
+        $imageName="assets/images/subcategory/".$name.'.'.$image->extension();
         $image->move("assets/images/subcategory",$imageName);
         
 
@@ -73,13 +73,20 @@ class SubCategoryController extends Controller
 
     //delete categories
     public function deleteSubCategory($id){
-       // $subcategories = DB::table('subcategories')->where('id',$id)->delete();
+       $subcategories = DB::table('subcategories')->where('id',$id)->cascade();
 
-        $subcategories =DB::table('subcategories')
-        ->Join('subcategories','subcategories.id', '=','product.subcategory_id')
-        ->where('subcategories.id', $id); 
-        DB::table('subcategories.id')->where('subcategories', $id)->delete();                           
-        $subcategories->delete();
+        // $subcategories =DB::table('subcategories')
+        // ->Join('subcategories','subcategories.id', '=','product.subcategory_id')
+        // ->where('subcategories.id', $id); 
+        // DB::table('subcategories.id')->where('subcategories', $id)->delete();                           
+        // $subcategories->delete();
+
+        // $orders =DB::table('products')
+        // ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+        // ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+        // ->where('subcategories.id', $id)
+        // ->delete();
+
     }
 
     // public function updateSubCategory(Request $request){

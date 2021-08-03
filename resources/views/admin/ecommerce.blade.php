@@ -74,7 +74,7 @@
                     {{ Session::get('ec_deleted') }}
                 </div>
                 @endif
-                @if (Session::has('sc_updated'))
+                @if (Session::has('ec_updated'))
                 <div class="alert alert-success" role="alert">
                     {{ Session::get('ec_updated') }}
                 </div>
@@ -162,22 +162,22 @@
                                                                             <div class="modal-dialog modal-lg">
                                                                                 <div class="modal-content">
                                                                                     <div class="modal-header">
-                                                                                        <h4 class="modal-title">Update SubCategories</h4>
+                                                                                        <h4 class="modal-title">Update Ecommerce</h4>
                                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                             <span aria-hidden="true">&times;</span>
                                                                                             <span class="sr-only">Close</span>
                                                                                         </button>
                                                                                     </div>
                                                                                     <div class="card card-block sameheight-item">
-                                                                                        <form role="form" method="post" enctype="multipart/form-data" action="">
+                                                                                        <form role="form" method="post" enctype="multipart/form-data" action="{{route('ecommerce.update')}}">
                                                                                             @csrf
-                                                                                            <label> Category: </label>
+                                                                                            <label> ecommerce: </label>
 
 
 
                                                                                             <input type="hidden" name="ecommerce_id" value="{{$ecommerce->id}}">
                                                                                             <div class="form-group">
-                                                                                                <label for="exampleInputEmail1">ecommerce</label>
+                                                                                                <label >ecommerce</label>
                                                                                                 <input type="text" class="form-control" value="{{$ecommerce->name}}" id="exampleInputEmail1" name="ecommerce_name" placeholder="Enter Category Name">
                                                                                             </div>
                                                                                             <div class="form-group ">

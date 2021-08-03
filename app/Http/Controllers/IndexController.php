@@ -22,7 +22,7 @@ class IndexController extends Controller
                 ->rightJoin('subcategories','products.subcategory_id','=','subcategories.id')
                 ->groupBy('products.subcategory_id')
                 ->get();
-                return $orders;
+               // return $orders;
         
         $orders =DB::table('products')
                 ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')

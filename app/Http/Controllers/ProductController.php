@@ -49,6 +49,7 @@ class ProductController extends Controller
     //get Single product
     public function getProductById($id){
         $product = DB::table('products')->where('id',$id)->first();
+        $ecommerces = DB::table('ecommerces')->get();
         return view('admin.single_product',compact('product'));
     }
 
@@ -61,10 +62,19 @@ class ProductController extends Controller
     //update product
     public function editProduct($id){
         $product = DB::table('products')->where('id',$id)->first();
-        return view('admin.edit_item',compact('product'));
+        $ecommerces = DB::table('ecommerces')->get();
+        $subcategories = DB::table('subcategories')->get();
+        $brands = DB::table('brands')->get();
+        return view('admin.edit_item',compact('product','ecommerces','subcategories','brands'));
     }
 
     public function updateProduct(Request $request){
+        if(isset($request->stock_status)){
+            $flge=1;
+        }
+        else{
+            $flge=0;
+        }
         DB::table('products')->where('id', $request->id)->update([
             'title'=> $request->title,
             'short_description'=>$request->short_description,
@@ -72,6 +82,7 @@ class ProductController extends Controller
             'regular_price'=>$request->regular_price,
             'sale_price'=>$request->sale_price,
             'affiliate_link'=>$request->affiliate_link,
+            'stock_status'=>$flge,
             "created_at"=> Carbon::now(),
             "updated_at"=> now()
 
