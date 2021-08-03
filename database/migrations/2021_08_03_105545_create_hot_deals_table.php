@@ -16,8 +16,8 @@ class CreateHotDealsTable extends Migration
         Schema::create('hot_deals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->string('image_3');
-            $table->string('image_4');
+            $table->date('deal_starts');
+            $table->date('deal_ends');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');
