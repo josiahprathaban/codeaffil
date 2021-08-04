@@ -16,7 +16,10 @@ class IndexController extends Controller
         $saleProducts = $this->saleProducts();
         $suggestedProducts = $this->suggestedProducts();
         $newProducts = $this->newProducts();
-        return view('index',compact('subcategories','categories','popularCategories', 'saleProducts', 'suggestedProducts', 'newProducts'));
+        $ecommerces = $this->ecommerces();
+        $sliders = $this->sliders();
+        $hotDeals = $this->hotDeals();
+        return view('index',compact('subcategories','categories','popularCategories', 'saleProducts', 'suggestedProducts', 'newProducts', 'ecommerces', 'sliders', 'hotDeals'));
     }
 
     public function popularCategories()
@@ -91,16 +94,25 @@ class IndexController extends Controller
         return $newProducts;
     }
 
-    public function ecommerce()
+    public function hotDeals()
     {    
-        $newProducts = DB::table('ecommerces')
-            ->select('products.id', 'products.title', 'products.regular_price', 'products.sale_price', 'product_images.image_1',  'ecommerces.name')
+        $hotDeals = DB::table('hot_deals')
+            ->select('hot_deals.product_id', 'hot_deals.deal_starts', 'hot_deals.deal_ends',  'products.regular_price', 'products.sale_price', 'product_images.image_1', 'products.title',  'ecommerces.name')
+            ->join('products','hot_deals.product_id', '=', 'products.id')
             ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
-            ->join('product_images','products.id', '=', 'product_images.product_id')
-            ->orderBy('products.id', 'DESC')
-            ->take(10)
+            ->join('product_images','hot_deals.product_id', '=', 'product_images.product_id')
             ->get();
 
-        return $newProducts;
+        return $hotDeals;
+    }
+
+    public function ecommerces()
+    {
+        return DB::table('ecommerces')->get();
+    }
+
+    public function sliders()
+    {
+        return DB::table('sliders')->get();
     }
 }

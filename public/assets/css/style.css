@@ -4280,10 +4280,15 @@ a.quick_view:hover{
     margin-bottom: 70px;
 }
 .feature-slider-item .img-block {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     float: left;
     width: 120px;
+    height: 120px;
     margin-right: 20px;
 }
+
 .feature-slider-item .product-decs {
     overflow: hidden;
     padding: 10px 0 0 0;
@@ -4292,7 +4297,7 @@ a.quick_view:hover{
     margin: 4px 0;
 }
 .feature-slider-item .list-product{
-    padding: 20px;
+    padding: 10px;
 }
 .category-product-2 .feature-slider-item .list-product {
     padding: 13px 0 13px 0;
@@ -5954,7 +5959,8 @@ a.read-more-btn i {
 .zoompro-wrap.zoompro-2 {
     display: inline-block;
     position: relative;
-    width: 100%;
+   width: 100%;
+   padding-top: 100%;
     float: left;
     overflow: hidden;
 }
@@ -5978,7 +5984,15 @@ a.read-more-btn i {
     transition: all 300ms linear;
 }
 .zoompro-wrap .zoompro-span img {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;    
+    position:  absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   margin-left: auto; 
+  margin-right: auto; 
 }
 
 .product-dec-slider-2 .slick-slide.slick-active:focus {
@@ -8211,11 +8225,17 @@ span.title {
     position: relative;
 }
 
+.category-list{
+    border-radius: 5px;
+    border-top: rgba(0, 0, 0, 0.3) 1px solid;
+    border-bottom: rgba(0, 0, 0, 0.3) 1px solid;
+}
+
 .xwhite{
     z-index: 1;
     position: absolute;
     background: rgb(250,250,250);
-background: linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(255,255,255,0) 100%);
+background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(255,255,255,0) 90%, rgba(0, 0, 0, 0.2) 100%);
     width: 100%;
     height: 100%;
 }
@@ -8223,9 +8243,21 @@ background: linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(255,255,255,0) 1
 .ximage{
     z-index: -1;
 }
+.name_categories{
+    color: #fff;
+}
+
+.number_product{
+color: rgb(196, 196, 196) !important;
+}
 
 .xdes{
+    
     z-index: 2;
+}
+
+.xdes a{
+    color: #ffffff;
 }
 
 .xprofile{
@@ -8312,7 +8344,9 @@ background: linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(255,255,255,0) 1
       border-radius: 5px 0 0 5px;
       background-color: inherit;
       padding-top: 3px;
-      height: 100%;
+      /* height: auto !important; */
+      -webkit-appearance: menulist-textfield;
+  height: 45px;
   }
 
   .x_search_text{
@@ -8350,4 +8384,10 @@ background: linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(255,255,255,0) 1
         margin: 15px auto 0px auto;
         width: calc(100vw - 40px);
       }
+  }
+
+  .newp{
+        max-height:210px;
+        width: auto !important;
+        max-width: 100%;
   }
