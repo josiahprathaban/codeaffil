@@ -12,6 +12,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\EcommerceController;
+use App\Http\Controllers\HotDealsController;
 use App\Http\Controllers\SingleProdecutController;
 
 /*
@@ -37,8 +38,7 @@ Route::get('/admin', function () {
 
 
 Route::get('/add-product', [ProductController::class, 'addProduct'])->name('product.add');
-Route::get('/add-product', [ProductController::class, 'getBrands']);
-Route::post('/add-product', [ProductController::class, 'addProductSubmit','getBrands'])->name('product.addsubmit');
+Route::post('/add-product', [ProductController::class, 'addProductSubmit'])->name('product.addsubmit');
 Route::get('/all-products', [ProductController::class, 'getProducts'])->name('product.get');
 Route::get('/single-product/{id}', [ProductController::class, 'getProductById'])->name('product.getbyid');
 Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct'])->name('product.delete');
@@ -68,10 +68,8 @@ Route::post('/update-ecommerce', [EcommerceController::class, 'updateEcommerce']
 Route::get('/add-admin', [UserController::class, 'addAdmin'])->name('admin.add');
 Route::post('/add-admin', [UserController::class, 'addAdminSubmit'])->name('admin.addsubmit');
 
-
-Route::get('/image-upload', [ProductController::class, 'createForm']);
-
-Route::post('/image-upload', [ProductController::class, 'fileUpload'])->name('imageUpload');
+Route::get('/hot-deals', [HotDealsController::class, 'getHotDeals'])->name('hotdeals.get');
+Route::post('/hot-deals', [HotDealsController::class, 'addHotDealSubmit'])->name('hotdeal.addsubmit');
 
 Route::get('/add', [ProductController::class, 'insert'])->name('pro.add');
 

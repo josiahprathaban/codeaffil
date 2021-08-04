@@ -18,6 +18,7 @@ class CreateHotDealsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->date('deal_starts');
             $table->date('deal_ends');
+            $table->string('deal_title');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');

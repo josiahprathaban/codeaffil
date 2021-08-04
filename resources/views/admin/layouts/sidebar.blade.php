@@ -2,7 +2,7 @@
                     <div class="sidebar-container">
                         <div class="sidebar-header">
                         <div class="logo pt-2">
-                        <a href="/"><img src="assets/images/logo/footer-logo.png" alt="" /></a>
+                        <a href="/"><img src="{{ asset('assets/images/logo/footer-logo.png') }}" alt="" /></a>
                     </div>
                         <nav class="menu pt-5">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
