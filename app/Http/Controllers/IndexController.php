@@ -26,10 +26,10 @@ class IndexController extends Controller
     {
 
         $popularCategories = DB::table('products')
-            ->select('subcategories.id', 'subcategories.name', 'subcategories.image', DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'), DB::raw('COUNT(products.subcategory_id) as counts'))
+            ->select('subcategories.id', 'subcategories.name', 'subcategories.image',DB::raw('COUNT(products.subcategory_id) as counts'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'))
             ->join('subcategories','products.subcategory_id', '=', 'subcategories.id')
-            ->join('user_product_logs','products.id', '=', 'user_product_logs.product_id')
-            ->groupBy('products.subcategory_id')
+            ->leftJoin('user_product_logs','products.id', '=', 'user_product_logs.product_id')
+            ->groupBy('subcategories.id')
             ->orderBy('total_clicks', 'DESC')
             ->take(10)
             ->get();
@@ -66,6 +66,7 @@ class IndexController extends Controller
     public function suggestedProducts()
     {
 
+        if(session('user')){
         $customer_id = DB::table('customers')->where('username', session('user'))->value('id');
 
         $suggestedProducts = DB::table('products')
@@ -77,6 +78,17 @@ class IndexController extends Controller
             ->where('user_product_logs.customer_id', '=', $customer_id)
             ->take(10)
             ->get();
+        }
+        else{
+            $suggestedProducts = DB::table('products')
+            ->select('products.id', 'products.title', 'products.regular_price', 'products.sale_price', 'product_images.image_1',  'ecommerces.name')
+            ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
+            ->join('product_images','products.id', '=', 'product_images.product_id')
+            ->join('user_product_logs','products.id', '=', 'user_product_logs.product_id')
+            ->orderBy('user_product_logs.no_of_clicks', 'DESC')
+            ->take(10)
+            ->get();
+        }
 
         return $suggestedProducts;
     }

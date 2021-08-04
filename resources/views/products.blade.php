@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>  
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Ecolife - Multipurpose eCommerce HTML Template</title>
+        <title>Codeaffil</title>
         <!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon/favicon.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/favicon.png')}}" />
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800&display=swap" rel="stylesheet" />
-
         <!-- All CSS Flies   -->
         <!--===== Vendor CSS (Bootstrap & Icon Font) =====-->
-        <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" />
-        <link rel="stylesheet" href="assets/css/vendor/font-awesome.min.css" />
-        <link rel="stylesheet" href="assets/css/vendor/ionicons.min.css" />
+        <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/vendor/font-awesome.min.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/vendor/ionicons.min.css')}}" />
         <!--===== Plugins CSS (All Plugins Files) =====-->
-        <link rel="stylesheet" href="assets/css/plugins/jquery-ui.min.css" />
-        <link rel="stylesheet" href="assets/css/plugins/meanmenu.css" />
-        <link rel="stylesheet" href="assets/css/plugins/nice-select.css" />
-        <link rel="stylesheet" href="assets/css/plugins/owl-carousel.css" />
-        <link rel="stylesheet" href="assets/css/plugins/slick.css" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/jquery-ui.min.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/meanmenu.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/nice-select.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/owl-carousel.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css')}}" />
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
 
@@ -31,21 +30,21 @@
         <link rel="stylesheet" href="assets/css/responsive.min.css"> -->
         
         <!--===== Main Css Files =====-->
-        <link rel="stylesheet" href="assets/css/style.css" />
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}" />
         <!-- ===== Responsive Css Files ===== -->
-        <link rel="stylesheet" href="assets/css/responsive.css" />
+        <link rel="stylesheet" href="{{ asset('assets/css/responsive.css')}}" />
     </head>
 
     <body>
         <!-- main layout start from here -->
         <!--====== PRELOADER PART START ======-->
 
-        <!-- <div id="preloader">
+        <div id="preloader">
         <div class="preloader">
             <span></span>
             <span></span>
         </div>
-    </div> -->
+    </div>
 
         <!--====== PRELOADER PART ENDS ======-->
         <div id="main">
@@ -477,25 +476,26 @@
         <!-- JS
 ============================================ -->
 
+
         <!--====== Vendors js ======-->
         <!--====== Vendors js ======-->
-        <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
-        <script src="assets/js/vendor/bootstrap.min.js"></script>
-        <script src="assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
-        <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
-        <script src="assets/js/vendor/popper.min.js"></script>
+        <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js')}}"></script>
+        <script src="{{ asset('assets/js/vendor/bootstrap.min.js')}}"></script>
+        <script src="{{ asset('assets/js/vendor/jquery-migrate-3.3.2.min.js')}}"></script>
+        <script src="{{ asset('assets/js/vendor/modernizr-3.11.2.min.js')}}"></script>
+        <script src="{{ asset('assets/js/vendor/popper.min.js')}}"></script>
 
         <!--====== Plugins js ======-->
          
-        <script src="assets/js/plugins/meanmenu.js"></script>
-        <script src="assets/js/plugins/owl-carousel.js"></script>
-        <script src="assets/js/plugins/jquery.nice-select.js"></script>
-        <script src="assets/js/plugins/countdown.js"></script>
-        <script src="assets/js/plugins/elevateZoom.js"></script>
-        <script src="assets/js/plugins/jquery-ui.min.js"></script>
-        <script src="assets/js/plugins/slick.js"></script>
-        <script src="assets/js/plugins/scrollup.js"></script>
-        <script src="assets/js/plugins/range-script.js"></script>
+        <script src="{{ asset('assets/js/plugins/meanmenu.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/owl-carousel.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/jquery.nice-select.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/countdown.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/elevateZoom.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/jquery-ui.min.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/slick.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/scrollup.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/range-script.js')}}"></script>
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
 
@@ -503,6 +503,6 @@
         <script src="assets/js/plugins/plugins.min.js"></script> -->
 
         <!-- Main Activation JS -->
-        <script src="assets/js/main.js"></script>
+        <script src="{{ asset('assets/js/main.js')}}"></script>
     </body>
 </html>
