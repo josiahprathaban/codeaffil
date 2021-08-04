@@ -10,6 +10,7 @@ class LoginController extends Controller
     public function index(){
         $subcategories = DB::table('subcategories')->get();
         $categories = DB::table('categories')->get();
-        return view('login',compact('subcategories','categories'));
+        $ecommerces = DB::table('ecommerces')->get();
+        return view('login',compact('subcategories','categories', 'ecommerces'));
     }
 }

@@ -29,7 +29,7 @@
                                         <ul>
                                             <!-- Settings Start  -->
                                             <li class="dropdown after-n">
-                                            <a class="angle-icon xprofile" href="#"><img src="{{session('profile')}}" alt="">
+                                            <a class="angle-icon xprofile" href="#"><img src="{{ asset(session('profile'))}}" alt="">
                                                 {{session('user')}}</a>
                                                 <ul class="dropdown-nav">
                                                     @if(session('type') == "admin")
@@ -57,7 +57,7 @@
                             <!-- Logo Start -->
                             <div class="col-md-4 col-sm-4">
                                 <div class="logo">
-                                    <a href="/"><img src="assets/images/logo/logo.jpg" alt="" /></a>
+                                    <a href="/"><img src="{{ asset('assets/images/logo/logo.jpg')}}" alt="" /></a>
                                 </div>
                             </div>
                             <!-- Logo End -->
@@ -68,7 +68,7 @@
                                     <ul>
                                         <li><a href="/">Home</a></li>
                                         <li class="menu-dropdown">
-                                            <a href="#">Shop <i class="ion-ios-arrow-down"></i></a>
+                                            <a href="#">Categories <i class="ion-ios-arrow-down"></i></a>
                                             <ul class="mega-menu-wrap">
                                                 @foreach ($categories as $category )
                                                     <li>
@@ -83,12 +83,19 @@
                                                     </li>
                                                 @endforeach
                                                 <li class="banner-wrapper">
-                                                    <a href="single-product.html"><img src="assets/images/banner-image/banner-menu.jpg" alt="" /></a>
+                                                    <a href="single-product.html"><img src="{{ asset('assets/images/banner-image/banner-menu.jpg')}}" alt="" /></a>
                                                 </li>
                                             </ul>
                                         </li>
+                                        <li class="menu-dropdown">
+                                            <a href="#">E-Commerce <i class="ion-ios-arrow-down"></i></a>
+                                            <ul class="mega-menu-wrap" style="width:200px">
+                                                @foreach ($ecommerces as $ecommerce )
+                                                        <a href="#"><img src="{{$ecommerce -> logo}}" alt="" width="100px"></a>
+                                                @endforeach
+                                            </ul>
+                                        </li>
                                         <li><a href="/contact">Contact Us</a></li>
-                                        <li><a href="/about">About Us</a></li>
                                     </ul>
                                 </div>
                                 <!--Main Navigation End -->
@@ -101,7 +108,7 @@
                                     <ul class="menu-overflow">
                                         <li><a href="#">Home</a></li>
                                         <li>
-                                            <a href="#">Shop</a>
+                                            <a href="#">Categories</a>
                                             <ul>
                                                 @foreach ($categories as $category )
                                                     <li>
@@ -117,6 +124,16 @@
                                                 @endforeach
                                             </ul>
                                         </li>
+                                        <li>
+                                            <a href="#">E-Commerce</a>
+                                            <ul>
+                                                @foreach ($ecommerces as $ecommerce )
+                                                    <li>
+                                                        <a href="#">{{$ecommerce -> name}}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
                                         <li><a href="contact.html">Contact Us</a></li>
                                     </ul>
                                 </nav>
@@ -125,7 +142,8 @@
                         <!-- mobile menu end-->
                     </div>  
                     <div class="x_search">
-                                    <select class="x_search_select">
+                                    <div class="search_wrap">
+                                    <select class="x_search_select" size="5" style="height: auto">
                                     <option selected>All categories</option>
                                     @foreach ($categories as $category )
                                             <option value="{{$category->id}}">
@@ -140,6 +158,7 @@
                                             @endforeach
                                     @endforeach
                                     </select>
+                                    </div>
                                     <input type="text" class="x_search_text">
                                     <!-- <input type="submit" class="x_search_button" value="Search"> -->
                                     <button type="submit" class="x_search_button">

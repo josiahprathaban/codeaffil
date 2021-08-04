@@ -6,7 +6,7 @@
                             <div class="col-md-6 col-lg-4">
                                 <!-- footer logo -->
                                 <div class="footer-logo">
-                                    <a href="/"><img src="assets/images/logo/footer-logo.png" alt="" /></a>
+                                    <a href="/"><img src="{{ asset('assets/images/logo/footer-logo.png')}}" alt="" /></a>
                                 </div>
                                 <!-- footer logo -->
                                 <div class="about-footer">
@@ -23,15 +23,12 @@
                                 </div>
                             </div>
                             <!-- footer single wedget -->
-                            <div class="col-md-6 col-lg-2 mt-res-sx-30px mt-res-md-30px">
+                            <div class="col-md-6 col-lg-4 mt-res-sx-30px mt-res-md-30px">
                                 <div class="single-wedge">
-                                    <h4 class="footer-herading">Information</h4>
+                                    <h4 class="footer-herading">About Codeaffil</h4>
                                     <div class="footer-links">
-                                        <ul>
-                                            <li><a href="/about">About Us</a></li>
-                                            <li><a href="/contact">Contact Us</a></li>
-                                            <li><a href="#">Stores</a></li>
-                                        </ul>
+                                       <p>Codeaffil is a ecommerce intermediate web platform, where you can search for products from different ecommerce sites like Ebay, Amason,Aliexpress and etc... You can compare the product features and price with multiple websites and make your purchase. Codeaffil ease your comparision and searching!
+                                       </p>
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +49,7 @@
                                 </div>
                             </div>
                             <!-- footer single wedget -->
-                            <div class="col-md-6 col-lg-4 mt-res-md-50px mt-res-sx-30px mt-res-md-30px">
+                            <div class="col-md-6 col-lg-2 mt-res-md-50px mt-res-sx-30px mt-res-md-30px">
                                 <div class="single-wedge">
                                     <h4 class="footer-herading">Social</h4>
                                     <div class="social-info">
@@ -72,6 +69,7 @@
                                             <li>
                                                 <a href="#"><i class="ion-social-instagram"></i></a>
                                             </li>
+                                            <br/><br/><li><a href="/profile">Contact Us</a></li>
                                         </ul>
                                     </div>
                                 </div>

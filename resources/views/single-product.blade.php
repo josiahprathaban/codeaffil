@@ -6,22 +6,22 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Ecolife - Multipurpose eCommerce HTML Template</title>
         <!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon/favicon.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/favicon.png')}}" />
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800&display=swap" rel="stylesheet" />
 
         <!-- All CSS Flies   -->
         <!--===== Vendor CSS (Bootstrap & Icon Font) =====-->
-        <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" />
-        <link rel="stylesheet" href="assets/css/vendor/font-awesome.min.css" />
-        <link rel="stylesheet" href="assets/css/vendor/ionicons.min.css" />
+        <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/vendor/font-awesome.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/vendor/ionicons.min.css') }}" />
         <!--===== Plugins CSS (All Plugins Files) =====-->
-        <link rel="stylesheet" href="assets/css/plugins/jquery-ui.min.css" />
-        <link rel="stylesheet" href="assets/css/plugins/meanmenu.css" />
-        <link rel="stylesheet" href="assets/css/plugins/nice-select.css" />
-        <link rel="stylesheet" href="assets/css/plugins/owl-carousel.css" />
-        <link rel="stylesheet" href="assets/css/plugins/slick.css" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/jquery-ui.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/meanmenu.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/nice-select.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/owl-carousel.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css') }}" />
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
 
@@ -31,43 +31,26 @@
         <link rel="stylesheet" href="assets/css/responsive.min.css"> -->
         
         <!--===== Main Css Files =====-->
-        <link rel="stylesheet" href="assets/css/style.css" />
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
         <!-- ===== Responsive Css Files ===== -->
-        <link rel="stylesheet" href="assets/css/responsive.css" />
+        <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
     </head>
     <body>
         <!-- main layout start from here -->
         <!--====== PRELOADER PART START ======-->
 
-        <!-- <div id="preloader">
+        <div id="preloader">
         <div class="preloader">
             <span></span>
             <span></span>
         </div>
-    </div> -->
+    </div>
 
         <!--====== PRELOADER PART ENDS ======-->
         <div id="main">
             <!-- Header Start -->
             @include('header')
             <!-- Header End -->
-            <!-- Breadcrumb Area start -->
-            <section class="breadcrumb-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="breadcrumb-content">
-                                <h1 class="breadcrumb-hrading">Single Product Page</h1>
-                                <ul class="breadcrumb-links">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li>Single Product</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Breadcrumb Area End -->
             <!-- Shop details Area start -->
             <section class="product-details-area mtb-60px">
                 <div class="container">
@@ -76,66 +59,67 @@
                             <div class="product-details-img product-details-tab">
                                 <div class="zoompro-wrap zoompro-2">
                                     <div class="zoompro-border zoompro-span">
-                                        <img class="zoompro" src="assets/images/product-image/organic/product-11.jpg" data-zoom-image="assets/images/product-image/organic/zoom/1.jpg" alt="" />
+                                        <img class="zoompro" src="{{asset($product->image_1)}}" alt="" />
                                     </div>
                                 </div>
                                 <div id="gallery" class="product-dec-slider-2">
-                                    <a class="active" data-image="assets/images/product-image/organic/product-11.jpg" data-zoom-image="assets/images/product-image/organic/zoom/1.jpg">
-                                        <img src="assets/images/product-image/organic/product-11.jpg" alt="" />
+                                    <a class="active" data-image="{{asset($product->image_1)}}" data-zoom-image="{{asset($product->image_1)}}">
+                                        <img src="{{asset($product->image_1)}}" alt="" />
                                     </a>
-                                    <a data-image="assets/images/product-image/organic/product-9.jpg" data-zoom-image="assets/images/product-image/organic/zoom/2.jpg">
-                                        <img src="assets/images/product-image/organic/product-9.jpg" alt="" />
+                                    <a class="active" data-image="{{asset($product->image_2)}}" data-zoom-image="{{asset($product->image_2)}}">
+                                        <img src="{{asset($product->image_2)}}" alt="" />
                                     </a>
-                                    <a data-image="assets/images/product-image/organic/product-20.jpg" data-zoom-image="assets/images/product-image/organic/zoom/3.jpg">
-                                        <img src="assets/images/product-image/organic/product-20.jpg" alt="" />
+                                    <a class="active" data-image="{{asset($product->image_3)}}" data-zoom-image="{{asset($product->image_3)}}">
+                                        <img src="{{asset($product->image_3)}}" alt="" />
                                     </a>
-                                    <a data-image="assets/images/product-image/organic/product-19.jpg" data-zoom-image="assets/images/product-image/organic/zoom/4.jpg">
-                                        <img src="assets/images/product-image/organic/product-19.jpg" alt="" />
+                                    <a class="active" data-image="{{asset($product->image_4)}}" data-zoom-image="{{asset($product->image_4)}}">
+                                        <img src="{{asset($product->image_4)}}" alt="" />
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12">
                             <div class="product-details-content">
-                                <h2>Originals Kaval Windbr</h2>
-                                <p class="reference">Reference:<span> demo_17</span></p>
-                                <div class="pro-details-rating-wrap">
-                                    <div class="rating-product">
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                    </div>
-                                    <span class="read-review"><a class="reviews" href="#">Read reviews (1)</a></span>
-                                </div>
+                                <h2>{{$product->title}}</h2>
+                                <p class="reference">{{$product->short_description}}</p>
+                               
                                 <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price not-cut">€18.90</li>
-                                    </ul>
+                                            @if($product->sale_price != 0)
+                                                <ul>
+                                                    <li class="old-price">$ {{number_format($product->regular_price, 2)}}</li>
+                                                    <li class="current-price" style="font-size:30px">$ {{number_format($product->sale_price, 2)}}</li><br/>
+                                                    <li class="discount-price">{{number_format((($product->regular_price - $product->sale_price) / $product->regular_price)*100, 2)}} %</li>
+                                                </ul>
+                                            @else
+                                                <ul>
+                                                    <li class="old-price not-cut">$ {{number_format($product->regular_price, 2)}}</li>
+                                                </ul>
+                                            @endif
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisic elit eiusm tempor incidid ut labore et dolore magna aliqua. Ut enim ad minim venialo quis nostrud exercitation ullamco</p>
+                                <p>Stock status :
+                                     @if($product->stock_status == 1)
+                                     <span style="color:#4fb68d">Available</span> 
+                                     @else
+                                     <span style="color:#ef1e1e">Out of stock </span> 
+                                     @endif
+
+                                </p><br/>
                                 <div class="pro-details-list">
                                     <ul>
-                                        <li>- 0.5 mm Dail</li>
-                                        <li>- Inspired vector icons</li>
-                                        <li>- Very modern style</li>
+                                        <b>Brand</b> : {{$product->brand}} <br/>
+                                        <b>E-Commerce</b> : {{$product->ecommerce}} <br/> <img src="{{asset($product->logo)}}" width="200px" alt=""><br/>
+                                        <b>Specifications</b>
+                                        @foreach(explode(".", $product->description) as $points)
+                                        <li> - {{$points}}</li>
+                                        @endforeach
                                     </ul>
                                 </div>
                                 <div class="pro-details-quality mt-0px">
-                                    <div class="cart-plus-minus">
-                                        <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
+                                    <div class="pro-details-cart btn-hover">
+                                        <a href="#" style="font-size:20px"> Buy </a>
                                     </div>
                                     <div class="pro-details-cart btn-hover">
-                                        <a href="#"> + Add To Cart</a>
-                                    </div>
-                                </div>
-                                <div class="pro-details-wish-com">
-                                    <div class="pro-details-wishlist">
-                                        <a href="#"><i class="ion-android-favorite-outline"></i>Add to wishlist</a>
-                                    </div>
-                                    <div class="pro-details-compare">
-                                        <a href="#"><i class="ion-ios-shuffle-strong"></i>Add to compare</a>
+                                        <a href="#" style="font-size:20px"><i class="ion-ios-shuffle-strong"></i> Compare</a>
                                     </div>
                                 </div>
                                 <div class="pro-details-social-info">
@@ -157,13 +141,6 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="pro-details-policy">
-                                    <ul>
-                                        <li><img src="assets/images/icons/policy.png" alt="" /><span>Security Policy (Edit With Customer Reassurance Module)</span></li>
-                                        <li><img src="assets/images/icons/policy-2.png" alt="" /><span>Delivery Policy (Edit With Customer Reassurance Module)</span></li>
-                                        <li><img src="assets/images/icons/policy-3.png" alt="" /><span>Return Policy (Edit With Customer Reassurance Module)</span></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -171,7 +148,7 @@
             </section>
             <!-- Shop details Area End -->
             <!-- product details description area start -->
-            <div class="description-review-area mb-60px">
+            <!-- <div class="description-review-area mb-60px">
                 <div class="container">
                     <div class="description-review-wrapper">
                         <div class="description-review-topbar nav">
@@ -303,7 +280,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- product details description area end -->
             <!-- Recent Add Product Area Start -->
             <section class="recent-add-area">
@@ -1095,23 +1072,23 @@
 
         <!--====== Vendors js ======-->
         <!--====== Vendors js ======-->
-        <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
-        <script src="assets/js/vendor/bootstrap.min.js"></script>
-        <script src="assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
-        <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
-        <script src="assets/js/vendor/popper.min.js"></script>
+        <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+        <script src="{{ asset('assets/js/vendor/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/js/vendor/jquery-migrate-3.3.2.min.js') }}"></script>
+        <script src="{{ asset('assets/js/vendor/modernizr-3.11.2.min.js') }}"></script>
+        <script src="{{ asset('assets/js/vendor/popper.min.js') }}"></script>
 
         <!--====== Plugins js ======-->
          
-        <script src="assets/js/plugins/meanmenu.js"></script>
-        <script src="assets/js/plugins/owl-carousel.js"></script>
-        <script src="assets/js/plugins/jquery.nice-select.js"></script>
-        <script src="assets/js/plugins/countdown.js"></script>
-        <script src="assets/js/plugins/elevateZoom.js"></script>
-        <script src="assets/js/plugins/jquery-ui.min.js"></script>
-        <script src="assets/js/plugins/slick.js"></script>
-        <script src="assets/js/plugins/scrollup.js"></script>
-        <script src="assets/js/plugins/range-script.js"></script>
+        <script src="{{ asset('assets/js/plugins/meanmenu.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins/owl-carousel.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins/jquery.nice-select.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins/countdown.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins/elevateZoom.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins/jquery-ui.min.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins/slick.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins/scrollup.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins/range-script.js') }}"></script>
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
 
@@ -1119,6 +1096,6 @@
         <script src="assets/js/plugins/plugins.min.js"></script> -->
 
         <!-- Main Activation JS -->
-        <script src="assets/js/main.js"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>
     </body>
 </html>
