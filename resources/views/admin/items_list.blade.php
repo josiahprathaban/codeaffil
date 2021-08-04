@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
     <!-- Place favicon.ico in the root directory -->
-    <link rel="stylesheet" id="theme-style" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet"  href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
@@ -311,8 +311,8 @@
         ga('create', 'UA-80463319-4', 'auto');
         ga('send', 'pageview');
     </script>
-    <script src="js/vendor.js"></script>
-    <script src="js/app.js"></script>
+    <script src="{{ asset('js/')}}/vendor.js"></script>
+    <script src="{{ asset('js/')}}/app.js"></script>
 </body>
 
 </html>

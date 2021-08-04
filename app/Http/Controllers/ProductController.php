@@ -28,7 +28,10 @@ class ProductController extends Controller
 
     //Add product
     public function addProduct(){
-        return view('admin.add_item');
+        $brands = DB::table('brands')->get();
+        $subcategories = DB::table('subcategories')->get();
+        $ecommerces= DB::table('ecommerces')->get();
+        return view('admin.add_item',compact('brands','subcategories','ecommerces'));
     }
 
     // public function addProductSubmit(Request $request){
@@ -50,7 +53,10 @@ class ProductController extends Controller
     public function getProductById($id){
         $product = DB::table('products')->where('id',$id)->first();
         $ecommerces = DB::table('ecommerces')->get();
-        return view('admin.single_product',compact('product'));
+        $brands = DB::table('brands')->get();
+        $subcategories = DB::table('subcategories')->get();
+        $images = DB::table('product_images')->get();
+        return view('admin.single_product',compact('product','ecommerces','subcategories','brands','images'));
     }
 
     //delete product
@@ -65,34 +71,67 @@ class ProductController extends Controller
         $ecommerces = DB::table('ecommerces')->get();
         $subcategories = DB::table('subcategories')->get();
         $brands = DB::table('brands')->get();
-        return view('admin.edit_item',compact('product','ecommerces','subcategories','brands'));
+        $images = DB::table('product_images')->get();
+        return view('admin.edit_item',compact('product','ecommerces','subcategories','brands','images'));
     }
 
-    public function updateProduct(Request $request){
-        if(isset($request->stock_status)){
-            $flge=1;
-        }
-        else{
-            $flge=0;
-        }
-        DB::table('products')->where('id', $request->id)->update([
-            'title'=> $request->title,
-            'short_description'=>$request->short_description,
-            'description'=>$request->description,
-            'regular_price'=>$request->regular_price,
-            'sale_price'=>$request->sale_price,
-            'affiliate_link'=>$request->affiliate_link,
-            'stock_status'=>$flge,
-            "created_at"=> Carbon::now(),
-            "updated_at"=> now()
+    // public function updateProduct(Request $request){
+    //     if(isset($request->stock_status)){
+    //         $flge=1;
+    //     }
+    //     else{
+    //         $flge=0;
+    //     }
 
-        ]);
-        return back()->with('product_updated','Product has been updated successfully!');
-    }
+    //     $id = $request->id;
+    //     $title = $request->title;
+    //     $short_description = $request->short_description;
+    //     $description = $request->description;
+    //     $subcategory_id = $request ->subcategory_id;
+    //     $brand_id = $request ->brand_id;
+    //     $ecommerce_id = $request ->ecommerce_id;
+    //     $regular_price = $request->regular_price;
+    //     $sale_price = $request ->sale_price;
+    //     $affiliate_link = $request ->affiliate_link;
+
+    //     $image1 = $request->file('image1');
+    //     $image2 = $request->file('image2');
+    //     $image3 = $request->file('image3');
+    //     $image4 = $request->file('image4');
+
+    //     $images = DB::table('product_images')->where('id',$id)->first();
+
+    //     if($image1==null){
+    //         $image1_flage = $images->image_1; 
+    //     }
+    //     elseif($image2 == null){
+    //         $image2_flage = $images->image_2;
+    //     }
+    //     elseif($image3 == null){
+    //         $image3_flage = $images->image_3;
+    //     }
+    //     elseif($image4 == null){
+    //         $image4_flage = $images->image_4;
+    //     }
+
+    //     // DB::table('products')->where('id', $request->id)->update([
+    //     //     'title'=> $request->title,
+    //     //     'short_description'=>$request->short_description,
+    //     //     'description'=>$request->description,
+    //     //     'regular_price'=>$request->regular_price,
+    //     //     'sale_price'=>$request->sale_price,
+    //     //     'affiliate_link'=>$request->affiliate_link,
+    //     //     'stock_status'=>$flge,
+    //     //     "created_at"=> Carbon::now(),
+    //     //     "updated_at"=> now()
+
+    //     // ]);
+    //     return back()->with('product_updated','Product has been updated successfully!');
+    // }
 
     public function addProductSubmit(Request $request){
         
-        $id = $request->id;
+        
         $title = $request->title;
         $short_description = $request->short_description;
         $description = $request->description;
