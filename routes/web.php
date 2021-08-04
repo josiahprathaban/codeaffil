@@ -14,7 +14,7 @@ use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\EcommerceController;
 use App\Http\Controllers\HotDealsController;
 use App\Http\Controllers\SingleProdecutController;
-
+use App\Http\Controllers\ProductsViewController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +30,7 @@ Route::get('/', [IndexController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
 
 Route::get('/single_product/{id}', [SingleProdecutController::class, 'index']);
-
+Route::get('/products/{filterby}/{value}', [ProductsViewController::class, 'index']);
 Route::get('/admin', function () {
     return view('admin.dashbord');
 });
@@ -93,11 +93,6 @@ Route::get('/contact', function () {
 });
 
 Route::get('/profile', [UserController::class, 'getUserProfile']);
-
-
-Route::get('/products', function () {
-    return view('products');
-});
 
 Route::get('/compare', function () {
     return view('compare');
