@@ -63,16 +63,16 @@
                                 </div>
                                 <div id="gallery" class="product-dec-slider-2">
                                     <a class="active" data-image="{{asset($product->image_1)}}" data-zoom-image="{{asset($product->image_1)}}">
-                                        <img src="{{asset($product->image_1)}}" alt="" />
+                                        <img src="{{asset($product->image_1)}}" alt="" style="max-height:150px; width:auto"/>
                                     </a>
                                     <a class="active" data-image="{{asset($product->image_2)}}" data-zoom-image="{{asset($product->image_2)}}">
-                                        <img src="{{asset($product->image_2)}}" alt="" />
+                                        <img src="{{asset($product->image_2)}}" alt="" style="max-height:150px; width:auto" />
                                     </a>
                                     <a class="active" data-image="{{asset($product->image_3)}}" data-zoom-image="{{asset($product->image_3)}}">
-                                        <img src="{{asset($product->image_3)}}" alt="" />
+                                        <img src="{{asset($product->image_3)}}" alt="" style="max-height:150px; width:auto"/>
                                     </a>
                                     <a class="active" data-image="{{asset($product->image_4)}}" data-zoom-image="{{asset($product->image_4)}}">
-                                        <img src="{{asset($product->image_4)}}" alt="" />
+                                        <img src="{{asset($product->image_4)}}" alt="" style="max-height:150px; width:auto"/>
                                     </a>
                                 </div>
                             </div>
@@ -115,10 +115,10 @@
                                 </div>
                                 <div class="pro-details-quality mt-0px">
                                     <div class="pro-details-cart btn-hover">
-                                        <a href="#" style="font-size:20px"> Buy </a>
+                                        <a href="{{$product->affiliate_link}}" target="_blank" style="font-size:20px"> Buy </a>
                                     </div>
                                     <div class="pro-details-cart btn-hover">
-                                        <a href="#" style="font-size:20px"><i class="ion-ios-shuffle-strong"></i> Compare</a>
+                                        <a href="/compare/{{$product->title}}" style="font-size:20px"><i class="ion-ios-shuffle-strong"></i> Compare</a>
                                     </div>
                                 </div>
                                 <div class="pro-details-social-info">
@@ -299,9 +299,9 @@
                         <!-- Single Item -->
                         @foreach($suggestedProducts as $suggestedProduct)
                         <article class="list-product">
-                                <div class="img-block">
+                                <div class="img-block" style="height:200px; display: inline-flex; width:100%; align-items: center; justify-content: center;">
                                     <a href="/single_product/{{$suggestedProduct->id}}" class="thumbnail">
-                                        <img class="first-img" src="{{ asset($suggestedProduct->image_1)}}" style="max-height:120px" alt="" />
+                                        <img class="first-img" src="{{ asset($suggestedProduct->image_1)}}" style="max-height:200px" alt="" />
                                     </a>
                                     <div class="quick-view">
                                         <a class="quick_view" href="/single_product/{{$suggestedProduct->id}}">
@@ -359,9 +359,9 @@
                         @foreach($sameCategoryProducts as $sameCategoryProduct)
                         @if($sameCategoryProduct->id != $id)
                         <article class="list-product">
-                                <div class="img-block">
+                                <div class="img-block" style="height:200px; display: inline-flex; width:100%; align-items: center; justify-content: center;">
                                     <a href="/single_product/{{$sameCategoryProduct->id}}" class="thumbnail">
-                                        <img class="first-img" src="{{ asset($sameCategoryProduct->image_1)}}" style="max-height:120px" alt="" />
+                                        <img class="first-img" src="{{ asset($sameCategoryProduct->image_1)}}" style="max-height:200px" alt="" />
                                     </a>
                                     <div class="quick-view">
                                         <a class="quick_view" href="/single_product/{{$sameCategoryProduct->id}}">
@@ -405,116 +405,6 @@
             @include('footer')
             <!--  Footer Area End -->
         </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-5 col-sm-12 col-xs-12">
-                                <div class="tab-content quickview-big-img">
-                                    <div id="pro-1" class="tab-pane fade show active">
-                                        <img src="assets/images/product-image/organic/product-11.jpg" alt="" />
-                                    </div>
-                                    <div id="pro-2" class="tab-pane fade">
-                                        <img src="assets/images/product-image/organic/product-9.jpg" alt="" />
-                                    </div>
-                                    <div id="pro-3" class="tab-pane fade">
-                                        <img src="assets/images/product-image/organic/product-20.jpg" alt="" />
-                                    </div>
-                                    <div id="pro-4" class="tab-pane fade">
-                                        <img src="assets/images/product-image/organic/product-19.jpg" alt="" />
-                                    </div>
-                                </div>
-                                <!-- Thumbnail Large Image End -->
-                                <!-- Thumbnail Image End -->
-                                <div class="quickview-wrap mt-15">
-                                    <div class="quickview-slide-active owl-carousel nav owl-nav-style owl-nav-style-2" role="tablist">
-                                        <a class="active" data-bs-toggle="tab" href="#pro-1"><img src="assets/images/product-image/organic/product-11.jpg" alt="" /></a>
-                                        <a data-bs-toggle="tab" href="#pro-2"><img src="assets/images/product-image/organic/product-9.jpg" alt="" /></a>
-                                        <a data-bs-toggle="tab" href="#pro-3"><img src="assets/images/product-image/organic/product-20.jpg" alt="" /></a>
-                                        <a data-bs-toggle="tab" href="#pro-4"><img src="assets/images/product-image/organic/product-19.jpg" alt="" /></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-7 col-sm-12 col-xs-12">
-                                <div class="product-details-content quickview-content">
-                                    <h2>Originals Kaval Windbr</h2>
-                                    <p class="reference">Reference:<span> demo_17</span></p>
-                                    <div class="pro-details-rating-wrap">
-                                        <div class="rating-product">
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                        </div>
-                                        <span class="read-review"><a class="reviews" href="#">Read reviews (1)</a></span>
-                                    </div>
-                                    <div class="pricing-meta">
-                                        <ul>
-                                            <li class="old-price not-cut">€18.90</li>
-                                        </ul>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisic elit eiusm tempor incidid ut labore et dolore magna aliqua. Ut enim ad minim venialo quis nostrud exercitation ullamco</p>
-                                    <div class="pro-details-size-color">
-                                        <div class="pro-details-color-wrap">
-                                            <span>Color</span>
-                                            <div class="pro-details-color-content">
-                                                <ul>
-                                                    <li class="blue"></li>
-                                                    <li class="maroon active"></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pro-details-quality">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
-                                        </div>
-                                        <div class="pro-details-cart btn-hover">
-                                            <a href="#"> + Add To Cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="pro-details-wish-com">
-                                        <div class="pro-details-wishlist">
-                                            <a href="#"><i class="ion-android-favorite-outline"></i>Add to wishlist</a>
-                                        </div>
-                                        <div class="pro-details-compare">
-                                            <a href="#"><i class="ion-ios-shuffle-strong"></i>Add to compare</a>
-                                        </div>
-                                    </div>
-                                    <div class="pro-details-social-info">
-                                        <span>Share</span>
-                                        <div class="social-info">
-                                            <ul>
-                                                <li>
-                                                    <a href="#"><i class="ion-social-facebook"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="ion-social-twitter"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="ion-social-google"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="ion-social-instagram"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal end -->
 
         <!-- Scripts to be loaded  -->
         <!-- JS
