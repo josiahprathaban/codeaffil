@@ -15,6 +15,7 @@ use App\Http\Controllers\EcommerceController;
 use App\Http\Controllers\HotDealsController;
 use App\Http\Controllers\SingleProdecutController;
 use App\Http\Controllers\ProductsViewController;
+use App\Http\Controllers\CompareController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,9 +29,10 @@ use App\Http\Controllers\ProductsViewController;
 
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
-
+Route::get('/compare/{title}', [CompareController::class, 'index']);
 Route::get('/single_product/{id}', [SingleProdecutController::class, 'index']);
-Route::get('/products/{filterby}/{value}', [ProductsViewController::class, 'index']);
+Route::get('/products/{filterby?}/{value?}', [ProductsViewController::class, 'index']);
+Route::post('/products/sortby', [ProductsViewController::class, 'filter']);
 Route::get('/admin', function () {
     return view('admin.dashbord');
 });
@@ -94,9 +96,6 @@ Route::get('/contact', function () {
 
 Route::get('/profile', [UserController::class, 'getUserProfile']);
 
-Route::get('/compare', function () {
-    return view('compare');
-});
 
 
 Route::get('users', [UserController::class, 'getUser']);

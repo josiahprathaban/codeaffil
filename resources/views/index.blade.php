@@ -192,6 +192,11 @@
                                         </a>
                                     </div>
                                 </div>
+                                @if(date("Y-m-d", strtotime('-7 days')) < $suggestedProducts[$i]->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
                                 <div class="product-decs">
                                     <span>{{$suggestedProducts[$i]->name}}</span>
                                     <h2><a href="/single_product/{{$suggestedProducts[$i]->id}}" class="product-link">{{$suggestedProducts[$i]->title}}</a></h2>
@@ -229,6 +234,11 @@
                                         </a>
                                     </div>
                                 </div>
+                                @if(date("Y-m-d", strtotime('-7 days')) < $suggestedProducts[$i+1]->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
                                 <div class="product-decs">
                                     <span>{{$suggestedProducts[$i+1]->name}}</span>
                                     <h2><a href="/single_product/{{$suggestedProducts[$i+1]->id}}" class="product-link">{{$suggestedProducts[$i +1]->title}}</a></h2>
@@ -466,6 +476,11 @@
                                         </a>
                                     </div>
                                 </div>
+                                @if(date("Y-m-d", strtotime('-7 days')) < $saleProducts[$i]->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
                                 <div class="product-decs">
                                     <span>{{$saleProducts[$i]->name}}</span>
                                     <h2><a href="/single_product/{{$saleProducts[$i]->id}}" class="product-link">{{$saleProducts[$i]->title}}</a></h2>
@@ -497,6 +512,11 @@
                                         </a>
                                     </div>
                                 </div>
+                                @if(date("Y-m-d", strtotime('-7 days')) < $saleProducts[$i+1]->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
                                 <div class="product-decs">
                                     <span>{{$saleProducts[$i+1]->name}}</span>
                                     <h2><a href="/single_product/{{$saleProducts[$i+1]->id}}" class="product-link">{{$saleProducts[$i +1]->title}}</a></h2>
@@ -571,7 +591,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="banner-inner">
-                                <a href="shop-4-column.html"><img src="{{ asset('assets/images/banner-image/4.gif')}}" alt="" /></a>
+                                <a href="#"><img src="{{ asset('assets/images/banner-image/4.gif')}}" alt="" /></a>
                             </div>
                         </div>
                     </div>

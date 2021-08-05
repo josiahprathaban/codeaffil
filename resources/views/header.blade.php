@@ -72,11 +72,11 @@
                                             <ul class="mega-menu-wrap">
                                                 @foreach ($categories as $category )
                                                     <li>
-                                                        <a href="products/category/{{$category->name}}">{{$category->name}}</a>
+                                                        <a href="/products/category/{{$category->name}}">{{$category->name}}</a>
                                                         <ul>
                                                             @foreach ($subcategories as $subcategory )
                                                                 @if($subcategory->category_id == $category->id)
-                                                                    <li><a href="products/subcategory/{{$subcategory->name}}">{{$subcategory->name}}</a></li>
+                                                                    <li><a href="/products/subcategory/{{$subcategory->name}}">{{$subcategory->name}}</a></li>
                                                                 @endif
                                                             @endforeach
                                                         </ul>
@@ -91,7 +91,7 @@
                                             <a href="#">E-Commerce <i class="ion-ios-arrow-down"></i></a>
                                             <ul class="mega-menu-wrap" style="width:200px">
                                                 @foreach ($ecommerces as $ecommerce )
-                                                        <a href="products/ecommerce/{{$ecommerce->name}}"><img src="{{ asset($ecommerce -> logo)}}" alt="" width="100px"></a>
+                                                        <a href="/products/ecommerce/{{$ecommerce->name}}"><img src="{{ asset($ecommerce -> logo)}}" alt="" width="100px"></a>
                                                 @endforeach
                                             </ul>
                                         </li>
@@ -112,11 +112,11 @@
                                             <ul>
                                                 @foreach ($categories as $category )
                                                     <li>
-                                                        <a href="products/category/{{$category->name}}">{{$category->name}}</a>
+                                                        <a href="/products/category/{{$category->name}}">{{$category->name}}</a>
                                                         <ul>
                                                             @foreach ($subcategories as $subcategory )
                                                                 @if($subcategory->category_id == $category->id)
-                                                                    <li><a href="products/subcategory/{{$subcategory->name}}">{{$subcategory->name}}</a></li>
+                                                                    <li><a href="/products/subcategory/{{$subcategory->name}}">{{$subcategory->name}}</a></li>
                                                                 @endif
                                                             @endforeach
                                                         </ul>
@@ -129,7 +129,7 @@
                                             <ul>
                                                 @foreach ($ecommerces as $ecommerce )
                                                     <li>
-                                                        <a href="products/ecommerce/{{$ecommerce->name}}">{{$ecommerce -> name}}</a>
+                                                        <a href="/products/ecommerce/{{$ecommerce->name}}">{{$ecommerce -> name}}</a>
                                                     </li>
                                                 @endforeach
                                             </ul>
