@@ -11,11 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
     <!-- Place favicon.ico in the root directory -->
-    <link rel="stylesheet"  href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <!-- Theme initialization -->
-    
+
 </head>
 
 <body>
@@ -41,11 +41,11 @@
                                                 <i class="fa fa-rocket"></i>
                                             </div>
                                             <div class="stat">
-                                                <div class="value"> 5407 </div>
+                                                <div class="value"> {{ $no_products }} </div>
                                                 <div class="name"> Total Products </div>
                                             </div>
                                             <div class="progress stat-progress">
-                                                <div class="progress-bar" style="width: 75%;"></div>
+                                                <div class="progress-bar" style="width: 100%;"></div>
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-6 stat-col">
@@ -53,7 +53,7 @@
                                                 <i class="fa fa-shopping-cart"></i>
                                             </div>
                                             <div class="stat">
-                                                <div class="value"> 1000 </div>
+                                                <div class="value"> {{ $log->total_clicks }} </div>
                                                 <div class="name"> Total Clicks </div>
                                             </div>
                                             <div class="progress stat-progress">
@@ -65,7 +65,7 @@
                                                 <i class="fa fa-eye"></i>
                                             </div>
                                             <div class="stat">
-                                                <div class="value"> 2000 </div>
+                                                <div class="value"> {{ $log-> total_views }} </div>
                                                 <div class="name"> Total Views </div>
                                             </div>
                                             <div class="progress stat-progress">
@@ -77,7 +77,7 @@
                                                 <i class="fa fa-users"></i>
                                             </div>
                                             <div class="stat">
-                                                <div class="value"> 359 </div>
+                                                <div class="value"> {{ $users }} </div>
                                                 <div class="name"> Total users </div>
                                             </div>
                                             <div class="progress stat-progress">
@@ -89,7 +89,7 @@
                                                 <i class="fa fa-list-alt"></i>
                                             </div>
                                             <div class="stat">
-                                                <div class="value"> 05 </div>
+                                                <div class="value"> {{ $ecommerces }} </div>
                                                 <div class="name"> Total Ecommerce Sites</div>
                                             </div>
                                             <div class="progress stat-progress">
@@ -136,6 +136,50 @@
                                         <div role="tabpanel" class="tab-pane fade" id="downloads">
                                             <p class="title-description"> Number of Clicks last 30 days </p>
                                             <div id="dashboard-downloads-chart"></div>
+                                            <script>
+                                                var dataDownloads = [
+            {
+                year: '2006',
+                downloads: '{{$log->total_clicks}}'
+            },
+            {
+                year: '2007',
+                downloads: 1526
+            },
+            {
+                year: '2008',
+                downloads: 2000
+            },
+            {
+                year: '2009',
+                downloads: 1800
+            },
+            {
+                year: '2010',
+                downloads: 1650
+            },
+            {
+                year: '2011',
+                downloads: 620
+            },
+            {
+                year: '2012',
+                downloads: 1000
+            },
+            {
+                year: '2013',
+                downloads: 1896
+            },
+            {
+                year: '2014',
+                downloads: 850
+            },
+            {
+                year: '2015',
+                downloads: 1500
+            }
+        ];
+                                            </script>
                                         </div>
                                     </div>
                                 </div>
@@ -149,22 +193,10 @@
                             <div class="card sameheight-item items" data-exclude="xs,sm,lg">
                                 <div class="card-header bordered">
                                     <div class="header-block">
-                                        <h3 class="title"> Items </h3>
-                                        <a href="add-product" class="btn btn-primary btn-sm"> Add new </a>
+                                        <h3 class="title"> Popular Products</h3>
+                        
                                     </div>
                                     <div class="header-block pull-right">
-                                        <label class="search">
-                                            <input class="search-input" placeholder="search...">
-                                            <i class="fa fa-search search-icon"></i>
-                                        </label>
-                                        <div class="pagination">
-                                            <a href="#" class="btn btn-primary btn-sm">
-                                                <i class="fa fa-angle-up"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-primary btn-sm">
-                                                <i class="fa fa-angle-down"></i>
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
                                 <ul class="item-list striped">
@@ -178,12 +210,12 @@
                                             </div>
                                             <div class="item-col item-col-header item-col-sales">
                                                 <div>
-                                                    <span>Clicked</span>
+                                                    <span>Clicks</span>
                                                 </div>
                                             </div>
                                             <div class="item-col item-col-header item-col-stats">
                                                 <div class="no-overflow">
-                                                    <span>Stats</span>
+                                                    <span>Views</span>
                                                 </div>
                                             </div>
                                             <div class="item-col item-col-header item-col-date">
@@ -193,186 +225,37 @@
                                             </div>
                                         </div>
                                     </li>
+                                    @foreach ( $products_list  as $product_list)
                                     <li class="item">
                                         <div class="item-row">
                                             <div class="item-col fixed item-col-img xs">
                                                 <a href="#">
-                                                    <div class="item-img xs rounded" style="background-image: url(../../s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg)"></div>
+                                                    
+                                                    <img  src="{{ asset($product_list->image_1) }}" alt="" style="max-width:35px; max-height :35px;">
                                                 </a>
                                             </div>
                                             <div class="item-col item-col-title no-overflow">
                                                 <div>
                                                     <a href="#" class="">
-                                                        <h4 class="item-title no-wrap"> 12 Myths Uncovered About IT &amp; Software </h4>
+                                                        <h4 class="item-title no-wrap"> {{ $product_list->title }} </h4>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="item-col item-col-sales">
-                                                <div class="item-heading">Sales</div>
-                                                <div> 4958 </div>
+                                                <div class="item-heading">Clicks</div>
+                                                <div> {{ $product_list->total_clicks }} </div>
                                             </div>
                                             <div class="item-col item-col-stats">
-                                                <div class="item-heading">Stats</div>
-                                                <div class="no-overflow">
-                                                    <div class="item-stats sparkline" data-type="bar"></div>
-                                                </div>
+                                                <div class="item-heading">Views</div>
+                                                <div> {{ $product_list->total_views }} </div>
                                             </div>
                                             <div class="item-col item-col-date">
                                                 <div class="item-heading">Published</div>
-                                                <div> 21 SEP 10:45 </div>
+                                                <div> {{ $product_list->created_at }} </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="item">
-                                        <div class="item-row">
-                                            <div class="item-col fixed item-col-img xs">
-                                                <a href="#">
-                                                    <div class="item-img xs rounded" style="background-image: url(../../s3.amazonaws.com/uifaces/faces/twitter/_everaldo/128.jpg)"></div>
-                                                </a>
-                                            </div>
-                                            <div class="item-col item-col-title no-overflow">
-                                                <div>
-                                                    <a href="#" class="">
-                                                        <h4 class="item-title no-wrap"> 50% of things doesn&#x27;t really belongs to you </h4>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="item-col item-col-sales">
-                                                <div class="item-heading">Sales</div>
-                                                <div> 192 </div>
-                                            </div>
-                                            <div class="item-col item-col-stats">
-                                                <div class="item-heading">Stats</div>
-                                                <div class="no-overflow">
-                                                    <div class="item-stats sparkline" data-type="bar"></div>
-                                                </div>
-                                            </div>
-                                            <div class="item-col item-col-date">
-                                                <div class="item-heading">Published</div>
-                                                <div> 21 SEP 10:45 </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="item">
-                                        <div class="item-row">
-                                            <div class="item-col fixed item-col-img xs">
-                                                <a href="#">
-                                                    <div class="item-img xs rounded" style="background-image: url(../../s3.amazonaws.com/uifaces/faces/twitter/eduardo_olv/128.jpg)"></div>
-                                                </a>
-                                            </div>
-                                            <div class="item-col item-col-title no-overflow">
-                                                <div>
-                                                    <a href="#" class="">
-                                                        <h4 class="item-title no-wrap"> Vestibulum tincidunt amet laoreet mauris sit sem aliquam cras maecenas vel aliquam. </h4>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="item-col item-col-sales">
-                                                <div class="item-heading">Sales</div>
-                                                <div> 2143 </div>
-                                            </div>
-                                            <div class="item-col item-col-stats">
-                                                <div class="item-heading">Stats</div>
-                                                <div class="no-overflow">
-                                                    <div class="item-stats sparkline" data-type="bar"></div>
-                                                </div>
-                                            </div>
-                                            <div class="item-col item-col-date">
-                                                <div class="item-heading">Published</div>
-                                                <div> 21 SEP 10:45 </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="item">
-                                        <div class="item-row">
-                                            <div class="item-col fixed item-col-img xs">
-                                                <a href="#">
-                                                    <div class="item-img xs rounded" style="background-image: url(../../s3.amazonaws.com/uifaces/faces/twitter/why_this/128.jpg)"></div>
-                                                </a>
-                                            </div>
-                                            <div class="item-col item-col-title no-overflow">
-                                                <div>
-                                                    <a href="#" class="">
-                                                        <h4 class="item-title no-wrap"> 10 tips of Object Oriented Design </h4>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="item-col item-col-sales">
-                                                <div class="item-heading">Sales</div>
-                                                <div> 124 </div>
-                                            </div>
-                                            <div class="item-col item-col-stats">
-                                                <div class="item-heading">Stats</div>
-                                                <div class="no-overflow">
-                                                    <div class="item-stats sparkline" data-type="bar"></div>
-                                                </div>
-                                            </div>
-                                            <div class="item-col item-col-date">
-                                                <div class="item-heading">Published</div>
-                                                <div> 21 SEP 10:45 </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="item">
-                                        <div class="item-row">
-                                            <div class="item-col fixed item-col-img xs">
-                                                <a href="#">
-                                                    <div class="item-img xs rounded" style="background-image: url(../../s3.amazonaws.com/uifaces/faces/twitter/w7download/128.jpg)"></div>
-                                                </a>
-                                            </div>
-                                            <div class="item-col item-col-title no-overflow">
-                                                <div>
-                                                    <a href="#" class="">
-                                                        <h4 class="item-title no-wrap"> Sometimes friend tells it is cold </h4>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="item-col item-col-sales">
-                                                <div class="item-heading">Sales</div>
-                                                <div> 10214 </div>
-                                            </div>
-                                            <div class="item-col item-col-stats">
-                                                <div class="item-heading">Stats</div>
-                                                <div class="no-overflow">
-                                                    <div class="item-stats sparkline" data-type="bar"></div>
-                                                </div>
-                                            </div>
-                                            <div class="item-col item-col-date">
-                                                <div class="item-heading">Published</div>
-                                                <div> 21 SEP 10:45 </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="item">
-                                        <div class="item-row">
-                                            <div class="item-col fixed item-col-img xs">
-                                                <a href="#">
-                                                    <div class="item-img xs rounded" style="background-image: url(../../s3.amazonaws.com/uifaces/faces/twitter/pankogut/128.jpg)"></div>
-                                                </a>
-                                            </div>
-                                            <div class="item-col item-col-title no-overflow">
-                                                <div>
-                                                    <a href="#" class="">
-                                                        <h4 class="item-title no-wrap"> New ways of conceptual thinking </h4>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="item-col item-col-sales">
-                                                <div class="item-heading">Sales</div>
-                                                <div> 3217 </div>
-                                            </div>
-                                            <div class="item-col item-col-stats">
-                                                <div class="item-heading">Stats</div>
-                                                <div class="no-overflow">
-                                                    <div class="item-stats sparkline" data-type="bar"></div>
-                                                </div>
-                                            </div>
-                                            <div class="item-col item-col-date">
-                                                <div class="item-heading">Published</div>
-                                                <div> 21 SEP 10:45 </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -488,7 +371,7 @@
         ga('create', 'UA-80463319-4', 'auto');
         ga('send', 'pageview');
     </script>
-   <script src="{{ asset('js/')}}/vendor.js"></script>
+    <script src="{{ asset('js/')}}/vendor.js"></script>
     <script src="{{ asset('js/')}}/app.js"></script>
 </body>
 

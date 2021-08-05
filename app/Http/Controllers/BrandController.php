@@ -17,7 +17,15 @@ class BrandController extends Controller
 
     //Get All Brands
     public function getBrands(){
-        $brands = DB::table('brands')->get();
+        $brands = DB::table('products')
+            ->select('brands.*',DB::raw('count(products.id) as total_products'), DB::raw('sum(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'), )
+            ->join('brands','brands.id', '=', 'products.brand_id')
+            ->join('user_product_logs','user_product_logs.product_id', '=', 'products.id')
+            ->groupBy('brands.id')
+            ->orderBy('brands.id')
+            ->take(10)
+            ->get();
+           
         return view('admin.brands',compact('brands'));
     }
 

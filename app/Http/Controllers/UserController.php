@@ -78,6 +78,13 @@ class UserController extends Controller
         return view('admin.add_admin');
     }
 
+    //get all admins
+
+    public function getAdmins(){
+        $admins = DB::table('users')->where('type','admin')->get();
+        return view('admin.admins_list',compact('admins'));
+    }
+
    public function addAdminSubmit(Request $request){
         DB::table('users')->insert([
             'username' => $request->user_name,

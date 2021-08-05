@@ -7,7 +7,7 @@
                         <nav class="menu pt-5">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
                                 <li class="active">
-                                    <a href="admin">
+                                    <a href="/admin">
                                         <i class="fa fa-home"></i> Dashboard </a>
                                 </li>
                                 <li>
@@ -17,39 +17,35 @@
                                     </a>
                                     <ul class="sidebar-nav">
                                         <li>
-                                            <a href="all-products"> Items List </a>
+                                            <a href="/all-products"> Items List </a>
                                         </li>
                                         <li>
-                                            <a href="add-product"> Add Item </a>
+                                            <a href="/add-product"> Add Item </a>
                                         </li>
                                     </ul>
                                 </li>
+                                
+                                <li>
+                                    <a href="/all-customers">
+                                        <i class="fa fa-cogs"></i> Customers List
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-users-cog"></i> User Manager
+                                        <i class="fa fa-th-large"></i> Admin Manager
                                         <i class="fa arrow"></i>
                                     </a>
                                     <ul class="sidebar-nav">
                                         <li>
-                                            <a href="all-admin"> Admins Manager
-                                                <i class="fa arrow"></i>
-                                            </a>
-                                            <ul class="sidebar-nav">
-                                                <li>
-                                                    <a href="all-admin">  Admin List </a>
-                                                </li>
-                                                <li>
-                                                    <a href="add-admin"> Add Admin </a>
-                                                </li>
-                                            </ul>
+                                            <a href="/all-admin"> Admins List </a>
                                         </li>
                                         <li>
-                                            <a href="all-customers">Customers List </a>
+                                            <a href="/add-admin"> Add Admin </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="brands">
+                                    <a href="/brands">
                                         <i class="fa fa-cogs"></i> Brands Manager
                                     </a>
                                 </li>
@@ -66,6 +62,16 @@
                                 <li>
                                     <a href="/ecommerces">
                                         <i class="fas fa-store"></i> Ecommerce Manager
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/hot-deals">
+                                        <i class="fas fa-tags"></i> Hot Deals Manager
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/sliders">
+                                        <i class="fas fa-flag"></i> Index Baner Manager
                                     </a>
                                 </li>
                             </ul>

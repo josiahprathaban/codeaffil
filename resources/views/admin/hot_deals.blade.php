@@ -67,50 +67,131 @@
                     {{ Session::get('sc_updated') }}
                 </div>
                 @endif
-                <div class="card items">
-                    <div class="col-md-12 mx-auto">
-                        <div class="card ">
-                            <div class="card-block">
-                                <div class="card-title-block">
-                                    <h3 class="title">All SubCategories </h3>
+
+                <section class="section">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="card-title-block">
+                                        <h3 class="title"> Hot Deals </h3>
+                                    </div>
+                                    <section class="example">
+                                        <div class="table-flip-scroll">
+                                            <table class="table table-striped table-bordered table-hover flip-content">
+                                                <thead class="flip-header">
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Deal Title</th>
+                                                        <th>Start Date</th>
+                                                        <th>End Date</th>
+                                                        <th>Total Clicks</th>
+                                                        <th>Manage</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($hotdeals as $hotdeal )
+                                                    <tr class="odd gradeX">
+                                                        <th scope="row">{{$hotdeal->id}}</th>
+
+                                                        <td>{{$hotdeal->deal_title}}</td>
+
+                                                        <td>{{$hotdeal->deal_starts}}</td>
+                                                        <td>{{$hotdeal->deal_ends}}</td>
+                                                        <td>1500</td>
+                                                        <td>
+                                                            <ul class="item-list striped">
+                                                                <div class="item-col fixed item-col-actions-dropdown">
+                                                                    <div class="item-actions-dropdown">
+                                                                        <a class="item-actions-toggle-btn">
+                                                                            <span class="inactive">
+                                                                                <a class="edit" href="#" data-toggle="modal" data-target="#modal-add-update-{{$hotdeal->id}}">
+                                                                                    <i class="fa fa-pencil-alt"></i>
+                                                                                </a>
+                                                                            </span>
+
+                                                                        </a>
+                                                                        <div class="item-actions-block">
+                                                                            <ul class="item-actions-list">
+
+                                                                                <li>
+                                                                                    <a class="edit" href="#" data-toggle="modal" data-target="#modal-add-update-{{$hotdeal->id}}">
+                                                                                        <i class="fa fa-pencil-alt"></i>
+                                                                                    </a>
+                                                                                </li>
+
+
+                                                                                <div class="modal fade" id="modal-add-update-{{$hotdeal->id}}">
+                                                                                    <div class="modal-dialog modal-lg">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="modal-header">
+                                                                                                <h4 class="modal-title">Update Hotdeal</h4>
+                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                    <span class="sr-only">Close</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="card card-block sameheight-item">
+                                                                                                <form role="form" method="post" enctype="multipart/form-data" action="{{route('hotdeal.update')}}">
+                                                                                                    @csrf
+                                                                                                    <input type="hidden" name="hotdeal_id" value="{{$hotdeal->id}}">
+                                                                                                    <label> Product Name: </label>
+
+                                                                                                    <select name="product_id" class="c-select form-control boxed">
+                                                                                                        <option >Select Product</option>
+                                                                                                        @foreach ($products as $product )
+                                                                                                        <option selected value="{{$product->id}}">{{$product->id}}. {{$product->title}}</option>
+                                                                                                        @endforeach
+                                                                                                    </select>
+
+                                                                                                    <div class="form-group">
+                                                                                                        <label>Title:</label>
+                                                                                                        <input type="text" value="{{$hotdeal->deal_title}}" class="form-control" name="hotdeal_name" placeholder="Enter hotdeal Title">
+                                                                                                    </div>
+                                                                                                    <div class="form-group ">
+
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <label>Start Date:</label>
+                                                                                                        <input value="{{$hotdeal->deal_starts}}" type="date" class="form-control" name="start_date">
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <label>End Date:</label>
+                                                                                                        <input value="{{$hotdeal->deal_ends}}" type="date" class="form-control" name="end_date">
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                                                                    </div>
+                                                                                                </form>
+                                                                                            </div>
+                                                                                        </div>
+
+
+                                                                                        <!-- /.modal-content -->
+                                                                                    </div>
+                                                                                    <!-- /.modal-dialog -->
+                                                                                </div>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                            </ul>
+                                                        </td>
+
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
                                 </div>
-                                <section class="example">
-                                    <table class="table table-striped ">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Deal Title</th>
-                                                <th>Start Date</th>
-                                                <th>End Date</th>
-                                                <th>Total Clicks</th>
-                                                <th>Manage</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($hotdeals as $hotdeal )
-                                            <tr>
-                                                <th scope="row">{{$hotdeal->id}}</th>
-
-                                                <td>{{$hotdeal->deal_title}}</td>
-
-                                                <td>{{$hotdeal->deal_starts}}</td>
-                                                <td>{{$hotdeal->deal_ends}}</td>
-                                                <td>1500</td>
-                                                <td>
-                                                <span class="active">
-                                                                    <i class="fa fa-pencil-alt"></i>
-                                                                    </span>
-                                                </td>
-                                                @endforeach
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </section>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
                 <nav class="text-right">
                     <ul class="pagination">
                         <li class="page-item">

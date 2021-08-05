@@ -13,7 +13,14 @@ class ProductController extends Controller
 {
     //Get All Products
     public function getProducts(){
-        $products = DB::table('products')->get();
+        $products = DB::table('products')
+            ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'), )
+            ->leftJoin('user_product_logs','products.id', '=', 'user_product_logs.product_id')
+            ->join('product_images','products.id', '=', 'product_images.product_id')
+            ->groupBy('products.id')
+            ->orderBy('total_clicks', 'DESC')
+            ->take(10)
+            ->paginate(5);
         return view('admin.items_list',compact('products'));
     }
 
@@ -75,59 +82,91 @@ class ProductController extends Controller
         return view('admin.edit_item',compact('product','ecommerces','subcategories','brands','images'));
     }
 
-    // public function updateProduct(Request $request){
-    //     if(isset($request->stock_status)){
-    //         $flge=1;
-    //     }
-    //     else{
-    //         $flge=0;
-    //     }
+    public function updateProduct(Request $request){
+        if(isset($request->stock_status)){
+            $flge=1;
+        }
+        else{
+            $flge=0;
+        }
 
-    //     $id = $request->id;
-    //     $title = $request->title;
-    //     $short_description = $request->short_description;
-    //     $description = $request->description;
-    //     $subcategory_id = $request ->subcategory_id;
-    //     $brand_id = $request ->brand_id;
-    //     $ecommerce_id = $request ->ecommerce_id;
-    //     $regular_price = $request->regular_price;
-    //     $sale_price = $request ->sale_price;
-    //     $affiliate_link = $request ->affiliate_link;
+        $id = $request->id;
+        $title = $request->title;
+        $stok_status = $flge;
+        $short_description = $request->short_description;
+        $description = $request->description;
+        $subcategory_id = $request ->subcategory_id;
+        $brand_id = $request ->brand_id;
+        $ecommerce_id = $request ->ecommerce_id;
+        $regular_price = $request->regular_price;
+        $sale_price = $request ->sale_price;
+        $affiliate_link = $request ->affiliate_link;
 
-    //     $image1 = $request->file('image1');
-    //     $image2 = $request->file('image2');
-    //     $image3 = $request->file('image3');
-    //     $image4 = $request->file('image4');
 
-    //     $images = DB::table('product_images')->where('id',$id)->first();
+         $image1 = $request->file('image1');
+         $image2 = $request->file('image2');
+         $image3 = $request->file('image3');
+         $image4 = $request->file('image4');
+        if($image1 != null){
+            $imageName1='assets/images/product/'.$title.time().'/'.$title.'1.'.$image1->extension();
+            $image1->move("assets/images/product/$title".time(),$imageName1);
+            DB::table('product_images')->where('product_id', $request->id)->update([
+                'image_1'=> $imageName1
+            ]);
+        }
+        if($image2 != null){
+            $imageName2='assets/images/product/'.$title.time().'/'.$title.'2.'.$image2->extension();
+            $image2->move("assets/images/product/$title".time(),$imageName2);
+            DB::table('product_images')->where('product_id', $request->id)->update([
+                'image_2'=> $imageName2
+            ]);
+        }
+        if($image3 != null){
+            $imageName3='assets/images/product/'.$title.time().'/'.$title.'3.'.$image3->extension();
+            $image3->move("assets/images/product/$title".time(),$imageName3);
+            DB::table('product_images')->where('product_id', $request->id)->update([   
+                'image_3'=> $imageName3
+            ]);
+        }
+        if($image4 != null){
+            $imageName4='assets/images/product/'.$title.time().'/'.$title.'4.'.$image4->extension();
+            $image4->move("assets/images/product/$title".time(),$imageName4);
+            DB::table('product_images')->where('product_id', $request->id)->update([
+                'image_4'=> $imageName4
+            ]);
+        }
 
-    //     if($image1==null){
-    //         $image1_flage = $images->image_1; 
-    //     }
-    //     elseif($image2 == null){
-    //         $image2_flage = $images->image_2;
-    //     }
-    //     elseif($image3 == null){
-    //         $image3_flage = $images->image_3;
-    //     }
-    //     elseif($image4 == null){
-    //         $image4_flage = $images->image_4;
-    //     }
+        $product = Product::find($request->id);
+        $product->title=$title;
+        $product->stock_status=$stok_status;
+        $product->short_description=$short_description;
+        $product->description=$description;
+        $product ->subcategory_id = $subcategory_id;
+        $product ->brand_id = $brand_id;
+        $product ->ecommerce_id = $ecommerce_id;
+        $product->regular_price=$regular_price;
+        $product->sale_price=$sale_price;
+        $product->affiliate_link=$affiliate_link;
+        $product->created_at=Carbon::now();
+        $product->updated_at=now();
+        $product->save();
+        // $product->images()->save($product_images);
+       
 
-    //     // DB::table('products')->where('id', $request->id)->update([
-    //     //     'title'=> $request->title,
-    //     //     'short_description'=>$request->short_description,
-    //     //     'description'=>$request->description,
-    //     //     'regular_price'=>$request->regular_price,
-    //     //     'sale_price'=>$request->sale_price,
-    //     //     'affiliate_link'=>$request->affiliate_link,
-    //     //     'stock_status'=>$flge,
-    //     //     "created_at"=> Carbon::now(),
-    //     //     "updated_at"=> now()
+        // DB::table('products')->where('id', $request->id)->update([
+        //     'title'=> $request->title,
+        //     'short_description'=>$request->short_description,
+        //     'description'=>$request->description,
+        //     'regular_price'=>$request->regular_price,
+        //     'sale_price'=>$request->sale_price,
+        //     'affiliate_link'=>$request->affiliate_link,
+        //     'stock_status'=>$flge,
+        //     "created_at"=> Carbon::now(),
+        //     "updated_at"=> now()
 
-    //     // ]);
-    //     return back()->with('product_updated','Product has been updated successfully!');
-    // }
+        // ]);
+        return back()->with('product_updated','Product has been updated successfully!');
+    }
 
     public function addProductSubmit(Request $request){
         
@@ -181,35 +220,4 @@ class ProductController extends Controller
         $product->images()->save($product_images);
         return back()->with('added','Success');
     }
-
-
-
-    public function createForm(){
-        return view('image-upload');
-      }
-    
-    
-      public function fileUpload(Request $req){
-        $req->validate([
-          'image_1' => 'required',
-          'image_1.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
-        ]);
-    
-        if($req->hasfile('image_1')) {
-            foreach($req->file('image_1') as $file)
-            {
-                $name = $file->getClientOriginalName();
-                $file->move(public_path().'/uploads/', $name);  
-                $imgData[] = $name;  
-            }
-    
-            $fileModal = new Product_images();
-            $fileModal->image_1 = json_encode($imgData);
-            
-           
-            $fileModal->save();
-    
-           return back()->with('success', 'File has successfully uploaded!');
-        }
-      }
 }
