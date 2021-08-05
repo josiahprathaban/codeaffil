@@ -4,24 +4,23 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Ecolife - Multipurpose eCommerce HTML Template</title>
+        <title>Codeaffil</title>
         <!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/favicon.png')}}" />
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800&display=swap" rel="stylesheet" />
-
         <!-- All CSS Flies   -->
         <!--===== Vendor CSS (Bootstrap & Icon Font) =====-->
-        <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('assets/css/vendor/font-awesome.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('assets/css/vendor/ionicons.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/vendor/font-awesome.min.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/vendor/ionicons.min.css')}}" />
         <!--===== Plugins CSS (All Plugins Files) =====-->
-        <link rel="stylesheet" href="{{ asset('assets/css/plugins/jquery-ui.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('assets/css/plugins/meanmenu.css') }}" />
-        <link rel="stylesheet" href="{{ asset('assets/css/plugins/nice-select.css') }}" />
-        <link rel="stylesheet" href="{{ asset('assets/css/plugins/owl-carousel.css') }}" />
-        <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/jquery-ui.min.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/meanmenu.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/nice-select.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/owl-carousel.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css')}}" />
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
 
@@ -31,9 +30,9 @@
         <link rel="stylesheet" href="assets/css/responsive.min.css"> -->
         
         <!--===== Main Css Files =====-->
-        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}" />
         <!-- ===== Responsive Css Files ===== -->
-        <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/responsive.css')}}" />
     </head>
     <body>
         <!-- main layout start from here -->
@@ -64,16 +63,16 @@
                                 </div>
                                 <div id="gallery" class="product-dec-slider-2">
                                     <a class="active" data-image="{{asset($product->image_1)}}" data-zoom-image="{{asset($product->image_1)}}">
-                                        <img src="{{asset($product->image_1)}}" alt="" />
+                                        <img src="{{asset($product->image_1)}}" alt="" style="max-height:150px; width:auto"/>
                                     </a>
                                     <a class="active" data-image="{{asset($product->image_2)}}" data-zoom-image="{{asset($product->image_2)}}">
-                                        <img src="{{asset($product->image_2)}}" alt="" />
+                                        <img src="{{asset($product->image_2)}}" alt="" style="max-height:150px; width:auto" />
                                     </a>
                                     <a class="active" data-image="{{asset($product->image_3)}}" data-zoom-image="{{asset($product->image_3)}}">
-                                        <img src="{{asset($product->image_3)}}" alt="" />
+                                        <img src="{{asset($product->image_3)}}" alt="" style="max-height:150px; width:auto"/>
                                     </a>
                                     <a class="active" data-image="{{asset($product->image_4)}}" data-zoom-image="{{asset($product->image_4)}}">
-                                        <img src="{{asset($product->image_4)}}" alt="" />
+                                        <img src="{{asset($product->image_4)}}" alt="" style="max-height:150px; width:auto"/>
                                     </a>
                                 </div>
                             </div>
@@ -116,10 +115,10 @@
                                 </div>
                                 <div class="pro-details-quality mt-0px">
                                     <div class="pro-details-cart btn-hover">
-                                        <a href="#" style="font-size:20px"> Buy </a>
+                                        <a href="{{$product->affiliate_link}}" target="_blank" style="font-size:20px"> Buy </a>
                                     </div>
                                     <div class="pro-details-cart btn-hover">
-                                        <a href="#" style="font-size:20px"><i class="ion-ios-shuffle-strong"></i> Compare</a>
+                                        <a href="/compare/{{$product->title}}" style="font-size:20px"><i class="ion-ios-shuffle-strong"></i> Compare</a>
                                     </div>
                                 </div>
                                 <div class="pro-details-social-info">
@@ -298,275 +297,44 @@
                     <!-- Recent Product slider Start -->
                     <div class="recent-product-slider owl-carousel owl-nav-style">
                         <!-- Single Item -->
+                        @foreach($suggestedProducts as $suggestedProduct)
                         <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-11.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-12.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
+                                <div class="img-block" style="height:200px; display: inline-flex; width:100%; align-items: center; justify-content: center;">
+                                    <a href="/single_product/{{$suggestedProduct->id}}" class="thumbnail">
+                                        <img class="first-img" src="{{ asset($suggestedProduct->image_1)}}" style="max-height:200px" alt="" />
                                     </a>
+                                    <div class="quick-view">
+                                        <a class="quick_view" href="/single_product/{{$suggestedProduct->id}}">
+                                            <i class="ion-ios-search-strong"></i>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                <h2><a href="single-product.html" class="product-link">Originals Kaval Windbr...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
+                                <div class="product-decs">
+                                    <span>{{$suggestedProduct->name}}</span>
+                                    <h2><a href="/single_product/{{$suggestedProduct->id}}" class="product-link">{{$suggestedProduct->title}}</a></h2>
+                                    <!-- <div class="rating-product">
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                    </div> -->
+                                    <div class="pricing-meta">
+                                        @if($suggestedProduct->sale_price != 0)
+                                            <ul>
+                                                <li class="old-price">$ {{number_format($suggestedProduct->regular_price, 2)}}</li>
+                                                <li class="current-price">$ {{number_format($suggestedProduct->sale_price, 2)}}</li>
+                                                <li class="discount-price">{{number_format((($suggestedProduct->regular_price - $suggestedProduct->sale_price) / $suggestedProduct->regular_price)*100, 2)}} %</li>
+                                            </ul>
+                                        @else
+                                            <ul>
+                                                <li class="old-price not-cut">$ {{number_format($suggestedProduct->regular_price, 2)}}</li>
+                                            </ul>
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price">€23.90</li>
-                                        <li class="current-price">€21.51</li>
-                                        <li class="discount-price">-10%</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Single Item -->
-                        <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-1.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-1.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                <h2><a href="single-product.html" class="product-link">Juicy Couture Juicy Quil...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price">€35.90</li>
-                                        <li class="current-price">€34.21</li>
-                                        <li class="discount-price">-5%</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Single Item -->
-                        <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-3.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-4.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>GRAPHIC CORNER</span></a>
-                                <h2><a href="single-product.html" class="product-link">Brixton Patrol All Terrai...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price not-cut">€29.90</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Single Item -->
-                        <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-6.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-6.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>GRAPHIC CORNER</span></a>
-                                <h2><a href="single-product.html" class="product-link">New Balance Arishi Spo...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price not-cut">€29.90</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Single Item -->
-                        <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-22.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-15.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>GRAPHIC CORNER</span></a>
-                                <h2><a href="single-product.html" class="product-link">Calvin Klein Jeans Refle...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price not-cut">€29.90</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Single Item -->
-                        <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-14.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-14.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                <h2><a href="single-product.html" class="product-link">Madden by Steve Madd...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price">€12.90</li>
-                                        <li class="current-price">€10.21</li>
-                                        <li class="discount-price">-10%</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
+                            </article>
+                        @endforeach
                     </div>
                     <!-- Recent product slider end -->
                 </div>
@@ -580,7 +348,7 @@
                             <!-- Section Title -->
                             <div class="section-title">
                                 <h2>In The Same Category</h2>
-                                <p>16 other products in the same category:</p>
+                                <p>{{count($sameCategoryProducts) - 1}} other products in the same category:</p>
                             </div>
                             <!-- Section Title -->
                         </div>
@@ -588,364 +356,46 @@
                     <!-- Recent Product slider Start -->
                     <div class="recent-product-slider owl-carousel owl-nav-style">
                         <!-- Single Item -->
+                        @foreach($sameCategoryProducts as $sameCategoryProduct)
+                        @if($sameCategoryProduct->id != $id)
                         <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-15.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-15.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
+                                <div class="img-block" style="height:200px; display: inline-flex; width:100%; align-items: center; justify-content: center;">
+                                    <a href="/single_product/{{$sameCategoryProduct->id}}" class="thumbnail">
+                                        <img class="first-img" src="{{ asset($sameCategoryProduct->image_1)}}" style="max-height:200px" alt="" />
                                     </a>
+                                    <div class="quick-view">
+                                        <a class="quick_view" href="/single_product/{{$sameCategoryProduct->id}}">
+                                            <i class="ion-ios-search-strong"></i>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                <h2><a href="single-product.html" class="product-link">Originals Kaval Windbr...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
+                                <div class="product-decs">
+                                    <span>{{$sameCategoryProduct->name}}</span>
+                                    <h2><a href="/single_product/{{$sameCategoryProduct->id}}" class="product-link">{{$sameCategoryProduct->title}}</a></h2>
+                                    <!-- <div class="rating-product">
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                    </div> -->
+                                    <div class="pricing-meta">
+                                        @if($sameCategoryProduct->sale_price != 0)
+                                            <ul>
+                                                <li class="old-price">$ {{number_format($sameCategoryProduct->regular_price, 2)}}</li>
+                                                <li class="current-price">$ {{number_format($sameCategoryProduct->sale_price, 2)}}</li>
+                                                <li class="discount-price">{{number_format((($sameCategoryProduct->regular_price - $sameCategoryProduct->sale_price) / $sameCategoryProduct->regular_price)*100, 2)}} %</li>
+                                            </ul>
+                                        @else
+                                            <ul>
+                                                <li class="old-price not-cut">$ {{number_format($sameCategoryProduct->regular_price, 2)}}</li>
+                                            </ul>
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price">€23.90</li>
-                                        <li class="current-price">€21.51</li>
-                                        <li class="discount-price">-10%</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Single Item -->
-                        <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-14.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-14.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                <h2><a href="single-product.html" class="product-link">Juicy Couture Juicy Quil...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price">€35.90</li>
-                                        <li class="current-price">€34.21</li>
-                                        <li class="discount-price">-5%</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Single Item -->
-                        <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-22.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-23.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>GRAPHIC CORNER</span></a>
-                                <h2><a href="single-product.html" class="product-link">Brixton Patrol All Terrai...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price not-cut">€29.90</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Single Item -->
-                        <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-9.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-9.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>GRAPHIC CORNER</span></a>
-                                <h2><a href="single-product.html" class="product-link">New Balance Arishi Spo...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price not-cut">€29.90</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Single Item -->
-                        <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-18.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-18.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>GRAPHIC CORNER</span></a>
-                                <h2><a href="single-product.html" class="product-link">Calvin Klein Jeans Refle...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price not-cut">€29.90</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Single Item -->
-                        <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-7.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-8.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                <h2><a href="single-product.html" class="product-link">Madden by Steve Madd...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price">€12.90</li>
-                                        <li class="current-price">€10.21</li>
-                                        <li class="discount-price">-10%</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Single Item -->
-                        <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-17.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-16.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                <h2><a href="single-product.html" class="product-link">Trans-Weight Hooded...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price not-cut">€11.90</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Single Item -->
-                        <article class="list-product">
-                            <div class="img-block">
-                                <a href="single-product.html" class="thumbnail">
-                                    <img class="first-img" src="assets/images/product-image/organic/product-9.jpg" alt="" />
-                                    <img class="second-img" src="assets/images/product-image/organic/product-9.jpg" alt="" />
-                                </a>
-                                <div class="quick-view">
-                                    <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="ion-ios-search-strong"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
-                            <div class="product-decs">
-                                <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                <h2><a href="single-product.html" class="product-link">Water and Wind Resist...</a></h2>
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price not-cut">€11.90</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                                    <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Single Item -->
+                            </article>
+                            @endif
+                        @endforeach
                     </div>
                     <!-- Recent product slider end -->
                 </div>
@@ -956,139 +406,30 @@
             <!--  Footer Area End -->
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-5 col-sm-12 col-xs-12">
-                                <div class="tab-content quickview-big-img">
-                                    <div id="pro-1" class="tab-pane fade show active">
-                                        <img src="assets/images/product-image/organic/product-11.jpg" alt="" />
-                                    </div>
-                                    <div id="pro-2" class="tab-pane fade">
-                                        <img src="assets/images/product-image/organic/product-9.jpg" alt="" />
-                                    </div>
-                                    <div id="pro-3" class="tab-pane fade">
-                                        <img src="assets/images/product-image/organic/product-20.jpg" alt="" />
-                                    </div>
-                                    <div id="pro-4" class="tab-pane fade">
-                                        <img src="assets/images/product-image/organic/product-19.jpg" alt="" />
-                                    </div>
-                                </div>
-                                <!-- Thumbnail Large Image End -->
-                                <!-- Thumbnail Image End -->
-                                <div class="quickview-wrap mt-15">
-                                    <div class="quickview-slide-active owl-carousel nav owl-nav-style owl-nav-style-2" role="tablist">
-                                        <a class="active" data-bs-toggle="tab" href="#pro-1"><img src="assets/images/product-image/organic/product-11.jpg" alt="" /></a>
-                                        <a data-bs-toggle="tab" href="#pro-2"><img src="assets/images/product-image/organic/product-9.jpg" alt="" /></a>
-                                        <a data-bs-toggle="tab" href="#pro-3"><img src="assets/images/product-image/organic/product-20.jpg" alt="" /></a>
-                                        <a data-bs-toggle="tab" href="#pro-4"><img src="assets/images/product-image/organic/product-19.jpg" alt="" /></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-7 col-sm-12 col-xs-12">
-                                <div class="product-details-content quickview-content">
-                                    <h2>Originals Kaval Windbr</h2>
-                                    <p class="reference">Reference:<span> demo_17</span></p>
-                                    <div class="pro-details-rating-wrap">
-                                        <div class="rating-product">
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                        </div>
-                                        <span class="read-review"><a class="reviews" href="#">Read reviews (1)</a></span>
-                                    </div>
-                                    <div class="pricing-meta">
-                                        <ul>
-                                            <li class="old-price not-cut">€18.90</li>
-                                        </ul>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisic elit eiusm tempor incidid ut labore et dolore magna aliqua. Ut enim ad minim venialo quis nostrud exercitation ullamco</p>
-                                    <div class="pro-details-size-color">
-                                        <div class="pro-details-color-wrap">
-                                            <span>Color</span>
-                                            <div class="pro-details-color-content">
-                                                <ul>
-                                                    <li class="blue"></li>
-                                                    <li class="maroon active"></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pro-details-quality">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
-                                        </div>
-                                        <div class="pro-details-cart btn-hover">
-                                            <a href="#"> + Add To Cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="pro-details-wish-com">
-                                        <div class="pro-details-wishlist">
-                                            <a href="#"><i class="ion-android-favorite-outline"></i>Add to wishlist</a>
-                                        </div>
-                                        <div class="pro-details-compare">
-                                            <a href="#"><i class="ion-ios-shuffle-strong"></i>Add to compare</a>
-                                        </div>
-                                    </div>
-                                    <div class="pro-details-social-info">
-                                        <span>Share</span>
-                                        <div class="social-info">
-                                            <ul>
-                                                <li>
-                                                    <a href="#"><i class="ion-social-facebook"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="ion-social-twitter"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="ion-social-google"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="ion-social-instagram"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal end -->
-
         <!-- Scripts to be loaded  -->
         <!-- JS
 ============================================ -->
 
+
         <!--====== Vendors js ======-->
         <!--====== Vendors js ======-->
-        <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/jquery-migrate-3.3.2.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/modernizr-3.11.2.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/popper.min.js') }}"></script>
+        <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js')}}"></script>
+        <script src="{{ asset('assets/js/vendor/bootstrap.min.js')}}"></script>
+        <script src="{{ asset('assets/js/vendor/jquery-migrate-3.3.2.min.js')}}"></script>
+        <script src="{{ asset('assets/js/vendor/modernizr-3.11.2.min.js')}}"></script>
+        <script src="{{ asset('assets/js/vendor/popper.min.js')}}"></script>
 
         <!--====== Plugins js ======-->
          
-        <script src="{{ asset('assets/js/plugins/meanmenu.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins/owl-carousel.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins/jquery.nice-select.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins/countdown.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins/elevateZoom.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins/jquery-ui.min.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins/slick.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins/scrollup.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins/range-script.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins/meanmenu.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/owl-carousel.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/jquery.nice-select.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/countdown.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/elevateZoom.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/jquery-ui.min.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/slick.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/scrollup.js')}}"></script>
+        <script src="{{ asset('assets/js/plugins/range-script.js')}}"></script>
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
 
@@ -1096,6 +437,6 @@
         <script src="assets/js/plugins/plugins.min.js"></script> -->
 
         <!-- Main Activation JS -->
-        <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script src="{{ asset('assets/js/main.js')}}"></script>
     </body>
 </html>

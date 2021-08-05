@@ -16,7 +16,8 @@ use App\Http\Controllers\HotDealsController;
 use App\Http\Controllers\SingleProdecutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SlidersController;
-use App\Models\Slider;
+use App\Http\Controllers\ProductsViewController;
+use App\Http\Controllers\CompareController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +32,13 @@ use App\Models\Slider;
 
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
-
+Route::get('/compare/{title}', [CompareController::class, 'index']);
 Route::get('/single_product/{id}', [SingleProdecutController::class, 'index']);
-
+Route::get('/products/{filterby?}/{value?}', [ProductsViewController::class, 'index']);
+Route::post('/products/sortby', [ProductsViewController::class, 'filter']);
+Route::get('/admin', function () {
+    return view('admin.dashbord');
+});
 
 
 Route::get('/admin', [DashboardController::class, 'dashBoard']);
@@ -98,14 +103,6 @@ Route::get('/contact', function () {
 
 Route::get('/profile', [UserController::class, 'getUserProfile']);
 
-
-Route::get('/products', function () {
-    return view('products');
-});
-
-Route::get('/compare', function () {
-    return view('compare');
-});
 
 
 Route::get('users', [UserController::class, 'getUser']);

@@ -118,7 +118,7 @@
                             <div class="category-list mb-30px">
                                 
                                 <div class="category-thumb">
-                                    <a href="shop-4-column.html">
+                                    <a href="products/subcategory/{{$popularCategories[$i]->name}}">
                                         <div class="xcontainer">
                                         <div class="xwhite"></div>
                                             <img src="{{ asset($popularCategories[$i]->image)}}" alt="" class="ximage" />
@@ -132,13 +132,13 @@
                                         <h4>{{$popularCategories[$i]->name}}</h4>
                                     </div>
                                     <span class="number_product">{{$popularCategories[$i]->counts}} Products</span>
-                                    <a href="/products"> Shop Now <i class="ion-android-arrow-dropright-circle"></i></a>
+                                    <a href="products/subcategory/{{$popularCategories[$i]->name}}"> Shop Now <i class="ion-android-arrow-dropright-circle"></i></a>
                                 </div>
                             </div>
                             @if($i+1 < count($popularCategories))
                             <div class="category-list">
                                 <div class="category-thumb">
-                                    <a href="shop-4-column.html">
+                                    <a href="products/subcategory/{{$popularCategories[$i+1]->name}}">
                                     <div class="xcontainer">
                                         <div class="xwhite"></div>
                                             <img src="{{ asset($popularCategories[$i+1]->image)}}" alt="" class="ximage" />
@@ -152,7 +152,7 @@
                                     </div>
 
                                     <span class="number_product">{{$popularCategories[$i+1]->counts}} Products</span>
-                                    <a href="/products"> Shop Now <i class="ion-android-arrow-dropright-circle"></i></a>
+                                    <a href="products/subcategory/{{$popularCategories[$i+1]->name}}"> Shop Now <i class="ion-android-arrow-dropright-circle"></i></a>
                                 </div>
                             </div>
                             @endif
@@ -192,6 +192,11 @@
                                         </a>
                                     </div>
                                 </div>
+                                @if(date("Y-m-d", strtotime('-7 days')) < $suggestedProducts[$i]->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
                                 <div class="product-decs">
                                     <span>{{$suggestedProducts[$i]->name}}</span>
                                     <h2><a href="/single_product/{{$suggestedProducts[$i]->id}}" class="product-link">{{$suggestedProducts[$i]->title}}</a></h2>
@@ -229,6 +234,11 @@
                                         </a>
                                     </div>
                                 </div>
+                                @if(date("Y-m-d", strtotime('-7 days')) < $suggestedProducts[$i+1]->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
                                 <div class="product-decs">
                                     <span>{{$suggestedProducts[$i+1]->name}}</span>
                                     <h2><a href="/single_product/{{$suggestedProducts[$i+1]->id}}" class="product-link">{{$suggestedProducts[$i +1]->title}}</a></h2>
@@ -284,11 +294,11 @@
                                 @foreach($hotDeals as $hotDeal)
                                 <article class="list-product" style="border-color:#cf292b">
                                     <div class="img-block">
-                                        <a href="/single-product" class="thumbnail">
+                                        <a href="/single_product/{{$hotDeal->product_id}}" class="thumbnail">
                                             <img class="first-img" src="{{ asset($hotDeal->image_1)}}" alt="" />
                                         </a>
                                         <div class="quick-view">
-                                            <a class="quick_view" href="/single-product">
+                                            <a class="quick_view" href="/single_product/{{$hotDeal->product_id}}">
                                                 <i class="ion-ios-search-strong"></i>
                                             </a>
                                         </div>
@@ -298,7 +308,7 @@
                                     </ul>
                                     <div class="product-decs">
                                         <a class="inner-link" href="shop-4-column.html"><span>{{$hotDeal->name}}</span></a>
-                                        <h2><a href="/single-product" class="product-link">{{$hotDeal->title}}</a></h2>
+                                        <h2><a href="/single_product/{{$hotDeal->product_id}}" class="product-link">{{$hotDeal->title}}</a></h2>
                                         <!-- <div class="rating-product">
                                             <i class="ion-android-star"></i>
                                             <i class="ion-android-star"></i>
@@ -349,11 +359,11 @@
                                 <div class="product-inner-item">
                                     <article class="list-product mb-30px">
                                         <div class="img-block" style="display: flex; align-items: center; justify-content: center; height:210px;">
-                                            <a href="/single-product" class="thumbnail">
+                                            <a href="/single_product/{{$newProducts[$i]->id}}" class="thumbnail">
                                                 <img class="first-img newp" src="{{ asset($newProducts[$i]->image_1)}}" alt="" />
                                             </a>
                                         <div class="quick-view">
-                                            <a class="quick_view" href="/single-product">
+                                            <a class="quick_view" href="/single_product/{{$newProducts[$i]->id}}">
                                                 <i class="ion-ios-search-strong"></i>
                                             </a>
                                         </div>
@@ -363,7 +373,7 @@
                                         </ul>
                                         <div class="product-decs">
                                             <a class="inner-link" href="shop-4-column.html"><span>{{$newProducts[$i]->name}}</span></a>
-                                            <h2><a href="/single-product" class="product-link">{{$newProducts[$i]->title}}</a></h2>
+                                            <h2><a href="/single_product/{{$newProducts[$i]->id}}" class="product-link">{{$newProducts[$i]->title}}</a></h2>
                                             <!-- <div class="rating-product">
                                                 <i class="ion-android-star"></i>
                                                 <i class="ion-android-star"></i>
@@ -389,11 +399,11 @@
                                     @if($i+1 < count($newProducts))
                                     <article class="list-product">
                                         <div class="img-block" style="display: flex; align-items: center; justify-content: center; height:210px;">
-                                            <a href="/single-product" class="thumbnail">
+                                            <a href="/single_product/{{$newProducts[$i+1]->id}}" class="thumbnail">
                                                 <img class="first-img newp" src="{{ asset($newProducts[$i + 1]->image_1)}}" alt="" />
                                             </a>
                                         <div class="quick-view">
-                                            <a class="quick_view" href="/single-product">
+                                            <a class="quick_view" href="/single_product/{{$newProducts[$i+1]->id}}">
                                                 <i class="ion-ios-search-strong"></i>
                                             </a>
                                         </div>
@@ -403,7 +413,7 @@
                                         </ul>
                                         <div class="product-decs">
                                             <a class="inner-link" href="shop-4-column.html"><span>{{$newProducts[$i + 1]->name}}</span></a>
-                                            <h2><a href="/single-product" class="product-link">{{$newProducts[$i + 1]->title}}</a></h2>
+                                            <h2><a href="/single_product/{{$newProducts[$i+1]->id}}" class="product-link">{{$newProducts[$i + 1]->title}}</a></h2>
                                             <!-- <div class="rating-product">
                                                 <i class="ion-android-star"></i>
                                                 <i class="ion-android-star"></i>
@@ -457,18 +467,23 @@
                         <div class="feature-slider-item">
                             <article class="list-product">
                                 <div class="img-block">
-                                    <a href="/single-product" class="thumbnail">
+                                    <a href="/single_product/{{$saleProducts[$i]->id}}" class="thumbnail">
                                         <img class="first-img" src="{{ asset($saleProducts[$i]->image_1)}}" style="max-height:120px" alt="" />
                                     </a>
                                     <div class="quick-view">
-                                        <a class="quick_view" href="/single-product">
+                                        <a class="quick_view" href="/single_product/{{$saleProducts[$i]->id}}">
                                             <i class="ion-ios-search-strong"></i>
                                         </a>
                                     </div>
                                 </div>
+                                @if(date("Y-m-d", strtotime('-7 days')) < $saleProducts[$i]->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
                                 <div class="product-decs">
                                     <span>{{$saleProducts[$i]->name}}</span>
-                                    <h2><a href="/single-product" class="product-link">{{$saleProducts[$i]->title}}</a></h2>
+                                    <h2><a href="/single_product/{{$saleProducts[$i]->id}}" class="product-link">{{$saleProducts[$i]->title}}</a></h2>
                                     <!-- <div class="rating-product">
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
@@ -488,18 +503,23 @@
                             @if($i+1 < count($saleProducts))
                             <article class="list-product">
                                 <div class="img-block">
-                                    <a href="/single-product" class="thumbnail">
+                                    <a href="/single_product/{{$saleProducts[$i+1]->id}}" class="thumbnail">
                                         <img class="first-img" src="{{ asset($saleProducts[$i +1]->image_1)}}" style="max-height:120px" alt="" />
                                     </a>
                                     <div class="quick-view">
-                                        <a class="quick_view" href="/single-product">
+                                        <a class="quick_view" href="/single_product/{{$saleProducts[$i+1]->id}}">
                                             <i class="ion-ios-search-strong"></i>
                                         </a>
                                     </div>
                                 </div>
+                                @if(date("Y-m-d", strtotime('-7 days')) < $saleProducts[$i+1]->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
                                 <div class="product-decs">
                                     <span>{{$saleProducts[$i+1]->name}}</span>
-                                    <h2><a href="/single-product" class="product-link">{{$saleProducts[$i +1]->title}}</a></h2>
+                                    <h2><a href="/single_product/{{$saleProducts[$i+1]->id}}" class="product-link">{{$saleProducts[$i +1]->title}}</a></h2>
                                     <!-- <div class="rating-product">
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
@@ -571,7 +591,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="banner-inner">
-                                <a href="shop-4-column.html"><img src="{{ asset('assets/images/banner-image/4.gif')}}" alt="" /></a>
+                                <a href="#"><img src="{{ asset('assets/images/banner-image/4.gif')}}" alt="" /></a>
                             </div>
                         </div>
                     </div>
@@ -585,7 +605,7 @@
                         <div class="brand-slider owl-carousel owl-nav-style owl-nav-style-2">
                             @foreach($ecommerces as $ecommerce)
                             <div class="brand-slider-item">
-                                <img src="{{ asset($ecommerce->logo)}}" alt="" />
+                                <a href="products/ecommerce/{{$ecommerce->name}}"><img src="{{ asset($ecommerce->logo)}}" alt="" /></a>
                             </div>
                             @endforeach
                         </div>
