@@ -35,7 +35,7 @@
                                     <!--
 				 -->
                                 </h3>
-                                <p class="title-description"> List of sample items - e.g. books, movies, events, etc... </p>
+                              
                             </div>
                         </div>
                     </div>
@@ -105,7 +105,11 @@
                             <div class="item-row">
                                 <div class="item-col fixed item-col-img md">
                                     <a href="item-editor.html">
-                                        <div class="item-img rounded" style="background-image: url(../../s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg)"></div>
+                                        
+                                        
+                                                    
+                                                    <img  width="100%" src="{{ asset($product->image_1) }}" alt="">
+                                                    
                                     </a>
                                 </div>
                                 <div class="item-col fixed pull-left item-col-title">
@@ -118,15 +122,20 @@
                                 </div>
                                 <div class="item-col item-col-date">
                                     <div class="item-heading">Views</div>
-                                    <div> 46323 </div>
+                                    <div> {{ $product->total_views }} </div>
                                 </div>
                                 <div class="item-col item-col-date">
                                     <div class="item-heading">Clicks</div>
-                                    <div> 2000 </div>
+                                    <div> {{$product->total_clicks }} </div>
                                 </div>
                                 <div class="item-col item-col-date no-overflow">
                                     <div class="item-heading">Stats</div>
+                                    @if ($product->stock_status ==1)
                                     <div> In Stock </div>
+                                    @else
+                                    <div> Out Of Stock </div>
+                                    @endif
+                                    
                                 </div>
                                 <div class="item-col item-col-date no-overflow">
                                     <div class="item-heading">Ecommers</div>
@@ -142,51 +151,20 @@
                                     <div class="item-actions-dropdown">
                                         <a class="item-actions-toggle-btn">
                                             <span class="inactive">
-                                                <i class="fa fa-cog"></i>
+                                            <a class="edit" href="/edit-product/{{$product->id}}">
+                                                        <i class="fa fa-pencil-alt"></i>
+                                                    </a>
                                             </span>
-                                            <span class="active">
-                                                <i class="fa fa-chevron-circle-right"></i>
-                                            </span>
+                                            <a class="edit"href="/single-product/{{ $product->id }}">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
                                         </a>
                                         <div class="item-actions-block">
                                             <ul class="item-actions-list">
+                                               
                                                 <li>
-                                                    <a class="remove" href="/delete-product/{{$product->id}}" data-toggle="modal" data-target="#confirm-modal-{{$product->id}}">
-                                                        <i class="fa fa-trash "></i>
-                                                    </a>
+                                                    
                                                 </li>
-                                                <li>
-                                                    <a class="edit" href="/edit-product/{{$product->id}}">
-                                                        <i class="fa fa-pencil-alt"></i>
-                                                    </a>
-                                                </li>
-                                                <!-- /.modal -->
-                                                <div class="modal fade" id="confirm-modal-{{$product->id}}">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title">
-                                                                    <i class="fa fa-warning"></i> Alert
-                                                                </h4>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p>Are you sure want to do this?</p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <form action="/delete-product/{{$product->id}}">
-                                                                    <button class="btn btn-primary">Yes</button>
-                                                                </form>
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                                            </div>
-                                                        </div>
-                                                        <!-- /.modal-content -->
-                                                    </div>
-                                                    <!-- /.modal-dialog -->
-                                                </div>
-                                                <!-- /.modal -->
                                             </ul>
                                         </div>
                                     </div>
@@ -197,47 +175,13 @@
                     </ul>
                 </div>
                 @endforeach
+               
                 <nav class="text-right">
                     <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#"> Prev </a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#"> 1 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 2 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 3 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 4 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 5 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> Next </a>
-                        </li>
+                    {{ $products->links("pagination::bootstrap-4") }}
                     </ul>
                 </nav>
             </article>
-            <footer class="footer">
-                <div class="footer-block buttons">
-                    <iframe class="footer-github-btn" src="https://ghbtns.com/github-btn.html?user=modularcode&amp;repo=modular-admin-html&amp;type=star&amp;count=true" frameborder="0" scrolling="0" width="140px" height="20px"></iframe>
-                </div>
-                <div class="footer-block author">
-                    <ul>
-                        <li> created by
-                            <a href="https://github.com/modularcode">ModularCode</a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/modularcode/modular-admin-html#get-in-touch">get in touch</a>
-                        </li>
-                    </ul>
-                </div>
-            </footer>
             <div class="modal fade" id="modal-media">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">

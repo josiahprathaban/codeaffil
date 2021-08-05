@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
     <!-- Place favicon.ico in the root directory -->
-    <link rel="stylesheet"  href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
@@ -51,25 +51,48 @@
                         </form>
                     </div>
                 </div>
+                <section class="section">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="card-title-block">
+                                        <h3 class="title"> All Admins </h3>
+                                    </div>
+                                    <section class="example">
+                                        <div class="table-flip-scroll">
+                                            <table class="table table-striped table-bordered table-hover flip-content">
+                                                <thead class="flip-header">
+                                                    <tr>
+                                                        <th>First Name</th>
+                                                        <th>Last Name</th>
+                                                        <th>Username</th>
+                                                        <th>Email</th>
+                                                        <th>Phone Number</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ( $admins as $admin )
+                                                    <tr class="odd gradeX">
+                                                        <td>first name</td>
+                                                        <td>last name</td>
+                                                        <td>{{$admin -> username}}</td>
+                                                        <td>{{ $admin->email }}</td>
 
-                <section class="example">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>id</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for ($i = 1; $i <= 10; $i++) <tr>
-                                <th scope="row">{{$i}}</th>
-                                <td>Mark</td>
-                                <td>mark@gmail.com</td>
-                                </tr>
-                                @endfor
-                        </tbody>
-                    </table>
+                                                        <td class="center">0776287184</td>
+
+                                                    </tr>
+                                                    @endforeach
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
         </div>
     </div>

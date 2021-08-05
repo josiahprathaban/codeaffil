@@ -32,37 +32,22 @@ class HotDealsController extends Controller
         return back()->with('hd_added', 'Hotdeal has been added successfully!');
     }
 
-    // public function updateSubCategory(Request $request)
-    // {
-    //     $id = $request->subcategory_id;
-    //     $name = $request->subcategory_name;
-    //     $image = $request->file('image');
-
-    //     if($image==null){
-    //         $subcategory = subcategory::find($request->subcategory_id);
-    //         $subcategory ->name = $name;
-    //         $subcategory ->save();
-    //         return back()->with('sc_updated','Subcategories has been updated successfully!');
-    //     }
-    //     else{
-    //     $imageName="assets/images/subcategory/".$name.'.'.$image->extension();
-    //     $image->move("assets/images/subcategory",$imageName);
-
-
-    //     $subcategory = subcategory::find($request->subcategory_id);
-    //     $subcategory ->name = $name;
-    //     $subcategory ->image = $imageName;
-    //     $subcategory ->save();
-    //     return back()->with('sc_updated','Subcategories has been updated successfully!');
-
-    //     }
-    // }
-
-    //Get All subcategories
-    public function getSubCategories()
+    public function updateHotdeal(Request $request)
     {
-        $subcategories = DB::table('subcategories')->get();
-        $categories = DB::table('categories')->get();
-        return view('admin.subcategories', compact('subcategories', 'categories'));
+        $product_id = $request->product_id;
+        $name = $request->hotdeal_name;
+        $start_date = $request->start_date;
+        $end_date = $request ->end_date;
+
+        $hotdeal = Hot_deals::find($request->hotdeal_id);
+        $hotdeal->product_id = $product_id;
+        $hotdeal->deal_title = $name;
+        $hotdeal->deal_starts = $start_date;
+        $hotdeal ->deal_ends = $end_date;
+        $hotdeal->save();
+        return back()->with('hd_updated', 'Hotdeal has been updated successfully!');
+
+        }
     }
-}
+
+

@@ -50,7 +50,7 @@
                                     @if ($product->stock_status==1)
                                     <input class="form-check-input" type="checkbox" name="stock_status" checked="checked">
                                     @else
-                                    <input class="form-check-input" type="checkbox" >
+                                    <input class="form-check-input" name="stock_status" type="checkbox" >
                                     @endif
                                     <label class="form-check-label" for="inlineCheckbox1">In Stock</label>
                                 </div>
@@ -129,25 +129,25 @@
                         @if ($image->product_id == $product->id)
                         <div class="row form-group">
                             <div class="col-sm-3">
-
+                            <input type="hidden" name="product_id" value="{{ $image->product_id }}">
                                 <label class="form-control-label text-xs-right"> Image1: </label>
                                 <input name="image1" type="file" class="form-control boxed" id="image1">
-                                <img id="preview1" src="{{asset('$image->image_2')}}" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                <img id="preview1" src="{{asset($image->image_1)}}" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                             </div>
                             <div class="col-sm-3">
                                 <label class="form-control-label text-xs-right"> Images2 </label>
                                 <input name="image2" type="file" class="form-control boxed" id="image2">
-                                <img id="preview2" src="#" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                <img id="preview2" src="{{asset($image->image_2)}}" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                             </div>
                             <div class="col-sm-3">
                                 <label class="form-control-label text-xs-right"> Images3 </label>
                                 <input name="image3" type="file" class="form-control boxed" id="image3">
-                                <img id="preview3" src="#" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                <img id="preview3" src="{{asset($image->image_3)}}" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                             </div>
                             <div class="col-sm-3">
                                 <label class="form-control-label text-xs-right"> Images4 </label>
                                 <input name="image4" type="file" class="form-control boxed" id="image4">
-                                <img id="preview4" src="#" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                <img id="preview4" src="{{asset($image->image_4)}}" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                             </div>
                         </div>
                         @endif

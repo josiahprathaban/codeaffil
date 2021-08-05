@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
     <!-- Place favicon.ico in the root directory -->
-    <link rel="stylesheet"  href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
@@ -79,187 +79,186 @@
                     {{ Session::get('sc_updated') }}
                 </div>
                 @endif
-                <div class="card items">
-                    <div class="col-md-12 mx-auto">
-                        <div class="card ">
-                            <div class="card-block">
-                                <div class="card-title-block">
-                                    <h3 class="title">All SubCategories </h3>
-                                </div>
-                                <section class="example">
-                                    <table class="table table-striped ">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Image</th>
-                                                <th>SubCategory Name</th>
-                                                <th>Category Name</th>
-                                                <th>Total SubCategories</th>
-                                                <th>Total Clicks</th>
-                                                <th>Manage</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($subcategories as $subcategory )
-                                            <tr>
-                                                <th scope="row">{{$subcategory->id}}</th>
-                                                <td><img src="{{$subcategory->image}}" alt="" style="max-width:60px;"></td>
-                                                <td>{{$subcategory->name}}</td>
-                                                @foreach ($categories as $category )
-                                                @if ($subcategory->category_id == $category->id)
-                                                <td>{{$category->name}}</td>
-                                                @endif
-                                                @endforeach
-                                                <td>500</td>
-                                                <td>1000</td>
-                                                <td>
-                                                    <ul class="item-list striped">
-                                                        <div class="item-col fixed item-col-actions-dropdown">
-                                                            <div class="item-actions-dropdown">
-                                                                <a class="item-actions-toggle-btn">
-                                                                    <span class="inactive">
-                                                                        <i class="fa fa-cog"></i>
-                                                                    </span>
-                                                                    <span class="active">
-                                                                        <i class="fa fa-chevron-circle-right"></i>
-                                                                    </span>
-                                                                </a>
-                                                                <div class="item-actions-block">
-                                                                    <ul class="item-actions-list">
-                                                                        <li>
-                                                                            <a class="remove" href="/delete-brand/" data-toggle="modal" data-target="#confirm-modal-{{$subcategory->id}}">
-                                                                                <i class="fa fa-trash "></i>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a class="edit" href="#" data-toggle="modal" data-target="#modal-add-update-{{$subcategory->id}}">
-                                                                                <i class="fa fa-pencil-alt"></i>
-                                                                            </a>
-                                                                        </li>
-                                                                        <!-- /.modal -->
-                                                                        <div class="modal fade" id="confirm-modal-{{$subcategory->id}}">
-                                                                            <div class="modal-dialog" role="document">
-                                                                                <div class="modal-content">
-                                                                                    <div class="modal-header">
-                                                                                        <h4 class="modal-title">
-                                                                                            <i class="fa fa-warning"></i> Alert
-                                                                                        </h4>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                            <span aria-hidden="true">&times;</span>
-                                                                                        </button>
+                <section class="section">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="card-title-block">
+                                        <h3 class="title"> All SubCategories </h3>
+                                    </div>
+                                    <section class="example">
+                                        <div class="table-flip-scroll">
+                                            <table class="table table-striped table-bordered table-hover flip-content">
+                                                <thead class="flip-header">
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Image</th>
+                                                        <th>SubCategory Name</th>
+                                                        <th>Category Name</th>
+                                                        <th>Total SubCategories</th>
+                                                        <th>Total Clicks</th>
+                                                        <th>Manage</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($subcategories as $subcategory )
+                                                    <tr>
+                                                        <th scope="row">{{$subcategory->id}}</th>
+                                                        <td><img src="{{$subcategory->image}}" alt="" style="max-width:60px;"></td>
+                                                        <td>{{$subcategory->name}}</td>
+                                                        @foreach ($categories as $category )
+                                                        @if ($subcategory->category_id == $category->id)
+                                                        <td>{{$category->name}}</td>
+                                                        @endif
+                                                        @endforeach
+                                                        <td>500</td>
+                                                        <td>1000</td>
+                                                        <td>
+                                                            <ul class="item-list striped">
+                                                                <div class="item-col fixed item-col-actions-dropdown">
+                                                                    <div class="item-actions-dropdown">
+                                                                        <a class="item-actions-toggle-btn">
+                                                                            <span class="inactive">
+                                                                                <a class="edit" href="#" data-toggle="modal" data-target="#modal-add-update-{{$subcategory->id}}">
+                                                                                    <i class="fa fa-pencil-alt"></i>
+                                                                                </a>
+                                                                            </span>
+
+                                                                        </a>
+                                                                        <div class="item-actions-block">
+                                                                            <ul class="item-actions-list">
+
+                                                                                <li>
+                                                                                    <a class="edit" href="#" data-toggle="modal" data-target="#modal-add-update-{{$subcategory->id}}">
+                                                                                        <i class="fa fa-pencil-alt"></i>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <!-- /.modal -->
+                                                                                <div class="modal fade" id="confirm-modal-{{$subcategory->id}}">
+                                                                                    <div class="modal-dialog" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="modal-header">
+                                                                                                <h4 class="modal-title">
+                                                                                                    <i class="fa fa-warning"></i> Alert
+                                                                                                </h4>
+                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                                <p>Are you sure want to do this?</p>
+                                                                                            </div>
+                                                                                            <div class="modal-footer">
+                                                                                                <a href="/delete-subcategory/{{$subcategory->id}}">
+                                                                                                    <button class="btn btn-primary">Yes</button>
+                                                                                                </a>
+                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <!-- /.modal-content -->
                                                                                     </div>
-                                                                                    <div class="modal-body">
-                                                                                        <p>Are you sure want to do this?</p>
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <a href="/delete-subcategory/{{$subcategory->id}}">
-                                                                                            <button class="btn btn-primary">Yes</button>
-                                                                                        </a>
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                                                                    </div>
+                                                                                    <!-- /.modal-dialog -->
                                                                                 </div>
-                                                                                <!-- /.modal-content -->
-                                                                            </div>
-                                                                            <!-- /.modal-dialog -->
-                                                                        </div>
-                                                                        <!-- /.modal -->
+                                                                                <!-- /.modal -->
 
-                                                                        <div class="modal fade" id="modal-add-update-{{$subcategory->id}}">
-                                                                            <div class="modal-dialog modal-lg">
-                                                                                <div class="modal-content">
-                                                                                    <div class="modal-header">
-                                                                                        <h4 class="modal-title">Update SubCategories</h4>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                            <span aria-hidden="true">&times;</span>
-                                                                                            <span class="sr-only">Close</span>
-                                                                                        </button>
+                                                                                <div class="modal fade" id="modal-add-update-{{$subcategory->id}}">
+                                                                                    <div class="modal-dialog modal-lg">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="modal-header">
+                                                                                                <h4 class="modal-title">Update SubCategories</h4>
+                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                    <span class="sr-only">Close</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="card card-block sameheight-item">
+                                                                                                <form role="form" method="post" enctype="multipart/form-data" action="{{ route('subcategory.update')}}">
+                                                                                                    @csrf
+                                                                                                    <label> Category: </label>
+
+                                                                                                    <select name="subcategory_id" class="c-select form-control boxed">
+                                                                                                        <option>Select Category</option>
+                                                                                                        @foreach ($categories as $category )
+
+                                                                                                        <option selected value="{{$category->id}}">{{$category->name}}</option>
+
+                                                                                                        @endforeach
+                                                                                                    </select>
+
+                                                                                                    <input type="hidden" name="subcategory_id" value="{{$subcategory->id}}">
+                                                                                                    <div class="form-group">
+                                                                                                        <label for="exampleInputEmail1">Subcategory</label>
+                                                                                                        <input type="text" class="form-control" value="{{$subcategory->name}}" id="exampleInputEmail1" name="subcategory_name" placeholder="Enter Category Name">
+                                                                                                    </div>
+                                                                                                    <div class="form-group ">
+
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <label> Image: </label>
+                                                                                                        <input name="image" type="file" class="form-control boxed" id="image1">
+                                                                                                        <img id="preview1" src="{{asset($subcategory->image)}}" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                                                                    </div>
+
+                                                                                                </form>
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+
+                                                                                        <!-- /.modal-content -->
                                                                                     </div>
-                                                                                    <div class="card card-block sameheight-item">
-                                                                                        <form role="form" method="post" enctype="multipart/form-data" action="{{ route('subcategory.update')}}">
-                                                                                            @csrf
-                                                                                            <label> Category: </label>
-
-                                                                                            <select name="subcategory_id" class="c-select form-control boxed">
-                                                                                                <option>Select Category</option>
-                                                                                                @foreach ($categories as $category )
-
-                                                                                                <option selected value="{{$category->id}}">{{$category->name}}</option>
-
-                                                                                                @endforeach
-                                                                                            </select>
-
-                                                                                            <input type="hidden" name="subcategory_id" value="{{$subcategory->id}}">
-                                                                                            <div class="form-group">
-                                                                                                <label for="exampleInputEmail1">Subcategory</label>
-                                                                                                <input type="text" class="form-control" value="{{$subcategory->name}}" id="exampleInputEmail1" name="subcategory_name" placeholder="Enter Category Name">
-                                                                                            </div>
-                                                                                            <div class="form-group ">
-
-                                                                                            </div>
-                                                                                            <div class="form-group">
-                                                                                                <label> Image: </label>
-                                                                                                <input name="image" type="file" class="form-control " onchange="previewFile(this)">
-                                                                                                <img id="previewImg" alt="Subcategory Image" style="max-width:130px; margin-top:20px;">
-                                                                                            </div>
-                                                                                            <div class="form-group">
-                                                                                                <button type="submit" class="btn btn-primary">Update</button>
-                                                                                            </div>
-
-                                                                                        </form>
-
-
-                                                                                    </div>
+                                                                                    <!-- /.modal-dialog -->
                                                                                 </div>
-
-
-                                                                                <!-- /.modal-content -->
-                                                                            </div>
-                                                                            <!-- /.modal-dialog -->
+                                                                            </ul>
                                                                         </div>
-                                                                    </ul>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
 
 
 
-                                                    </ul>
-                                                </td>
-                                                @endforeach
-                                            </tr>
+                                                            </ul>
+                                                        </td>
+                                                        @endforeach
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
 
-                                        </tbody>
-                                    </table>
-                                </section>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <nav class="text-right">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#"> Prev </a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#"> 1 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 2 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 3 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 4 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 5 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> Next </a>
-                        </li>
-                    </ul>
-                </nav>
+                    <nav class="text-right">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#"> Prev </a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#"> 1 </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"> 2 </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"> 3 </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"> 4 </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"> 5 </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"> Next </a>
+                            </li>
+                        </ul>
+                    </nav>
             </article>
             <div class="modal fade" id="modal-add-ecommece">
                 <div class="modal-dialog modal-lg">
@@ -383,10 +382,16 @@
         ga('send', 'pageview');
     </script>
     <script>
-        image.onchange = evt => {
-            const [file] = image.files
+        image1.onchange = evt => {
+            const [file] = image1.files
             if (file) {
-                preview.src = URL.createObjectURL(file)
+                preview1.src = URL.createObjectURL(file)
+            }
+        }
+        image2.onchange = evt => {
+            const [file] = image2.files
+            if (file) {
+                preview2.src = URL.createObjectURL(file)
             }
         }
     </script>
