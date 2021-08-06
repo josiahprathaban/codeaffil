@@ -39,35 +39,18 @@
         <!-- main layout start from here -->
         <!--====== PRELOADER PART START ======-->
 
-        <!-- <div id="preloader">
+        <div id="preloader">
         <div class="preloader">
             <span></span>
             <span></span>
         </div>
-    </div> -->
+    </div>
 
         <!--====== PRELOADER PART ENDS ======-->
         <div id="main">
             <!-- Header Start -->
             @include('header')
             <!-- Header End -->
-            <!-- Breadcrumb Area start -->
-            <section class="breadcrumb-area" style="background-image: url(assets/images/banner-image/contact-us.jpg);">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="breadcrumb-content">
-                                <h1 class="breadcrumb-hrading">Contact Page</h1>
-                                <ul class="breadcrumb-links">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li>Contact Us</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Breadcrumb Area End -->
             <!-- contact area start -->
             <div class="contact-area mtb-60px">
                 <div class="container">
@@ -130,7 +113,8 @@
                                 <div class="contact-title mb-30">
                                     <h2>Get In Touch</h2>
                                 </div>
-                                <form class="contact-form-style" id="contact-form" action="https://whizthemes.com/nazmul/php/mail.php" method="post">
+                                <form class="contact-form-style" id="contact-form" action="{{url('sendemail/send')}}" method="post">
+                                {{ csrf_field() }}
                                     <div class="row">
                                         <div class="col-lg-6">
                                         @if(session('user'))
@@ -142,9 +126,9 @@
 
                                         <div class="col-lg-6">
                                         @if(session('email'))
-                                            <input name="name"  placeholder="Email*" value="{{session('email')}}" type="text" />
+                                            <input name="email"  placeholder="Email*" value="{{session('email')}}" type="text" />
                                         @else
-                                            <input name="name" placeholder="Email*" type="text" />
+                                            <input name="email" placeholder="Email*" type="text" />
                                         @endif
                                         </div>
 
@@ -153,11 +137,26 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <textarea name="message" placeholder="Your Message*"></textarea>
-                                            <button class="submit" type="submit">SEND</button>
+                                            @if (count($errors) > 0)
+                                                <div class="alert alert-danger">
+                                                <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                                </ul>
+                                                </div>
+                                            @endif
+                                            @if ($message = Session::get('success'))
+                                            <div class="alert alert-success alert-block">
+                                                    <strong>{{ $message }}</strong>
+                                            </div>
+                                            @endif
+                                            <button class="submit" name="send" type="submit" value="Send">SEND</button>
                                         </div>
+
                                     </div>
                                 </form>
-                                <p class="form-messege"></p>
+                               
                             </div>
                         </div>
                     </div>

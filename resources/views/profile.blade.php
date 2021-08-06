@@ -39,12 +39,12 @@
         <!-- main layout start from here -->
         <!--====== PRELOADER PART START ======-->
 
-        <!-- <div id="preloader">
+        <div id="preloader">
         <div class="preloader">
             <span></span>
             <span></span>
         </div>
-    </div> -->
+    </div>
 
         <!--====== PRELOADER PART ENDS ======-->
         <div id="main">

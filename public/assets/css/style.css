@@ -8331,7 +8331,7 @@ color: rgb(196, 196, 196) !important;
   .x_search{
     margin: 5px auto 0px auto;
     display: grid;
-    grid-template-columns: 130px calc(100% - 180px) 50px;
+    grid-template-columns: min-content auto 50px;
     border-radius: 5px;
     background-color: rgb(230, 230, 230);
     width: calc(100% - 40px);
@@ -8390,4 +8390,9 @@ color: rgb(196, 196, 196) !important;
         max-height:210px;
         width: auto !important;
         max-width: 100%;
+  }
+
+  .backx{
+      width: 100% !important;
+      height: auto !important;
   }

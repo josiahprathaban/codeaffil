@@ -143,15 +143,17 @@
                     </div>  
                     <div class="x_search">
                                     <div class="search_wrap">
-                                    <select class="x_search_select" size="5" style="height: auto">
-                                    <option selected>All categories</option>
+                                        <form action="/product/searchby" method="post">
+                                        @csrf
+                                    <select class="x_search_select" size="5" style="height: auto" name="category">
+                                    <option selected value="-1">All categories</option>
                                     @foreach ($categories as $category )
                                             <option value="{{$category->id}}">
                                                 {{$category->name}}
                                             </option>
                                             @foreach ($subcategories as $subcategory )
                                             @if($subcategory->category_id == $category->id)
-                                            <option value="{{$subcategory->id}}">
+                                            <option value="{{'sub'.$subcategory->id}}">
                                                 &nbsp &nbsp {{$subcategory->name}}
                                             </option>
                                             @endif
@@ -159,11 +161,12 @@
                                     @endforeach
                                     </select>
                                     </div>
-                                    <input type="text" class="x_search_text">
+                                    <input type="text" class="x_search_text" name="value">
                                     <!-- <input type="submit" class="x_search_button" value="Search"> -->
                                     <button type="submit" class="x_search_button">
                                     <i class="ion-ios-search-strong"></i>
                                     </button>
+                                    </form>
                     </div>
                 </div>
                 <!--Header Bottom Account End -->                          

@@ -38,12 +38,12 @@
         <!-- main layout start from here -->
         <!--====== PRELOADER PART START ======-->
 
-        <!-- <div id="preloader">
+        <div id="preloader">
         <div class="preloader">
             <span></span>
             <span></span>
         </div>
-    </div> -->
+    </div>
 
         <!--====== PRELOADER PART ENDS ======-->
         <div id="main">
@@ -123,7 +123,11 @@
                                                 <td class="first-column">Purchase</td>
                                                 @foreach($products as $product)
                                                 <td class="pro-addtocart">
-                                                    <a href="{{$product->affiliate_link}}" target="_blank" class="add-to-cart"><span>Buy Now</span></a>
+                                                @if(session('user'))
+                                                    <a href="{{$product->affiliate_link}}" target="_blank" class="add-to-cart"> Buy Now </a>
+                                                @else
+                                                    <a href="/login/redirect" class="add-to-cart"> Buy Now </a>
+                                                @endif
                                                 </td>
                                                 @endforeach
                                             </tr>

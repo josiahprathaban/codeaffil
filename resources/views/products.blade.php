@@ -51,23 +51,6 @@
             <!-- Header Start -->
             @include('header')
             <!-- Header End -->
-            <!-- Breadcrumb Area start -->
-            <section class="breadcrumb-area" style="background-image: url(assets/images/banner-image/shop.jpg);">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="breadcrumb-content">
-                                <h1 class="breadcrumb-hrading">Products Page</h1>
-                                <ul class="breadcrumb-links">
-                                    <li><a href="/">Home</a></li>
-                                    <li>Products Page</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Breadcrumb Area End -->
             <!-- Shop Category Area End -->
             <div class="shop-category-area">
                 <div class="container">
@@ -88,11 +71,14 @@
                                     <div class="shop-select">
                                         <!-- <form action="/products/sortby" method="post"> -->
                                         <!-- @csrfonchange="this.form.submit()" -->
-                                        <select name="filter"  onchange="if (this.value) window.location.href=window.location.href + this.value">
-                                            <option value="/updated_at">Sort by newness</option>
-                                            <option value="/title">A to Z</option>
-                                            <option value="/title"> Z to A</option>
-                                            <option value="/stock_status">In stock</option>
+                                        <select name="filter"  id="sorting">
+                                            <option value="title_asc">A to Z</option>
+                                            <option value="title_desc"> Z to A</option>
+                                            <option value="date">Sort by newness</option>
+                                            <option value="price_asc">Low to High</option>
+                                            <option value="price_desc">High to Low</option>
+                                            <option value="sale">Sale Products</option>
+                                            <option value="stock">In stock</option>
                                         </select>
                                         <!-- </form> -->
                                     </div>
@@ -107,8 +93,8 @@
                                 <div class="tab-content jump">
                                     <!-- Tab One Start -->
                                     <div id="shop-1" class="tab-pane active">
-                                        <div class="row">
-                                        @foreach($products->sortBy('id') as $product)
+                                    <div class="row sort_view" id="title_asc">
+                                        @foreach($products as $product)
                                             <div class="col-xl-3 col-md-4 col-sm-6">
                                                 
                                                 <article class="list-product">
@@ -148,7 +134,308 @@
                                                 </article>
                                                 
                                             </div>
-                                            @endforeach
+                                        @endforeach
+                                        </div>
+                                        <div class="row sort_view" id="title_asc" style="display:none;">
+                                        @foreach($products->sortBy('title') as $product)
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                                
+                                                <article class="list-product">
+                                                    <div class="img-block" style="height:250px; display: inline-flex; width:100%; align-items: center; justify-content: center;">
+                                                        <a href="/single_product/{{$product -> id}}" class="thumbnail">
+                                                            <img class="first-img" src="{{asset($product->image_1)}}" alt="" style="max-height:250px"/>
+                                                        </a>
+                                                        <div class="quick-view">
+                                                            <a class="quick_view" href="/single_product/{{$product -> id}}">
+                                                                <i class="ion-ios-search-strong"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    @if(date("Y-m-d", strtotime('-7 days')) < $product->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
+                                                    <div class="product-decs">
+                                                        <a class="inner-link" href="/products/ecommerce/{{$product -> name}}"><span>{{$product->name}}</span></a>
+                                                        <h2><a href="/single_product/{{$product -> id}}" class="product-link">{{$product -> title}}</a></h2>
+                                                        
+                                                        <div class="pricing-meta">
+                                                            @if($product->sale_price != 0)
+                                                                <ul>
+                                                                    <li class="old-price">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                    <li class="current-price">$ {{number_format($product->sale_price, 2)}}</li>
+                                                                    <li class="discount-price">{{number_format((($product->regular_price - $product->sale_price) / $product->regular_price)*100, 2)}} %</li>
+                                                                </ul>
+                                                            @else
+                                                                <ul>
+                                                                    <li class="old-price not-cut">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                </ul>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                                
+                                            </div>
+                                        @endforeach
+                                        </div>
+                                        <div class="row sort_view" id="title_desc" style="display:none;">
+                                        @foreach($products->sortByDesc('title') as $product)
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                                
+                                                <article class="list-product">
+                                                    <div class="img-block" style="height:250px; display: inline-flex; width:100%; align-items: center; justify-content: center;">
+                                                        <a href="/single_product/{{$product -> id}}" class="thumbnail">
+                                                            <img class="first-img" src="{{asset($product->image_1)}}" alt="" style="max-height:250px"/>
+                                                        </a>
+                                                        <div class="quick-view">
+                                                            <a class="quick_view" href="/single_product/{{$product -> id}}">
+                                                                <i class="ion-ios-search-strong"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    @if(date("Y-m-d", strtotime('-7 days')) < $product->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
+                                                    <div class="product-decs">
+                                                        <a class="inner-link" href="/products/ecommerce/{{$product -> name}}"><span>{{$product->name}}</span></a>
+                                                        <h2><a href="/single_product/{{$product -> id}}" class="product-link">{{$product -> title}}</a></h2>
+                                                        
+                                                        <div class="pricing-meta">
+                                                            @if($product->sale_price != 0)
+                                                                <ul>
+                                                                    <li class="old-price">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                    <li class="current-price">$ {{number_format($product->sale_price, 2)}}</li>
+                                                                    <li class="discount-price">{{number_format((($product->regular_price - $product->sale_price) / $product->regular_price)*100, 2)}} %</li>
+                                                                </ul>
+                                                            @else
+                                                                <ul>
+                                                                    <li class="old-price not-cut">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                </ul>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                                
+                                            </div>
+                                        @endforeach
+                                        </div>
+                                        <div class="row sort_view" id="date" style="display:none;">
+                                        @foreach($products->sortByDesc('updated_at') as $product)
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                                
+                                                <article class="list-product">
+                                                    <div class="img-block" style="height:250px; display: inline-flex; width:100%; align-items: center; justify-content: center;">
+                                                        <a href="/single_product/{{$product -> id}}" class="thumbnail">
+                                                            <img class="first-img" src="{{asset($product->image_1)}}" alt="" style="max-height:250px"/>
+                                                        </a>
+                                                        <div class="quick-view">
+                                                            <a class="quick_view" href="/single_product/{{$product -> id}}">
+                                                                <i class="ion-ios-search-strong"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    @if(date("Y-m-d", strtotime('-7 days')) < $product->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
+                                                    <div class="product-decs">
+                                                        <a class="inner-link" href="/products/ecommerce/{{$product -> name}}"><span>{{$product->name}}</span></a>
+                                                        <h2><a href="/single_product/{{$product -> id}}" class="product-link">{{$product -> title}}</a></h2>
+                                                        
+                                                        <div class="pricing-meta">
+                                                            @if($product->sale_price != 0)
+                                                                <ul>
+                                                                    <li class="old-price">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                    <li class="current-price">$ {{number_format($product->sale_price, 2)}}</li>
+                                                                    <li class="discount-price">{{number_format((($product->regular_price - $product->sale_price) / $product->regular_price)*100, 2)}} %</li>
+                                                                </ul>
+                                                            @else
+                                                                <ul>
+                                                                    <li class="old-price not-cut">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                </ul>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                                
+                                            </div>
+                                        @endforeach
+                                        </div>
+                                        <div class="row sort_view" id="price_asc" style="display:none;">
+                                        @foreach($products->sortBy('regular_price') as $product)
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                                
+                                                <article class="list-product">
+                                                    <div class="img-block" style="height:250px; display: inline-flex; width:100%; align-items: center; justify-content: center;">
+                                                        <a href="/single_product/{{$product -> id}}" class="thumbnail">
+                                                            <img class="first-img" src="{{asset($product->image_1)}}" alt="" style="max-height:250px"/>
+                                                        </a>
+                                                        <div class="quick-view">
+                                                            <a class="quick_view" href="/single_product/{{$product -> id}}">
+                                                                <i class="ion-ios-search-strong"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    @if(date("Y-m-d", strtotime('-7 days')) < $product->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
+                                                    <div class="product-decs">
+                                                        <a class="inner-link" href="/products/ecommerce/{{$product -> name}}"><span>{{$product->name}}</span></a>
+                                                        <h2><a href="/single_product/{{$product -> id}}" class="product-link">{{$product -> title}}</a></h2>
+                                                        
+                                                        <div class="pricing-meta">
+                                                            @if($product->sale_price != 0)
+                                                                <ul>
+                                                                    <li class="old-price">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                    <li class="current-price">$ {{number_format($product->sale_price, 2)}}</li>
+                                                                    <li class="discount-price">{{number_format((($product->regular_price - $product->sale_price) / $product->regular_price)*100, 2)}} %</li>
+                                                                </ul>
+                                                            @else
+                                                                <ul>
+                                                                    <li class="old-price not-cut">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                </ul>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                                
+                                            </div>
+                                        @endforeach
+                                        </div>
+                                        <div class="row sort_view" id="price_desc" style="display:none;">
+                                        @foreach($products->sortByDesc('regular_price') as $product)
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                                
+                                                <article class="list-product">
+                                                    <div class="img-block" style="height:250px; display: inline-flex; width:100%; align-items: center; justify-content: center;">
+                                                        <a href="/single_product/{{$product -> id}}" class="thumbnail">
+                                                            <img class="first-img" src="{{asset($product->image_1)}}" alt="" style="max-height:250px"/>
+                                                        </a>
+                                                        <div class="quick-view">
+                                                            <a class="quick_view" href="/single_product/{{$product -> id}}">
+                                                                <i class="ion-ios-search-strong"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    @if(date("Y-m-d", strtotime('-7 days')) < $product->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
+                                                    <div class="product-decs">
+                                                        <a class="inner-link" href="/products/ecommerce/{{$product -> name}}"><span>{{$product->name}}</span></a>
+                                                        <h2><a href="/single_product/{{$product -> id}}" class="product-link">{{$product -> title}}</a></h2>
+                                                        
+                                                        <div class="pricing-meta">
+                                                            @if($product->sale_price != 0)
+                                                                <ul>
+                                                                    <li class="old-price">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                    <li class="current-price">$ {{number_format($product->sale_price, 2)}}</li>
+                                                                    <li class="discount-price">{{number_format((($product->regular_price - $product->sale_price) / $product->regular_price)*100, 2)}} %</li>
+                                                                </ul>
+                                                            @else
+                                                                <ul>
+                                                                    <li class="old-price not-cut">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                </ul>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                                
+                                            </div>
+                                        @endforeach
+                                        </div>
+                                        <div class="row sort_view" id="sale" style="display:none;">
+                                        @foreach($products->sortByDesc('sale_price') as $product)
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                                
+                                                <article class="list-product">
+                                                    <div class="img-block" style="height:250px; display: inline-flex; width:100%; align-items: center; justify-content: center;">
+                                                        <a href="/single_product/{{$product -> id}}" class="thumbnail">
+                                                            <img class="first-img" src="{{asset($product->image_1)}}" alt="" style="max-height:250px"/>
+                                                        </a>
+                                                        <div class="quick-view">
+                                                            <a class="quick_view" href="/single_product/{{$product -> id}}">
+                                                                <i class="ion-ios-search-strong"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    @if(date("Y-m-d", strtotime('-7 days')) < $product->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
+                                                    <div class="product-decs">
+                                                        <a class="inner-link" href="/products/ecommerce/{{$product -> name}}"><span>{{$product->name}}</span></a>
+                                                        <h2><a href="/single_product/{{$product -> id}}" class="product-link">{{$product -> title}}</a></h2>
+                                                        
+                                                        <div class="pricing-meta">
+                                                            @if($product->sale_price != 0)
+                                                                <ul>
+                                                                    <li class="old-price">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                    <li class="current-price">$ {{number_format($product->sale_price, 2)}}</li>
+                                                                    <li class="discount-price">{{number_format((($product->regular_price - $product->sale_price) / $product->regular_price)*100, 2)}} %</li>
+                                                                </ul>
+                                                            @else
+                                                                <ul>
+                                                                    <li class="old-price not-cut">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                </ul>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                                
+                                            </div>
+                                        @endforeach
+                                        </div>
+                                        <div class="row sort_view" id="stock" style="display:none;">
+                                        @foreach($products->sortByDesc('stock_status') as $product)
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                                
+                                                <article class="list-product">
+                                                    <div class="img-block" style="height:250px; display: inline-flex; width:100%; align-items: center; justify-content: center;">
+                                                        <a href="/single_product/{{$product -> id}}" class="thumbnail">
+                                                            <img class="first-img" src="{{asset($product->image_1)}}" alt="" style="max-height:250px"/>
+                                                        </a>
+                                                        <div class="quick-view">
+                                                            <a class="quick_view" href="/single_product/{{$product -> id}}">
+                                                                <i class="ion-ios-search-strong"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    @if(date("Y-m-d", strtotime('-7 days')) < $product->updated_at)
+                                                    <ul class="product-flag">
+                                                        <li class="new">New</li>
+                                                    </ul>
+                                                    @endif
+                                                    <div class="product-decs">
+                                                        <a class="inner-link" href="/products/ecommerce/{{$product -> name}}"><span>{{$product->name}}</span></a>
+                                                        <h2><a href="/single_product/{{$product -> id}}" class="product-link">{{$product -> title}}</a></h2>
+                                                        
+                                                        <div class="pricing-meta">
+                                                            @if($product->sale_price != 0)
+                                                                <ul>
+                                                                    <li class="old-price">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                    <li class="current-price">$ {{number_format($product->sale_price, 2)}}</li>
+                                                                    <li class="discount-price">{{number_format((($product->regular_price - $product->sale_price) / $product->regular_price)*100, 2)}} %</li>
+                                                                </ul>
+                                                            @else
+                                                                <ul>
+                                                                    <li class="old-price not-cut">$ {{number_format($product->regular_price, 2)}}</li>
+                                                                </ul>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                                
+                                            </div>
+                                        @endforeach
                                         </div>
                                     </div>
                                     <!-- Tab One End -->
@@ -189,7 +476,7 @@
                                         <div class="sidebar-widget-list">
                                             <ul>
                                                 @foreach($categories as $category)
-                                                @if($value == $category->name)
+                                                @if(isset($value) && $value == $category->name)
                                                 <li>
                                                     <div class="sidebar-widget-list-left">
                                                         <input type="checkbox" checked onchange="if (this.value) window.location.href= '/products/category/' +this.value" value="{{$category->name}}" /> <a href="/products/category/{{$category->name}}">{{$category->name}} </a>
@@ -228,7 +515,7 @@
                                     <div class="sidebar-widget-list">
                                         <ul>
                                             @foreach($ecommerces as $ecommerce)
-                                            @if($value == $ecommerce->name)
+                                            @if(isset($value) && $value == $ecommerce->name)
                                                 <li>
                                                     <div class="sidebar-widget-list-left">
                                                         <input type="checkbox" checked onchange="if (this.value) window.location.href= '/products/ecommerce/' +this.value" value="{{$ecommerce->name}}" /> <a href="/products/ecommerce/{{$ecommerce->name}}">{{$ecommerce->name}} </a>
