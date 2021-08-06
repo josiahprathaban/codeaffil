@@ -1,8 +1,11 @@
 <aside class="sidebar">
+@if(session('type') != "admin")
+        <script>window.location = "/login";</script>
+        @endif
                     <div class="sidebar-container">
                         <div class="sidebar-header">
                         <div class="logo pt-2">
-                        <a href="/"><img src="{{ asset('assets/images/logo/footer-logo.png') }}" alt="" /></a>
+                        <a href="/"><img src="{{ asset('assets/images/logo/admin-logo.png') }}" alt="" /></a>
                     </div>
                         <nav class="menu pt-5">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
@@ -27,12 +30,12 @@
                                 
                                 <li>
                                     <a href="/all-customers">
-                                        <i class="fa fa-cogs"></i> Customers List
+                                    <i class="fas fa-users-cog"></i> Customers List
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-th-large"></i> Admin Manager
+                                    <i class="fas fa-user-tie"></i> Admin Manager
                                         <i class="fa arrow"></i>
                                     </a>
                                     <ul class="sidebar-nav">

@@ -19,6 +19,9 @@
 </head>
 
 <body>
+@if(session('type') != "admin")
+        <script>window.location = "/login";</script>
+        @endif
     <div class="main-wrapper">
         <div class="app" id="app">
             @include('admin.layouts.header')

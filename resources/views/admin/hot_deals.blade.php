@@ -138,9 +138,15 @@
                                                                                                     <label> Product Name: </label>
 
                                                                                                     <select name="product_id" class="c-select form-control boxed">
-                                                                                                        <option >Select Product</option>
+                                                                                                        <option>Select Product</option>
                                                                                                         @foreach ($products as $product )
+                                                                                                       
+                                                                                                        @if ($product->id == $hotdeal->product_id)
                                                                                                         <option selected value="{{$product->id}}">{{$product->id}}. {{$product->title}}</option>
+                                                                                                        @else
+                                                                                                        <option  value="{{$product->id}}">{{$product->id}}. {{$product->title}}</option>
+                                                                                                        @endif
+                                                                                                       
                                                                                                         @endforeach
                                                                                                     </select>
 

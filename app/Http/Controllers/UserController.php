@@ -73,6 +73,17 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    // get all customers
+    public function getCustomers(){
+        $customers = DB::table('users')
+        ->select('users.email','customers.*', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'), )
+        ->join('customers','customers.username', '=', 'users.username')
+        ->leftJoin('user_product_logs','user_product_logs.customer_id', '=', 'customers.id')
+        ->groupBy('users.username')
+        ->paginate(5);
+        return view('admin.customers_list',compact('customers'));
+    }
+
     //Add admin
     public function addAdmin(){
         return view('admin.add_admin');
@@ -94,6 +105,81 @@ class UserController extends Controller
         ]);
         return back()->with('admin_added','Admin has been added successfully!');
     }
+
+    public function adminProfile(){
+        $user = DB::table('admins')->where('username', session('user'))->first();
+        $email = DB::table('users')->where('username', session('user'))->value('email');
+        if($user!=null){
+            return view('admin.profile',compact('user', 'email'));
+        }
+        else{
+            return view('admin.profile',compact('email'));
+        }
+        
+    }
+    function admin_profile_upload(Request $request)
+    {
+        $imageName = session('user')."_profile";
+        $file = $request->file('file');
+        $ext = $file->getClientOriginalExtension();
+        $file->move("assets/images/user-profile", "{$imageName}.{$ext}");
+        
+        DB::table('admins')
+              ->where('username', session('user'))
+              ->update(['image' => "assets/images/user-profile/"."{$imageName}.{$ext}"]);
+
+        $request->session()->put('profile', DB::table('admins')->where('username', session('user'))->value('image'));
+        return back();
+    }
+
+    function admin_info_add(Request $request)
+    {       
+        DB::table('admins')
+        ->insert([
+            'username'=>session('user'),
+            'phone_no'=> $request->phone_no,
+            'f_name'=> $request->f_name,
+            'l_name'=> $request->l_name
+        ]);
+        return back()->with('admin_updated','Details has been updated successfully!');
+
+       
+    }
+
+    function admin_info_update(Request $request)
+    {       
+        $file = $request->file('file');
+        $data = $request->input();
+
+        if($file==""){
+            DB::table('admins')
+            ->where('username', session('user'))
+            ->update([
+                'phone_no' => $data['phone_no'],
+                'l_name' => $data['l_name'],
+                'f_name' => $data['f_name']
+              ]);
+              return $request->file('file');
+        }
+
+        else{
+            $imageName = session('user')."_profile";
+            $ext = $file->getClientOriginalExtension();
+            $file->move("assets/images/user-profile/", "{$imageName}.{$ext}");
+            DB::table('admins')
+            ->where('username', session('user'))
+            ->update([
+                'phone_no' => $data['phone_no'],
+                'l_name' => $data['l_name'],
+                'f_name' => $data['f_name'],
+                'image' => "assets/images/user-profile/"."{$imageName}.{$ext}"
+              ]);
+              return "assets/images/user-profile/"."{$imageName}.{$ext}";
+        }
+
+       
+    }
+    
 
     function profile_upload(Request $request)
     {
