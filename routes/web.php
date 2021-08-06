@@ -78,6 +78,9 @@ Route::post('/update-ecommerce', [EcommerceController::class, 'updateEcommerce']
 Route::get('/add-admin', [UserController::class, 'addAdmin'])->name('admin.add');
 Route::post('/add-admin', [UserController::class, 'addAdminSubmit'])->name('admin.addsubmit');
 Route::get('/all-admin', [UserController::class, 'getAdmins']);
+Route::get('/admin-profile', [UserController::class, 'adminProfile']);
+Route::post('/admin-profile-add', [UserController::class, 'admin_info_add'])->name('admin.addprofile');
+Route::post('/admin-profile-update', [UserController::class, 'admin_info_update'])->name('admin.updateprofile');
 
 Route::get('/hot-deals', [HotDealsController::class, 'getHotDeals'])->name('hotdeals.get');
 Route::post('/hot-deals', [HotDealsController::class, 'addHotDealSubmit'])->name('hotdeal.addsubmit');
@@ -89,9 +92,7 @@ Route::post('/update-sliders', [SlidersController::class, 'updateSlider'])->name
 
 Route::get('/add', [ProductController::class, 'insert'])->name('pro.add');
 
-Route::get('/all-customers', function () {
-    return view('admin.customers_list');
-});
+Route::get('/all-customers', [UserController::class, 'getCustomers']);
 
 
 

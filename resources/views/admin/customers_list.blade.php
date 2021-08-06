@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
     <!-- Place favicon.ico in the root directory -->
-    <link rel="stylesheet"  href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
@@ -58,62 +58,61 @@
                         </form>
                     </div>
                 </div>
+                <section class="section">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-block">
 
-                <section class="example">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Visits</th>
-                                    <th>Views</th>
-                                    <th>Clicks</th>
-                                    <th>Last Visit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for ($i = 1; $i <= 10; $i++) <tr>
-                                    <th scope="row">{{$i}}</th>
-                                    <td>Mark</td>
-                                    <td>mark@gmail.com</td>
-                                    <td>2000</td>
-                                    <td>1000</td>
-                                    <td>500</td>
-                                    <td>29-07-2021</td>
-                                    <th><a href="#"><i class="fa fa-eye "></i></a></th>
-                                    </tr>
-                                    @endfor
-                            </tbody>
+                                    <section class="example">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>id</th>
+                                                        <th>Username</th>
+                                                        <th>First Name</th>
+                                                        <th>Last Name</th>
+                                                        <th>Email</th>
+                                                        <th>phone number</th>
+                                                        <th>Visits</th>
+                                                        <th>Views</th>
+                                                        <th>Clicks</th>
+                                                        <th>Last Visit</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($customers as $customer )
+                                                    <tr>
+                                                        <th scope="row">{{$customer->id}}</th>
+                                                        <td>{{$customer -> username}}</td>
+                                                        <td>{{$customer -> f_name}}</td>
+                                                        <td>{{$customer -> l_name}}</td>
+                                                        <td>{{$customer -> email}}</td>
+                                                        <td>{{ $customer -> phone_no}}</td>
+                                                        <td>2000</td>
+                                                        <td>{{ $customer -> total_views}}</td>
+                                                        <td>{{ $customer -> total_clicks}}</td>
+                                                        <td>29-07-2021</td>
+                                                    </tr>
+                                                    @endforeach
+
+                                                </tbody>
+                                        </div>
+                                        </table>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    </table>
-                </section>
-                <nav class="text-right pt-3">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#"> Prev </a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#"> 1 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 2 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 3 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 4 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 5 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> Next </a>
-                        </li>
-                    </ul>
-                </nav>
+
+                    <nav class="text-right pt-3">
+                        <ul class="pagination">
+                            <li class="page-item">
+                            {{ $customers->links("pagination::bootstrap-4") }}
+                            </li>
+                        </ul>
+                    </nav>
         </div>
     </div>
     </div>

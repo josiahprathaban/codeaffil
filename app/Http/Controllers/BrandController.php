@@ -7,8 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class BrandController extends Controller
 {
+    
     //Add Brand
     public function addBrandSubmit(Request $request){
+        $validated = $request->validate([
+            'name' => 'required'
+        ]);
+
+
         DB::table('brands')->insert([
             'name'=> $request->brand_name
         ]);
@@ -27,12 +33,6 @@ class BrandController extends Controller
             ->get();
            
         return view('admin.brands',compact('brands'));
-    }
-
-    //delete Brands
-    public function deleteBrand($id){
-        $brand = DB::table('brands')->where('id',$id)->delete();
-        return back()->with('b_deleted','brand has been deleted successfully!');
     }
 
     public function updateBrand(Request $request){
