@@ -18,6 +18,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SlidersController;
 use App\Http\Controllers\ProductsViewController;
 use App\Http\Controllers\CompareController;
+use App\Http\Controllers\SendEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,14 +33,17 @@ use App\Http\Controllers\CompareController;
 
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login/redirect', [LoginController::class, 'redirect']);
 Route::get('/compare/{title}', [CompareController::class, 'index']);
 Route::get('/single_product/{id}', [SingleProdecutController::class, 'index']);
 Route::get('/products/{filterby?}/{value?}', [ProductsViewController::class, 'index']);
-Route::post('/products/sortby', [ProductsViewController::class, 'filter']);
+Route::post('/product/searchby', [ProductsViewController::class, 'search']);
 Route::get('/admin', function () {
     return view('admin.dashbord');
 });
 
+Route::get('/contact', [SendEmailController::class, 'index']);
+Route::post('/sendemail/send', [SendEmailController::class, 'send']);
 
 Route::get('/admin', [DashboardController::class, 'dashBoard']);
 
@@ -95,11 +99,6 @@ Route::get('/customer', function () {
     return view('admin.customer');
 });
 
-
-
-Route::get('/contact', function () {
-    return view('contact');
-});
 
 Route::get('/profile', [UserController::class, 'getUserProfile']);
 

@@ -115,7 +115,11 @@
                                 </div>
                                 <div class="pro-details-quality mt-0px">
                                     <div class="pro-details-cart btn-hover">
+                                    @if(session('user'))
                                         <a href="{{$product->affiliate_link}}" target="_blank" style="font-size:20px"> Buy </a>
+                                    @else
+                                        <a href="/login/redirect" onClick="alert('Login to Continue!')" style="font-size:20px"> Buy </a>
+                                    @endif
                                     </div>
                                     <div class="pro-details-cart btn-hover">
                                         <a href="/compare/{{$product->title}}" style="font-size:20px"><i class="ion-ios-shuffle-strong"></i> Compare</a>

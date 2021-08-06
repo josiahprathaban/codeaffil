@@ -74,29 +74,6 @@
                 </div>
             </div>
             <!-- Slider Arae End -->
-            <!-- Banner Area Start -->
-            <!-- <div class="banner-area home-2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-xs-12">
-                            <div class="banner-wrapper">
-                                <a href="shop-4-column.html"><img src="assets/images/banner-image/1.jpg" alt="" /></a>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xs-12 mt-res-sx-30px">
-                            <div class="banner-wrapper">
-                                <a href="shop-4-column.html"><img src="assets/images/banner-image/2.jpg" alt="" /></a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-12 mt-res-sx-30px">
-                            <div class="banner-wrapper">
-                                <a href="shop-4-column.html"><img src="assets/images/banner-image/3.jpg" alt="" /></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- Banner Area End -->
             <!-- Category Area Start -->
             <section class="categorie-area mt-5" id="shopnow">
                 <div class="container">
@@ -105,7 +82,7 @@
                             <!-- Section Title -->
                             <div class="section-title">
                                 <h2>Popular Categories</h2>
-                                <p>Add Popular Categories to weekly line up</p>
+                                <p>Most purchase product categories by our customers</p>
                             </div>
                             <!-- Section Title -->
                         </div>
@@ -171,7 +148,7 @@
                             <!-- Section Title -->
                             <div class="section-title">
                                 <h2>Suggested Products</h2>
-                                <p>Suggested for you, you might love these!</p>
+                                <p>Suggested for you, you might love these! | <a href="/products/suggestedProducts/all">View all</a></p>
                             </div>
                             <!-- Section Title -->
                         </div>
@@ -283,7 +260,7 @@
                                     <!-- Section Title -->
                                     <div class="section-title">
                                         <h2>Hot Deals</h2>
-                                        <p>Add hot products to weekly line up</p>
+                                        <p>Stay Tune! & Hurry Up! | <a href="/products/hotdeals/all">View all</a></p>
                                     </div>
                                     <!-- Section Title End-->
                                 </div>
@@ -347,7 +324,7 @@
                                     <!-- Section Title -->
                                     <div class="section-title ml-0px">
                                         <h2>New Arrivals</h2>
-                                        <p>Add new products to weekly line up</p>
+                                        <p>Latest Products | <a href="/products/newarrivals/all">View all</a></p>
                                     </div>
                                     <!-- Section Title -->
                                 </div>
@@ -455,7 +432,7 @@
                             <!-- Section Title -->
                             <div class="section-title">
                                 <h2>Sales Products</h2>
-                                <p>Ongoing Sales!</p>
+                                <p>Ongoing Sales! | <a href="/products/sales/all">View all</a></p>
                             </div>
                             <!-- Section Title -->
                         </div>

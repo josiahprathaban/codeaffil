@@ -27,10 +27,14 @@ class UserController extends Controller
                     $request->session()->put('profile', DB::table('customers')->where('username', session('user'))->value('image'));
                 else 
                     $request->session()->put('profile', "assets\images\user-profile\default.jpg");
-                return redirect('/');
+                
+                if(isset($data['redirect']))
+                    return redirect($data['redirect']);
+                else
+                    return redirect('/');
             }
             else
-                return "Wrong password. Try again or click Forgot password to reset it.";
+                return back()->with('msg', 'Wrong password. Try again or click Forgot password to reset it.');
         }
         else
         {
@@ -40,14 +44,18 @@ class UserController extends Controller
                     $request->session()->put('user', DB::table('users')->where('email', $data['name'])->value('username'));
                     $request->session()->put('type', DB::table('users')->where('email', $data['name'])->value('type'));
                     $request->session()->put('email', DB::table('users')->where('username', $data['name'])->value('email'));
-                    return redirect('/');
+                    
+                    if(isset($data['redirect']))
+                        return redirect($data['redirect']);
+                    else
+                        return redirect('/');
                 }
                 else
-                    return "Wrong password. Try again or click Forgot password to reset it.";
+                    return back()->with('msg', 'Wrong password. Try again or click Forgot password to reset it.');
             }
             else
             {
-                return "Couldn't find your Codeaffil Account";
+                return back()->with('msg', "Couldn't find your Codeaffil Account. Register a new Codeaffil Account.");
             }
         }
     }
@@ -70,7 +78,11 @@ class UserController extends Controller
         $request->session()->put('user', DB::table('users')->where('username', $data['name'])->value('username'));
         $request->session()->put('type', DB::table('users')->where('username', $data['name'])->value('type'));
         $request->session()->put('email', DB::table('users')->where('username', $data['name'])->value('email'));
-        return redirect('/');
+        
+        if($data['redirect'])
+            return redirect($data['redirect']);
+        else
+            return redirect('/');
     }
 
     //Add admin
@@ -126,9 +138,10 @@ class UserController extends Controller
     public function getUserProfile(){
         $subcategories = DB::table('subcategories')->get();
         $categories = DB::table('categories')->get();
+        $ecommerces = DB::table('ecommerces')->get();
         $user = DB::table('customers')->where('username', session('user'))->first();
         $email = DB::table('users')->where('username', session('user'))->value('email');
-        return view('profile',compact('user', 'email', 'subcategories','categories'));
+        return view('profile',compact('user', 'email', 'subcategories','categories', 'ecommerces'));
     }
 
     function change_password(Request $request)

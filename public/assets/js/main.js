@@ -1139,6 +1139,13 @@
     });
 
 
+    $('#sorting').change(function(){
+        $('.sort_view').hide()
+        $('#' + $('#sorting option:selected').val()).show()
+
+    })
+
+
  
 
 }(jQuery)); 
