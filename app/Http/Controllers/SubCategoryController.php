@@ -65,7 +65,7 @@ class SubCategoryController extends Controller
 
     //Get All subcategories
     public function getSubCategories(){
-        $subcategories = DB::table('subcategories')->get();
+        $subcategories = DB::table('subcategories')->paginate(5);
         $categories = DB::table('categories')->get();
         return view('admin.subcategories',compact('subcategories','categories'));
     }

@@ -17,7 +17,7 @@ class CategoryController extends Controller
 
     //Get All categories
     public function getCategories(){
-        $categories = DB::table('categories')->get();
+        $categories = DB::table('categories')->paginate(5);
         return view('admin.categories',compact('categories'));
     }
 

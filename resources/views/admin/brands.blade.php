@@ -79,7 +79,9 @@
                     {{ Session::get('b_updated') }}
                 </div>
                 @endif
-
+                @error('name')
+                            <div class="alert alert-danger" role="alert">{{$message}}</div>
+                            @enderror
 
                 <section class="section">
                     <div class="row">
@@ -133,15 +135,16 @@
                                                                             </button>
                                                                         </div>
                                                                         <div class="card card-block sameheight-item">
+
                                                                             <form role="form" method="post" action="{{ route('brand.update')}}">
                                                                                 @csrf
                                                                                 <input type="hidden" name="id" value="{{$brand->id}}">
                                                                                 <div class="form-group">
-                                                                                    <label for="exampleInputEmail1">Brand</label>
+                                                                                    <label class="float-left" for="exampleInputEmail1">Brand:</label>
                                                                                     <input type="text" class="form-control" value="{{$brand->name}}" id="exampleInputEmail1" name="brand_name" placeholder="Enter Brand Name">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                                                    <button type="submit" class="btn btn-primary float-right">Update</button>
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -203,6 +206,7 @@
                             </button>
                         </div>
                         <div class="card card-block sameheight-item">
+                          
                             <form role="form" method="post" action="{{ route('brand.addsubmit')}}">
                                 @csrf
                                 <div class="form-group">

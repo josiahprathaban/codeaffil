@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h3 class="title"> Home Page Sliders
-                                    <a href="#" data-toggle="modal" data-target="#modal-add-ecommece" class="btn btn-primary btn-sm rounded-s"> Add New </a>
+                                    <!-- <a href="#" data-toggle="modal" data-target="#modal-add-ecommece" class="btn btn-primary btn-sm rounded-s"> Add New </a> -->
                                     <!--
 				 -->
                                 </h3>
@@ -60,10 +60,11 @@
                 <section class="section">
                     <div class="row">
                         @foreach ($sliders as $slider )
-
+                        
 
                         <!-- /.col-xl-4 -->
-                        <div class="col-xl-4">
+                        <div class="col-xl-4" >
+                            
                             <div class="card card-primary">
                                 <div class="card-header">
                                     <div class="header-block">
@@ -71,52 +72,12 @@
                                         <ul class="item-list striped">
                                             <div class="item-col fixed item-col-actions-dropdown">
                                                 <div class="item-actions-dropdown">
-                                                    <a class="item-actions-toggle-btn">
-                                                        <span class="inactive">
-                                                            <a class="edit" href="#" data-toggle="modal" data-target="#modal-add-update-{{$slider->id}}">
-                                                                <i class="fa fa-pencil-alt"></i>
-                                                            </a>
-                                                        </span>
-
-                                                    </a>
+                                                   
                                                     <div class="item-actions-block">
                                                         <ul class="item-actions-list">
 
-                                                            <li>
-                                                                <a class="edit" href="#" data-toggle="modal" data-target="#modal-add-update-{{$slider->id}}">
-                                                                    <i class="fa fa-pencil-alt"></i>
-                                                                </a>
-                                                            </li>
-                                                            <!-- /.modal -->
-                                                            <div class="modal fade" id="confirm-modal-{{$slider->id}}">
-                                                                <div class="modal-dialog" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h4 class="modal-title">
-                                                                                <i class="fa fa-warning"></i> Alert
-                                                                            </h4>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <p>Are you sure want to do this?</p>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <a href="/delete-slider/{{$slider->id}}">
-                                                                                <button class="btn btn-primary">Yes</button>
-                                                                            </a>
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- /.modal-content -->
-                                                                </div>
-                                                                <!-- /.modal-dialog -->
-                                                            </div>
-                                                            <!-- /.modal -->
-
-
-
+                                                            
+                                                            
                                                             <div class="modal fade" id="modal-add-update-{{$slider->id}}">
                                                                 <div class="modal-dialog modal-lg">
                                                                     <div class="modal-content">
@@ -132,7 +93,7 @@
                                                                                 @csrf
                                                                                 <input type="hidden" name="id" value="{{$slider->id}}">
                                                                                 <div class="form-group">
-                                                                                    <label>Description:</label>
+                                                                                    <label class="float-left">Description:</label>
 
                                                                                     <textarea class="form-control boxed" name="description" id="" rows="4">{{$slider->description}}</textarea>
                                                                                 </div>
@@ -140,13 +101,13 @@
 
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label> Image: </label>
+                                                                                    <label class="float-left"> Image: </label>
                                                                                     <input name="image" type="file" class="form-control boxed" id="image1">
                                                                                     <img id="preview1" src="{{asset($slider->image)}}" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                                                                                     
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <button type="submit" class="btn btn-primary">Add</button>
+                                                                                    <button type="submit" class="btn btn-primary float-right">Update</button>
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -171,9 +132,11 @@
                                     <img src="{{ asset($slider -> image)}}" style="width: 100%;" alt="">
                                 </div>
                                 <div class="card-footer"> {{$slider->description}} </div>
+                                <button type="button" class="btn btn-oval btn-primary m-2" data-toggle="modal" data-target="#modal-add-update-{{$slider->id}}">Update</button>
                             </div>
                         </div>
                         <!-- /.col-xl-4 -->
+                        
                         @endforeach
                     </div>
                     <!-- /.row -->

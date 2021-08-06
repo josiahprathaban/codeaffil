@@ -170,6 +170,23 @@ class ProductController extends Controller
 
     public function addProductSubmit(Request $request){
         
+        $validated = $request->validate([
+            'title' => 'required',
+            'short_description' => 'required',
+            'description' => 'required',
+            'subcategory_id' => 'required',
+            'brand_id' => 'required',
+            'ecommerce_id' => 'required',
+            'regular_price' => 'required',
+            'sale_price' => 'required',
+            'affiliate_link' => 'required',
+            'image1' => 'required',
+            'image2' => 'required',
+            'image3' => 'required',
+            'image4' => 'required',
+            
+
+        ]);
         
         $title = $request->title;
         $short_description = $request->short_description;
