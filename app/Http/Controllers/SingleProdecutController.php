@@ -20,6 +20,36 @@ class SingleProdecutController extends Controller
 
     public function getProductById($id)
     {
+        $customer_id = DB::table('customers')->where('username', session('user'))->value('id');
+        if (session('type') == 'customer') {
+            if (DB::table('user_product_logs')->where('customer_id', $customer_id)->where('product_id', $id)->exists()) {
+                DB::table('user_product_logs')
+                    ->where('customer_id', $customer_id)
+                    ->where('product_id', $id)
+                    ->update(['no_of_views' => DB::raw('no_of_views + 1')]);
+            } else {
+                DB::table('user_product_logs')->insert([
+                    'customer_id' => $customer_id,
+                    'product_id' => $id,
+                    'no_of_views' => 1,
+                    'no_of_clicks' => 0
+                ]);
+            }
+        } else {
+            if (DB::table('user_product_logs')->where('customer_id', null)->where('product_id', $id)->exists()) {
+                DB::table('user_product_logs')
+                    ->where('customer_id', null)
+                    ->where('product_id', $id)
+                    ->update(['no_of_views' => DB::raw('no_of_views + 1')]);
+            } else {
+                DB::table('user_product_logs')->insert([
+                    'product_id' => $id,
+                    'no_of_views' => 1,
+                    'no_of_clicks' => 0
+                ]);
+            }
+        }
+
         $product = DB::table('products')
             ->select('products.*', 'ecommerces.logo', 'ecommerces.name as ecommerce', 'brands.name as brand', 'product_images.image_1', 'product_images.image_2', 'product_images.image_3', 'product_images.image_4', 'subcategories.name as subcategory')
             ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
@@ -30,6 +60,24 @@ class SingleProdecutController extends Controller
             ->first();
 
         return $product;
+    }
+
+    public function no_of_clicks(Request $request)
+    {
+        $customer_id = DB::table('customers')->where('username', session('user'))->value('id');
+        if (session('type') == 'customer') {
+            DB::table('user_product_logs')
+                ->where('customer_id', $customer_id)
+                ->where('product_id', $request->id)
+                ->update(['no_of_clicks' => DB::raw('no_of_clicks + 1')]);
+        } else {
+            DB::table('user_product_logs')
+                ->where('customer_id', null)
+                ->where('product_id', $request->id)
+                ->update(['no_of_clicks' => DB::raw('no_of_clicks + 1')]);
+        }
+
+        return redirect()->away($request->link);
     }
 
     public function suggestedProducts()

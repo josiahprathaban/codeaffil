@@ -119,7 +119,12 @@
                                 <div class="pro-details-cart btn-hover">
                                     @if(session('user'))
                                     @if(session('varified')==1)
-                                    <a href="{{$product->affiliate_link}}" target="_blank" style="font-size:20px"> Buy </a>
+                                    <form action="/singleproduct/redirect" method="post">
+                                    @csrf
+                                        <input type="hidden" name="id" value="{{$product->id}}">
+                                        <input type="hidden" name="link" value="{{$product->affiliate_link}}">
+                                        <button type="submit" target="_blank" style="font-size:20px"> Buy </button>
+                                    </form>
                                     @else
                                     <a href="/profile" onClick="alert('Please verify your email!')" style="font-size:20px"> Buy </a>
                                     @endif

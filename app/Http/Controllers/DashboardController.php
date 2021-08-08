@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -18,7 +17,7 @@ class DashboardController extends Controller
             ->first();
 
         $product_grap = DB::table('products')
-            ->select('products.*',DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
+            ->select('products.*', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
             ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
             ->join('product_images', 'products.id', '=', 'product_images.product_id')
             ->groupBy('products.id')
@@ -36,6 +35,6 @@ class DashboardController extends Controller
 
 
 
-        return view('admin.dashboard', compact('no_products', 'users', 'ecommerces', 'products_list','product_grap', 'log'));
+        return view('admin.dashboard', compact('no_products', 'users', 'ecommerces', 'products_list', 'product_grap', 'log'));
     }
 }
