@@ -38,6 +38,7 @@ Route::get('/register', [LoginController::class, 'register']);
 Route::get('/login/redirect', [LoginController::class, 'redirect']);
 Route::get('/compare/{title}', [CompareController::class, 'index']);
 Route::get('/single_product/{id}', [SingleProdecutController::class, 'index']);
+Route::post('/singleproduct/redirect', [SingleProdecutController::class, 'no_of_clicks']);
 Route::get('/products/{filterby?}/{value?}', [ProductsViewController::class, 'index']);
 Route::post('/product/searchby', [ProductsViewController::class, 'search']);
 Route::get('/admin', function () {

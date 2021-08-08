@@ -144,11 +144,11 @@ class ProductsViewController extends Controller
             $customer_id = DB::table('customers')->where('username', session('user'))->value('id');
 
             $suggestedProducts = DB::table('products')
-                ->select('products.*', 'product_images.image_1',  'ecommerces.name')
+                ->select('producFts.*', 'product_images.image_1',  'ecommerces.name')
                 ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
                 ->join('product_images', 'products.id', '=', 'product_images.product_id')
                 ->join('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
-                ->orderBy('user_product_logs.no_of_clicks', 'DESC')
+                ->orderBy('user_product_logs.no_of_views', 'DESC')
                 ->where('user_product_logs.customer_id', '=', $customer_id)
                 ->paginate(20);
             if ($suggestedProducts->total() == 0) {
@@ -157,7 +157,7 @@ class ProductsViewController extends Controller
                     ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
                     ->join('product_images', 'products.id', '=', 'product_images.product_id')
                     ->join('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
-                    ->orderBy('user_product_logs.no_of_clicks', 'DESC')
+                    ->orderBy('user_product_logs.no_of_views', 'DESC')
                     ->paginate(20);
             }
         } else {
@@ -166,7 +166,7 @@ class ProductsViewController extends Controller
                 ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
                 ->join('product_images', 'products.id', '=', 'product_images.product_id')
                 ->join('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
-                ->orderBy('user_product_logs.no_of_clicks', 'DESC')
+                ->orderBy('user_product_logs.no_of_views', 'DESC')
                 ->paginate(20);
         }
 

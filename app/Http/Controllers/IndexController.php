@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
@@ -10,6 +9,21 @@ class IndexController extends Controller
 
     public function index()
     {
+        $customer_id = DB::table('customers')->where('username', session('user'))->value('id');
+        if (session('type') == 'customer') {
+            if (DB::table('customer_logs')->where('customer_id', $customer_id)->exists()) {
+                DB::table('customer_logs')
+                    ->where('customer_id', $customer_id)
+                    ->update(['no_of_visit' => DB::raw('no_of_visit + 1'), 'last_visit' => now()]);
+            } else {
+                DB::table('customer_logs')->insert([
+                    'customer_id' => $customer_id,
+                    'no_of_visit' => 1,
+                    'last_visit' => now()
+                ]);
+            }
+        }
+
         $subcategories = DB::table('subcategories')->get();
         $categories = DB::table('categories')->get();
 
