@@ -7,11 +7,18 @@ use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
-    public function index(){
+    public function login(){
         $subcategories = DB::table('subcategories')->get();
         $categories = DB::table('categories')->get();
         $ecommerces = DB::table('ecommerces')->get();
         return view('login',compact('subcategories','categories', 'ecommerces'));
+    }
+
+    public function register(){
+        $subcategories = DB::table('subcategories')->get();
+        $categories = DB::table('categories')->get();
+        $ecommerces = DB::table('ecommerces')->get();
+        return view('register',compact('subcategories','categories', 'ecommerces'));
     }
 
     public function redirect()

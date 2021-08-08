@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique()->primary();
             $table->string('password');
             $table->string('email')->unique();
+            $table->boolean('email_varified')->default(0);
             $table->string('type');
         });
     }
