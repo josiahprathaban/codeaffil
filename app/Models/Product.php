@@ -11,9 +11,11 @@ class Product extends Model
 
     // protected $table = "products";
 
-    public function images(){
-        return $this->hasOne('App\Models\Product_images');
-    }
+    // public function images(){
+    //     return $this->hasOne('App\Models\Product_images');
+    // }
+
+    
 }
 
 

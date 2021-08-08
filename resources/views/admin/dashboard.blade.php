@@ -19,9 +19,11 @@
 </head>
 
 <body>
-@if(session('type') != "admin")
-        <script>window.location = "/login";</script>
-        @endif
+    @if(session('type') != "admin")
+    <script>
+        window.location = "/login";
+    </script>
+    @endif
     <div class="main-wrapper">
         <div class="app" id="app">
             @include('admin.layouts.header')
@@ -123,7 +125,7 @@
                                     </div>
                                     <ul class="nav nav-tabs pull-right" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="#visits" role="tab" data-toggle="tab">Visits</a>
+                                            <a class="nav-link" href="#downloads" role="tab" data-toggle="tab">Clicks</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#downloads" role="tab" data-toggle="tab">Clicks</a>
@@ -133,55 +135,35 @@
                                 <div class="card-block">
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane active fade show" id="visits">
-                                            <p class="title-description"> Number of unique visits last 30 days </p>
-                                            <div id="dashboard-visits-chart"></div>
+                                            <p class="title-description"> Number of Clicks last 30 days </p>
+                                            <div id="dashboard-downloads-chart"></div>
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="downloads">
                                             <p class="title-description"> Number of Clicks last 30 days </p>
                                             <div id="dashboard-downloads-chart"></div>
                                             <script>
-                                                var dataDownloads = [
-            {
-                year: '2006',
-                downloads: '{{$log->total_clicks}}'
-            },
-            {
-                year: '2007',
-                downloads: 1526
-            },
-            {
-                year: '2008',
-                downloads: 2000
-            },
-            {
-                year: '2009',
-                downloads: 1800
-            },
-            {
-                year: '2010',
-                downloads: 1650
-            },
-            {
-                year: '2011',
-                downloads: 620
-            },
-            {
-                year: '2012',
-                downloads: 1000
-            },
-            {
-                year: '2013',
-                downloads: 1896
-            },
-            {
-                year: '2014',
-                downloads: 850
-            },
-            {
-                year: '2015',
-                downloads: 1500
-            }
-        ];
+                                                var dataDownloads = [{
+                                                        year: '2006',
+                                                        visit: 0
+                                                    },
+                                                    {
+                                                        year: '2007',
+                                                        dow: 1526
+                                                    },
+                                                    {
+                                                        year: '2008',
+                                                        downloads: 2000
+                                                    },
+                                                    {
+                                                        year: '2009',
+                                                        downloads: 1800
+                                                    },
+                                                    {
+                                                        year: '2010',
+                                                        downloads: 1650
+                                                    }
+
+                                                ];
                                             </script>
                                         </div>
                                     </div>
@@ -192,12 +174,12 @@
                 </section>
                 <section class="section">
                     <div class="row sameheight-container">
-                        <div class="col-xl-8">
+                        <div class="col-xl-12">
                             <div class="card sameheight-item items" data-exclude="xs,sm,lg">
                                 <div class="card-header bordered">
                                     <div class="header-block">
                                         <h3 class="title"> Popular Products</h3>
-                        
+
                                     </div>
                                     <div class="header-block pull-right">
                                     </div>
@@ -221,6 +203,11 @@
                                                     <span>Views</span>
                                                 </div>
                                             </div>
+                                            <div class="item-col item-col-header item-col-stats">
+                                                <div class="no-overflow">
+                                                    <span>Status</span>
+                                                </div>
+                                            </div>
                                             <div class="item-col item-col-header item-col-date">
                                                 <div>
                                                     <span>Published</span>
@@ -228,13 +215,13 @@
                                             </div>
                                         </div>
                                     </li>
-                                    @foreach ( $products_list  as $product_list)
+                                    @foreach ( $products_list as $product_list)
                                     <li class="item">
                                         <div class="item-row">
                                             <div class="item-col fixed item-col-img xs">
                                                 <a href="#">
-                                                    
-                                                    <img  src="{{ asset($product_list->image_1) }}" alt="" style="max-width:35px; max-height :35px;">
+
+                                                    <img src="{{ asset($product_list->image_1) }}" alt="" style="max-width:35px; max-height :35px;">
                                                 </a>
                                             </div>
                                             <div class="item-col item-col-title no-overflow">
@@ -252,6 +239,14 @@
                                                 <div class="item-heading">Views</div>
                                                 <div> {{ $product_list->total_views }} </div>
                                             </div>
+                                            <div class="item-col item-col-stats">
+                                                <div class="item-heading">Stock status</div>
+                                                @if ($product_list->stock_status ==1)
+                                                <div class="text-success"> In Stock </div>
+                                                @else
+                                                <div class="text-danger"> Out Of Stock </div>
+                                                @endif
+                                            </div>
                                             <div class="item-col item-col-date">
                                                 <div class="item-heading">Published</div>
                                                 <div> {{ $product_list->created_at }} </div>
@@ -262,18 +257,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-xl-4">
-                            <div class="card sameheight-item sales-breakdown" data-exclude="xs,sm,lg">
-                                <div class="card-header">
-                                    <div class="header-block">
-                                        <h3 class="title"> Sales breakdown </h3>
-                                    </div>
-                                </div>
-                                <div class="card-block">
-                                    <div class="dashboard-sales-breakdown-chart" id="dashboard-sales-breakdown-chart"></div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </section>
             </article>

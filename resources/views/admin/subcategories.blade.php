@@ -39,11 +39,12 @@
                         </div>
                     </div>
                     <div class="items-search">
-                        <form class="form-inline">
+                        <form class="form-inline" method="POST" action="{{ route('subcategories.get')}}">
+                            @csrf
                             <div class="input-group">
-                                <input type="text" class="form-control boxed rounded-s" placeholder="Search for...">
+                                <input type="text" name="search" class="form-control boxed rounded-s" placeholder="Search for...">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-secondary rounded-s" type="button">
+                                    <button class="btn btn-secondary rounded-s" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
@@ -79,6 +80,12 @@
                     {{ Session::get('sc_updated') }}
                 </div>
                 @endif
+                @foreach ($errors->all() as $message)
+                <div class="alert alert-danger" role="alert">{{$message}}</div>
+                @endforeach
+                @if (isset($search))
+                <h4 class="text-success" >Results for {{$search}}</h4>
+                @endif
                 <section class="section">
                     <div class="row">
                         <div class="col-md-12">
@@ -96,7 +103,7 @@
                                                         <th>Image</th>
                                                         <th>SubCategory Name</th>
                                                         <th>Category Name</th>
-                                                        <th>Total SubCategories</th>
+                                                        <th>Total Products</th>
                                                         <th>Total Clicks</th>
                                                         <th>Manage</th>
                                                     </tr>
@@ -107,13 +114,9 @@
                                                         <th scope="row">{{$subcategory->id}}</th>
                                                         <td><img src="{{$subcategory->image}}" alt="" style="max-width:60px;"></td>
                                                         <td>{{$subcategory->name}}</td>
-                                                        @foreach ($categories as $category )
-                                                        @if ($subcategory->category_id == $category->id)
-                                                        <td>{{$category->name}}</td>
-                                                        @endif
-                                                        @endforeach
-                                                        <td>500</td>
-                                                        <td>1000</td>
+                                                        <td>{{$subcategory->category_name}}</td>
+                                                        <td>{{$subcategory->total_products}}</td>
+                                                        <td>{{$subcategory->total_clicks}}</td>
                                                         <td>
                                                             <ul class="item-list striped">
                                                                 <div class="item-col fixed item-col-actions-dropdown">
@@ -177,11 +180,15 @@
                                                                                                     @csrf
                                                                                                     <label> Category: </label>
 
-                                                                                                    <select name="subcategory_id" class="c-select form-control boxed">
-                                                                                                        <option>Select Category</option>
+                                                                                                    <select name="category_id" class="c-select form-control boxed">
+                                                                                                        <option value="">Select Category</option>
                                                                                                         @foreach ($categories as $category )
-
+                                                                                                        @if ($subcategory->category_id==$category->id)
                                                                                                         <option selected value="{{$category->id}}">{{$category->name}}</option>
+                                                                                                        @else
+                                                                                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                                                                                        @endif
+                                                                                                       
 
                                                                                                         @endforeach
                                                                                                     </select>
@@ -237,7 +244,7 @@
                     <nav class="text-right">
                         <ul class="pagination">
                             <li class="page-item">
-                            {{ $subcategories->links("pagination::bootstrap-4") }}
+                                {{ $subcategories->links("pagination::bootstrap-4") }}
                             </li>
                         </ul>
                     </nav>
@@ -258,7 +265,7 @@
                                 <label> Category: </label>
 
                                 <select name="subcategory_id" class="c-select form-control boxed">
-                                    <option selected>Select Category</option>
+                                    <option value="" selected>Select Category</option>
                                     @foreach ($categories as $category )
 
                                     <option value="{{$category->id}}">{{$category->name}}</option>

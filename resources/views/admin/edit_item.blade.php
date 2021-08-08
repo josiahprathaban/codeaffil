@@ -44,6 +44,9 @@
                             <div class="col-sm-6">
                                 <label class="form-control-label text-xs-right"> Title: </label>
                                 <input type="text" value="{{$product->title}}" name="title" class="form-control boxed" placeholder="title">
+                                @error('title')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="col-sm-2">
                                 <div class="form-check form-check-inline mt-5">
@@ -69,23 +72,35 @@
                                     @endif
                                     @endforeach
                                 </select>
+                                @error('brand_id')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-12">
                                 <label class="form-control-label text-xs-right"> Affiliate Link: </label>
                                 <input type="text" value="{{$product->affiliate_link}}" class="form-control boxed" name="affiliate_link" placeholder="">
+                                @error('affiliate_link')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-4">
                                 <label class="form-control-label text-xs-right"> Regular Price: </label>
                                 <input type="text" value="{{$product->regular_price}}" class="form-control boxed" name="regular_price" placeholder="">
+                                @error('regular_price')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                             </div>
 
                             <div class="col-sm-4">
                                 <label class="form-control-label text-xs-right"> Sale Price: </label>
                                 <input type="text" value="{{$product->sale_price}}" class="form-control boxed" name="sale_price" placeholder="">
+                                @error('sale_price')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-control-label text-xs-right">Ecommerce: </label>
@@ -99,6 +114,9 @@
                                     @endif
                                     @endforeach
                                 </select>
+                                @error('ecommerce_id')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row form-group">
@@ -115,13 +133,21 @@
                                     @endif
                                     @endforeach
                                 </select>
-
+                                @error('subcategory_id')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                                 <label class="form-control-label text-xs-right"> Short Description: </label>
                                 <textarea class="form-control boxed" name="short_description" id="" rows="5">{{$product->short_description}}</textarea>
+                                @error('short_description')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-control-label text-xs-right">Description: </label>
                                 <textarea class="form-control boxed" name="description" id="" rows="8">{{ $product->description }}</textarea>
+                                @error('short_description')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -133,21 +159,33 @@
                                 <label class="form-control-label text-xs-right"> Image1: </label>
                                 <input name="image1" type="file" class="form-control boxed" id="image1">
                                 <img id="preview1" src="{{asset($image->image_1)}}" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                @error('image1')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="col-sm-3">
                                 <label class="form-control-label text-xs-right"> Images2 </label>
                                 <input name="image2" type="file" class="form-control boxed" id="image2">
                                 <img id="preview2" src="{{asset($image->image_2)}}" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                @error('image2')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="col-sm-3">
                                 <label class="form-control-label text-xs-right"> Images3 </label>
                                 <input name="image3" type="file" class="form-control boxed" id="image3">
                                 <img id="preview3" src="{{asset($image->image_3)}}" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                @error('image3')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="col-sm-3">
                                 <label class="form-control-label text-xs-right"> Images4 </label>
                                 <input name="image4" type="file" class="form-control boxed" id="image4">
                                 <img id="preview4" src="{{asset($image->image_4)}}" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                @error('image4')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                         @endif

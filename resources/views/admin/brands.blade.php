@@ -39,11 +39,12 @@
                         </div>
                     </div>
                     <div class="items-search">
-                        <form class="form-inline">
+                        <form class="form-inline" method="POST" action="{{ route('brand.search')}}">
+                            @csrf
                             <div class="input-group">
-                                <input type="text" class="form-control boxed rounded-s" placeholder="Search for...">
+                                <input type="text" name="search" class="form-control boxed rounded-s" placeholder="Search for...">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-secondary rounded-s" type="button">
+                                    <button class="btn btn-secondary rounded-s" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
@@ -79,9 +80,12 @@
                     {{ Session::get('b_updated') }}
                 </div>
                 @endif
-                @error('name')
-                            <div class="alert alert-danger" role="alert">{{$message}}</div>
-                            @enderror
+                @error('brand_name')
+                <div class="alert alert-danger" role="alert">{{$message}}</div>
+                @enderror
+                @if (isset($search))
+                <h4 class="text-success">Results for {{$search}}</h4>
+                @endif
 
                 <section class="section">
                     <div class="row">
@@ -172,25 +176,7 @@
                 <nav class="text-right">
                     <ul class="pagination">
                         <li class="page-item">
-                            <a class="page-link" href="#"> Prev </a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#"> 1 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 2 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 3 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 4 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> 5 </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> Next </a>
+                            {{ $brands->links("pagination::bootstrap-4") }}
                         </li>
                     </ul>
                 </nav>
@@ -206,7 +192,7 @@
                             </button>
                         </div>
                         <div class="card card-block sameheight-item">
-                          
+
                             <form role="form" method="post" action="{{ route('brand.addsubmit')}}">
                                 @csrf
                                 <div class="form-group">
