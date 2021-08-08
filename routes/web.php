@@ -91,9 +91,11 @@ Route::get('/all-admin', [UserController::class, 'getAdmins']);
 Route::get('/admin-profile', [UserController::class, 'adminProfile']);
 Route::post('/admin-profile-add', [UserController::class, 'admin_info_add'])->name('admin.addprofile');
 Route::post('/admin-profile-update', [UserController::class, 'admin_info_update'])->name('admin.updateprofile');
+Route::post('/admin-profile-uuload', [UserController::class, 'admin_profile_upload'])->name('admin.uploadprofile');
 
-Route::get('/hot-deals', [HotDealsController::class, 'getHotDeals'])->name('hotdeals.get');
-Route::post('/hot-deals', [HotDealsController::class, 'addHotDealSubmit'])->name('hotdeal.addsubmit');
+Route::get('/hot-deals', [HotDealsController::class, 'getHotDeals']);
+Route::post('/hot-deals', [HotDealsController::class, 'getHotDeals'])->name('hotdeals.get');
+Route::post('/add-hot-deals', [HotDealsController::class, 'addHotDealSubmit'])->name('hotdeal.addsubmit');
 Route::post('/update-hot-deals', [HotDealsController::class, 'updateHotdeal'])->name('hotdeal.update');
 
 Route::get('/sliders', [SlidersController::class, 'sliders']);

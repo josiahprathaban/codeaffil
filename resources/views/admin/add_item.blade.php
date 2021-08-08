@@ -26,10 +26,6 @@
             <div class="mobile-menu-handle"></div>
             <article class="content item-editor-page">
                 <div class="title-block">
-
-
-
-
                     <h3 class="title"> Add new item
                         <span class="sparkline bar" data-type="bar"></span>
                     </h3>
@@ -39,12 +35,9 @@
                     {{ Session::get('added') }}
                 </div>
                 @endif
-
                 <div class="card card-block">
-
                     <form method="POST" action="{{ route('product.addsubmit')}}" name="item" enctype="multipart/form-data">
                         @csrf
-
                         <div class="row form-group">
                             <div class="col-sm-8">
                                 <label class="form-control-label text-xs-right"> Title: </label>
@@ -52,8 +45,6 @@
                                 @error('title')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
-
-
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-control-label text-xs-right">Brand: </label>
@@ -62,12 +53,10 @@
                                     @foreach ($brands as $brand )
                                     <option value="{{$brand->id}}">{{$brand->name}}</option>
                                     @endforeach
-                                    </select>
-                                    @error('brand_id')
+                                </select>
+                                @error('brand_id')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
-
-                                
                             </div>
                         </div>
                         <div class="row form-group">
@@ -77,8 +66,6 @@
                                 @error('affiliate_link')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
-
-                                
                             </div>
                         </div>
                         <div class="row form-group">
@@ -88,10 +75,7 @@
                                 @error('regular_price')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
-
-                                
                             </div>
-
                             <div class="col-sm-4">
                                 <label class="form-control-label text-xs-right"> Sale Price: </label>
                                 <input type="text" value="0" class="form-control boxed" name="sale_price" placeholder="">
@@ -114,19 +98,16 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-sm-6">
-
                                 <label class="form-control-label text-xs-right">Subcategory: </label>
                                 <select name="subcategory_id" class="c-select form-control boxed">
                                     <option value="" selected>Select Subcategory</option>
                                     @foreach ($subcategories as $subcategory )
                                     <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
                                     @endforeach
-
                                 </select>
                                 @error('subcategory_id')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
-
                                 <label class="form-control-label text-xs-right"> Short Description: </label>
                                 <textarea class="form-control boxed" name="short_description" id="" rows="5"></textarea>
                                 @error('short_description')
@@ -141,11 +122,8 @@
                                 @enderror
                             </div>
                         </div>
-
-
                         <div class="row form-group">
                             <div class="col-sm-3">
-
                                 <label class="form-control-label text-xs-right"> Image1: </label>
                                 <input name="image1" type="file" class="form-control boxed" id="image1">
                                 @error('image1')
@@ -178,16 +156,13 @@
                                 <img id="preview4" src="#" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <div class="col-sm-12 ">
                                 <button type="submit" class="btn btn-primary float-right"> Submit </button>
                             </div>
                         </div>
                 </div>
-
                 </form>
-
             </article>
         </div>
     </div>

@@ -37,7 +37,7 @@ class ProductController extends Controller
                     ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
                     ->join('product_images', 'products.id', '=', 'product_images.product_id')
                     ->groupBy('products.id')
-                    ->orderBy('products.id', 'ASC')
+                    ->orderBy('products.title', 'ASC')
                     ->take(10)
                     ->paginate(10);
                 return view('admin.items_list', compact('products'));
@@ -49,7 +49,7 @@ class ProductController extends Controller
                     ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
                     ->join('product_images', 'products.id', '=', 'product_images.product_id')
                     ->groupBy('products.id')
-                    ->orderBy('products.id', 'DESC')
+                    ->orderBy('products.title', 'DESC')
                     ->take(10)
                     ->paginate(10);
                 return view('admin.items_list', compact('products'));
@@ -145,7 +145,7 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'title' => 'required',
             'short_description' => 'required',
             'description' => 'required',
@@ -167,7 +167,7 @@ class ProductController extends Controller
             $flge = 0;
         }
 
-        $id = $request->id;
+        $request->id;
         $title = $request->title;
         $stok_status = $flge;
         $short_description = $request->short_description;

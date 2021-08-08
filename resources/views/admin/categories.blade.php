@@ -32,9 +32,6 @@
                             <div class="col-md-6">
                                 <h3 class="title"> Categories
                                     <a href="#" data-toggle="modal" data-target="#modal-add-ecommece" class="btn btn-primary btn-sm rounded-s"> Add New </a>
-                                    <!--
-				 -->
-                                </h3>
                             </div>
                         </div>
                     </div>
@@ -42,10 +39,7 @@
                         <form class="form-inline" method="POST" action="{{ route('category.search')}}">
                             @csrf
                             <div class="input-group">
-
                                 <input type="text" name="search" class="form-control boxed rounded-s" placeholder="Search for...">
-
-
                                 <span class="input-group-btn">
                                     <button class="btn btn-secondary rounded-s" type="submit">
                                         <i class="fa fa-search"></i>
@@ -55,19 +49,6 @@
                         </form>
                     </div>
                 </div>
-                <!-- <div class="col-md-6 mx-auto">
-                                <div class="card card-block sameheight-item">
-                                    
-                                            <form role="form" method="post" action="{{ route('brand.addsubmit')}}">
-                                    @csrf
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Brand</label>
-                                            <input type="text" name="brand_name" class="form-control" id="exampleInputEmail1" placeholder="Enter Brand Name"> </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Add</button>
-                                        </div>
-                                    </form>
-                                </div> -->
                 @if (Session::has('c_added'))
                 <div class="alert alert-success" role="alert">
                     {{ Session::get('c_added') }}
@@ -130,9 +111,7 @@
                                                                     </a>
                                                                     <div class="item-actions-block">
                                                                         <ul class="item-actions-list">
-
                                                                             <li>
-
                                                                             </li>
                                                                             <div class="modal fade" id="modal-add-update-{{$category->id}}">
                                                                                 <div class="modal-dialog modal-lg">
@@ -158,8 +137,6 @@
                                                                                             </form>
                                                                                         </div>
                                                                                     </div>
-
-
                                                                                     <!-- /.modal-content -->
                                                                                 </div>
                                                                                 <!-- /.modal-dialog -->
@@ -168,9 +145,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-
-
                                                         </ul>
                                                     </td>
                                                     @endforeach
@@ -215,8 +189,6 @@
                             </form>
                         </div>
                     </div>
-
-
                     <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->

@@ -96,8 +96,6 @@
                                 <textarea class="form-control boxed" name="description" disabled rows="8">{{$product->description}}</textarea>
                             </div>
                         </div>
-
-
                         <div class="row form-group">
                             
                         @foreach ($images as $image )
