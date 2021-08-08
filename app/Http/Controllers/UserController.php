@@ -213,24 +213,6 @@ else{
             
         ]);
         return back()->with('admin_added','Admin has been added successfully!');
-
-        // $username = $request->user_name;
-        // $email = $request ->email;
-        // $password = $request->password;
-        // $type = "admin";
-
-        // $admin = new Admins();
-
-        // $user = new User();
-        // $user -> username = $username;
-        // $user -> email = $email;
-        // $user ->password = $password;
-        // $user -> type = $type;
-        // $user->created_at=Carbon::now();
-        // $user->updated_at=now();
-        // $user->save();
-        // $user->admins()->save($admin);
-        // return back()->with('admin_added','Admin has been added successfully!');
     }
 
 //Add admin profile
