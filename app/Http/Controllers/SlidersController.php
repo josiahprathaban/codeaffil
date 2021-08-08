@@ -19,7 +19,7 @@ class SlidersController extends Controller
     public function addSlider(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
+            'description' => 'required',
             'image' => 'required|image|mimes:jpg,png,jpeg',
         ]);
 

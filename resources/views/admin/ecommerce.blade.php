@@ -9,6 +9,8 @@
     <title> All Ecommerces </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/favicon.png')}}" />
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
     <!-- Place favicon.ico in the root directory -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -68,6 +70,9 @@
                     {{ Session::get('ec_updated') }}
                 </div>
                 @endif
+                @foreach ($errors->all() as $message)
+                <div class="alert alert-danger" role="alert">{{$message}}</div>
+                @endforeach
                 <div class="col-md-12 mx-auto">
                     <div class="card ">
                         <div class="card-block">
@@ -132,8 +137,8 @@
                                                                                         </div>
                                                                                         <div class="form-group">
                                                                                             <label class="float-left"> Image: </label>
-                                                                                            <input name="image" id="image" type="file" class="form-control " onchange="previewFile(this)">
-                                                                                            <img id="preview" src="#" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                                                                            <input name="image2" id="image" type="file" class="form-control " onchange="previewFile(this)">
+                                                                                            <img id="preview2" src="#" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                                                                                         </div>
                                                                                         <div class="form-group">
                                                                                             <button type="submit" class="btn btn-primary float-right">Update</button>
@@ -217,8 +222,8 @@
                             </div>
                             <div class="form-group">
                                 <label> Image: </label>
-                                <input name="image" type="file" class="form-control " onchange="previewFile(this)">
-                                <img id="previewImg" alt="ecommerce Image" style="max-width:130px; margin-top:20px;">
+                                <input name="image" id="image1" type="file" class="form-control " onchange="previewFile(this)">
+                                <img id="preview1" src="#" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Add</button>
@@ -232,9 +237,22 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-       
-    <script src="{{ asset('js/')}}/vendor.js"></script>
-    <script src="{{ asset('js/')}}/app.js"></script>
+        <script>
+            image1.onchange = evt => {
+                const [file] = image1.files
+                if (file) {
+                    preview1.src = URL.createObjectURL(file)
+                }
+            }
+            image2.onchange = evt => {
+                const [file] = image2.files
+                if (file) {
+                    preview2.src = URL.createObjectURL(file)
+                }
+            }
+        </script>
+        <script src="{{ asset('js/')}}/vendor.js"></script>
+        <script src="{{ asset('js/')}}/app.js"></script>
 </body>
 
 </html>

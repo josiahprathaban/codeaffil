@@ -9,6 +9,8 @@
     <title> All SubCategories </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/favicon.png')}}" />
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
     <!-- Place favicon.ico in the root directory -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -84,7 +86,7 @@
                 <div class="alert alert-danger" role="alert">{{$message}}</div>
                 @endforeach
                 @if (isset($search))
-                <h4 class="text-success" >Results for {{$search}}</h4>
+                <h4 class="text-success">Results for {{$search}}</h4>
                 @endif
                 <section class="section">
                     <div class="row">
@@ -188,26 +190,26 @@
                                                                                                         @else
                                                                                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                                                                                         @endif
-                                                                                                       
+
 
                                                                                                         @endforeach
                                                                                                     </select>
 
                                                                                                     <input type="hidden" name="subcategory_id" value="{{$subcategory->id}}">
                                                                                                     <div class="form-group">
-                                                                                                        <label for="exampleInputEmail1">Subcategory</label>
+                                                                                                        <label class="float-left" >Subcategory</label>
                                                                                                         <input type="text" class="form-control" value="{{$subcategory->name}}" id="exampleInputEmail1" name="subcategory_name" placeholder="Enter Category Name">
                                                                                                     </div>
                                                                                                     <div class="form-group ">
 
                                                                                                     </div>
                                                                                                     <div class="form-group">
-                                                                                                        <label> Image: </label>
-                                                                                                        <input name="image" type="file" class="form-control boxed" id="image1">
-                                                                                                        <img id="preview1" src="{{asset($subcategory->image)}}" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                                                                                        <label class="float-left"> Image: </label>
+                                                                                                        <input name="image" id="image2" type="file" class="form-control">
+                                                                                                        <img id="preview2" src="#" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                                                                                                     </div>
                                                                                                     <div class="form-group">
-                                                                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                                                                        <button type="submit" class="btn btn-primary float-right">Update</button>
                                                                                                     </div>
 
                                                                                                 </form>
@@ -282,8 +284,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label> Image: </label>
-                                    <input name="image" id="image" type="file" class="form-control">
-                                    <img id="preview" src="#" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                    <input name="image" id="image1" type="file" class="form-control">
+                                    <img id="preview1" src="#" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Add</button>
@@ -297,7 +299,7 @@
                 </div>
                 <!-- /.modal-dialog -->
             </div>
-           
+
         </div>
     </div>
     <!-- Reference block for JS -->
