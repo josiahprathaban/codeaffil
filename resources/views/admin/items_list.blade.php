@@ -35,16 +35,29 @@
                                     <!--
 				 -->
                                 </h3>
-                              
+                                <div class="btn-group">
+                                    <form class="form-inline" method="POST" action="{{ route('product.get')}}">
+                                        @csrf
+                                    <select name="filter"  class="c-select form-control boxed">
+                                        <option selected>Sort By:</option>
+                                        <option value="1">A to Z</option>
+                                        <option value="2">Z to A</option>
+                                        <option value="3">Views</option>
+                                        <option value="4">Clicks</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary m-1">Sort</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="items-search">
-                        <form class="form-inline">
+                        <form class="form-inline" method="POST" action="{{ route('product.get')}}">
+                            @csrf
                             <div class="input-group">
-                                <input type="text" class="form-control boxed rounded-s" placeholder="Search for...">
+                                <input type="text" name="search" class="form-control boxed rounded-s" placeholder="Search for...">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-secondary rounded-s" type="button">
+                                    <button class="btn btn-secondary rounded-s" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
@@ -57,7 +70,9 @@
                     {{ Session::get('product_deleted') }}
                 </div>
                 @endif
-
+                @if (isset($search))
+                <h4 class="text-success" >Results for {{$search}}</h4>
+                @endif
                 @foreach ($products as $product )
                 <div class="card items">
                     <ul class="item-list striped">
@@ -131,9 +146,9 @@
                                 <div class="item-col item-col-date no-overflow">
                                     <div class="item-heading">Stats</div>
                                     @if ($product->stock_status ==1)
-                                    <div> In Stock </div>
+                                    <div class="text-success"> In Stock </div>
                                     @else
-                                    <div> Out Of Stock </div>
+                                    <div class="text-danger"> Out Of Stock </div>
                                     @endif
                                     
                                 </div>

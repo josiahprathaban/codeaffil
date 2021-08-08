@@ -74,8 +74,8 @@
                             <div class="col-sm-12">
                                 <label class="form-control-label text-xs-right"> Affiliate Link: </label>
                                 <input type="text" class="form-control boxed" name="affiliate_link" placeholder="">
-                                @error('brand_id')
-                                <div class="text-danger" role="affiliate_link">{{$message}}</div>
+                                @error('affiliate_link')
+                                <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
 
                                 

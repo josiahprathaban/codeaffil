@@ -19,9 +19,15 @@ class SubCategoryController extends Controller
        
     //     return back()->with('sc_added','Subcategories has been added successfully!');
     // }
-
+// add subcategory
     public function addSubCategorySubmit(Request $request)
     {
+        $validated = $request->validate([
+            'subcategory_id' => 'required',
+            'subcategory_name' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg',
+        ]);
+
         $id = $request->subcategory_id;
         $name = $request->subcategory_name;
         $image = $request->file('image');
@@ -39,13 +45,21 @@ class SubCategoryController extends Controller
 
     public function updateSubCategory(Request $request)
     {
+        $validated = $request->validate([
+            'category_id' => 'required',
+            'subcategory_name' => 'required',
+            'image' => 'image|mimes:jpg,png,jpeg',
+        ]);
+
         $id = $request->subcategory_id;
+        $category_id = $request->category_id;
         $name = $request->subcategory_name;
         $image = $request->file('image');
 
         if($image==null){
             $subcategory = subcategory::find($request->subcategory_id);
             $subcategory ->name = $name;
+            $subcategory ->category_id =$category_id;
             $subcategory ->save();
             return back()->with('sc_updated','Subcategories has been updated successfully!');
         }
@@ -56,6 +70,7 @@ class SubCategoryController extends Controller
 
         $subcategory = subcategory::find($request->subcategory_id);
         $subcategory ->name = $name;
+        $subcategory ->category_id =$category_id;
         $subcategory ->image = $imageName;
         $subcategory ->save();
         return back()->with('sc_updated','Subcategories has been updated successfully!');
@@ -64,35 +79,35 @@ class SubCategoryController extends Controller
     }
 
     //Get All subcategories
-    public function getSubCategories(){
-        $subcategories = DB::table('subcategories')->paginate(5);
+    public function getSubCategories(Request $request){
+        $search = $request->search;
+
+        if(isset($search)){
+            $subcategories = DB::table('subcategories')
+            ->select('subcategories.*','categories.name as category_name',DB::raw('count(products.id) as total_products'), DB::raw('sum(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'), )
+            ->leftJoin('products','products.subcategory_id', '=', 'subcategories.id')
+            ->leftJoin('categories','categories.id', '=', 'subcategories.category_id')
+            ->leftJoin('user_product_logs','user_product_logs.product_id', '=', 'products.id')
+            ->where('subcategories.name', 'LIKE', "%{$search}%")
+            ->groupBy('subcategories.id')
+            ->orderBy('subcategories.id')
+            ->paginate(10);
+        $categories = DB::table('categories')->get();
+        return view('admin.subcategories',compact('subcategories','categories','search'));
+        }
+        else{
+            $subcategories = DB::table('subcategories')
+            ->select('subcategories.*','categories.name as category_name',DB::raw('count(products.id) as total_products'), DB::raw('sum(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'), )
+            ->leftJoin('products','products.subcategory_id', '=', 'subcategories.id')
+            ->leftJoin('categories','categories.id', '=', 'subcategories.category_id')
+            ->leftJoin('user_product_logs','user_product_logs.product_id', '=', 'products.id')
+            ->groupBy('subcategories.id')
+            ->orderBy('subcategories.id')
+            ->paginate(10);
         $categories = DB::table('categories')->get();
         return view('admin.subcategories',compact('subcategories','categories'));
+        }
+        
     }
 
-
-    //delete categories
-    public function deleteSubCategory($id){
-       $subcategories = DB::table('subcategories')->where('id',$id)->cascade();
-
-        // $subcategories =DB::table('subcategories')
-        // ->Join('subcategories','subcategories.id', '=','product.subcategory_id')
-        // ->where('subcategories.id', $id); 
-        // DB::table('subcategories.id')->where('subcategories', $id)->delete();                           
-        // $subcategories->delete();
-
-        // $orders =DB::table('products')
-        // ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
-        // ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
-        // ->where('subcategories.id', $id)
-        // ->delete();
-
-    }
-
-    // public function updateSubCategory(Request $request){
-    //     DB::table('subcategories')->where('id', $request->id)->update([
-    //         'name'=> $request->subcategory_name
-    //     ]);
-    //     return back()->with('sc_updated','Subcategories has been updated successfully!');
-    // }
 }

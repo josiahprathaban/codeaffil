@@ -9,15 +9,23 @@ use App\Models\Hot_deals;
 class HotDealsController extends Controller
 {
 
-    //Get All Products
+    //Get All Hot Deals
     public function getHotDeals()
     {
         $hotdeals = DB::table('hot_deals')->get();
         $products = DB::table('products')->get();
         return view('admin.hot_deals', compact('hotdeals', 'products'));
     }
+
     public function addHotDealSubmit(Request $request)
     {
+        $validated = $request->validate([
+            'product_id' => 'required',
+            'hotdeal_name' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ]);
+        
         $id = $request->product_id;
         $name = $request->hotdeal_name;
         $start_date = $request->start_date;
@@ -34,6 +42,13 @@ class HotDealsController extends Controller
 
     public function updateHotdeal(Request $request)
     {
+        $validated = $request->validate([
+            'product_id' => 'required',
+            'hotdeal_name' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ]);
+
         $product_id = $request->product_id;
         $name = $request->hotdeal_name;
         $start_date = $request->start_date;

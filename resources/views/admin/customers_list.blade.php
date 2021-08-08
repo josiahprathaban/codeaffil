@@ -32,25 +32,29 @@
                             <div class="col-md-6">
                                 <h3 class="title pb-2"> Customers </h3>
                                 <div class="btn-group">
-                                    <select class="c-select form-control boxed">
-                                        <option selected>Sort By:</option>
-                                        <option value="1">A to Z</option>
-                                        <option value="2">Z to A</option>
-                                        <option value="3">Visits</option>
-                                        <option value="4">Views</option>
-                                        <option value="5">Clicks</option>
-
-                                    </select>
+                                    <form class="form-inline" method="POST" action="{{ route('customer.filter')}}">
+                                        @csrf
+                                        <select name="filter" class="c-select form-control boxed">
+                                            <option selected>Sort By:</option>
+                                            <option value="1">A to Z</option>
+                                            <option value="2">Z to A</option>
+                                            <option value="3">Visits</option>
+                                            <option value="4">Views</option>
+                                            <option value="5">Clicks</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-primary m-1">Sort</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="items-search">
-                        <form class="form-inline">
+                        <form class="form-inline" method="POST" action="{{ route('customer.filter')}}">
+                            @csrf
                             <div class="input-group">
-                                <input type="text" class="form-control boxed rounded-s" placeholder="Search for...">
+                                <input type="text" name="search" class="form-control boxed rounded-s" placeholder="Search for...">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-secondary rounded-s" type="button">
+                                    <button class="btn btn-secondary rounded-s" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
@@ -58,6 +62,9 @@
                         </form>
                     </div>
                 </div>
+                @if (isset($search))
+                <h4 class="text-success" >Results for {{$search}}</h4>
+                @endif
                 <section class="section">
                     <div class="row">
                         <div class="col-md-12">
@@ -90,7 +97,7 @@
                                                         <td>{{$customer -> l_name}}</td>
                                                         <td>{{$customer -> email}}</td>
                                                         <td>{{ $customer -> phone_no}}</td>
-                                                        <td>2000</td>
+                                                        <td>{{ $customer -> total_visits}}</td>
                                                         <td>{{ $customer -> total_views}}</td>
                                                         <td>{{ $customer -> total_clicks}}</td>
                                                         <td>29-07-2021</td>
@@ -109,7 +116,7 @@
                     <nav class="text-right pt-3">
                         <ul class="pagination">
                             <li class="page-item">
-                            {{ $customers->links("pagination::bootstrap-4") }}
+                                {{ $customers->links("pagination::bootstrap-4") }}
                             </li>
                         </ul>
                     </nav>

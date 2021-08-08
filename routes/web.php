@@ -19,6 +19,7 @@ use App\Http\Controllers\SlidersController;
 use App\Http\Controllers\ProductsViewController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\SendEmailController;
+use App\Models\Customer;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,25 +54,29 @@ Route::get('/admin', [DashboardController::class, 'dashBoard']);
 
 Route::get('/add-product', [ProductController::class, 'addProduct'])->name('product.add');
 Route::post('/add-product', [ProductController::class, 'addProductSubmit'])->name('product.addsubmit');
-Route::get('/all-products', [ProductController::class, 'getProducts'])->name('product.get');
+Route::get('/all-products', [ProductController::class, 'getProducts']);
+Route::post('/all-products', [ProductController::class, 'getProducts'])->name('product.get');
 Route::get('/single-product/{id}', [ProductController::class, 'getProductById'])->name('product.getbyid');
 Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct'])->name('product.delete');
 Route::get('/edit-product/{id}', [ProductController::class, 'editProduct'])->name('product.edit');
 Route::post('/update-product', [ProductController::class, 'updateProduct'])->name('product.update');
 
-Route::post('/brands', [BrandController::class, 'addBrandSubmit'])->name('brand.addsubmit');
+Route::post('/add-brands', [BrandController::class, 'addBrandSubmit'])->name('brand.addsubmit');
 Route::get('/brands', [BrandController::class, 'getBrands'])->name('brand.get');
+Route::post('/brands', [BrandController::class, 'getBrands'])->name('brand.search');
 Route::get('/delete-brand/{id}', [BrandController::class, 'deleteBrand'])->name('brand.delete');
 // Route::get('/edit-brand/{id}', [BrandController::class, 'editBrand'])->name('brand.edit');
 Route::post('/update-brand', [BrandController::class, 'updateBrand'])->name('brand.update');
 
-Route::post('/categories', [CategoryController::class, 'addCategorySubmit'])->name('category.addsubmit');
+Route::post('/add-categories', [CategoryController::class, 'addCategorySubmit'])->name('category.addsubmit');
 Route::get('/categories', [CategoryController::class, 'getCategories'])->name('category.get');
+Route::post('/categories', [CategoryController::class, 'getCategories'])->name('category.search');
 Route::get('/delete-category/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
 Route::post('/update-category', [CategoryController::class, 'updateCategory'])->name('category.update');
 
-Route::post('/subcategories', [SubCategoryController::class, 'addSubCategorySubmit'])->name('subcategory.addsubmit');
+Route::post('/add-subcategories', [SubCategoryController::class, 'addSubCategorySubmit'])->name('subcategory.addsubmit');
 Route::get('/subcategories', [SubCategoryController::class, 'getSubCategories'])->name('subcategory.get');
+Route::post('/subcategories', [SubCategoryController::class, 'getSubCategories'])->name('subcategories.get');
 Route::get('/delete-subcategory/{id}', [SubCategoryController::class, 'deleteSubCategory'])->name('subcategory.delete');
 Route::post('/update-subcategory', [SubCategoryController::class, 'updateSubCategory'])->name('subcategory.update');
 
@@ -97,6 +102,7 @@ Route::post('/update-sliders', [SlidersController::class, 'updateSlider'])->name
 Route::get('/add', [ProductController::class, 'insert'])->name('pro.add');
 
 Route::get('/all-customers', [UserController::class, 'getCustomers']);
+Route::post('/all-customers', [UserController::class, 'getCustomers'])->name('customer.filter');
 
 
 

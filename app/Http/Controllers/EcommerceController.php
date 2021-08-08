@@ -8,9 +8,14 @@ use App\Models\Ecommerce;
 
 class EcommerceController extends Controller
 {
-    //
+    //add e-commerce 
     public function addEcommerceSubmit(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg',
+        ]);
+
         $id = $request->ecommerce_id;
         $name = $request->ecommerce_name;
         $image = $request->file('image');
@@ -29,7 +34,11 @@ class EcommerceController extends Controller
 
     public function updateEcommerce(Request $request)
     {
-        
+        $validated = $request->validate([
+            'name' => 'required',
+            'image' => 'image|mimes:jpg,png,jpeg',
+        ]);
+
         $name = $request->ecommerce_name;
         $image = $request->file('image');
 

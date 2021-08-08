@@ -34,10 +34,6 @@
                 @endif
                 <div class="auth-content">
                     <p class="text-center">Update Your Information</p>
-
-                    @csrf
-
-                    @if (@isset($user))
                     <form id="signup-form" action="{{route('admin.updateprofile')}}" method="POST">
                         @csrf
                         <div class="profile-pic mb-2">
@@ -84,48 +80,6 @@
                             <button type="submit" class="btn btn-block btn-primary">Update</button>
                         </div>
                     </form>
-                    @else
-                    <form id="signup-form" action="{{route('admin.addprofile')}}" method="POST">
-                        @csrf
-
-                        <div class="form-group">
-
-                            <img src="{{asset('assets\images\user-profile\default.jpg')}}" id="output" width="200" />
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label>First Name</label>
-                                    <input type="text" class="form-control underlined" name="f_name" placeholder="Enter first name" required="">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>Last Name</label>
-                                    <input type="text" class="form-control underlined" name="l_name" placeholder="Enter last name" required="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label>Phone Number</label>
-                                    <input type="text" class="form-control underlined" name="phone_no" placeholder="Enter phone number" required="">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>Email</label>
-                                    <input type="text" disabled value="{{$email}}" class="form-control underlined" name="f_name" placeholder="Enter last name" required="">
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-block btn-primary">Update</button>
-                </div>
-                </form>
-                @endif
-
-
-
-
-
             </div>
         </div>
     </div>

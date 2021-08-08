@@ -124,11 +124,6 @@
                         </div>
                         @endif
                         @endforeach
-                        <div class="form-group row">
-                            <div class="col-sm-12 ">
-                                <a type="submit" class="btn btn-primary float-right"> Submit </a>
-                            </div>
-                        </div>
                 </div>
                 </form>
         </div>

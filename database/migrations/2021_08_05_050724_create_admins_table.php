@@ -20,7 +20,7 @@ class CreateAdminsTable extends Migration
             $table->string('image')->nullable();
             $table->string('l_name')->nullable();
             $table->string('f_name')->nullable();
-
+            $table->timestamps();
 
             $table->foreign('username')->references('username')->on('users');
         });

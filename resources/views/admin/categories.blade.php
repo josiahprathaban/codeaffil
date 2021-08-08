@@ -39,11 +39,15 @@
                         </div>
                     </div>
                     <div class="items-search">
-                        <form class="form-inline">
+                        <form class="form-inline" method="POST" action="{{ route('category.search')}}">
+                            @csrf
                             <div class="input-group">
-                                <input type="text" class="form-control boxed rounded-s" placeholder="Search for...">
+
+                                <input type="text" name="search" class="form-control boxed rounded-s" placeholder="Search for...">
+
+
                                 <span class="input-group-btn">
-                                    <button class="btn btn-secondary rounded-s" type="button">
+                                    <button class="btn btn-secondary rounded-s" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
@@ -79,6 +83,12 @@
                     {{ Session::get('c_updated') }}
                 </div>
                 @endif
+                @foreach ($errors->all() as $message)
+                <div class="alert alert-danger" role="alert">{{$message}}</div>
+                @endforeach
+                @if (isset($search))
+                <h4 class="text-success" >Results for {{$search}}</h4>
+                @endif
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -92,8 +102,9 @@
                                             <thead class="flip-header">
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Categorie Name</th>
-                                                    <th>Total Categories</th>
+                                                    <th>Category Name</th>
+                                                    <th>Total Subcategories</th>
+                                                    <th>Total Products</th>
                                                     <th>Total Clicks</th>
                                                     <th>Manage</th>
                                                 </tr>
@@ -103,26 +114,27 @@
                                                 <tr>
                                                     <th scope="row">{{$category->id}}</th>
                                                     <td>{{$category->name}}</td>
-                                                    <td>500</td>
-                                                    <td>1000</td>
+                                                    <td>{{$category->total_subcategories}}</td>
+                                                    <td>{{$category->total_products}}</td>
+                                                    <td>{{$category->total_clicks}}</td>
                                                     <td>
                                                         <ul class="item-list striped">
                                                             <div class="item-col fixed item-col-actions-dropdown">
                                                                 <div class="item-actions-dropdown">
                                                                     <a class="item-actions-toggle-btn">
                                                                         <span class="inactive">
-                                                                        <a class="edit" href="#" data-toggle="modal" data-target="#modal-add-update-{{$category->id}}">
-                                                                                    <i class="fa fa-pencil-alt"></i>
-                                                                                </a>
+                                                                            <a class="edit" href="#" data-toggle="modal" data-target="#modal-add-update-{{$category->id}}">
+                                                                                <i class="fa fa-pencil-alt"></i>
+                                                                            </a>
                                                                         </span>
                                                                     </a>
                                                                     <div class="item-actions-block">
                                                                         <ul class="item-actions-list">
-                                                                            
+
                                                                             <li>
-                                                                               
+
                                                                             </li>
-                                                                             <div class="modal fade" id="modal-add-update-{{$category->id}}">
+                                                                            <div class="modal fade" id="modal-add-update-{{$category->id}}">
                                                                                 <div class="modal-dialog modal-lg">
                                                                                     <div class="modal-content">
                                                                                         <div class="modal-header">
@@ -175,7 +187,7 @@
                 <nav class="text-right">
                     <ul class="pagination">
                         <li class="page-item">
-                        {{ $categories->links("pagination::bootstrap-4") }}
+                            {{ $categories->links("pagination::bootstrap-4") }}
                         </li>
                     </ul>
                 </nav>

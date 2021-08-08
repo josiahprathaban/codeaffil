@@ -38,19 +38,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="items-search">
-                        <form class="form-inline">
-                            <div class="input-group">
-                                <input type="text" class="form-control boxed rounded-s" placeholder="Search for...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-secondary rounded-s" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
                 </div>
+                <!-- admin list table start -->
                 <section class="section">
                     <div class="row">
                         <div class="col-md-12">
@@ -74,21 +63,18 @@
                                                 <tbody>
                                                     @foreach ( $admins as $admin )
                                                     <tr class="odd gradeX">
-                                                        <td>first name</td>
-                                                        <td>last name</td>
+                                                        <td>{{$admin -> f_name}}</td>
+                                                        <td>{{$admin -> l_name}}</td>
                                                         <td>{{$admin -> username}}</td>
-                                                        <td>{{ $admin->email }}</td>
-
-                                                        <td class="center">0776287184</td>
-
+                                                        <td><a href="mailto:{{$admin -> email}}">{{ $admin->email }}</a></td>
+                                                        <td class="center"><a href="tel:{{$admin -> phone_no}}">{{$admin -> phone_no}}</a></td>
                                                     </tr>
                                                     @endforeach
-
-
                                                 </tbody>
                                             </table>
                                         </div>
                                     </section>
+                                    <!-- admin list table end -->
                                 </div>
                             </div>
                         </div>

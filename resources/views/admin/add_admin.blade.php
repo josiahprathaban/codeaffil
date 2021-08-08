@@ -20,34 +20,48 @@
 <body>
     @include('admin.layouts.header')
     @include('admin.layouts.sidebar')
+    @if (Session::has('admin_added'))
+                <div class="alert alert-success" role="alert">
+                    {{ Session::get('admin_added') }}
+                </div>
+                @endif
     <div class="auth">
         <div class="auth-container">
             <div class="card">
 
                 <div class="auth-content">
                     <p class="text-center">Add New Admin</p>
-                    <form id="signup-form" action="{{route('admin.addsubmit')}}" method="POST" novalidate="">
+                    <form id="signup-form" action="{{route('admin.addsubmit')}}" method="POST" >
                         @csrf
                         <div class="form-group">
-                            <label for="firstname">Name</label>
+                            <label for="firstname">Username</label>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control underlined" name="user_name" id="username" placeholder="Enter Username" required="">
+                                    <input type="text" class="form-control underlined" name="username"  placeholder="Enter Username" >
+                                    @error('username')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control underlined" name="email" id="email" placeholder="Enter email address" required="">
+                            <input type="email" class="form-control underlined" name="email" placeholder="Enter email address" >
+                            @error('email')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input type="password" class="form-control underlined" name="password" id="password" placeholder="Enter password" required="">
+                                    <input id="password" type="password" class="form-control" name="password"  placeholder="Enter password" >
+                                    @error('password')
+                                <div class="text-danger" role="alert">{{$message}}</div>
+                                @enderror
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="password" class="form-control underlined" name="retype_password" id="retype_password" placeholder="Re-type password" required="">
+                                    <input id="retype_password" type="password" class="form-control" name="password_confirmation"  placeholder="Re-type password" >
                                 </div>
                             </div>
                         </div>
