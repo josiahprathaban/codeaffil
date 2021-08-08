@@ -17,82 +17,79 @@ class ProductController extends Controller
         $filter = $request->filter;
         $search = $request->search;
 
-        if(isset($search)){
+        if (isset($search)) {
             $products = DB::table('products')
-            ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
-            ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
-            ->join('product_images', 'products.id', '=', 'product_images.product_id')
-            ->where('products.title', 'LIKE', "%{$search}%")
-            ->groupBy('products.id')
-            ->orderBy('products.id', 'ASC')
-            ->take(10)
-            ->paginate(10);
-        return view('admin.items_list', compact('products','search'));
+                ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
+                ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
+                ->join('product_images', 'products.id', '=', 'product_images.product_id')
+                ->where('products.title', 'LIKE', "%{$search}%")
+                ->groupBy('products.id')
+                ->orderBy('products.id', 'ASC')
+                ->take(10)
+                ->paginate(10);
+            return view('admin.items_list', compact('products', 'search'));
+        } else {
+            switch ($filter) {
+                case 1:
+                    $products = DB::table('products')
+                        ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
+                        ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
+                        ->join('product_images', 'products.id', '=', 'product_images.product_id')
+                        ->groupBy('products.id')
+                        ->orderBy('products.title', 'ASC')
+                        ->take(10)
+                        ->paginate(10);
+                    return view('admin.items_list', compact('products'));
+                    break;
+
+                case 2:
+                    $products = DB::table('products')
+                        ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
+                        ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
+                        ->join('product_images', 'products.id', '=', 'product_images.product_id')
+                        ->groupBy('products.id')
+                        ->orderBy('products.title', 'DESC')
+                        ->take(10)
+                        ->paginate(10);
+                    return view('admin.items_list', compact('products'));
+                    break;
+
+                case 3:
+                    $products = DB::table('products')
+                        ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
+                        ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
+                        ->join('product_images', 'products.id', '=', 'product_images.product_id')
+                        ->groupBy('products.id')
+                        ->orderBy('total_views', 'DESC')
+                        ->take(10)
+                        ->paginate(10);
+                    return view('admin.items_list', compact('products'));
+                    break;
+
+                case 4:
+                    $products = DB::table('products')
+                        ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
+                        ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
+                        ->join('product_images', 'products.id', '=', 'product_images.product_id')
+                        ->groupBy('products.id')
+                        ->orderBy('total_clicks', 'DESC')
+                        ->take(10)
+                        ->paginate(10);
+                    return view('admin.items_list', compact('products'));
+                    break;
+                default:
+                    $products = DB::table('products')
+                        ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
+                        ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
+                        ->join('product_images', 'products.id', '=', 'product_images.product_id')
+                        ->groupBy('products.id')
+                        ->orderBy('products.id', 'ASC')
+                        ->take(10)
+                        ->paginate(10);
+                    return view('admin.items_list', compact('products'));
+                    break;
+            }
         }
-       else{
-        switch ($filter) {
-            case 1:
-                $products = DB::table('products')
-                    ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
-                    ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
-                    ->join('product_images', 'products.id', '=', 'product_images.product_id')
-                    ->groupBy('products.id')
-                    ->orderBy('products.title', 'ASC')
-                    ->take(10)
-                    ->paginate(10);
-                return view('admin.items_list', compact('products'));
-                break;
-
-            case 2:
-                $products = DB::table('products')
-                    ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
-                    ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
-                    ->join('product_images', 'products.id', '=', 'product_images.product_id')
-                    ->groupBy('products.id')
-                    ->orderBy('products.title', 'DESC')
-                    ->take(10)
-                    ->paginate(10);
-                return view('admin.items_list', compact('products'));
-                break;
-
-            case 3:
-                $products = DB::table('products')
-                    ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
-                    ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
-                    ->join('product_images', 'products.id', '=', 'product_images.product_id')
-                    ->groupBy('products.id')
-                    ->orderBy('total_views', 'DESC')
-                    ->take(10)
-                    ->paginate(10);
-                return view('admin.items_list', compact('products'));
-                break;
-
-            case 4:
-                $products = DB::table('products')
-                    ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
-                    ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
-                    ->join('product_images', 'products.id', '=', 'product_images.product_id')
-                    ->groupBy('products.id')
-                    ->orderBy('total_clicks', 'DESC')
-                    ->take(10)
-                    ->paginate(10);
-                return view('admin.items_list', compact('products'));
-                break;
-            default:
-                $products = DB::table('products')
-                    ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
-                    ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
-                    ->join('product_images', 'products.id', '=', 'product_images.product_id')
-                    ->groupBy('products.id')
-                    ->orderBy('products.id', 'ASC')
-                    ->take(10)
-                    ->paginate(10);
-                return view('admin.items_list', compact('products'));
-                break;
-        }
-    }
-
-
     }
 
     //Get All Brands
@@ -145,6 +142,8 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request)
     {
+        $admin_id = DB::table('admins')->where('username', session('user'))
+        ->value('id');
         $request->validate([
             'title' => 'required',
             'short_description' => 'required',
@@ -226,7 +225,7 @@ class ProductController extends Controller
         $product->affiliate_link = $affiliate_link;
         $product->created_at = Carbon::now();
         $product->updated_at = now();
-        $product->updated_by = session('user');
+        $product->updated_by = $admin_id;
         $product->save();
         // $product->images()->save($product_images);
 
@@ -235,8 +234,11 @@ class ProductController extends Controller
 
     public function addProductSubmit(Request $request)
     {
+        $admin_id = DB::table('admins')->where('username', session('user'))
+        ->value('id');
+        
 
-        $validated = $request->validate([
+        $request->validate([
             'title' => 'required',
             'short_description' => 'required',
             'description' => 'required',
@@ -263,7 +265,7 @@ class ProductController extends Controller
         $regular_price = $request->regular_price;
         $sale_price = $request->sale_price;
         $affiliate_link = $request->affiliate_link;
-        
+
 
         $image1 = $request->file('image1');
         $imageName1 = 'assets/images/product/' . $title . time() . '/' . $title . '1.' . $image1->extension();
@@ -300,8 +302,8 @@ class ProductController extends Controller
         $product->affiliate_link = $affiliate_link;
         $product->created_at = Carbon::now();
         $product->updated_at = now();
-        $product->created_by = session('user');
-        $product->updated_by = session('user');
+        $product->created_by = $admin_id;
+        $product->updated_by = $admin_id;
         $product->save();
         $product->images()->save($product_images);
         return back()->with('added', 'Success');

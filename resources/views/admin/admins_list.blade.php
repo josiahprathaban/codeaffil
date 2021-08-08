@@ -9,6 +9,8 @@
     <title> All Admin </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/favicon.png')}}" />
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
     <!-- Place favicon.ico in the root directory -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">

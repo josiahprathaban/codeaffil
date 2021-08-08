@@ -12,7 +12,7 @@ class EcommerceController extends Controller
     public function addEcommerceSubmit(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
+            'ecommerce_name' => 'required',
             'image' => 'required|image|mimes:jpg,png,jpeg',
         ]);
 
@@ -34,7 +34,7 @@ class EcommerceController extends Controller
     public function updateEcommerce(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
+            'ecommerce_name' => 'required',
             'image' => 'image|mimes:jpg,png,jpeg',
         ]);
 
