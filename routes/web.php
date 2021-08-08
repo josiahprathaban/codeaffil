@@ -33,7 +33,8 @@ use App\Models\Customer;
 */
 
 Route::get('/', [IndexController::class, 'index']);
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'login']);
+Route::get('/register', [LoginController::class, 'register']);
 Route::get('/login/redirect', [LoginController::class, 'redirect']);
 Route::get('/compare/{title}', [CompareController::class, 'index']);
 Route::get('/single_product/{id}', [SingleProdecutController::class, 'index']);
@@ -42,6 +43,9 @@ Route::post('/product/searchby', [ProductsViewController::class, 'search']);
 Route::get('/admin', function () {
     return view('admin.dashbord');
 });
+
+Route::get('/user_verified/{email}', [UserController::class, 'verified']);
+Route::get('/email_verify/{email}', [UserController::class, 'verifying']);
 
 Route::get('/contact', [SendEmailController::class, 'index']);
 Route::post('/sendemail/send', [SendEmailController::class, 'send']);
@@ -123,6 +127,7 @@ Route::get('/logout', function(){
         session()->pull('type');
         session()->pull('profile');
         session()->pull('email');
+        session()->pull('varified');
     }
     
     return redirect('/login');
