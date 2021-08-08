@@ -28,6 +28,6 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->from($this->data['email'])->subject('New Customer Equiry')->view('dynamic_email_template')->with('data', $this->data);
+        return $this->from($this->data['email'])->subject($this->data['subject'])->view('dynamic_email_template')->with('data', $this->data);
     }
 }
