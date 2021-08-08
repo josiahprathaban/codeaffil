@@ -126,7 +126,11 @@
                                             @foreach($products as $product)
                                             <td class="pro-addtocart">
                                                 @if(session('user'))
-                                                <a href="{{$product->affiliate_link}}" target="_blank" class="add-to-cart"> Buy Now </a>
+                                                @if(session('varified')==1)
+                                                <a href="{{$product->affiliate_link}}" class="add-to-cart" target="_blank" style="font-size:20px"> Buy </a>
+                                                @else
+                                                <a href="/profile" class="add-to-cart" onClick="alert('Please verify your email!')" style="font-size:20px"> Buy </a>
+                                                @endif
                                                 @else
                                                 <a href="/login/redirect" class="add-to-cart"> Buy Now </a>
                                                 @endif

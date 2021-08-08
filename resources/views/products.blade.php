@@ -70,8 +70,6 @@
                                     <p>Sort By:</p>
                                 </div>
                                 <div class="shop-select">
-                                    <!-- <form action="/products/sortby" method="post"> -->
-                                    <!-- @csrfonchange="this.form.submit()" -->
                                     <select name="filter" id="sorting">
                                         <option value="title_asc">A to Z</option>
                                         <option value="title_desc"> Z to A</option>
@@ -81,7 +79,6 @@
                                         <option value="sale">Sale Products</option>
                                         <option value="stock">In stock</option>
                                     </select>
-                                    <!-- </form> -->
                                 </div>
                             </div>
                             <!-- Right Side End -->
@@ -94,8 +91,8 @@
                             <div class="tab-content jump">
                                 <!-- Tab One Start -->
                                 <div id="shop-1" class="tab-pane active">
-                                    <div class="row sort_view" id="title_asc">
-                                        @foreach($products as $product)
+                                    <div class="row sort_view">
+                                        @foreach($products->sortBy('title') as $product)
                                         <div class="col-xl-3 col-md-4 col-sm-6">
 
                                             <article class="list-product">

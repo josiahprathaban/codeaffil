@@ -114,7 +114,7 @@
                             <div class="contact-title mb-30">
                                 <h2>Get In Touch</h2>
                             </div>
-                            <form class="contact-form-style" id="contact-form" action="{{url('sendemail/send')}}" method="post">
+                            <form class="contact-form-style" id="contact-form" action="{{url('/sendemail/send')}}" method="post">
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-lg-6">

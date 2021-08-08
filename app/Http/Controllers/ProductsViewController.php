@@ -8,13 +8,14 @@ use Illuminate\Routing\Controller;
 
 class ProductsViewController extends Controller
 {
-    public function index($filterby, $value){
+    public function index($filterby, $value)
+    {
         $subcategories = DB::table('subcategories')->get();
         $categories = DB::table('categories')->get();
         $ecommerces = DB::table('ecommerces')->get();
-        
 
-        switch($filterby){
+
+        switch ($filterby) {
             case 'category':
                 $products = $this->getByCategory($value);
                 break;
@@ -40,8 +41,8 @@ class ProductsViewController extends Controller
                 $products = $this->hotDeals();
                 break;
         }
-        
-        return view('products',compact('subcategories','categories', 'ecommerces', 'products', 'value'));
+
+        return view('products', compact('subcategories', 'categories', 'ecommerces', 'products', 'value'));
     }
 
 
@@ -49,10 +50,10 @@ class ProductsViewController extends Controller
     {
         $products = DB::table('products')
             ->select('products.*', 'product_images.image_1',  'ecommerces.name')
-            ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
-            ->join('product_images','products.id', '=', 'product_images.product_id')
-            ->join('subcategories','products.subcategory_id', '=', 'subcategories.id')
-            ->join('categories','subcategories.category_id', '=', 'categories.id')
+            ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
+            ->join('product_images', 'products.id', '=', 'product_images.product_id')
+            ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+            ->join('categories', 'subcategories.category_id', '=', 'categories.id')
             ->where('categories.name', '=', $value)
             ->paginate(20);
 
@@ -63,9 +64,9 @@ class ProductsViewController extends Controller
     {
         $products = DB::table('products')
             ->select('products.*', 'product_images.image_1',  'ecommerces.name')
-            ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
-            ->join('product_images','products.id', '=', 'product_images.product_id')
-            ->join('subcategories','products.subcategory_id', '=', 'subcategories.id')
+            ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
+            ->join('product_images', 'products.id', '=', 'product_images.product_id')
+            ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
             ->where('subcategories.name', '=', $value)
             ->paginate(20);
 
@@ -76,8 +77,8 @@ class ProductsViewController extends Controller
     {
         $products = DB::table('products')
             ->select('products.*', 'product_images.image_1',  'ecommerces.name')
-            ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
-            ->join('product_images','products.id', '=', 'product_images.product_id')
+            ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
+            ->join('product_images', 'products.id', '=', 'product_images.product_id')
             ->where('ecommerces.name', '=', $value)
             ->paginate(20);
 
@@ -86,11 +87,11 @@ class ProductsViewController extends Controller
 
     public function getByPrice($value)
     {
-        $limit = explode(" - ", str_replace('$','', $value));
+        $limit = explode(" - ", str_replace('$', '', $value));
         $products = DB::table('products')
             ->select('products.*', 'product_images.image_1',  'ecommerces.name')
-            ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
-            ->join('product_images','products.id', '=', 'product_images.product_id')
+            ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
+            ->join('product_images', 'products.id', '=', 'product_images.product_id')
             ->where('products.regular_price', '>', $limit[0])
             ->paginate(20);
 
@@ -102,8 +103,8 @@ class ProductsViewController extends Controller
 
         $products = DB::table('products')
             ->select('products.*', 'product_images.image_1',  'ecommerces.name')
-            ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
-            ->join('product_images','products.id', '=', 'product_images.product_id')
+            ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
+            ->join('product_images', 'products.id', '=', 'product_images.product_id')
             ->orderBy('products.updated_at', 'DESC')
             ->paginate(20);
 
@@ -111,12 +112,12 @@ class ProductsViewController extends Controller
     }
 
     public function hotDeals()
-    {    
+    {
         $hotDeals = DB::table('hot_deals')
             ->select('hot_deals.product_id', 'hot_deals.deal_starts', 'hot_deals.deal_ends',  'products.*', 'product_images.image_1',  'ecommerces.name')
-            ->join('products','hot_deals.product_id', '=', 'products.id')
-            ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
-            ->join('product_images','hot_deals.product_id', '=', 'product_images.product_id')
+            ->join('products', 'hot_deals.product_id', '=', 'products.id')
+            ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
+            ->join('product_images', 'hot_deals.product_id', '=', 'product_images.product_id')
             ->paginate(20);
 
         return $hotDeals;
@@ -127,8 +128,8 @@ class ProductsViewController extends Controller
 
         $saleProducts = DB::table('products')
             ->select('products.*', 'product_images.image_1',  'ecommerces.name')
-            ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
-            ->join('product_images','products.id', '=', 'product_images.product_id')
+            ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
+            ->join('product_images', 'products.id', '=', 'product_images.product_id')
             ->orderBy('products.sale_price', 'DESC')
             ->where('products.sale_price', '>', 0)
             ->paginate(20);
@@ -139,26 +140,34 @@ class ProductsViewController extends Controller
     public function suggestedProducts()
     {
 
-        if(session('user')){
-        $customer_id = DB::table('customers')->where('username', session('user'))->value('id');
+        if (session('user')) {
+            $customer_id = DB::table('customers')->where('username', session('user'))->value('id');
 
-        $suggestedProducts = DB::table('products')
-            ->select('products.*', 'product_images.image_1',  'ecommerces.name')
-            ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
-            ->join('product_images','products.id', '=', 'product_images.product_id')
-            ->join('user_product_logs','products.id', '=', 'user_product_logs.product_id')
-            ->orderBy('user_product_logs.no_of_clicks', 'DESC')
-            ->where('user_product_logs.customer_id', '=', $customer_id)
-            ->paginate(20);
-        }
-        else{
             $suggestedProducts = DB::table('products')
-            ->select('products.*', 'product_images.image_1',  'ecommerces.name')
-            ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
-            ->join('product_images','products.id', '=', 'product_images.product_id')
-            ->join('user_product_logs','products.id', '=', 'user_product_logs.product_id')
-            ->orderBy('user_product_logs.no_of_clicks', 'DESC')
-            ->paginate(20);
+                ->select('products.*', 'product_images.image_1',  'ecommerces.name')
+                ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
+                ->join('product_images', 'products.id', '=', 'product_images.product_id')
+                ->join('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
+                ->orderBy('user_product_logs.no_of_clicks', 'DESC')
+                ->where('user_product_logs.customer_id', '=', $customer_id)
+                ->paginate(20);
+            if ($suggestedProducts->total() == 0) {
+                $suggestedProducts = DB::table('products')
+                    ->select('products.*', 'product_images.image_1',  'ecommerces.name')
+                    ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
+                    ->join('product_images', 'products.id', '=', 'product_images.product_id')
+                    ->join('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
+                    ->orderBy('user_product_logs.no_of_clicks', 'DESC')
+                    ->paginate(20);
+            }
+        } else {
+            $suggestedProducts = DB::table('products')
+                ->select('products.*', 'product_images.image_1',  'ecommerces.name')
+                ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
+                ->join('product_images', 'products.id', '=', 'product_images.product_id')
+                ->join('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
+                ->orderBy('user_product_logs.no_of_clicks', 'DESC')
+                ->paginate(20);
         }
 
         return $suggestedProducts;
@@ -171,43 +180,41 @@ class ProductsViewController extends Controller
         $categories = DB::table('categories')->get();
         $ecommerces = DB::table('ecommerces')->get();
 
-        if (str_contains($request->category, 'sub')) { 
-            $subcategory = str_replace('sub','', $request->category);
+        if (str_contains($request->category, 'sub')) {
+            $subcategory = str_replace('sub', '', $request->category);
         }
 
-        if($request->category == -1){
+        if ($request->category == -1) {
             $products = DB::table('products')
                 ->select('products.*', 'product_images.image_1',  'ecommerces.name')
-                ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
-                ->join('product_images','products.id', '=', 'product_images.product_id')
-                ->join('subcategories','products.subcategory_id', '=', 'subcategories.id')
+                ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
+                ->join('product_images', 'products.id', '=', 'product_images.product_id')
+                ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
                 ->where('products.title', 'like', '%' . $request->value . '%')
                 ->paginate(20);
-        }
-        elseif (str_contains($request->category, 'sub')) { 
-            $subcategory = str_replace('sub','', $request->category);
+        } elseif (str_contains($request->category, 'sub')) {
+            $subcategory = str_replace('sub', '', $request->category);
 
             $products = DB::table('products')
                 ->select('products.*', 'product_images.image_1',  'ecommerces.name')
-                ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
-                ->join('product_images','products.id', '=', 'product_images.product_id')
-                ->join('subcategories','products.subcategory_id', '=', 'subcategories.id')
+                ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
+                ->join('product_images', 'products.id', '=', 'product_images.product_id')
+                ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
                 ->where('subcategories.id', '=', $subcategory)
                 ->where('products.title', 'like', '%' . $request->value . '%')
                 ->paginate(20);
-        }
-        else{
+        } else {
             $products = DB::table('products')
                 ->select('products.*', 'product_images.image_1',  'ecommerces.name')
-                ->join('ecommerces','products.ecommerce_id', '=', 'ecommerces.id')
-                ->join('product_images','products.id', '=', 'product_images.product_id')
-                ->join('subcategories','products.subcategory_id', '=', 'subcategories.id')
-                ->join('categories','subcategories.category_id', '=', 'categories.id')
+                ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
+                ->join('product_images', 'products.id', '=', 'product_images.product_id')
+                ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+                ->join('categories', 'subcategories.category_id', '=', 'categories.id')
                 ->where('categories.id', '=', $request->category)
                 ->where('products.title', 'like', '%' . $request->value . '%')
                 ->paginate(20);
         }
 
-        return view('products',compact('subcategories','categories', 'ecommerces', 'products'));
+        return view('products', compact('subcategories', 'categories', 'ecommerces', 'products'));
     }
 }

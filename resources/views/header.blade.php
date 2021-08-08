@@ -21,7 +21,7 @@
                                 <a href="/login">Login</a>
                             </li>
                             <li>
-                                <a href="/login">Register Now</a>
+                                <a href="/register">Register Now</a>
                             </li>
                         </ul>
                         @else
@@ -57,7 +57,7 @@
                 <!-- Logo Start -->
                 <div class="col-md-4 col-sm-4">
                     <div class="logo">
-                        <a href="/"><img src="{{ asset('assets/images/logo/logo.jpg')}}" alt="" /></a>
+                        <a href="/"><img src="{{ asset('assets/images/logo/logo.jpg')}}" alt=""  width="182px"/></a>
                     </div>
                 </div>
                 <!-- Logo End -->

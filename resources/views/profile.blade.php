@@ -5,24 +5,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Ecolife - Multipurpose eCommerce HTML Template</title>
+    <title>Codeaffil</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/favicon.png')}}" />
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800&display=swap" rel="stylesheet" />
-
     <!-- All CSS Flies   -->
     <!--===== Vendor CSS (Bootstrap & Icon Font) =====-->
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/vendor/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/css/vendor/ionicons.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/vendor/font-awesome.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/vendor/ionicons.min.css')}}" />
     <!--===== Plugins CSS (All Plugins Files) =====-->
-    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/meanmenu.css" />
-    <link rel="stylesheet" href="assets/css/plugins/nice-select.css" />
-    <link rel="stylesheet" href="assets/css/plugins/owl-carousel.css" />
-    <link rel="stylesheet" href="assets/css/plugins/slick.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/jquery-ui.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/meanmenu.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/nice-select.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/owl-carousel.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css')}}" />
 
     <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
 
@@ -32,9 +31,9 @@
         <link rel="stylesheet" href="assets/css/responsive.min.css"> -->
 
     <!--===== Main Css Files =====-->
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}" />
     <!-- ===== Responsive Css Files ===== -->
-    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css')}}" />
 </head>
 
 <body>
@@ -53,23 +52,6 @@
         <!-- Header Start -->
         @include('header')
         <!-- Header End -->
-        <!-- Breadcrumb Area start -->
-        <section class="breadcrumb-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="breadcrumb-content">
-                            <h1 class="breadcrumb-hrading">Account Page</h1>
-                            <ul class="breadcrumb-links">
-                                <li><a href="index.html">Home</a></li>
-                                <li>My Account</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Breadcrumb Area End -->
         <!-- account area start -->
         <div class="checkout-area mtb-60px">
             <div class="container">
@@ -77,6 +59,8 @@
                     <div class="mx-auto col-lg-9">
                         <div class="checkout-wrapper">
                             <div id="faq" class="panel-group">
+
+
 
                                 <!-- Image upload start -->
                                 <form action="_profile_upload" method="post" enctype="multipart/form-data">
@@ -98,6 +82,12 @@
                                         <h4>{{$user->username}}</h4>
                                         <h5>{{$email}}</h5>
                                     </div>
+                                    @if($email_verified == 0)
+                                    <div class="alert alert-warning alert-block text-center">
+                                        You din't verify your email account yet! Please Verify youe email.
+                                        <a href="/email_verify/{{$email}}">Verify Now</a>
+                                    </div>
+                                    @endif
                                 </form>
                                 <!-- Image upload end  -->
 
@@ -178,15 +168,16 @@
                                                         <div class="col-lg-12 col-md-12">
                                                             <div class="billing-info">
                                                                 <label>New Password</label>
-                                                                <input type="password" name="new_password" />
+                                                                <input id="password" type="password" name="new_password" minlength="8" required />
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12 col-md-12">
                                                             <div class="billing-info">
                                                                 <label>New Password Confirm</label>
-                                                                <input type="password" />
+                                                                <input id="confirm_password" type="password" minlength="8" required />
                                                             </div>
                                                         </div>
+                                                        <span id='message'></span>
                                                     </div>
                                                     <div class="billing-back-btn">
                                                         <div class="billing-back">
@@ -247,6 +238,20 @@
 
     <!-- profile pic js -->
     <script>
+        var password = document.getElementById("password"),
+            confirm_password = document.getElementById("confirm_password");
+
+        function validatePassword() {
+            if (password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+
         var loadFile = function(event) {
             var image = document.getElementById('output');
             image.src = URL.createObjectURL(event.target.files[0]);

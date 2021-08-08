@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Codeaffil</title>
+    <title>Codeaffil | Login</title>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/favicon.png')}}" />
 
@@ -63,10 +63,10 @@
                     <div class="col-md-6 mx-auto">
                         <div class="login-register-wrapper">
                             <div class="login-register-tab-list nav">
-                                <a class="active" data-bs-toggle="tab" href="#lg1">
+                                <a class="active"  href="/login">
                                     <h4>login</h4>
                                 </a>
-                                <a data-bs-toggle="tab" href="#lg2">
+                                <a  href="/register">
                                     <h4>register</h4>
                                 </a>
                             </div>
@@ -79,8 +79,8 @@
                                                 @if(isset($redirect))
                                                 <input type="hidden" name="redirect" value="{{$redirect}}" />
                                                 @endif
-                                                <input type="text" name="name" placeholder="Username/email" />
-                                                <input type="password" name="password" placeholder="Password" />
+                                                <input type="text" name="name" placeholder="Username/email" required />
+                                                <input type="password" name="password" placeholder="Password" required />
                                                 <div style="color:#ef1e1e">{{session('msg')}}</div>
                                                 <div class="button-box">
                                                     <div class="login-toggle-btn">
@@ -92,24 +92,6 @@
                                                     <button type="submit"><span>Login</span></button>
 
 
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="lg2" class="tab-pane">
-                                    <div class="login-form-container">
-                                        <div class="login-register-form">
-                                            <form action="/_register" method="post">
-                                                @csrf
-                                                @if(isset($redirect))
-                                                <input type="hidden" name="redirect" value="{{$redirect}}" />
-                                                @endif
-                                                <input type="text" name="name" placeholder="Username" />
-                                                <input type="password" name="password" placeholder="Password" />
-                                                <input name="email" placeholder="Email" type="email" />
-                                                <div class="button-box">
-                                                    <button type="submit"><span>Register</span></button>
                                                 </div>
                                             </form>
                                         </div>

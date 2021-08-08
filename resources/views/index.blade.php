@@ -58,11 +58,11 @@
             <div class="slider-active-3 owl-carousel slider-hm8 owl-dot-style">
                 @foreach($sliders as $slider)
                 <!-- Slider Single Item Start -->
-                <div class="slider-height-6 d-flex align-items-start justify-content-start bg-img" style="background-image: url({{ asset($slider -> image)}});">
+                <div class="slider-height-6 d-flex align-items-start justify-content-start bg-img" style="background-image: url('{{ asset($slider -> image)}}');">
                     <div class="container">
                         <div class="slider-content-2 slider-animated-1 text-left">
                             <span class="animated" style="text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);">CODEAFFIL</span>
-                            <h1 class="animated col-sm-5 col-7" style="color:#fff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);">
+                            <h1 class="animated col-sm-5 col-7" style="color:#fff; text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);">
                                 {{$slider -> description}}
                             </h1>
                             <a href="#shopnow" class="shop-btn animated">SHOP NOW</a>
@@ -573,7 +573,7 @@
                 <div class="brand-slider owl-carousel owl-nav-style owl-nav-style-2">
                     @foreach($ecommerces as $ecommerce)
                     <div class="brand-slider-item">
-                        <a href="products/ecommerce/{{$ecommerce->name}}"><img src="{{ asset($ecommerce->logo)}}" alt="" /></a>
+                        <a href="products/ecommerce/{{$ecommerce->name}}"><img src="{{ asset($ecommerce->logo)}}" style="max-height:80px" alt="" /></a>
                     </div>
                     @endforeach
                 </div>

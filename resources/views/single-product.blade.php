@@ -118,7 +118,11 @@
                             <div class="pro-details-quality mt-0px">
                                 <div class="pro-details-cart btn-hover">
                                     @if(session('user'))
+                                    @if(session('varified')==1)
                                     <a href="{{$product->affiliate_link}}" target="_blank" style="font-size:20px"> Buy </a>
+                                    @else
+                                    <a href="/profile" onClick="alert('Please verify your email!')" style="font-size:20px"> Buy </a>
+                                    @endif
                                     @else
                                     <a href="/login/redirect" onClick="alert('Login to Continue!')" style="font-size:20px"> Buy </a>
                                     @endif
@@ -295,7 +299,7 @@
                         <!-- Section Title -->
                         <div class="section-title">
                             <h2>You Might Also Like</h2>
-                            <p>Add Related products to weekly line up</p>
+                            <p>Suggested for you, you might love these! | <a href="/products/suggestedProducts/all">View all</a></p>
                         </div>
                         <!-- Section Title -->
                     </div>
@@ -354,7 +358,7 @@
                         <!-- Section Title -->
                         <div class="section-title">
                             <h2>In The Same Category</h2>
-                            <p>{{count($sameCategoryProducts) - 1}} other products in the same category:</p>
+                            <p>{{count($sameCategoryProducts) - 1}} other products in the same category | <a href="/products/subcategory/{{$product->subcategory}}">View all</a></p>
                         </div>
                         <!-- Section Title -->
                     </div>
