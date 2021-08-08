@@ -34,20 +34,29 @@
                 @endif
                 <div class="auth-content">
                     <p class="text-center">Update Your Information</p>
+                      <!-- Image upload start -->
+                      <form action="{{route('admin.uploadprofile')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="profile-pic mb-2">
+                                        <label class="-label" for="file">
+                                            <span class="glyphicon glyphicon-camera"></span>
+                                            <span>Change Image</span>
+                                        </label>
+                                        <input id="file" name="file" type="file" onchange="loadFile(event)" />
+                                        @if($user->image === NULL)
+                                        <img src="assets\images\user-profile\default.jpg" id="output" width="200" />
+                                        @else
+                                        <img src="{{$user->image}}" id="output" width="200" />
+                                        @endif
+                                    </div>
+                                    <div class="xname mb-3">
+                                        <input type="submit" value="Save Changes" class="btn btn-primary btn-sm mb-3" id="save_profile">
+                                        <h4>{{$user->username}}</h4>
+                                    </div>
+                                </form>
+                                <!-- Image upload end  -->
                     <form id="signup-form" action="{{route('admin.updateprofile')}}" method="POST">
                         @csrf
-                        <div class="profile-pic mb-2">
-                            <label class="-label" for="file">
-                                <span class="glyphicon glyphicon-camera"></span>
-                                <span>Change Image</span>
-                            </label>
-                            <input id="file" name="file" type="file" onchange="loadFile(event)" />
-                            @if($user->image === NULL)
-                            <img src="{{asset('assets\images\user-profile\default.jpg')}}" id="output" width="50%" />
-                            @else
-                            <img src="{{$user->image}}" id="output" width="200" />
-                            @endif
-                        </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-6">

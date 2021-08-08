@@ -14,9 +14,7 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-
 </head>
-
 <body>
     <div class="main-wrapper">
         <div class="app" id="app">
@@ -32,8 +30,6 @@
                             <div class="col-md-6">
                                 <h3 class="title"> Admins
                                     <a href="/admin" class="btn btn-primary btn-sm rounded-s"> Add New Admin</a>
-                                    <!--
-				 -->
                                 </h3>
                             </div>
                         </div>
@@ -85,10 +81,7 @@
     </div>
     </div>
     </section>
-
-
     </article>
-
     <div class="modal fade" id="modal-media">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -171,21 +164,6 @@
             <div class="color-secondary"></div>
         </div>
     </div>
-    <script>
-        (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '../../www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-80463319-4', 'auto');
-        ga('send', 'pageview');
-    </script>
     <script src="{{ asset('js/')}}/vendor.js"></script>
     <script src="{{ asset('js/')}}/app.js"></script>
 </body>
