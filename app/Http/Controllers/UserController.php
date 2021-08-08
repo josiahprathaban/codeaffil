@@ -222,24 +222,10 @@ else{
     }
     }
 
-    // get all customers
-    public function getCustomers()
-    {
-        $customers = DB::table('users')
-            ->select('users.email', 'customers.*', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
-            ->join('customers', 'customers.username', '=', 'users.username')
-            ->leftJoin('user_product_logs', 'user_product_logs.customer_id', '=', 'customers.id')
-            ->groupBy('users.username')
-            ->paginate(5);
-        return view('admin.customers_list', compact('customers'));
-    }
-
-    //Add admin
-    public function addAdmin()
-    {
+     //Add admin view
+     public function addAdmin(){
         return view('admin.add_admin');
     }
-
 
 
    //get all admins
