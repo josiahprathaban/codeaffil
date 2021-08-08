@@ -28,8 +28,6 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
 
-            $table->foreign('created_by')->references('id')->on('admins');
-            $table->foreign('updated_by')->references('id')->on('admins');
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->foreign('subcategory_id')->references('id')->on('subcategories');
             $table->foreign('ecommerce_id')->references('id')->on('ecommerces');
