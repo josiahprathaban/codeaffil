@@ -226,6 +226,7 @@ class ProductController extends Controller
         $product->affiliate_link = $affiliate_link;
         $product->created_at = Carbon::now();
         $product->updated_at = now();
+        $product->updated_by = session('user');
         $product->save();
         // $product->images()->save($product_images);
 
@@ -262,6 +263,7 @@ class ProductController extends Controller
         $regular_price = $request->regular_price;
         $sale_price = $request->sale_price;
         $affiliate_link = $request->affiliate_link;
+        
 
         $image1 = $request->file('image1');
         $imageName1 = 'assets/images/product/' . $title . time() . '/' . $title . '1.' . $image1->extension();
@@ -298,6 +300,8 @@ class ProductController extends Controller
         $product->affiliate_link = $affiliate_link;
         $product->created_at = Carbon::now();
         $product->updated_at = now();
+        $product->created_by = session('user');
+        $product->updated_by = session('user');
         $product->save();
         $product->images()->save($product_images);
         return back()->with('added', 'Success');
