@@ -269,6 +269,18 @@ class UserController extends Controller
         return view('admin.profile', compact('user', 'email'));
     }
 
+    //get admin details
+    public function getadminById($id)
+    {
+        $admin = DB::table('admins')
+            ->where('id', $id)
+            ->select('admins.*', 'users.email')
+            ->join('users', 'admins.username', '=', 'users.username')
+            ->first();
+
+        return view('admin.view_profile', compact('admin'));
+    }
+
     function admin_info_add(Request $request)
     {
         DB::table('admins')
@@ -353,7 +365,7 @@ class UserController extends Controller
                 ->update([
                     'email' => $email,
                 ]);
-                
+
             $data = array(
                 'link'      =>  url('/') . "/user_verified/" . Crypt::encryptString($request->email),
                 'email'   =>   $email
