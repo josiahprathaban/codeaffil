@@ -84,13 +84,43 @@
                                     </div>
                                     @if($email_verified == 0)
                                     <div class="alert alert-warning alert-block text-center">
-                                        You din't verify your email account yet! Please Verify youe email.
-                                        <a href="/email_verify/{{$email}}">Verify Now</a>
+                                        You din't verify your email account yet! Please Verify your email.
+                                        <a href="/email_verify/{{$email}}">Verify Now</a>. If you entered a wrong email address <a href="#" id="update_email"> Update Now </a>
+                                        <div style="color:#ef1e1e">{{session('msg')}}</div>
                                     </div>
                                     @endif
                                 </form>
                                 <!-- Image upload end  -->
+                                
 
+                                <div class="panel panel-default single-my-account" id="updater_email" style="display: none;">
+                                    <form action="_change_email" method="post">
+                                        @csrf
+                                        <div id="my-account-1" class="panel-collapse collapse show">
+                                            <div class="panel-body">
+                                                <div class="myaccount-info-wrapper">
+                                                <div class="account-info-wrapper">
+                                                        <h4>Update email address</h4>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12">
+                                                            <div class="billing-info">
+                                                                <label>Correct email address</label>
+                                                                <input type="email" name="new_email" placeholder="enter your email address correctly" />
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="billing-back-btn">
+                                                        <div></div>
+                                                        <div class="billing-btn">
+                                                            <button type="submit">Continue</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                                 <div class="panel panel-default single-my-account">
                                     <div class="panel-heading my-account-title">
                                         <h3 class="panel-title"><span>1 .</span> <a data-bs-toggle="collapse" data-parent="#faq" href="#my-account-1">Edit your account information </a></h3>

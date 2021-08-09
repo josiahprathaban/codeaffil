@@ -342,6 +342,28 @@ class UserController extends Controller
         return back();
     }
 
+    function email_update(Request $request)
+    {
+        $email = $request->new_email;
+        if (DB::table('users')->where('email', $email)->exists()) {
+            return back()->with('msg', "Email already in use, if that is you please verify.");
+        } else {
+            DB::table('users')
+                ->where('username', session('user'))
+                ->update([
+                    'email' => $email,
+                ]);
+                
+            $data = array(
+                'link'      =>  url('/') . "/user_verified/" . Crypt::encryptString($request->email),
+                'email'   =>   $email
+            );
+
+            Mail::to($email)->send(new VarifyMail($data));
+            return view('verify_message');
+        }
+    }
+
     public function getUserProfile()
     {
         $subcategories = DB::table('subcategories')->get();

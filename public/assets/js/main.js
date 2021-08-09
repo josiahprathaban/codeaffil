@@ -1145,7 +1145,9 @@
 
     })
 
-
+    $('#update_email').on('click', function(){
+        $('#updater_email').show()
+    })
  
 
 }(jQuery)); 
