@@ -127,7 +127,7 @@
                                             <td class="pro-addtocart">
                                                 @if(session('user'))
                                                 @if(session('varified')==1)
-                                                <a href="{{$product->affiliate_link}}" class="add-to-cart" target="_blank" style="font-size:20px"> Buy </a>
+                                                <a href="/singleproduct/redirect/{{$product->id}}" target="_blank" class="add-to-cart" style="font-size:20px"> Buy </a>
                                                 @else
                                                 <a href="/profile" class="add-to-cart" onClick="alert('Please verify your email!')" style="font-size:20px"> Buy </a>
                                                 @endif

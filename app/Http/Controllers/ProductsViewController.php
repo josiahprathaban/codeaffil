@@ -144,7 +144,7 @@ class ProductsViewController extends Controller
             $customer_id = DB::table('customers')->where('username', session('user'))->value('id');
 
             $suggestedProducts = DB::table('products')
-                ->select('producFts.*', 'product_images.image_1',  'ecommerces.name')
+                ->select('products.*', 'product_images.image_1',  'ecommerces.name')
                 ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
                 ->join('product_images', 'products.id', '=', 'product_images.product_id')
                 ->join('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')

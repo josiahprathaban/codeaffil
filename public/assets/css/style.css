@@ -7709,6 +7709,27 @@ h3.cart-page-title {
     outline: none;
     font-weight: 700;
 }
+
+.xbutton{
+    position: relative;
+    background-color: #4fb68d;
+    color: #fff;
+    border-radius: 30px;
+    display: inline-block;
+    width: 170px;
+    padding: 12px 25px 12px 25px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    font-weight: 700;
+    border: none;
+    outline: none;
+}
+
+.xbutton:hover{
+    background-color: #253237;
+}
 .compare-table .table tbody tr td.pro-addtocart .add-to-cart:hover {
     background-color: #253237;
 }

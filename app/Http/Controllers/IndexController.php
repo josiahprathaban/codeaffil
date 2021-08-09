@@ -9,9 +9,8 @@ class IndexController extends Controller
 
     public function index()
     {
-        
+        $customer_id = DB::table('customers')->where('username', session('user'))->value('id');
         if (session('type') == 'customer') {
-            $customer_id = DB::table('customers')->where('username', session('user'))->value('id');
             if (DB::table('customer_logs')->where('customer_id', $customer_id)->exists()) {
                 DB::table('customer_logs')
                     ->where('customer_id', $customer_id)
@@ -51,17 +50,6 @@ class IndexController extends Controller
             ->get();
 
         return $popularCategories;
-
-
-        // category product count
-        // $popularCategories = DB::table('subcategories')
-        // ->select('subcategories.id', 'subcategories.name', 'subcategories.image', DB::raw('COUNT(products.subcategory_id) as counts'))
-        // ->leftJoin('products','subcategories.id', '=', 'products.subcategory_id')
-        // ->groupBy('subcategories.id')
-        // ->orderBy('counts', 'DESC')
-        // ->take(6)
-        // ->get();
-
     }
 
     public function saleProducts()
