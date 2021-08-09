@@ -122,7 +122,7 @@ class IndexController extends Controller
     public function hotDeals()
     {
         $hotDeals = DB::table('hot_deals')
-            ->select('hot_deals.product_id', 'hot_deals.deal_starts', 'hot_deals.deal_ends',  'products.*', 'product_images.image_1',  'ecommerces.name')
+            ->select('hot_deals.product_id', 'hot_deals.deal_starts', 'hot_deals.deal_ends', 'hot_deals.deal_title',  'products.*', 'product_images.image_1',  'ecommerces.name')
             ->join('products', 'hot_deals.product_id', '=', 'products.id')
             ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
             ->join('product_images', 'hot_deals.product_id', '=', 'product_images.product_id')

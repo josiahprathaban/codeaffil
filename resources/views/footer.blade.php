@@ -43,7 +43,6 @@
                                 <li><a href="/products/sales/all">Best Sales</a></li>
                                 <li><a href="/products/hotdeals/all">Hot Deals</a></li>
                                 <li><a href="/login">Login</a></li>
-                                <li><a href="/profile">My Profile</a></li>
                             </ul>
                         </div>
                     </div>
@@ -70,7 +69,7 @@
                                     <a href="#"><i class="ion-social-instagram"></i></a>
                                 </li>
                                 <br /><br />
-                                <li><a href="/profile">Contact Us</a></li>
+                                <li><a href="/contact">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>
