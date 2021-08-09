@@ -31,6 +31,7 @@ class EcommerceController extends Controller
         return back()->with('ec_added', 'Ecommerce has been added successfully!');
     }
 
+    //update
     public function updateEcommerce(Request $request)
     {
         $validated = $request->validate([
@@ -59,10 +60,18 @@ class EcommerceController extends Controller
         }
     }
 
-    //Get All subcategories
+    //Get All ecommerces
     public function getEcommerces()
     {
-        $ecommerces = DB::table('ecommerces')->get();
+       
+        $ecommerces = DB::table('ecommerces')
+        ->select('ecommerces.*', DB::raw('count(products.id) as total_products'), DB::raw('sum(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
+        ->leftJoin('products', 'products.ecommerce_id', '=', 'ecommerces.id')
+        ->leftJoin('user_product_logs', 'user_product_logs.product_id', '=', 'products.id')
+        ->groupBy('ecommerces.id')
+        ->orderBy('ecommerces.id')
+        ->paginate(10);
+        
         return view('admin.ecommerce', compact('ecommerces'));
     }
 }

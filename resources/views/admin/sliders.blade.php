@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> All SubCategories </title>
+    <title> Sliders </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -33,9 +33,10 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h3 class="title"> Home Page Sliders
+                                    @if ($count < 4)
                                     <a href="#" data-toggle="modal" data-target="#modal-add-ecommece" class="btn btn-primary btn-sm rounded-s"> Add New </a>
-                                    <!--
-				 -->
+                                    @endif
+                                   
                                 </h3>
                             </div>
                         </div>
@@ -143,14 +144,11 @@
                     </div>
                     <!-- /.row -->
                 </section>
-
-
                 <nav class="text-right">
                     <ul class="pagination">
                         <li class="page-item">
                             {{ $sliders->links("pagination::bootstrap-4") }}
                         </li>
-
                     </ul>
                 </nav>
             </article>
@@ -167,17 +165,11 @@
                         <div class="card card-block sameheight-item">
                             <form role="form" method="post" enctype="multipart/form-data" action="{{route('add.slider')}}">
                                 @csrf
-
-
-
-
                                 <div class="form-group">
                                     <label>Description:</label>
-
                                     <textarea class="form-control boxed" name="description" id="" rows="4"></textarea>
                                 </div>
                                 <div class="form-group ">
-
                                 </div>
                                 <div class="form-group">
                                     <label> Image: </label>
@@ -190,8 +182,6 @@
                             </form>
                         </div>
                     </div>
-
-
                     <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->

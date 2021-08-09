@@ -42,19 +42,7 @@
                     </div>
 
                 </div>
-                <!-- <div class="col-md-6 mx-auto">
-                                <div class="card card-block sameheight-item">
-                                    
-                                            <form role="form" method="post" action="{{ route('brand.addsubmit')}}">
-                                    @csrf
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Brand</label>
-                                            <input type="text" name="brand_name" class="form-control" id="exampleInputEmail1" placeholder="Enter Brand Name"> </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Add</button>
-                                        </div>
-                                    </form>
-                                </div> -->
+              
                 @if (Session::has('sc_added'))
                 <div class="alert alert-success" role="alert">
                     {{ Session::get('ec_added') }}
@@ -97,8 +85,8 @@
                                             <th scope="row">{{$ecommerce->id}}</th>
                                             <td><img src="{{$ecommerce->logo}}" alt="" style="max-width:60px;"></td>
                                             <td>{{$ecommerce->name}}</td>
-                                            <td>500</td>
-                                            <td>1000</td>
+                                            <td>{{$ecommerce->total_products}}</td>
+                                            <td>{{$ecommerce->total_clicks}}</td>
                                             <td>
                                                 <ul class="item-list striped">
                                                     <div class="item-col fixed item-col-actions-dropdown">

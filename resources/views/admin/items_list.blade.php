@@ -13,7 +13,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/favicon.png')}}" />
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
     <!-- Place favicon.ico in the root directory -->
-    <link rel="stylesheet"  href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
@@ -33,21 +33,21 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h3 class="title"> Items
-                                    <a href="/add-product" class="btn btn-primary btn-sm rounded-s"> Add New </a>
+                                    <a href="/admin/add-product" class="btn btn-primary btn-sm rounded-s"> Add New </a>
                                     <!--
 				 -->
                                 </h3>
                                 <div class="btn-group">
                                     <form class="form-inline" method="POST" action="{{ route('product.get')}}">
                                         @csrf
-                                    <select name="filter"  class="c-select form-control boxed">
-                                        <option selected>Sort By:</option>
-                                        <option value="1">A to Z</option>
-                                        <option value="2">Z to A</option>
-                                        <option value="3">Views</option>
-                                        <option value="4">Clicks</option>
-                                    </select>
-                                    <button type="submit" class="btn btn-primary m-1">Sort</button>
+                                        <select name="filter" class="c-select form-control boxed">
+                                            <option selected>Sort By:</option>
+                                            <option value="1">A to Z</option>
+                                            <option value="2">Z to A</option>
+                                            <option value="3">Views</option>
+                                            <option value="4">Clicks</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-primary m-1">Sort</button>
                                     </form>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                 </div>
                 @endif
                 @if (isset($search))
-                <h4 class="text-success" >Results for {{$search}}</h4>
+                <h4 class="text-success">Results for {{$search}}</h4>
                 @endif
                 @foreach ($products as $product )
                 <div class="card items">
@@ -122,17 +122,13 @@
                             <div class="item-row">
                                 <div class="item-col fixed item-col-img md">
                                     <a href="item-editor.html">
-                                        
-                                        
-                                                    
-                                                    <img  width="100%" src="{{ asset($product->image_1) }}" alt="">
-                                                    
+                                        <img width="100%" src="{{ asset($product->image_1) }}" alt="">
                                     </a>
                                 </div>
                                 <div class="item-col fixed pull-left item-col-title">
                                     <div class="item-heading">Title</div>
                                     <div>
-                                        <a href="/single-product/{{ $product->id }}" class="">
+                                        <a href="/admin/single-product/{{ $product->id }}" class="">
                                             <h4 class="item-title">{{$product->title}}</h4>
                                         </a>
                                     </div>
@@ -152,7 +148,7 @@
                                     @else
                                     <div class="text-danger"> Out Of Stock </div>
                                     @endif
-                                    
+
                                 </div>
                                 <div class="item-col item-col-date no-overflow">
                                     <div class="item-heading">Ecommers</div>
@@ -168,19 +164,19 @@
                                     <div class="item-actions-dropdown">
                                         <a class="item-actions-toggle-btn">
                                             <span class="inactive">
-                                            <a class="edit" href="/edit-product/{{$product->id}}">
-                                                        <i class="fa fa-pencil-alt"></i>
-                                                    </a>
+                                                <a class="edit" href="/admin/edit-product/{{$product->id}}">
+                                                    <i class="fa fa-pencil-alt"></i>
+                                                </a>
                                             </span>
-                                            <a class="edit"href="/single-product/{{ $product->id }}">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
+                                            <a class="edit" href="/admin/single-product/{{ $product->id }}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
                                         </a>
                                         <div class="item-actions-block">
                                             <ul class="item-actions-list">
-                                               
+
                                                 <li>
-                                                    
+
                                                 </li>
                                             </ul>
                                         </div>
@@ -192,14 +188,14 @@
                     </ul>
                 </div>
                 @endforeach
-               
+
                 <nav class="text-right">
                     <ul class="pagination">
-                    {{ $products->links("pagination::bootstrap-4") }}
+                        {{ $products->links("pagination::bootstrap-4") }}
                     </ul>
                 </nav>
             </article>
-           
+
 
         </div>
     </div>

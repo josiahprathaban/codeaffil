@@ -11,8 +11,11 @@ class SlidersController extends Controller
     //get all sliders
     public function Sliders()
     {
-        $sliders = DB::table('sliders')->paginate(6);
-        return view('admin.sliders', compact('sliders'));
+        $sliders = DB::table('sliders')->paginate(4);
+        $count = DB::table('sliders')
+        ->count();
+        
+        return view('admin.sliders', compact('sliders','count'));
     }
 
     //add slider
