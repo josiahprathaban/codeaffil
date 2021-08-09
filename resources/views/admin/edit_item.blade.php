@@ -45,7 +45,7 @@
                         <div class="row form-group">
                             <div class="col-sm-6">
                                 <label class="form-control-label text-xs-right"> Title: </label>
-                                <input type="text" value="{{$product->title}}" name="title" class="form-control boxed" placeholder="title">
+                                <input required type="text" value="{{$product->title}}" name="title" class="form-control boxed" placeholder="title">
                                 @error('title')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-control-label text-xs-right">Brand: </label>
-                                <select name="brand_id" class="c-select form-control boxed">
+                                <select required name="brand_id" class="c-select form-control boxed">
                                     <option>Select Brand</option>
                                     @foreach ($brands as $brand )
                                     @if ($product->brand_id == $brand->id)
@@ -82,7 +82,7 @@
                         <div class="row form-group">
                             <div class="col-sm-12">
                                 <label class="form-control-label text-xs-right"> Affiliate Link: </label>
-                                <input type="text" value="{{$product->affiliate_link}}" class="form-control boxed" name="affiliate_link" placeholder="">
+                                <input required type="text" value="{{$product->affiliate_link}}" class="form-control boxed" name="affiliate_link" placeholder="">
                                 @error('affiliate_link')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
@@ -91,7 +91,7 @@
                         <div class="row form-group">
                             <div class="col-sm-4">
                                 <label class="form-control-label text-xs-right"> Regular Price: </label>
-                                <input type="text" value="{{$product->regular_price}}" class="form-control boxed" name="regular_price" placeholder="">
+                                <input required type="text" value="{{$product->regular_price}}" class="form-control boxed" name="regular_price" placeholder="">
                                 @error('regular_price')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
@@ -99,14 +99,14 @@
 
                             <div class="col-sm-4">
                                 <label class="form-control-label text-xs-right"> Sale Price: </label>
-                                <input type="text" value="{{$product->sale_price}}" class="form-control boxed" name="sale_price" placeholder="">
+                                <input required type="text" value="{{$product->sale_price}}" class="form-control boxed" name="sale_price" placeholder="">
                                 @error('sale_price')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-control-label text-xs-right">Ecommerce: </label>
-                                <select name="ecommerce_id" class="c-select form-control boxed">
+                                <select required name="ecommerce_id" class="c-select form-control boxed">
                                     <option selected>Select Ecommerce</option>
                                     @foreach ($ecommerces as $ecommerce )
                                     @if ($product->ecommerce_id == $ecommerce->id)
@@ -125,7 +125,7 @@
                             <div class="col-sm-6">
 
                                 <label class="form-control-label text-xs-right">Subcategory: </label>
-                                <select name="subcategory_id" class="c-select form-control boxed">
+                                <select required name="subcategory_id" class="c-select form-control boxed">
                                     <option selected>Select Subcategory</option>
                                     @foreach ($subcategories as $subcategory)
                                     @if ($product->subcategory_id == $subcategory->id)
@@ -139,14 +139,14 @@
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
                                 <label class="form-control-label text-xs-right"> Short Description: </label>
-                                <textarea class="form-control boxed" name="short_description" id="" rows="5">{{$product->short_description}}</textarea>
+                                <textarea required class="form-control boxed" name="short_description" id="" rows="5">{{$product->short_description}}</textarea>
                                 @error('short_description')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-control-label text-xs-right">Description: </label>
-                                <textarea class="form-control boxed" name="description" id="" rows="8">{{ $product->description }}</textarea>
+                                <textarea required class="form-control boxed" name="description" id="" rows="8">{{ $product->description }}</textarea>
                                 @error('short_description')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
@@ -157,7 +157,7 @@
                         @if ($image->product_id == $product->id)
                         <div class="row form-group">
                             <div class="col-sm-3">
-                            <input type="hidden" name="product_id" value="{{ $image->product_id }}">
+                            <input required type="hidden" name="product_id" value="{{ $image->product_id }}">
                                 <label class="form-control-label text-xs-right"> Image1: </label>
                                 <input name="image1" type="file" class="form-control boxed" id="image1">
                                 <img id="preview1" src="{{asset($image->image_1)}}" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />

@@ -53,63 +53,61 @@ Route::post('/sendemail/send', [SendEmailController::class, 'send']);
 
 Route::get('/admin', [DashboardController::class, 'dashBoard']);
 
-Route::get('/add-product', [ProductController::class, 'addProduct'])->name('product.add');
-Route::post('/add-product', [ProductController::class, 'addProductSubmit'])->name('product.addsubmit');
-Route::get('/all-products', [ProductController::class, 'getProducts']);
-Route::post('/all-products', [ProductController::class, 'getProducts'])->name('product.get');
-Route::get('/single-product/{id}', [ProductController::class, 'getProductById'])->name('product.getbyid');
-Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct'])->name('product.delete');
-Route::get('/edit-product/{id}', [ProductController::class, 'editProduct'])->name('product.edit');
-Route::post('/update-product', [ProductController::class, 'updateProduct'])->name('product.update');
+Route::get('/admin/add-product', [ProductController::class, 'addProduct'])->name('product.add');
+Route::post('/admin/add-product', [ProductController::class, 'addProductSubmit'])->name('product.addsubmit');
+Route::get('/admin/all-products', [ProductController::class, 'getProducts']);
+Route::post('/admin/all-products', [ProductController::class, 'getProducts'])->name('product.get');
+Route::get('/admin/single-product/{id}', [ProductController::class, 'getProductById'])->name('product.getbyid');
+Route::get('/admin/delete-product/{id}', [ProductController::class, 'deleteProduct'])->name('product.delete');
+Route::get('/admin/edit-product/{id}', [ProductController::class, 'editProduct'])->name('product.edit');
+Route::post('/admin/update-product', [ProductController::class, 'updateProduct'])->name('product.update');
 
-Route::post('/add-brands', [BrandController::class, 'addBrandSubmit'])->name('brand.addsubmit');
-Route::get('/brands', [BrandController::class, 'getBrands'])->name('brand.get');
-Route::post('/brands', [BrandController::class, 'getBrands'])->name('brand.search');
-Route::get('/delete-brand/{id}', [BrandController::class, 'deleteBrand'])->name('brand.delete');
+Route::post('/admin/add-brands', [BrandController::class, 'addBrandSubmit'])->name('brand.addsubmit');
+Route::get('/admin/brands', [BrandController::class, 'getBrands'])->name('brand.get');
+Route::post('/admin/brands', [BrandController::class, 'getBrands'])->name('brand.search');
+Route::get('/admin/delete-brand/{id}', [BrandController::class, 'deleteBrand'])->name('brand.delete');
 // Route::get('/edit-brand/{id}', [BrandController::class, 'editBrand'])->name('brand.edit');
-Route::post('/update-brand', [BrandController::class, 'updateBrand'])->name('brand.update');
+Route::post('/admin/update-brand', [BrandController::class, 'updateBrand'])->name('brand.update');
 
-Route::post('/add-categories', [CategoryController::class, 'addCategorySubmit'])->name('category.addsubmit');
-Route::get('/categories', [CategoryController::class, 'getCategories'])->name('category.get');
-Route::post('/categories', [CategoryController::class, 'getCategories'])->name('category.search');
-Route::get('/delete-category/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
-Route::post('/update-category', [CategoryController::class, 'updateCategory'])->name('category.update');
+Route::post('/admin/add-categories', [CategoryController::class, 'addCategorySubmit'])->name('category.addsubmit');
+Route::get('/admin/categories', [CategoryController::class, 'getCategories'])->name('category.get');
+Route::post('/admin/categories', [CategoryController::class, 'getCategories'])->name('category.search');
+Route::get('/admin/delete-category/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
+Route::post('/admin/update-category', [CategoryController::class, 'updateCategory'])->name('category.update');
 
-Route::post('/add-subcategories', [SubCategoryController::class, 'addSubCategorySubmit'])->name('subcategory.addsubmit');
-Route::get('/subcategories', [SubCategoryController::class, 'getSubCategories'])->name('subcategory.get');
-Route::post('/subcategories', [SubCategoryController::class, 'getSubCategories'])->name('subcategories.get');
-Route::get('/delete-subcategory/{id}', [SubCategoryController::class, 'deleteSubCategory'])->name('subcategory.delete');
-Route::post('/update-subcategory', [SubCategoryController::class, 'updateSubCategory'])->name('subcategory.update');
+Route::post('/admin/add-subcategories', [SubCategoryController::class, 'addSubCategorySubmit'])->name('subcategory.addsubmit');
+Route::get('/admin/subcategories', [SubCategoryController::class, 'getSubCategories'])->name('subcategory.get');
+Route::post('/admin/subcategories', [SubCategoryController::class, 'getSubCategories'])->name('subcategories.get');
+Route::get('/admin/delete-subcategory/{id}', [SubCategoryController::class, 'deleteSubCategory'])->name('subcategory.delete');
+Route::post('/admin/update-subcategory', [SubCategoryController::class, 'updateSubCategory'])->name('subcategory.update');
 
-Route::post('/ecommerces', [EcommerceController::class, 'addEcommerceSubmit'])->name('ecommerce.addsubmit');
-Route::get('/ecommerces', [EcommerceController::class, 'getEcommerces'])->name('ecommerce.get');
-Route::post('/update-ecommerce', [EcommerceController::class, 'updateEcommerce'])->name('ecommerce.update');
+Route::post('/admin/ecommerces', [EcommerceController::class, 'addEcommerceSubmit'])->name('ecommerce.addsubmit');
+Route::get('/admin/ecommerces', [EcommerceController::class, 'getEcommerces'])->name('ecommerce.get');
+Route::post('/admin/update-ecommerce', [EcommerceController::class, 'updateEcommerce'])->name('ecommerce.update');
 
-Route::get('/add-admin', [UserController::class, 'addAdmin'])->name('admin.add');
-Route::post('/add-admin', [UserController::class, 'addAdminSubmit'])->name('admin.addsubmit');
-Route::get('/all-admin', [UserController::class, 'getAdmins']);
-Route::get('/admin-profile', [UserController::class, 'adminProfile']);
-Route::post('/admin-profile-add', [UserController::class, 'admin_info_add'])->name('admin.addprofile');
-Route::post('/admin-profile-update', [UserController::class, 'admin_info_update'])->name('admin.updateprofile');
-Route::post('/admin-profile-uuload', [UserController::class, 'admin_profile_upload'])->name('admin.uploadprofile');
+Route::get('/admin/add-admin', [UserController::class, 'addAdmin'])->name('admin.add');
+Route::post('/admin/add-admin', [UserController::class, 'addAdminSubmit'])->name('admin.addsubmit');
+Route::get('/admin/all-admin', [UserController::class, 'getAdmins']);
+Route::get('/admin/admin-profile', [UserController::class, 'adminProfile']);
+Route::post('/admin/admin-profile-add', [UserController::class, 'admin_info_add'])->name('admin.addprofile');
+Route::post('/admin/admin-profile-update', [UserController::class, 'admin_info_update'])->name('admin.updateprofile');
+Route::post('/admin/admin-profile-uuload', [UserController::class, 'admin_profile_upload'])->name('admin.uploadprofile');
 
-Route::get('/hot-deals', [HotDealsController::class, 'getHotDeals']);
-Route::post('/hot-deals', [HotDealsController::class, 'getHotDeals'])->name('hotdeals.get');
-Route::post('/add-hot-deals', [HotDealsController::class, 'addHotDealSubmit'])->name('hotdeal.addsubmit');
-Route::post('/update-hot-deals', [HotDealsController::class, 'updateHotdeal'])->name('hotdeal.update');
+Route::get('/admin/hot-deals', [HotDealsController::class, 'getHotDeals']);
+Route::post('/admin/hot-deals', [HotDealsController::class, 'getHotDeals'])->name('hotdeals.get');
+Route::post('/admin/add-hot-deals', [HotDealsController::class, 'addHotDealSubmit'])->name('hotdeal.addsubmit');
+Route::post('/admin/update-hot-deals', [HotDealsController::class, 'updateHotdeal'])->name('hotdeal.update');
 
-Route::get('/sliders', [SlidersController::class, 'sliders']);
-Route::post('/sliders', [SlidersController::class, 'addSlider'])->name('add.slider');
-Route::post('/update-sliders', [SlidersController::class, 'updateSlider'])->name('update.slider');
+Route::get('/admin/sliders', [SlidersController::class, 'sliders']);
+Route::post('/admin/sliders', [SlidersController::class, 'addSlider'])->name('add.slider');
+Route::post('/admin/update-sliders', [SlidersController::class, 'updateSlider'])->name('update.slider');
 
-Route::get('/add', [ProductController::class, 'insert'])->name('pro.add');
-
-Route::get('/all-customers', [UserController::class, 'getCustomers']);
-Route::post('/all-customers', [UserController::class, 'getCustomers'])->name('customer.filter');
+Route::get('/admin/all-customers', [UserController::class, 'getCustomers']);
+Route::post('/admin/all-customers', [UserController::class, 'getCustomers'])->name('customer.filter');
 
 
 
-Route::get('/customer', function () {
+Route::get('/admin/customer', function () {
     return view('admin.customer');
 });
 

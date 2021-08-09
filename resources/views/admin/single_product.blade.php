@@ -13,7 +13,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/favicon.png')}}" />
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
     <!-- Place favicon.ico in the root directory -->
-    <link rel="stylesheet"  href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
@@ -99,15 +99,15 @@
                             </div>
                         </div>
                         <div class="row form-group">
-                            
-                        @foreach ($images as $image )
-                        @if ($image->product_id == $product->id)
+
+                            @foreach ($images as $image )
+                            @if ($image->product_id == $product->id)
                             <div class="col-sm-3">
                                 <label class="form-control-label text-xs-right"> Image1: </label>
-                                
+
                                 <img src="{{asset($image->image_1)}}" alt="" style="max-height:130px; margin:20px; border: 2px solid #85CE36;">
-                                
-                                
+
+
                             </div>
                             <div class="col-sm-3">
                                 <label class="form-control-label text-xs-right"> Images2 </label>
@@ -129,11 +129,8 @@
         </div>
         </article>
 
-
-
-
         <script src="{{ asset('js/')}}/vendor.js"></script>
-    <script src="{{ asset('js/')}}/app.js"></script>
+        <script src="{{ asset('js/')}}/app.js"></script>
 </body>
 
 </html>

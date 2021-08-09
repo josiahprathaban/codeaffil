@@ -43,14 +43,14 @@
                         <div class="row form-group">
                             <div class="col-sm-8">
                                 <label class="form-control-label text-xs-right"> Title: </label>
-                                <input type="text" name="title" class="form-control boxed" placeholder="title">
+                                <input required type="text" name="title" class="form-control boxed" placeholder="title">
                                 @error('title')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-control-label text-xs-right">Brand: </label>
-                                <select name="brand_id" class="c-select form-control boxed">
+                                <select required name="brand_id" class="c-select form-control boxed">
                                     <option value="" selected>Select Brand</option>
                                     @foreach ($brands as $brand )
                                     <option value="{{$brand->id}}">{{$brand->name}}</option>
@@ -64,7 +64,7 @@
                         <div class="row form-group">
                             <div class="col-sm-12">
                                 <label class="form-control-label text-xs-right"> Affiliate Link: </label>
-                                <input type="text" class="form-control boxed" name="affiliate_link" placeholder="">
+                                <input required type="text" class="form-control boxed" name="affiliate_link" placeholder="">
                                 @error('affiliate_link')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
@@ -73,21 +73,21 @@
                         <div class="row form-group">
                             <div class="col-sm-4">
                                 <label class="form-control-label text-xs-right"> Regular Price: </label>
-                                <input type="text" class="form-control boxed" name="regular_price" placeholder="">
+                                <input required type="text" class="form-control boxed" name="regular_price" placeholder="">
                                 @error('regular_price')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-control-label text-xs-right"> Sale Price: </label>
-                                <input type="text" value="0" class="form-control boxed" name="sale_price" placeholder="">
+                                <input required type="text" value="0" class="form-control boxed" name="sale_price" placeholder="">
                                 @error('sale_price')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-control-label text-xs-right">Ecommerce: </label>
-                                <select name="ecommerce_id" class="c-select form-control boxed">
+                                <select required name="ecommerce_id" class="c-select form-control boxed">
                                     <option value="" selected>Select Ecommerce</option>
                                     @foreach ($ecommerces as $ecommerce )
                                     <option value="{{$ecommerce->id}}">{{$ecommerce->name}}</option>
@@ -101,7 +101,7 @@
                         <div class="row form-group">
                             <div class="col-sm-6">
                                 <label class="form-control-label text-xs-right">Subcategory: </label>
-                                <select name="subcategory_id" class="c-select form-control boxed">
+                                <select required name="subcategory_id" class="c-select form-control boxed">
                                     <option value="" selected>Select Subcategory</option>
                                     @foreach ($subcategories as $subcategory )
                                     <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
@@ -111,14 +111,14 @@
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
                                 <label class="form-control-label text-xs-right"> Short Description: </label>
-                                <textarea class="form-control boxed" name="short_description" id="" rows="5"></textarea>
+                                <textarea required class="form-control boxed" name="short_description" id="" rows="5"></textarea>
                                 @error('short_description')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-control-label text-xs-right">Description: </label>
-                                <textarea class="form-control boxed" name="description" id="" rows="8"></textarea>
+                                <textarea required class="form-control boxed" name="description" id="" rows="8"></textarea>
                                 @error('short_description')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
@@ -127,7 +127,7 @@
                         <div class="row form-group">
                             <div class="col-sm-3">
                                 <label class="form-control-label text-xs-right"> Image1: </label>
-                                <input name="image1" type="file" class="form-control boxed" id="image1">
+                                <input required name="image1" type="file" class="form-control boxed" id="image1">
                                 @error('image1')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
@@ -135,7 +135,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <label class="form-control-label text-xs-right"> Images2 </label>
-                                <input name="image2" type="file" class="form-control boxed" id="image2">
+                                <input required name="image2" type="file" class="form-control boxed" id="image2">
                                 @error('image2')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
@@ -143,7 +143,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <label class="form-control-label text-xs-right"> Images3 </label>
-                                <input name="image3" type="file" class="form-control boxed" id="image3">
+                                <input required name="image3" type="file" class="form-control boxed" id="image3">
                                 @error('image3')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror
@@ -151,7 +151,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <label class="form-control-label text-xs-right"> Images4 </label>
-                                <input name="image4" type="file" class="form-control boxed" id="image4">
+                                <input required name="image4" type="file" class="form-control boxed" id="image4">
                                 @error('image4')
                                 <div class="text-danger" role="alert">{{$message}}</div>
                                 @enderror

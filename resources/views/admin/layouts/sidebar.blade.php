@@ -20,16 +20,16 @@
                                     </a>
                                     <ul class="sidebar-nav">
                                         <li>
-                                            <a href="/all-products"> Items List </a>
+                                            <a href="/admin/all-products"> Items List </a>
                                         </li>
                                         <li>
-                                            <a href="/add-product"> Add Item </a>
+                                            <a href="/admin/add-product"> Add Item </a>
                                         </li>
                                     </ul>
                                 </li>
                                 
                                 <li>
-                                    <a href="/all-customers">
+                                    <a href="/admin/all-customers">
                                     <i class="fas fa-users-cog"></i> Customers List
                                     </a>
                                 </li>
@@ -40,40 +40,40 @@
                                     </a>
                                     <ul class="sidebar-nav">
                                         <li>
-                                            <a href="/all-admin"> Admins List </a>
+                                            <a href="/admin/all-admin"> Admins List </a>
                                         </li>
                                         <li>
-                                            <a href="/add-admin"> Add Admin </a>
+                                            <a href="/admin/add-admin"> Add Admin </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="/brands">
+                                    <a href="/admin/brands">
                                         <i class="fa fa-cogs"></i> Brands Manager
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/categories">
+                                    <a href="/admin/categories">
                                         <i class="fa fa-layer-group"></i> Categories Manager
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/subcategories">
+                                    <a href="/admin/subcategories">
                                         <i class="fa fa-network-wired"></i> SubCategories Manager
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/ecommerces">
+                                    <a href="/admin/ecommerces">
                                         <i class="fas fa-store"></i> Ecommerce Manager
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/hot-deals">
+                                    <a href="/admin/hot-deals">
                                         <i class="fas fa-tags"></i> Hot Deals Manager
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/sliders">
+                                    <a href="/admin/sliders">
                                         <i class="fas fa-flag"></i> Index Baner Manager
                                     </a>
                                 </li>
