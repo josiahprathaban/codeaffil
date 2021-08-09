@@ -9,8 +9,9 @@ class IndexController extends Controller
 
     public function index()
     {
-        $customer_id = DB::table('customers')->where('username', session('user'))->value('id');
+        
         if (session('type') == 'customer') {
+            $customer_id = DB::table('customers')->where('username', session('user'))->value('id');
             if (DB::table('customer_logs')->where('customer_id', $customer_id)->exists()) {
                 DB::table('customer_logs')
                     ->where('customer_id', $customer_id)
