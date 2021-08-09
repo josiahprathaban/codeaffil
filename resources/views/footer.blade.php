@@ -38,10 +38,10 @@
                         <h4 class="footer-herading">Custom Links</h4>
                         <div class="footer-links">
                             <ul>
-                                <li><a href="#">New Arrivals</a></li>
-                                <li><a href="#">Popular Categories</a></li>
-                                <li><a href="#">Featured Products</a></li>
-                                <li><a href="#">Best Sales</a></li>
+                                <li><a href="/products/newarrivals/all">New Arrivals</a></li>
+                                <li><a href="suggestedProducts/all">Suggested Products</a></li>
+                                <li><a href="/products/sales/all">Best Sales</a></li>
+                                <li><a href="/products/hotdeals/all">Hot Deals</a></li>
                                 <li><a href="/login">Login</a></li>
                                 <li><a href="/profile">My Profile</a></li>
                             </ul>

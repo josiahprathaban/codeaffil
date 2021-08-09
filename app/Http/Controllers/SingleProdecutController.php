@@ -62,22 +62,23 @@ class SingleProdecutController extends Controller
         return $product;
     }
 
-    public function no_of_clicks(Request $request)
+    public function no_of_clicks($id)
     {
+        $link = DB::table('products')->where('id', $id)->value('affiliate_link');
         $customer_id = DB::table('customers')->where('username', session('user'))->value('id');
         if (session('type') == 'customer') {
             DB::table('user_product_logs')
                 ->where('customer_id', $customer_id)
-                ->where('product_id', $request->id)
+                ->where('product_id', $id)
                 ->update(['no_of_clicks' => DB::raw('no_of_clicks + 1')]);
         } else {
             DB::table('user_product_logs')
                 ->where('customer_id', null)
-                ->where('product_id', $request->id)
+                ->where('product_id', $id)
                 ->update(['no_of_clicks' => DB::raw('no_of_clicks + 1')]);
         }
 
-        return redirect()->away($request->link);
+        return redirect()->away($link);
     }
 
     public function suggestedProducts()

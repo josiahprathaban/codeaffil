@@ -12,7 +12,7 @@ class CompareController extends Controller
         $categories = DB::table('categories')->get();
         $ecommerces = DB::table('ecommerces')->get();
         $products = DB::table('products')
-            ->select('products.*', 'product_images.image_1',  'ecommerces.*')
+            ->select('products.*', 'product_images.image_1',  'ecommerces.name', 'ecommerces.logo')
             ->join('ecommerces', 'products.ecommerce_id', '=', 'ecommerces.id')
             ->join('product_images', 'products.id', '=', 'product_images.product_id')
             ->where('products.title', '=', $title)

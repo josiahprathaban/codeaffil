@@ -174,13 +174,7 @@
                             <div class="product-decs">
                                 <span>{{$suggestedProducts[$i]->name}}</span>
                                 <h2><a href="/single_product/{{$suggestedProducts[$i]->id}}" class="product-link">{{$suggestedProducts[$i]->title}}</a></h2>
-                                <!-- <div class="rating-product">
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                    </div> -->
+                               
                                 <div class="pricing-meta">
                                     @if($suggestedProducts[$i]->sale_price != 0)
                                     <ul>
@@ -215,13 +209,7 @@
                             <div class="product-decs">
                                 <span>{{$suggestedProducts[$i+1]->name}}</span>
                                 <h2><a href="/single_product/{{$suggestedProducts[$i+1]->id}}" class="product-link">{{$suggestedProducts[$i +1]->title}}</a></h2>
-                                <!-- <div class="rating-product">
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                    </div> -->
+                                
                                 <div class="pricing-meta">
                                     @if($suggestedProducts[$i+1]->sale_price != 0)
                                     <ul>
@@ -282,13 +270,6 @@
                             <div class="product-decs">
                                 <a class="inner-link" href="shop-4-column.html"><span>{{$hotDeal->name}}</span></a>
                                 <h2><a href="/single_product/{{$hotDeal->product_id}}" class="product-link">{{$hotDeal->title}}</a></h2>
-                                <!-- <div class="rating-product">
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                        </div> -->
                                 <div class="pricing-meta">
                                     <ul>
                                         <li class="old-price">$ {{number_format($hotDeal->regular_price, 2)}}</li>
@@ -344,7 +325,7 @@
                                     <li class="new">New</li>
                                 </ul>
                                 <div class="product-decs">
-                                    <a class="inner-link" href="shop-4-column.html"><span>{{$newProducts[$i]->name}}</span></a>
+                                    <a class="inner-link" href="/products/ecommerce/{{$newProducts[$i]->name}}"><span>{{$newProducts[$i]->name}}</span></a>
                                     <h2><a href="/single_product/{{$newProducts[$i]->id}}" class="product-link">{{$newProducts[$i]->title}}</a></h2>
                                     <!-- <div class="rating-product">
                                                 <i class="ion-android-star"></i>
@@ -385,13 +366,7 @@
                                 <div class="product-decs">
                                     <a class="inner-link" href="shop-4-column.html"><span>{{$newProducts[$i + 1]->name}}</span></a>
                                     <h2><a href="/single_product/{{$newProducts[$i+1]->id}}" class="product-link">{{$newProducts[$i + 1]->title}}</a></h2>
-                                    <!-- <div class="rating-product">
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                            </div> -->
+                                    
                                     <div class="pricing-meta">
                                         @if($newProducts[$i+1]->sale_price != 0)
                                         <ul>
@@ -454,13 +429,7 @@
                             <div class="product-decs">
                                 <span>{{$saleProducts[$i]->name}}</span>
                                 <h2><a href="/single_product/{{$saleProducts[$i]->id}}" class="product-link">{{$saleProducts[$i]->title}}</a></h2>
-                                <!-- <div class="rating-product">
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                    </div> -->
+                                
                                 <div class="pricing-meta">
                                     <ul>
                                         <li class="old-price">$ {{number_format($saleProducts[$i]->regular_price, 2)}}</li>
@@ -489,13 +458,7 @@
                             <div class="product-decs">
                                 <span>{{$saleProducts[$i+1]->name}}</span>
                                 <h2><a href="/single_product/{{$saleProducts[$i+1]->id}}" class="product-link">{{$saleProducts[$i +1]->title}}</a></h2>
-                                <!-- <div class="rating-product">
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                    </div> -->
+                               
                                 <div class="pricing-meta">
                                     <ul>
                                         <li class="old-price">$ {{number_format($saleProducts[$i+1]->regular_price, 2)}}</li>
