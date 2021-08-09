@@ -251,7 +251,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'type' => "admin",
-            'email_varified' => 1
+            'email_verified' => 1
         ]);
         DB::table('admins')->insert([
             'username' => $request->username

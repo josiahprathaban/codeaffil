@@ -111,6 +111,16 @@
                                     </div>
                                 </div>
                                 <div class="item-col item-col-header item-col-date">
+                                    <div class="no-overflow">
+                                        <span>Created By</span>
+                                    </div>
+                                </div>
+                                <div class="item-col item-col-header item-col-date">
+                                    <div class="no-overflow">
+                                        <span>Updated By</span>
+                                    </div>
+                                </div>
+                                <div class="item-col item-col-header item-col-date">
                                     <div>
                                         <span>Published</span>
                                     </div>
@@ -135,11 +145,19 @@
                                 </div>
                                 <div class="item-col item-col-date">
                                     <div class="item-heading">Views</div>
-                                    <div> {{ $product->total_views }} </div>
+                                    @if ($product->total_views==null)
+                                        <div>0</div>
+                                        @else
+                                        <div> {{ $product->total_views }} </div>
+                                    @endif
                                 </div>
                                 <div class="item-col item-col-date">
                                     <div class="item-heading">Clicks</div>
-                                    <div> {{$product->total_clicks }} </div>
+                                    @if ($product->total_clicks==null)
+                                        <div>0</div>
+                                        @else
+                                        <div> {{$product->total_clicks }} </div>
+                                    @endif
                                 </div>
                                 <div class="item-col item-col-date no-overflow">
                                     <div class="item-heading">Stats</div>
@@ -155,6 +173,22 @@
                                     <div class="no-overflow">
                                         <a href="{{$product->affiliate_link}}">Amazon</a>
                                     </div>
+                                </div>
+                                <div class="item-col item-col-date">
+                                    <div class="item-heading">Created By</div>
+                                    @foreach ($admins as $admin)
+                                        @if ($admin->id == $product->created_by)
+                                        <div class="no-overflow"><a href="/admin/view-admin/{{$admin->id}}">{{ $admin->username }} </a> </div> 
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="item-col item-col-date">
+                                    <div class="item-heading">Updated By</div>
+                                    @foreach ($admins as $admin)
+                                        @if ($admin->id == $product->updated_by)
+                                        <div class="no-overflow"> {{ $admin->username }} </div> 
+                                        @endif
+                                    @endforeach
                                 </div>
                                 <div class="item-col item-col-date">
                                     <div class="item-heading">Published</div>

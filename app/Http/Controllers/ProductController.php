@@ -78,15 +78,19 @@ class ProductController extends Controller
                     return view('admin.items_list', compact('products'));
                     break;
                 default:
+                    $admins = DB::table('admins')
+                        ->get();
                     $products = DB::table('products')
                         ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
                         ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
                         ->leftJoin('product_images', 'products.id', '=', 'product_images.product_id')
+                        ->join('admins', 'products.created_by', '=', 'admins.id')
                         ->groupBy('products.id')
                         ->orderBy('products.id', 'ASC')
                         ->take(10)
                         ->paginate(10);
-                    return view('admin.items_list', compact('products'));
+
+                    return view('admin.items_list', compact('products','admins'));
                     break;
             }
         }
@@ -122,6 +126,18 @@ class ProductController extends Controller
         return view('admin.single_product', compact('product', 'ecommerces', 'subcategories', 'brands', 'images'));
     }
 
+    //get admin details
+    public function getadminById($id)
+    {
+        $admin = DB::table('admins')
+        ->where('id', $id)
+        ->select('admins.*', 'users.email')
+        ->join('users', 'admins.username', '=', 'users.username')
+        ->first();
+        
+        return view('admin.view_profile', compact('admin'));
+    }
+
     //delete product
     public function deleteProduct($id)
     {
@@ -143,7 +159,7 @@ class ProductController extends Controller
     public function updateProduct(Request $request)
     {
         $admin_id = DB::table('admins')->where('username', session('user'))
-        ->value('id');
+            ->value('id');
         $request->validate([
             'title' => 'required',
             'short_description' => 'required',
@@ -235,8 +251,8 @@ class ProductController extends Controller
     public function addProductSubmit(Request $request)
     {
         $admin_id = DB::table('admins')->where('username', session('user'))
-        ->value('id');
-        
+            ->value('id');
+
 
         $request->validate([
             'title' => 'required',

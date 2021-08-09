@@ -68,6 +68,7 @@ Route::post('/admin/brands', [BrandController::class, 'getBrands'])->name('brand
 Route::get('/admin/delete-brand/{id}', [BrandController::class, 'deleteBrand'])->name('brand.delete');
 // Route::get('/edit-brand/{id}', [BrandController::class, 'editBrand'])->name('brand.edit');
 Route::post('/admin/update-brand', [BrandController::class, 'updateBrand'])->name('brand.update');
+Route::get('/admin/view-admin/{id}', [ProductController::class, 'getAdminById'])->name('admin.getbyid');
 
 Route::post('/admin/add-categories', [CategoryController::class, 'addCategorySubmit'])->name('category.addsubmit');
 Route::get('/admin/categories', [CategoryController::class, 'getCategories'])->name('category.get');
