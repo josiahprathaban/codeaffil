@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
     <!--===== Main Css Files =====-->
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <!-- ===== Responsive Css Files ===== -->
-    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
 </head>
@@ -29,13 +29,13 @@
     <div class="auth">
         <div class="auth-container">
             <div class="card">
-                @if (Session::has('admin_added'))
-                <div class="alert alert-success" role="alert">
-                    {{ Session::get('admin_added') }}
-                </div>
-                @endif
                 <div class="auth-content">
                     <p class="text-center">Update Your Information</p>
+                    @if (Session::has('admin_updated'))
+                <div class="text-success" role="alert">
+                    {{ Session::get('admin_updated') }}
+                </div>
+                @endif
                       <!-- Image upload start -->
                       <form action="{{route('admin.uploadprofile')}}" method="post" enctype="multipart/form-data">
                                     @csrf
@@ -46,9 +46,9 @@
                                         </label>
                                         <input id="file" name="file" type="file" onchange="loadFile(event)" />
                                         @if($user->image === NULL)
-                                        <img src="assets\images\user-profile\default.jpg" id="output" width="200" />
+                                        <img src="{{ asset('assets\images\user-profile\default.jpg') }}" id="output" width="200" />
                                         @else
-                                        <img src="{{$user->image}}" id="output" width="200" />
+                                        <img src="{{asset($user->image)}}" id="output" width="200" />
                                         @endif
                                     </div>
                                     <div class="xname mb-3">

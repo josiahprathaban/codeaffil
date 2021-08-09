@@ -108,8 +108,16 @@
                                                         <td>{{$hotdeal->title}}</td>
                                                         <td>{{$hotdeal->deal_starts}}</td>
                                                         <td>{{$hotdeal->deal_ends}}</td>
+                                                        @if ($hotdeal->total_views==null)
+                                                        <td>0</td>
+                                                        @else
                                                         <td>{{$hotdeal->total_views}}</td>
+                                                        @endif
+                                                        @if ($hotdeal->total_clicks==null)
+                                                        <td>0</td>
+                                                        @else
                                                         <td>{{$hotdeal->total_clicks}}</td>
+                                                        @endif
                                                         <td>
                                                             <ul class="item-list striped">
                                                                 <div class="item-col fixed item-col-actions-dropdown">
@@ -146,7 +154,7 @@
                                                                                                 <form role="form" method="post" enctype="multipart/form-data" action="{{route('hotdeal.update')}}">
                                                                                                     @csrf
                                                                                                     <input type="hidden" name="hotdeal_id" value="{{$hotdeal->id}}">
-                                                                                                    <label  class="float-left"> Product Name: </label>
+                                                                                                    <label class="float-left"> Product Name: </label>
 
                                                                                                     <select name="product_id" class="c-select form-control boxed">
                                                                                                         <option value="">Select Product</option>
@@ -162,14 +170,14 @@
                                                                                                     </select>
 
                                                                                                     <div class="form-group">
-                                                                                                        <label  class="float-left">Title:</label>
+                                                                                                        <label class="float-left">Title:</label>
                                                                                                         <input type="text" value="{{$hotdeal->deal_title}}" class="form-control" name="hotdeal_name" placeholder="Enter hotdeal Title">
                                                                                                     </div>
                                                                                                     <div class="form-group ">
 
                                                                                                     </div>
                                                                                                     <div class="form-group">
-                                                                                                        <label  class="float-left">Start Date:</label>
+                                                                                                        <label class="float-left">Start Date:</label>
                                                                                                         <input value="{{$hotdeal->deal_starts}}" type="date" class="form-control" name="start_date">
                                                                                                     </div>
                                                                                                     <div class="form-group">
@@ -213,7 +221,7 @@
                     <ul class="pagination">
                         <li class="page-item">
                             {{ $hotdeals->links("pagination::bootstrap-4") }}
-                            </li>
+                        </li>
                     </ul>
                 </nav>
             </article>
@@ -263,9 +271,9 @@
                 </div>
                 <!-- /.modal-dialog -->
             </div>
-            
-    <script src="{{ asset('js/')}}/vendor.js"></script>
-    <script src="{{ asset('js/')}}/app.js"></script>
+
+            <script src="{{ asset('js/')}}/vendor.js"></script>
+            <script src="{{ asset('js/')}}/app.js"></script>
 </body>
 
 </html>

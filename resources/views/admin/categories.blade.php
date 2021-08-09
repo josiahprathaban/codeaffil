@@ -99,7 +99,11 @@
                                                     <td>{{$category->name}}</td>
                                                     <td>{{$category->total_subcategories}}</td>
                                                     <td>{{$category->total_products}}</td>
+                                                    @if (category->total_clicks==null)
+                                                    <td>0</td>
+                                                    @else
                                                     <td>{{$category->total_clicks}}</td>
+                                                    @endif
                                                     <td>
                                                         <ul class="item-list striped">
                                                             <div class="item-col fixed item-col-actions-dropdown">

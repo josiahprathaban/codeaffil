@@ -42,7 +42,7 @@
                     </div>
 
                 </div>
-              
+
                 @if (Session::has('sc_added'))
                 <div class="alert alert-success" role="alert">
                     {{ Session::get('ec_added') }}
@@ -83,10 +83,14 @@
                                         @foreach ($ecommerces as $ecommerce )
                                         <tr>
                                             <th scope="row">{{$ecommerce->id}}</th>
-                                            <td><img src="{{$ecommerce->logo}}" alt="" style="max-width:60px;"></td>
+                                            <td><img src="{{asset($ecommerce->logo)}}" alt="" style="max-width:60px;"></td>
                                             <td>{{$ecommerce->name}}</td>
                                             <td>{{$ecommerce->total_products}}</td>
+                                            @if ($ecommerce->total_clicks == null)
+                                            <td>0</td>
+                                            @else
                                             <td>{{$ecommerce->total_clicks}}</td>
+                                            @endif
                                             <td>
                                                 <ul class="item-list striped">
                                                     <div class="item-col fixed item-col-actions-dropdown">
@@ -125,8 +129,8 @@
                                                                                         </div>
                                                                                         <div class="form-group">
                                                                                             <label class="float-left"> Image: </label>
-                                                                                            <input name="image2" id="image" type="file" class="form-control " onchange="previewFile(this)">
-                                                                                            <img id="preview2" src="#" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                                                                            <input name="image" id="image2" type="file" class="form-control " onchange="previewFile(this)">
+                                                                                            <img id="preview2" src="{{asset($ecommerce->logo)}}" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                                                                                         </div>
                                                                                         <div class="form-group">
                                                                                             <button type="submit" class="btn btn-primary float-right">Update</button>

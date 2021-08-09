@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> All Admin </title>
+    <title> All Brands </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -100,8 +100,16 @@
                                                         <th scope="row">{{$brand->id}}</th>
                                                         <td>{{$brand->name}}</td>
                                                         <td style="text-align:center">{{$brand->total_products}}</td>
+                                                        @if ($brand->total_views==null)
+                                                        <td>0</td>
+                                                        @else
                                                         <td style="text-align:center">{{$brand->total_views}}</td>
+                                                        @endif
+                                                        @if ($brand->total_clicks==null)
+                                                        <td>0</td>
+                                                        @else
                                                         <td style="text-align:center">{{$brand->total_clicks}}</td>
+                                                        @endif
                                                         <td style="text-align:center">
                                                             <span class="inactive">
                                                                 <a class="edit" href="#" data-toggle="modal" data-target="#modal-add-update-{{$brand->id}}">
