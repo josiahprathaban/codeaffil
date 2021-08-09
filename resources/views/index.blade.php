@@ -254,9 +254,9 @@
                         <!--  Single item -->
                         @foreach($hotDeals as $hotDeal)
                         <article class="list-product" style="border-color:#cf292b">
-                            <div class="img-block">
-                                <a href="/single_product/{{$hotDeal->product_id}}" class="thumbnail">
-                                    <img class="first-img" src="{{ asset($hotDeal->image_1)}}" alt="" />
+                            <div class="img-block" style="display: flex; align-items: center; justify-content: center; min-height:100%; padding-top:50px;">
+                                <a href="/single_product/{{$hotDeal->product_id}}"  class="thumbnail">
+                                    <img class="first-img newp" src="{{ asset($hotDeal->image_1)}}" alt=""/>
                                 </a>
                                 <div class="quick-view">
                                     <a class="quick_view" href="/single_product/{{$hotDeal->product_id}}">
@@ -265,7 +265,7 @@
                                 </div>
                             </div>
                             <ul class="product-flag">
-                                <li class="new" style="background-color:#cf292b">Hot Deals</li>
+                                <li class="new" style="background-color:#cf292b">Hot Deals - {{$hotDeal->deal_title}}</li>
                             </ul>
                             <div class="product-decs">
                                 <a class="inner-link" href="shop-4-column.html"><span>{{$hotDeal->name}}</span></a>
