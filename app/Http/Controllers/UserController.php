@@ -32,7 +32,7 @@ class UserController extends Controller
                 $request->session()->put('email', DB::table('users')->where('username', $data['name'])->value('email'));
                 $request->session()->put('varified', DB::table('users')->where('username', $data['name'])->value('email_verified'));
 
-                if(DB::table('users')->where('username', $data['name'])->value('type')=='admin')
+                if (DB::table('users')->where('username', $data['name'])->value('type') == 'admin')
                     $request->session()->put('admin_name', DB::table('admins')->where('username', $data['name'])->value('f_name'));
 
                 if (DB::table('customers')->where('username', session('user'))->value('image') != NULL)
@@ -54,7 +54,7 @@ class UserController extends Controller
                     $request->session()->put('email', DB::table('users')->where('username', $data['name'])->value('email'));
                     $request->session()->put('varified', DB::table('users')->where('username', $data['name'])->value('email_verified'));
 
-                    if(DB::table('users')->where('username', $data['name'])->value('type')=='admin')
+                    if (DB::table('users')->where('username', $data['name'])->value('type') == 'admin')
                         $request->session()->put('admin_name', DB::table('admins')->where('username', $data['name'])->value('f_name'));
 
                     if (DB::table('customers')->where('username', session('user'))->value('image') != NULL)
@@ -253,7 +253,7 @@ class UserController extends Controller
 
         ]);
 
-       
+
         DB::table('users')->insert([
             'username' => $request->username,
             'email' => $request->email,
@@ -291,7 +291,7 @@ class UserController extends Controller
 
     function admin_info_add(Request $request)
     {
-        
+
         session(['admin_name' => $request->f_name]);
 
         DB::table('admins')

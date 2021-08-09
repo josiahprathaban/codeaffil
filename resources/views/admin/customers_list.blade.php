@@ -99,17 +99,17 @@
                                                         <td>{{$customer -> l_name}}</td>
                                                         <td>{{$customer -> email}}</td>
                                                         <td>{{ $customer -> phone_no}}</td>
-                                                        @if (total_visits==null)
+                                                        @if ($customer->total_visits==null)
                                                             <td>0</td>
                                                         @else
                                                         <td>{{ $customer -> total_visits}}</td>
                                                         @endif
-                                                        @if (total_views==null)
+                                                        @if ($customer->total_views==null)
                                                             <td>0</td>
                                                         @else
                                                         <td>{{ $customer -> total_views}}</td>
                                                         @endif
-                                                        @if (total_clicks==null)
+                                                        @if ($customer->total_clicks==null)
                                                             <td>0</td>
                                                         @else
                                                         <td>{{ $customer -> total_clicks}}</td>

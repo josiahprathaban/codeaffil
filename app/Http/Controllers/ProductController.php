@@ -16,7 +16,8 @@ class ProductController extends Controller
     {
         $filter = $request->filter;
         $search = $request->search;
-
+        $admins = DB::table('admins')
+        ->get();
         if (isset($search)) {
             $products = DB::table('products')
                 ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
@@ -27,8 +28,9 @@ class ProductController extends Controller
                 ->orderBy('products.id', 'ASC')
                 ->take(10)
                 ->paginate(10);
-            return view('admin.items_list', compact('products', 'search'));
+            return view('admin.items_list', compact('products', 'search','admins'));
         } else {
+          
             switch ($filter) {
                 case 1:
                     $products = DB::table('products')
@@ -39,7 +41,6 @@ class ProductController extends Controller
                         ->orderBy('products.title', 'ASC')
                         ->take(10)
                         ->paginate(10);
-                    return view('admin.items_list', compact('products'));
                     break;
 
                 case 2:
@@ -51,7 +52,6 @@ class ProductController extends Controller
                         ->orderBy('products.title', 'DESC')
                         ->take(10)
                         ->paginate(10);
-                    return view('admin.items_list', compact('products'));
                     break;
 
                 case 3:
@@ -63,7 +63,6 @@ class ProductController extends Controller
                         ->orderBy('total_views', 'DESC')
                         ->take(10)
                         ->paginate(10);
-                    return view('admin.items_list', compact('products'));
                     break;
 
                 case 4:
@@ -75,11 +74,9 @@ class ProductController extends Controller
                         ->orderBy('total_clicks', 'DESC')
                         ->take(10)
                         ->paginate(10);
-                    return view('admin.items_list', compact('products'));
                     break;
                 default:
-                    $admins = DB::table('admins')
-                        ->get();
+                   
                     $products = DB::table('products')
                         ->select('products.*', 'product_images.image_1', DB::raw('SUM(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
                         ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
@@ -89,10 +86,9 @@ class ProductController extends Controller
                         ->orderBy('products.id', 'ASC')
                         ->take(10)
                         ->paginate(10);
-
-                    return view('admin.items_list', compact('products','admins'));
                     break;
             }
+            return view('admin.items_list', compact('products','admins'));
         }
     }
 
