@@ -68,7 +68,7 @@ Route::post('/admin/brands', [BrandController::class, 'getBrands'])->name('brand
 Route::get('/admin/delete-brand/{id}', [BrandController::class, 'deleteBrand'])->name('brand.delete');
 // Route::get('/edit-brand/{id}', [BrandController::class, 'editBrand'])->name('brand.edit');
 Route::post('/admin/update-brand', [BrandController::class, 'updateBrand'])->name('brand.update');
-Route::get('/admin/view-admin/{id}', [ProductController::class, 'getAdminById'])->name('admin.getbyid');
+
 
 Route::post('/admin/add-categories', [CategoryController::class, 'addCategorySubmit'])->name('category.addsubmit');
 Route::get('/admin/categories', [CategoryController::class, 'getCategories'])->name('category.get');
@@ -93,6 +93,7 @@ Route::get('/admin/admin-profile', [UserController::class, 'adminProfile']);
 Route::post('/admin/admin-profile-add', [UserController::class, 'admin_info_add'])->name('admin.addprofile');
 Route::post('/admin/admin-profile-update', [UserController::class, 'admin_info_update'])->name('admin.updateprofile');
 Route::post('/admin/admin-profile-uuload', [UserController::class, 'admin_profile_upload'])->name('admin.uploadprofile');
+Route::get('/admin/view-admin/{id}', [UserController::class, 'getAdminById'])->name('admin.getbyid');
 
 Route::get('/admin/hot-deals', [HotDealsController::class, 'getHotDeals']);
 Route::post('/admin/hot-deals', [HotDealsController::class, 'getHotDeals'])->name('hotdeals.get');

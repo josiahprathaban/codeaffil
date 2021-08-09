@@ -126,18 +126,6 @@ class ProductController extends Controller
         return view('admin.single_product', compact('product', 'ecommerces', 'subcategories', 'brands', 'images'));
     }
 
-    //get admin details
-    public function getadminById($id)
-    {
-        $admin = DB::table('admins')
-        ->where('id', $id)
-        ->select('admins.*', 'users.email')
-        ->join('users', 'admins.username', '=', 'users.username')
-        ->first();
-        
-        return view('admin.view_profile', compact('admin'));
-    }
-
     //delete product
     public function deleteProduct($id)
     {
