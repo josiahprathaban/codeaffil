@@ -163,18 +163,26 @@
                                             </div>
                                             <div class="item-col item-col-title no-overflow">
                                                 <div>
-                                                    <a href="#" class="">
+                                                    <a href="/admin/single-product/{{ $product_list->id }}" class="">
                                                         <h4 class="item-title no-wrap"> {{ $product_list->title }} </h4>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="item-col item-col-sales">
                                                 <div class="item-heading">Clicks</div>
+                                                @if ($product_list->total_clicks==null)
+                                                <div>0</div>
+                                                @else
                                                 <div> {{ $product_list->total_clicks }} </div>
+                                                @endif
                                             </div>
                                             <div class="item-col item-col-stats">
                                                 <div class="item-heading">Views</div>
+                                                @if ($product_list->total_views==null)
+                                                <div>0</div>
+                                                @else
                                                 <div> {{ $product_list->total_views }} </div>
+                                                @endif
                                             </div>
                                             <div class="item-col item-col-stats">
                                                 <div class="item-heading">Stock status</div>

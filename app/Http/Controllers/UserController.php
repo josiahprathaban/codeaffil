@@ -278,7 +278,7 @@ class UserController extends Controller
                 'f_name' => $request->f_name,
                 'l_name' => $request->l_name
             ]);
-        return back()->with('admin_updated', 'Details has been updated successfully!');
+        return back()->with('admin_added', 'Admin has been added successfully!');
     }
 
     //update admin profile
@@ -295,7 +295,7 @@ class UserController extends Controller
         $admins->f_name = $f_name;
         $admins->phone_no = $phone_no;
         $admins->save();
-        return back()->with('sc_updated', 'Subcategories has been updated successfully!');
+        return back()->with('admin_updated', 'Details has been updated successfully!');
     }
 
     function admin_profile_upload(Request $request)

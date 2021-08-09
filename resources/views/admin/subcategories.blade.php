@@ -114,11 +114,15 @@
                                                     @foreach ($subcategories as $subcategory )
                                                     <tr>
                                                         <th scope="row">{{$subcategory->id}}</th>
-                                                        <td><img src="{{$subcategory->image}}" alt="" style="max-width:60px;"></td>
+                                                        <td><img src="{{asset($subcategory->image)}}" alt="" style="max-width:60px;"></td>
                                                         <td>{{$subcategory->name}}</td>
                                                         <td>{{$subcategory->category_name}}</td>
                                                         <td>{{$subcategory->total_products}}</td>
+                                                        @if ($subcategory->total_clicks==null)
+                                                        <td>0</td>
+                                                        @else
                                                         <td>{{$subcategory->total_clicks}}</td>
+                                                        @endif
                                                         <td>
                                                             <ul class="item-list striped">
                                                                 <div class="item-col fixed item-col-actions-dropdown">
@@ -197,7 +201,7 @@
 
                                                                                                     <input type="hidden" name="subcategory_id" value="{{$subcategory->id}}">
                                                                                                     <div class="form-group">
-                                                                                                        <label class="float-left" >Subcategory</label>
+                                                                                                        <label class="float-left">Subcategory</label>
                                                                                                         <input type="text" class="form-control" value="{{$subcategory->name}}" id="exampleInputEmail1" name="subcategory_name" placeholder="Enter Category Name">
                                                                                                     </div>
                                                                                                     <div class="form-group ">
@@ -206,7 +210,7 @@
                                                                                                     <div class="form-group">
                                                                                                         <label class="float-left"> Image: </label>
                                                                                                         <input name="image" id="image2" type="file" class="form-control">
-                                                                                                        <img id="preview2" src="#" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
+                                                                                                        <img id="preview2" src="{{asset($subcategory->image)}}" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                                                                                                     </div>
                                                                                                     <div class="form-group">
                                                                                                         <button type="submit" class="btn btn-primary float-right">Update</button>
