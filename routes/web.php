@@ -53,6 +53,7 @@ Route::post('/sendemail/send', [SendEmailController::class, 'send']);
 
 Route::get('/admin', [DashboardController::class, 'dashBoard']);
 
+
 Route::get('/admin/add-product', [ProductController::class, 'addProduct'])->name('product.add');
 Route::post('/admin/add-product', [ProductController::class, 'addProductSubmit'])->name('product.addsubmit');
 Route::get('/admin/all-products', [ProductController::class, 'getProducts']);
@@ -95,6 +96,7 @@ Route::post('/admin/admin-profile-update', [UserController::class, 'admin_info_u
 Route::post('/admin/admin-profile-uuload', [UserController::class, 'admin_profile_upload'])->name('admin.uploadprofile');
 Route::get('/admin/view-admin/{id}', [UserController::class, 'getAdminById'])->name('admin.getbyid');
 
+
 Route::get('/admin/hot-deals', [HotDealsController::class, 'getHotDeals']);
 Route::post('/admin/hot-deals', [HotDealsController::class, 'getHotDeals'])->name('hotdeals.get');
 Route::post('/admin/add-hot-deals', [HotDealsController::class, 'addHotDealSubmit'])->name('hotdeal.addsubmit');
@@ -132,6 +134,7 @@ Route::get('/logout', function(){
         session()->pull('profile');
         session()->pull('email');
         session()->pull('varified');
+        session()->pull('admin_name');
     }
     
     return redirect('/login');

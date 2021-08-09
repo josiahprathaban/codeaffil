@@ -32,6 +32,9 @@ class UserController extends Controller
                 $request->session()->put('email', DB::table('users')->where('username', $data['name'])->value('email'));
                 $request->session()->put('varified', DB::table('users')->where('username', $data['name'])->value('email_verified'));
 
+                if(DB::table('users')->where('username', $data['name'])->value('type')=='admin')
+                    $request->session()->put('admin_name', DB::table('admins')->where('username', $data['name'])->value('f_name'));
+
                 if (DB::table('customers')->where('username', session('user'))->value('image') != NULL)
                     $request->session()->put('profile', DB::table('customers')->where('username', session('user'))->value('image'));
                 else
@@ -50,6 +53,9 @@ class UserController extends Controller
                     $request->session()->put('type', DB::table('users')->where('email', $data['name'])->value('type'));
                     $request->session()->put('email', DB::table('users')->where('username', $data['name'])->value('email'));
                     $request->session()->put('varified', DB::table('users')->where('username', $data['name'])->value('email_verified'));
+
+                    if(DB::table('users')->where('username', $data['name'])->value('type')=='admin')
+                        $request->session()->put('admin_name', DB::table('admins')->where('username', $data['name'])->value('f_name'));
 
                     if (DB::table('customers')->where('username', session('user'))->value('image') != NULL)
                         $request->session()->put('profile', DB::table('customers')->where('username', session('user'))->value('image'));
@@ -246,6 +252,8 @@ class UserController extends Controller
             'password' => 'required|min:8|confirmed'
 
         ]);
+
+       
         DB::table('users')->insert([
             'username' => $request->username,
             'email' => $request->email,
@@ -283,6 +291,9 @@ class UserController extends Controller
 
     function admin_info_add(Request $request)
     {
+        
+        session(['admin_name' => $request->f_name]);
+
         DB::table('admins')
             ->insert([
                 'username' => session('user'),
@@ -297,6 +308,7 @@ class UserController extends Controller
 
     function admin_info_update(Request $request)
     {
+        session(['admin_name' => $request->f_name]);
         $user = session('user');
         $phone_no = $request->phone_no;
         $l_name = $request->l_name;

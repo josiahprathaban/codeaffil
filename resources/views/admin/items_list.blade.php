@@ -186,7 +186,7 @@
                                     <div class="item-heading">Updated By</div>
                                     @foreach ($admins as $admin)
                                         @if ($admin->id == $product->updated_by)
-                                        <div class="no-overflow"> {{ $admin->username }} </div> 
+                                        <div class="no-overflow"><a href="/admin/view-admin/{{$admin->id}}"> {{ $admin->username }}</a> </div> 
                                         @endif
                                     @endforeach
                                 </div>

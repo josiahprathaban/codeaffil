@@ -1,12 +1,20 @@
 <header class="header">
+    <div class="header-block header-block-buttons">
+    @if (session('admin_name')==null)
+    <h6 class="text-danger">Hello {{session('user')}}, Place update your information <span ><a href="/admin/admin-profile" class="btn btn-primary-outline btn-sm">Clik here</a></span></h6>
+    @endif
+    </div>
     <div class="header-block header-block-collapse d-lg-none d-xl-none">
         <button class="collapse-btn" id="sidebar-collapse-btn">
+
             <i class="fa fa-bars"></i>
         </button>
     </div>
     <div class="header-block header-block-nav">
-    @if(session('type') != "admin")
-        <script>window.location = "/login";</script>
+        @if(session('type') != "admin")
+        <script>
+            window.location = "/login";
+        </script>
         @endif
         <ul class="nav-profile">
 

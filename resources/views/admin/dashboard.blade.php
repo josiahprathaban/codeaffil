@@ -57,6 +57,18 @@
                                         </div>
                                         <div class="col-6 col-lg-2 stat-col">
                                             <div class="stat-icon">
+                                                <i class="fa fa-running"></i>
+                                            </div>
+                                            <div class="stat">
+                                                <div class="value"> {{ $total_visits }} </div>
+                                                <div class="name"> Total Visits </div>
+                                            </div>
+                                            <div class="progress stat-progress">
+                                                <div class="progress-bar" style="width: 100%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-lg-2 stat-col">
+                                            <div class="stat-icon">
                                                 <i class="fa fa-shopping-cart"></i>
                                             </div>
                                             <div class="stat">
@@ -64,7 +76,7 @@
                                                 <div class="name"> Total Clicks </div>
                                             </div>
                                             <div class="progress stat-progress">
-                                                <div class="progress-bar" style="width: 25%;"></div>
+                                                <div class="progress-bar" style="width: 100%;"></div>
                                             </div>
                                         </div>
                                         <div class="col-6 col-lg-2  stat-col">
@@ -76,7 +88,7 @@
                                                 <div class="name"> Total Views </div>
                                             </div>
                                             <div class="progress stat-progress">
-                                                <div class="progress-bar" style="width: 60%;"></div>
+                                                <div class="progress-bar" style="width: 100%;"></div>
                                             </div>
                                         </div>
                                         <div class="col-6 col-lg-2  stat-col">
@@ -88,7 +100,7 @@
                                                 <div class="name"> Total users </div>
                                             </div>
                                             <div class="progress stat-progress">
-                                                <div class="progress-bar" style="width: 34%;"></div>
+                                                <div class="progress-bar" style="width: 100%;"></div>
                                             </div>
                                         </div>
                                         <div class="col-6 col-lg-2  stat-col">

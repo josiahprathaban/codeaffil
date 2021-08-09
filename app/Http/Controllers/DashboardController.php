@@ -10,6 +10,8 @@ class DashboardController extends Controller
     public function dashBoard()
     {
         $no_products = DB::table('products')->get()->count();
+        $total_visits = DB::table('customer_logs')
+            ->select(DB::raw('SUM(no_of_visit)'))->value('no_of_visit');
         $users = DB::table('users')->get()->count();
         $ecommerces = DB::table('ecommerces')->get()->count();
         $log = DB::table('user_product_logs')
@@ -35,6 +37,6 @@ class DashboardController extends Controller
 
 
 
-        return view('admin.dashboard', compact('no_products', 'users', 'ecommerces', 'products_list', 'product_grap', 'log'));
+        return view('admin.dashboard', compact('no_products', 'total_visits', 'users', 'ecommerces', 'products_list', 'product_grap', 'log'));
     }
 }
