@@ -99,7 +99,7 @@
                                                     <td>{{$category->name}}</td>
                                                     <td>{{$category->total_subcategories}}</td>
                                                     <td>{{$category->total_products}}</td>
-                                                    @if (category->total_clicks==null)
+                                                    @if ($category->total_clicks==null)
                                                     <td>0</td>
                                                     @else
                                                     <td>{{$category->total_clicks}}</td>
