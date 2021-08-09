@@ -122,6 +122,7 @@ Route::Post('_login', [UserController::class, 'login']);
 
 Route::Post('_register', [UserController::class, 'register']);
 
+
 Route::get('/logout', function(){
     if(session()->has('user')){
         session()->pull('user');
@@ -141,6 +142,6 @@ Route::get('/logout', function(){
 Route::Post('_profile_upload', [UserController::class, 'profile_upload']);
 Route::Post('_info_update', [UserController::class, 'info_update']);
 Route::Post('_change_password', [UserController::class, 'change_password']);
-
+Route::Post('_change_email', [UserController::class, 'email_update']);
 
 
