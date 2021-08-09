@@ -101,12 +101,12 @@
                                                         <td>{{$brand->name}}</td>
                                                         <td style="text-align:center">{{$brand->total_products}}</td>
                                                         @if ($brand->total_views==null)
-                                                        <td>0</td>
+                                                        <td style="text-align:center">0</td>
                                                         @else
                                                         <td style="text-align:center">{{$brand->total_views}}</td>
                                                         @endif
                                                         @if ($brand->total_clicks==null)
-                                                        <td>0</td>
+                                                        <td style="text-align:center">0</td>
                                                         @else
                                                         <td style="text-align:center">{{$brand->total_clicks}}</td>
                                                         @endif
