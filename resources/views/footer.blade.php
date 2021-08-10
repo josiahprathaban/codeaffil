@@ -39,7 +39,7 @@
                         <div class="footer-links">
                             <ul>
                                 <li><a href="/products/newarrivals/all">New Arrivals</a></li>
-                                <li><a href="suggestedProducts/all">Suggested Products</a></li>
+                                <li><a href="/products/suggestedProducts/all">Suggested Products</a></li>
                                 <li><a href="/products/sales/all">Best Sales</a></li>
                                 <li><a href="/products/hotdeals/all">Hot Deals</a></li>
                                 <li><a href="/login">Login</a></li>
