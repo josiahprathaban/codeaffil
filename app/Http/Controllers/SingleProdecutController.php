@@ -83,6 +83,11 @@ class SingleProdecutController extends Controller
                 ->where('id', $subcategory_id)
                 ->update(['no_of_clicks' => DB::raw('no_of_clicks + 1')]);
 
+        $category_id = DB::table('subcategories')->where('id', $subcategory_id)->value('category_id');
+        DB::table('categories')
+                ->where('id', $category_id)
+                ->update(['no_of_clicks' => DB::raw('no_of_clicks + 1')]);
+
         return redirect()->away($link);
     }
 

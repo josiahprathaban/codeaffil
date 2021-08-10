@@ -18,7 +18,7 @@ class CreateSubcategoriesTable extends Migration
             $table->string('name');
             $table->string('image');
             $table->unsignedBigInteger('category_id');
-            $table->integer('no_of_clicks');
+            $table->integer('no_of_clicks')->default(0);
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');
