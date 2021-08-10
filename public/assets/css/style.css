@@ -1902,10 +1902,10 @@ ul.dropdown-nav>li>a {
 
 
 
-    .header-right-nav .nice-select.open .list {
+.header-right-nav .nice-select.open .list {
     opacity: 1;
     pointer-events: auto;
-    -webkit-transform: scale(1)
+    -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
     left: auto;

@@ -86,7 +86,7 @@
                                                     <div class="login-toggle-btn">
                                                         <input type="checkbox" />
                                                         <a class="flote-none" href="javascript:void(0)">Remember me</a>
-                                                        <a href="#">Forgot Password?</a>
+                                                        <a href="/reset_password">Forgot Password?</a>
                                                     </div>
 
                                                     <button type="submit"><span>Login</span></button>

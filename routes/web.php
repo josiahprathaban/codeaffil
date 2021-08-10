@@ -47,6 +47,10 @@ Route::get('/admin', function () {
 
 Route::get('/user_verified/{email}', [UserController::class, 'verified']);
 Route::get('/email_verify/{email}', [UserController::class, 'verifying']);
+Route::get('/password_reset/{email}', [UserController::class, 'rest_passwod_form']);
+Route::get('/reset_password', function () {
+    return view('reset_password_email');
+});
 
 Route::get('/contact', [SendEmailController::class, 'index']);
 Route::post('/sendemail/send', [SendEmailController::class, 'send']);
@@ -148,5 +152,7 @@ Route::Post('_profile_upload', [UserController::class, 'profile_upload']);
 Route::Post('_info_update', [UserController::class, 'info_update']);
 Route::Post('_change_password', [UserController::class, 'change_password']);
 Route::Post('_change_email', [UserController::class, 'email_update']);
+Route::Post('_sent_reset', [UserController::class, 'send_reset']);
+Route::Post('_psaaword_reset', [UserController::class, 'reset_password']);
 
 

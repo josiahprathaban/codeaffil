@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -412,6 +413,38 @@ class UserController extends Controller
             return back();
         } else {
             return back()->with('error', 'Fail to chang password! The curent password you entered was wrong!');
+        }
+    }
+
+    public function send_reset(Request $request)
+    {
+        $data = array(
+            'link'      =>  url('/') . "/password_reset/" . Crypt::encryptString($request->email),
+        );
+
+        Mail::to($request->email)->send(new ResetPassword($data));
+        return view('reset_password_message');
+    }
+
+    public function rest_passwod_form($email)
+    {
+        $user_email = Crypt::decryptString($email);
+        return view('reset_password', compact('user_email'));
+    }
+
+    function reset_password(Request $request)
+    {
+        $data = $request->input();
+
+        if (DB::table('users')->where('email', $data['email'])->exists()) {
+            DB::table('users')
+                ->where('email', $data['email'])
+                ->update([
+                    'password' => Hash::make($data['password'])
+                ]);
+            return view('reset_sucess');
+        } else {
+            return back()->with('error', "You don't have an Codeaffil account!");
         }
     }
 }
