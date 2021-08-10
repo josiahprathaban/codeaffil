@@ -39,7 +39,7 @@ Route::get('/login/redirect', [LoginController::class, 'redirect']);
 Route::get('/compare/{title}', [CompareController::class, 'index']);
 Route::get('/single_product/{id}', [SingleProdecutController::class, 'index']);
 Route::get('/singleproduct/redirect/{id}', [SingleProdecutController::class, 'no_of_clicks']);
-Route::get('/products/{filterby?}/{value?}', [ProductsViewController::class, 'index']);
+Route::get('/products/{filterby?}/{value?}/{option?}', [ProductsViewController::class, 'index']);
 Route::post('/product/searchby', [ProductsViewController::class, 'search']);
 Route::get('/admin', function () {
     return view('admin.dashbord');
@@ -71,9 +71,7 @@ Route::post('/admin/add-brands', [BrandController::class, 'addBrandSubmit'])->na
 Route::get('/admin/brands', [BrandController::class, 'getBrands'])->name('brand.get');
 Route::post('/admin/brands', [BrandController::class, 'getBrands'])->name('brand.search');
 Route::get('/admin/delete-brand/{id}', [BrandController::class, 'deleteBrand'])->name('brand.delete');
-// Route::get('/edit-brand/{id}', [BrandController::class, 'editBrand'])->name('brand.edit');
 Route::post('/admin/update-brand', [BrandController::class, 'updateBrand'])->name('brand.update');
-
 
 Route::post('/admin/add-categories', [CategoryController::class, 'addCategorySubmit'])->name('category.addsubmit');
 Route::get('/admin/categories', [CategoryController::class, 'getCategories'])->name('category.get');
@@ -99,7 +97,6 @@ Route::post('/admin/admin-profile-add', [UserController::class, 'admin_info_add'
 Route::post('/admin/admin-profile-update', [UserController::class, 'admin_info_update'])->name('admin.updateprofile');
 Route::post('/admin/admin-profile-uuload', [UserController::class, 'admin_profile_upload'])->name('admin.uploadprofile');
 Route::get('/admin/view-admin/{id}', [UserController::class, 'getAdminById'])->name('admin.getbyid');
-
 
 Route::get('/admin/hot-deals', [HotDealsController::class, 'getHotDeals']);
 Route::post('/admin/hot-deals', [HotDealsController::class, 'getHotDeals'])->name('hotdeals.get');

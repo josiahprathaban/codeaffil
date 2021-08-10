@@ -20,18 +20,10 @@
     <a href="/"><img src="{{ asset('assets/images/logo/logo.jpg')}}" alt="logo" width="182px" /></a>
     <h2>Email varified successfully!</h2>
     <p>Please wait it automatically redirect to Codeaffil page.</p>
-    <br />
-    <div class="timer" onload="timer(5)">
-        <div class="time">
-            wait <span id="time"></span>
-        </div>
-    </div>
-
     <script>
-        var time = 5;
+        var time = 1;
         setInterval(function() {
             var seconds = time % 60;
-            document.getElementById("time").innerHTML = seconds;
             time--;
             if (time == 0) {
                 window.location.href = '/';

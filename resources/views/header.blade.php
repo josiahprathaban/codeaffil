@@ -141,6 +141,8 @@
             </div>
             <!-- mobile menu end-->
         </div>
+
+        @if(!(isset($nosearch)))
         <div class="x_search">
             <div class="search_wrap">
                 <form action="/product/searchby" method="post">
@@ -168,6 +170,7 @@
             </button>
             </form>
         </div>
+        @endif
     </div>
     <!--Header Bottom Account End -->
 </header>

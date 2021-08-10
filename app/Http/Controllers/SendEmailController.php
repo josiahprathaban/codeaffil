@@ -14,7 +14,8 @@ class SendEmailController extends Controller
         $subcategories = DB::table('subcategories')->get();
         $categories = DB::table('categories')->get();
         $ecommerces = DB::table('ecommerces')->get();
-        return view('contact', compact('subcategories', 'categories', 'ecommerces'));
+        $nosearch = 1;
+        return view('contact', compact('subcategories', 'categories', 'ecommerces', 'nosearch'));
     }
 
     function send(Request $request)

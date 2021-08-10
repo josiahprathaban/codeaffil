@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 
 class ProductsViewController extends Controller
 {
-    public function index($filterby, $value)
+    public function index($filterby, $value, $option=null)
     {
         $subcategories = DB::table('subcategories')->get();
         $categories = DB::table('categories')->get();
@@ -20,7 +20,7 @@ class ProductsViewController extends Controller
                 $products = $this->getByCategory($value);
                 break;
             case 'subcategory':
-                $products = $this->getBySubcategory($value);
+                $products = $this->getBySubcategory($value, $option);
                 break;
             case 'ecommerce':
                 $products = $this->getByEcommerce($value);
@@ -42,9 +42,27 @@ class ProductsViewController extends Controller
                 break;
         }
 
-        return view('products', compact('subcategories', 'categories', 'ecommerces', 'products', 'value'));
+        if($option == 'popular'){
+            $popularCategories = $this->popularCategories();
+            return view('products', compact('subcategories', 'categories', 'ecommerces', 'products', 'value', 'popularCategories'));
+        }else{
+            return view('products', compact('subcategories', 'categories', 'ecommerces', 'products', 'value'));
+        }
     }
 
+    public function popularCategories()
+    {
+
+        $popularCategories = DB::table('products')
+            ->select('subcategories.name', DB::raw('COUNT(products.subcategory_id) as counts'))
+            ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+            ->groupBy('subcategories.id')
+            ->orderBy('subcategories.no_of_clicks', 'DESC')
+            ->take(10)
+            ->get();
+
+        return $popularCategories;
+    }
 
     public function getByCategory($value)
     {
