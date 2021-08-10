@@ -17,6 +17,7 @@ class CreateEcommercesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('logo');
+            $table->integer('no_of_clicks')->default(0);
             $table->timestamps();
         });
     }

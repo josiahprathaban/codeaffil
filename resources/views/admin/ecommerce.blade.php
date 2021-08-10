@@ -86,11 +86,7 @@
                                             <td><img src="{{asset($ecommerce->logo)}}" alt="" style="max-width:60px;"></td>
                                             <td>{{$ecommerce->name}}</td>
                                             <td>{{$ecommerce->total_products}}</td>
-                                            @if ($ecommerce->total_clicks == null)
-                                            <td>0</td>
-                                            @else
-                                            <td>{{$ecommerce->total_clicks}}</td>
-                                            @endif
+                                            <td>{{$ecommerce->no_of_clicks}}</td>
                                             <td>
                                                 <ul class="item-list striped">
                                                     <div class="item-col fixed item-col-actions-dropdown">
@@ -129,7 +125,7 @@
                                                                                         </div>
                                                                                         <div class="form-group">
                                                                                             <label class="float-left"> Image: </label>
-                                                                                            <input name="image" id="image2" type="file" class="form-control " onchange="previewFile(this)">
+                                                                                            <input class="form-control" id="file" name="image" type="file" onchange="loadFile(event)" />
                                                                                             <img id="preview2" src="{{asset($ecommerce->logo)}}" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                                                                                         </div>
                                                                                         <div class="form-group">
@@ -214,7 +210,7 @@
                             </div>
                             <div class="form-group">
                                 <label> Image: </label>
-                                <input name="image" id="image1" type="file" class="form-control " onchange="previewFile(this)">
+                                <input name="image" id="image1" type="file" class="form-control ">
                                 <img id="preview1" src="#" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                             </div>
                             <div class="form-group">
@@ -236,12 +232,11 @@
                     preview1.src = URL.createObjectURL(file)
                 }
             }
-            image2.onchange = evt => {
-                const [file] = image2.files
-                if (file) {
-                    preview2.src = URL.createObjectURL(file)
-                }
-            }
+
+            var loadFile = function(event) {
+            var image = document.getElementById('preview2');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
         </script>
         <script src="{{ asset('js/')}}/vendor.js"></script>
         <script src="{{ asset('js/')}}/app.js"></script>

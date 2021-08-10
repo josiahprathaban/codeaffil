@@ -29,23 +29,21 @@ class BrandController extends Controller
 
         if (isset($search)) {
             $brands = DB::table('brands')
-                ->select('brands.*', DB::raw('count(products.id) as total_products'), DB::raw('sum(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
+                ->select('brands.*', DB::raw('count(products.id) as total_products'),)
                 ->leftJoin('products', 'products.brand_id', '=', 'brands.id')
-                ->leftJoin('user_product_logs', 'user_product_logs.product_id', '=', 'products.id')
                 ->where('brands.name', 'LIKE', "%{$search}%")
                 ->groupBy('brands.id')
                 ->orderBy('brands.id')
-                ->paginate(15);
+                ->paginate(10);
 
             return view('admin.brands', compact('brands', 'search'));
         } else {
             $brands = DB::table('brands')
-                ->select('brands.*', DB::raw('count(products.id) as total_products'), DB::raw('sum(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
+                ->select('brands.*', DB::raw('count(products.id) as total_products'),)
                 ->leftJoin('products', 'products.brand_id', '=', 'brands.id')
-                ->leftJoin('user_product_logs', 'user_product_logs.product_id', '=', 'products.id')
                 ->groupBy('brands.id')
                 ->orderBy('brands.id')
-                ->paginate(15);
+                ->paginate(10);
 
             return view('admin.brands', compact('brands'));
         }

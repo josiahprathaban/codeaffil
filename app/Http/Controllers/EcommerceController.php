@@ -65,9 +65,8 @@ class EcommerceController extends Controller
     {
        
         $ecommerces = DB::table('ecommerces')
-        ->select('ecommerces.*', DB::raw('count(products.id) as total_products'), DB::raw('sum(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
+        ->select('ecommerces.*', DB::raw('count(products.id) as total_products'))
         ->leftJoin('products', 'products.ecommerce_id', '=', 'ecommerces.id')
-        ->leftJoin('user_product_logs', 'user_product_logs.product_id', '=', 'products.id')
         ->groupBy('ecommerces.id')
         ->orderBy('ecommerces.id')
         ->paginate(10);

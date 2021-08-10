@@ -207,7 +207,7 @@
                                                                                                     </div>
                                                                                                     <div class="form-group">
                                                                                                         <label class="float-left"> Image: </label>
-                                                                                                        <input name="image" id="image2" type="file" class="form-control">
+                                                                                                        <input name="image" id="file" type="file" class="form-control"  onchange="loadFile(event)">
                                                                                                         <img id="preview2" src="{{asset($subcategory->image)}}" alt="your image" onerror="this.style.display='none'" onload="this.style.display=''" style="max-height:130px; margin:20px; border: 2px solid #85CE36;" />
                                                                                                     </div>
                                                                                                     <div class="form-group">
@@ -312,12 +312,11 @@
                 preview1.src = URL.createObjectURL(file)
             }
         }
-        image2.onchange = evt => {
-            const [file] = image2.files
-            if (file) {
-                preview2.src = URL.createObjectURL(file)
-            }
-        }
+        var loadFile = function(event) {
+            var image = document.getElementById('preview2');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+        
     </script>
     <script src="{{ asset('js/')}}/vendor.js"></script>
     <script src="{{ asset('js/')}}/app.js"></script>

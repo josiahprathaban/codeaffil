@@ -89,7 +89,6 @@
                                                         <th>ID</th>
                                                         <th style="text-align:center">Brand Name</th>
                                                         <th style="text-align:center">Total Product</th>
-                                                        <th style="text-align:center">Total Views</th>
                                                         <th style="text-align:center">Total Clicks</th>
                                                         <th style="text-align:center">Manage</th>
                                                     </tr>
@@ -100,16 +99,7 @@
                                                         <th scope="row">{{$brand->id}}</th>
                                                         <td>{{$brand->name}}</td>
                                                         <td style="text-align:center">{{$brand->total_products}}</td>
-                                                        @if ($brand->total_views==null)
-                                                        <td style="text-align:center">0</td>
-                                                        @else
-                                                        <td style="text-align:center">{{$brand->total_views}}</td>
-                                                        @endif
-                                                        @if ($brand->total_clicks==null)
-                                                        <td style="text-align:center">0</td>
-                                                        @else
-                                                        <td style="text-align:center">{{$brand->total_clicks}}</td>
-                                                        @endif
+                                                        <td style="text-align:center">{{$brand->no_of_clicks}}</td>
                                                         <td style="text-align:center">
                                                             <span class="inactive">
                                                                 <a class="edit" href="#" data-toggle="modal" data-target="#modal-add-update-{{$brand->id}}">
