@@ -468,6 +468,35 @@
                                 <div class="main-heading">
                                     <h2>Filter By</h2>
                                 </div>
+                                @if(isset($popularCategories))
+                                <!-- Sidebar single item -->
+                                <div class="sidebar-widget">
+                                    <h4 class="pro-sidebar-title">Popular Categories</h4>
+                                    <div class="sidebar-widget-list">
+                                        <ul>
+                                            @foreach($popularCategories as $category)
+                                            @if(isset($value) && $value == $category->name)
+                                            <li>
+                                                <div class="sidebar-widget-list-left">
+                                                    <input type="checkbox" checked onchange="if (this.value) window.location.href= '/products/subcategory/' +this.value" value="{{$category->name}}/popular" /> <a href="/products/subcategory/{{$category->name}}/popular">{{$category->name}} </a>
+                                                    <span class="checkmark"></span>
+                                                </div>
+                                            </li>
+                                            @else
+                                            <li>
+                                                <div class="sidebar-widget-list-left">
+                                                    <input type="checkbox" onchange="if (this.value) window.location.href= '/products/subcategory/' +this.value" value="{{$category->name}}/popular" /> <a href="/products/subcategory/{{$category->name}}/popular">{{$category->name}} </a>
+                                                    <span class="checkmark"></span>
+                                                </div>
+                                            </li>
+                                            @endif
+
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Sidebar single item -->
+                                @else
                                 <!-- Sidebar single item -->
                                 <div class="sidebar-widget">
                                     <h4 class="pro-sidebar-title">Categories</h4>
@@ -495,44 +524,48 @@
                                     </div>
                                 </div>
                                 <!-- Sidebar single item -->
-                            </div>
-                            <!-- Sidebar single item -->
-                            <div class="sidebar-widget mt-20">
-                                <h4 class="pro-sidebar-title">Price</h4>
-                                <div class="price-filter mt-10">
-                                    <div class="price-slider-amount">
-                                        <input type="text" id="amount" name="price" placeholder="Add Your Price" />
-                                        <button class="btn btn-outline-success btn-sm" onclick="window.location.href = '/products/price/' + document.getElementById('amount').value">Go</button>
+                                @endif
+                                <!-- Sidebar single item -->
+                                <div class="sidebar-widget mt-20">
+                                    <h4 class="pro-sidebar-title">Price</h4>
+                                    <div class="price-filter mt-10">
+                                        <div class="price-slider-amount">
+                                            <input type="text" id="amount" name="price" placeholder="Add Your Price" />
+                                            <button class="btn btn-outline-success btn-sm" onclick="window.location.href = '/products/price/' + document.getElementById('amount').value">Go</button>
+                                        </div>
+                                        <div id="slider-range"></div>
                                     </div>
-                                    <div id="slider-range"></div>
                                 </div>
-                            </div>
-                            <!-- Sidebar single item -->
-                            <div class="sidebar-widget mt-30">
-                                <h4 class="pro-sidebar-title">Ecommerce</h4>
-                                <div class="sidebar-widget-list">
-                                    <ul>
-                                        @foreach($ecommerces as $ecommerce)
-                                        @if(isset($value) && $value == $ecommerce->name)
-                                        <li>
-                                            <div class="sidebar-widget-list-left">
-                                                <input type="checkbox" checked onchange="if (this.value) window.location.href= '/products/ecommerce/' +this.value" value="{{$ecommerce->name}}" /> <a href="/products/ecommerce/{{$ecommerce->name}}">{{$ecommerce->name}} </a>
-                                                <span class="checkmark"></span>
-                                            </div>
-                                        </li>
-                                        @else
-                                        <li>
-                                            <div class="sidebar-widget-list-left">
-                                                <input type="checkbox" onchange="if (this.value) window.location.href= '/products/ecommerce/' +this.value" value="{{$ecommerce->name}}" /> <a href="/products/ecommerce/{{$ecommerce->name}}">{{$ecommerce->name}} </a>
-                                                <span class="checkmark"></span>
-                                            </div>
-                                        </li>
-                                        @endif
-                                        @endforeach
-                                    </ul>
+                                <!-- Sidebar single item -->
+                                <!-- Sidebar single item -->
+                                <div class="sidebar-widget mt-30">
+                                    <h4 class="pro-sidebar-title">Ecommerce</h4>
+                                    <div class="sidebar-widget-list">
+                                        <ul>
+                                            @foreach($ecommerces as $ecommerce)
+                                            @if(isset($value) && $value == $ecommerce->name)
+                                            <li>
+                                                <div class="sidebar-widget-list-left">
+                                                    <input type="checkbox" checked onchange="if (this.value) window.location.href= '/products/ecommerce/' +this.value" value="{{$ecommerce->name}}" /> <a href="/products/ecommerce/{{$ecommerce->name}}">{{$ecommerce->name}} </a>
+                                                    <span class="checkmark"></span>
+                                                </div>
+                                            </li>
+                                            @else
+                                            <li>
+                                                <div class="sidebar-widget-list-left">
+                                                    <input type="checkbox" onchange="if (this.value) window.location.href= '/products/ecommerce/' +this.value" value="{{$ecommerce->name}}" /> <a href="/products/ecommerce/{{$ecommerce->name}}">{{$ecommerce->name}} </a>
+                                                    <span class="checkmark"></span>
+                                                </div>
+                                            </li>
+                                            @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 </div>
+                                <!-- Sidebar single item -->
                             </div>
-                            <!-- Sidebar single item -->
+
+
                             <!-- <div class="sidebar-widget tag mt-30">
                                     <div class="main-heading">
                                         <h2>Tag</h2>

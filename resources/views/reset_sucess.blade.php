@@ -21,18 +21,11 @@
     <h2>Passwod Reset Successfully!</h2>
     <p>Login and enjoy your purchase!</p>
     <p>Please wait it automatically redirect to Codeaffil login page.</p>
-    <br />
-    <div class="timer" onload="timer(5)">
-        <div class="time">
-            wait <span id="time"></span>
-        </div>
-    </div>
 
     <script>
-        var time = 5;
+        var time = 3;
         setInterval(function() {
             var seconds = time % 60;
-            document.getElementById("time").innerHTML = seconds;
             time--;
             if (time == 0) {
                 window.location.href = '/login';

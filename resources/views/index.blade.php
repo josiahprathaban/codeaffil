@@ -94,7 +94,7 @@
                         <div class="category-list mb-30px">
 
                             <div class="category-thumb">
-                                <a href="products/subcategory/{{$popularCategories[$i]->name}}">
+                                <a href="products/subcategory/{{$popularCategories[$i]->name}}/popular">
                                     <div class="xcontainer">
                                         <div class="xwhite"></div>
                                         <img src="{{ asset($popularCategories[$i]->image)}}" alt="" class="ximage" />
@@ -108,12 +108,12 @@
                                     <h4>{{$popularCategories[$i]->name}}</h4>
                                 </div>
                                 <span class="number_product">{{$popularCategories[$i]->counts}} Products</span>
-                                <a href="products/subcategory/{{$popularCategories[$i]->name}}"> Shop Now <i class="ion-android-arrow-dropright-circle"></i></a>
+                                <a href="products/subcategory/{{$popularCategories[$i]->name}}/popular"> Shop Now <i class="ion-android-arrow-dropright-circle"></i></a>
                             </div>
                         </div>
                         @if($i+1 < count($popularCategories)) <div class="category-list">
                             <div class="category-thumb">
-                                <a href="products/subcategory/{{$popularCategories[$i+1]->name}}">
+                                <a href="products/subcategory/{{$popularCategories[$i+1]->name}}/popular">
                                     <div class="xcontainer">
                                         <div class="xwhite"></div>
                                         <img src="{{ asset($popularCategories[$i+1]->image)}}" alt="" class="ximage" />
@@ -127,7 +127,7 @@
                                 </div>
 
                                 <span class="number_product">{{$popularCategories[$i+1]->counts}} Products</span>
-                                <a href="products/subcategory/{{$popularCategories[$i+1]->name}}"> Shop Now <i class="ion-android-arrow-dropright-circle"></i></a>
+                                <a href="products/subcategory/{{$popularCategories[$i+1]->name}}/popular"> Shop Now <i class="ion-android-arrow-dropright-circle"></i></a>
                             </div>
                 </div>
                 @endif

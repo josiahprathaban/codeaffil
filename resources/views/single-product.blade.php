@@ -136,16 +136,10 @@
                                 <div class="social-info">
                                     <ul>
                                         <li>
-                                            <a href="#"><i class="ion-social-facebook"></i></a>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" target="_blank""><i class="ion-social-facebook"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="ion-social-twitter"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="ion-social-google"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="ion-social-instagram"></i></a>
+                                            <a href="whatsapp://send?text=Download free musical tracks and packs!!! {{$product->title}} : {{url()->current()}}"><i class="ion-social-whatsapp"></i></a>
                                         </li>
                                     </ul>
                                 </div>
