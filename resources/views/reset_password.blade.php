@@ -29,6 +29,11 @@
         <input hidden name="email" value="{{$user_email}}">
         <input type="password" minlength="8" required placeholder="New Password" id="password" name="password" >
         <input type="password" minlength="8" required placeholder="Confirm Password" id="confirm_password">
+        
+        @if(session('error'))
+        <br/><br/>
+        <div style="color:#ef1e1e">{{session('error')}} <a href="/register"> Register Now</a></div>
+        @endif
         <input type="submit" value="Reset">
     </form>
 
