@@ -131,8 +131,8 @@
                         <li class="item">
                             <div class="item-row">
                                 <div class="item-col fixed item-col-img md">
-                                    <a href="item-editor.html">
-                                        <img width="100%" src="{{ asset($product->image_1) }}" alt="">
+                                    <a href="#">
+                                        <img width="100%"  src="{{ asset($product->image_1) }}" alt="">
                                     </a>
                                 </div>
                                 <div class="item-col fixed pull-left item-col-title">
