@@ -82,10 +82,10 @@ class SubCategoryController extends Controller
             return view('admin.subcategories', compact('subcategories', 'categories', 'search'));
         } else {
             $subcategories = DB::table('subcategories')
-                ->select('subcategories.*', 'categories.name as category_name', DB::raw('count(products.id) as total_products'), DB::raw('sum(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
-                ->leftJoin('products', 'products.subcategory_id', '=', 'subcategories.id')
-                ->leftJoin('categories', 'categories.id', '=', 'subcategories.category_id')
-                ->leftJoin('user_product_logs', 'user_product_logs.product_id', '=', 'products.id')
+                ->select('subcategories.*', 'categories.name as category_name', DB::raw('count(products.id) as total_products'))
+                ->join('products', 'products.subcategory_id', '=', 'subcategories.id')
+                ->join('categories', 'categories.id', '=', 'subcategories.category_id')
+                ->join('user_product_logs', 'user_product_logs.product_id', '=', 'products.id')
                 ->groupBy('subcategories.id')
                 ->orderBy('subcategories.id')
                 ->paginate(10);

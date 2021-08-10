@@ -118,11 +118,9 @@
                                                         <td>{{$subcategory->name}}</td>
                                                         <td>{{$subcategory->category_name}}</td>
                                                         <td>{{$subcategory->total_products}}</td>
-                                                        @if ($subcategory->total_clicks==null)
-                                                        <td>0</td>
-                                                        @else
-                                                        <td>{{$subcategory->total_clicks}}</td>
-                                                        @endif
+                                                        
+                                                        <td>{{$subcategory->no_of_clicks}}</td>
+                                                        
                                                         <td>
                                                             <ul class="item-list striped">
                                                                 <div class="item-col fixed item-col-actions-dropdown">
