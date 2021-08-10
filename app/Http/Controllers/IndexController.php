@@ -41,11 +41,10 @@ class IndexController extends Controller
     {
 
         $popularCategories = DB::table('products')
-            ->select('subcategories.id', 'subcategories.name', 'subcategories.image', DB::raw('COUNT(products.subcategory_id) as counts'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'))
+            ->select('subcategories.id', 'subcategories.name', 'subcategories.image', DB::raw('COUNT(products.subcategory_id) as counts')) //DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks')
             ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
-            ->leftJoin('user_product_logs', 'products.id', '=', 'user_product_logs.product_id')
             ->groupBy('subcategories.id')
-            ->orderBy('total_clicks', 'DESC')
+            ->orderBy('subcategories.no_of_clicks', 'DESC')
             ->take(10)
             ->get();
 

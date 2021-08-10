@@ -10,7 +10,7 @@
                     </div>
                     <!-- footer logo -->
                     <div class="about-footer">
-                        <p class="text-info">We are a team of designers and developers that create high quality HTML template</p>
+                        <p class="text-info">We ease your comparision and searching!</p>
                         <div class="need-help">
                             <p class="phone-info">
                                 NEED HELP?
