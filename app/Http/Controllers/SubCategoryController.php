@@ -27,6 +27,13 @@ class SubCategoryController extends Controller
         $subcategory->name = $name;
         $subcategory->image = $imageName;
         $subcategory->save();
+
+        $category_id = DB::table('subcategories')->where('name',$name)->value('category_id');
+        DB::table('categories')
+                ->where('id', $category_id)
+                ->update(['no_of_sub' => DB::raw('no_of_sub + 1')]);
+
+
         return back()->with('sc_added', 'Subcategories has been added successfully!');
     }
 
@@ -70,22 +77,20 @@ class SubCategoryController extends Controller
 
         if (isset($search)) {
             $subcategories = DB::table('subcategories')
-                ->select('subcategories.*', 'categories.name as category_name', DB::raw('count(products.id) as total_products'), DB::raw('sum(user_product_logs.no_of_views) as total_views'), DB::raw('SUM(user_product_logs.no_of_clicks) as total_clicks'),)
+                ->select('subcategories.*', 'categories.name as category_name', DB::raw('count(products.id) as total_products'))
                 ->leftJoin('products', 'products.subcategory_id', '=', 'subcategories.id')
-                ->leftJoin('categories', 'categories.id', '=', 'subcategories.category_id')
-                ->leftJoin('user_product_logs', 'user_product_logs.product_id', '=', 'products.id')
-                ->where('subcategories.name', 'LIKE', "%{$search}%")
+                ->join('categories', 'categories.id', '=', 'subcategories.category_id')
                 ->groupBy('subcategories.id')
                 ->orderBy('subcategories.id')
+                ->where('subcategories.name', 'LIKE', "%{$search}%")
                 ->paginate(10);
             $categories = DB::table('categories')->get();
             return view('admin.subcategories', compact('subcategories', 'categories', 'search'));
         } else {
             $subcategories = DB::table('subcategories')
                 ->select('subcategories.*', 'categories.name as category_name', DB::raw('count(products.id) as total_products'))
-                ->join('products', 'products.subcategory_id', '=', 'subcategories.id')
+                ->leftJoin('products', 'products.subcategory_id', '=', 'subcategories.id')
                 ->join('categories', 'categories.id', '=', 'subcategories.category_id')
-                ->join('user_product_logs', 'user_product_logs.product_id', '=', 'products.id')
                 ->groupBy('subcategories.id')
                 ->orderBy('subcategories.id')
                 ->paginate(10);

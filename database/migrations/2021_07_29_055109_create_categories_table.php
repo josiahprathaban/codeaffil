@@ -16,6 +16,8 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('no_of_clicks');
+            $table->integer('no_of_sub')->default(0);
             $table->timestamps();
         });
     }
