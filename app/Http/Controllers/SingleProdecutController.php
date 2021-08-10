@@ -80,13 +80,23 @@ class SingleProdecutController extends Controller
 
         $subcategory_id = DB::table('products')->where('id', $id)->value('subcategory_id');
         DB::table('subcategories')
-                ->where('id', $subcategory_id)
-                ->update(['no_of_clicks' => DB::raw('no_of_clicks + 1')]);
+            ->where('id', $subcategory_id)
+            ->update(['no_of_clicks' => DB::raw('no_of_clicks + 1')]);
 
         $category_id = DB::table('subcategories')->where('id', $subcategory_id)->value('category_id');
         DB::table('categories')
-                ->where('id', $category_id)
-                ->update(['no_of_clicks' => DB::raw('no_of_clicks + 1')]);
+            ->where('id', $category_id)
+            ->update(['no_of_clicks' => DB::raw('no_of_clicks + 1')]);
+
+        $brand_id = DB::table('products')->where('id', $id)->value('brand_id');
+        DB::table('brands')
+            ->where('id', $brand_id)
+            ->update(['no_of_clicks' => DB::raw('no_of_clicks + 1')]);
+
+        $ecommerce_id = DB::table('products')->where('id', $id)->value('ecommerce_id');
+        DB::table('ecommerces')
+            ->where('id', $ecommerce_id)
+            ->update(['no_of_clicks' => DB::raw('no_of_clicks + 1')]);
 
         return redirect()->away($link);
     }
